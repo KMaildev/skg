@@ -13,7 +13,7 @@ class UpdateChartofAccount extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,13 @@ class UpdateChartofAccount extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('chartofaccount');
         return [
-            //
+            'account_number' => 'required|unique:chartof_accounts,coa_number,' . $id,
+            'account_type' => 'required',
+            'account_group' => 'required',
+            'description' => 'required',
+            'opening_balance' => "numeric",
         ];
     }
 }

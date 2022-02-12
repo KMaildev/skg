@@ -34,6 +34,7 @@
                                 <th style="color: white; text-align: center;">Number</th>
                                 <th style="color: white; text-align: center;">Description</th>
                                 <th style="color: white; text-align: center;">Account Type</th>
+                                <th style="color: white; text-align: center;">OPENING BALANCE</th>
                                 <th style="color: white; text-align: center;">Financial Statement</th>
                                 <th style="color: white; text-align: center;">Actions</th>
                             </tr>
@@ -52,6 +53,9 @@
                                     </td>
                                     <td style="text-align: center;">
                                         {{ $chartof_account->account_classifications_table->name ?? '' }}
+                                    </td>
+                                    <td style="text-align: right;">
+                                        {{ number_format($chartof_account->account_opening_balance, 2) }}
                                     </td>
                                     <td style="text-align: center;">
                                         {{ $chartof_account->account_type_table->financial_statement ?? '' }}

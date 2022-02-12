@@ -6,6 +6,7 @@ use App\Accounting\AccountType;
 use App\Accounting\ChartofAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreChartofAccount;
+use App\Http\Requests\UpdateChartofAccount;
 use Illuminate\Http\Request;
 
 class ChartofAccountController extends Controller
@@ -17,7 +18,7 @@ class ChartofAccountController extends Controller
      */
     public function index()
     {
-        $chartof_accounts = ChartofAccount::latest()->paginate(20);
+        $chartof_accounts = ChartofAccount::first()->paginate(20);
         return view('accounting.chartof_account.index', compact('chartof_accounts'))
             ->with('i', (request()->input('page', 1) - 1) * 20);
     }
@@ -71,7 +72,9 @@ class ChartofAccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coa = ChartofAccount::findOrFail($id);
+        $account_types = AccountType::all();
+        return view('accounting.chartof_account.edit', compact('coa', 'account_types'));
     }
 
     /**
@@ -81,9 +84,16 @@ class ChartofAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateChartofAccount $request, $id)
     {
-        //
+        $Coa = ChartofAccount::findOrFail($id);
+        $Coa->account_type_id = $request->account_type;
+        $Coa->account_classification_id = $request->account_group;
+        $Coa->description = $request->description;
+        $Coa->account_opening_balance = $request->opening_balance ?? 0;
+        $Coa->coa_number = $request->account_number;
+        $Coa->update();
+        return redirect()->back()->with('success', 'Updated successfully.');
     }
 
     /**
