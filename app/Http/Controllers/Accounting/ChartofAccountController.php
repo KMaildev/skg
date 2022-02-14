@@ -18,7 +18,7 @@ class ChartofAccountController extends Controller
      */
     public function index()
     {
-        $chartof_accounts = ChartofAccount::first()->paginate(20);
+        $chartof_accounts = ChartofAccount::latest()->paginate(20);
         return view('accounting.chartof_account.index', compact('chartof_accounts'))
             ->with('i', (request()->input('page', 1) - 1) * 20);
     }

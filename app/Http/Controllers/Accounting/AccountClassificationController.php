@@ -18,7 +18,7 @@ class AccountClassificationController extends Controller
      */
     public function index()
     {
-        $account_classifications = AccountClassification::first()->paginate(20);
+        $account_classifications = AccountClassification::latest()->paginate(20);
         return view('accounting.accountclassification.index', compact('account_classifications'))
             ->with('i', (request()->input('page', 1) - 1) * 20);
     }

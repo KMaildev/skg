@@ -83,8 +83,8 @@
         @endif
 
         <div class="content">
-            <div class="title m-b-md">
-                <span>
+            <div class="title">
+                <span style="font-size: 25px;">
                     MYANMAR GREAT MOTOR SOFTWARE
                 </span>
             </div>
