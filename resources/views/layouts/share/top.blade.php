@@ -3,19 +3,20 @@
      <div class="container-xxl navbar-nav-right">
 
          <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-             <a href="{{ url('/home') }}" class="app-brand-link gap-2">
-                 <span class="app-brand-logo demo">
-                     <img src="{{ asset('assets/logo/logo.jpeg') }}" alt="" style="width: 200px">
-                 </span>
+             <a href="{{ route('home') }}" class="app-brand-link gap-2">
+                 <span class="app-brand-text demo menu-text fw-bold">SKG</span>
+             </a>
+             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
+                 <i class="bx bx-x bx-sm align-middle"></i>
              </a>
          </div>
-
 
          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
              <ul class="navbar-nav flex-row align-items-center ms-auto">
                  <!-- User -->
                  <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                         data-bs-toggle="dropdown">
                          <div class="avatar avatar-online">
                              <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="rounded-circle">
                          </div>
@@ -26,7 +27,8 @@
                                  <div class="d-flex">
                                      <div class="flex-shrink-0 me-3">
                                          <div class="avatar avatar-online">
-                                             <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="rounded-circle">
+                                             <img src="{{ asset('assets/img/avatars/1.png') }}" alt
+                                                 class="rounded-circle">
                                          </div>
                                      </div>
                                      <div class="flex-grow-1">

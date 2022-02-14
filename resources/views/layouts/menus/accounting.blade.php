@@ -1,7 +1,7 @@
 @include('layouts.includes.header')
 @include('layouts.share.top')
 
-@include('layouts.share.accounting_menu')
+@include('layouts.share.menulist.accounting_menu')
 
 <div class="container-xxl flex-grow-1 container-p-y">
     @include('layouts.includes.alert')

@@ -14,7 +14,7 @@ class CreateChartofAccountsTable extends Migration
     public function up()
     {
         Schema::create('chartof_accounts', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('coa_number')->unique();
             $table->string('description');
             $table->integer('account_type_id');
