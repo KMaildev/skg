@@ -21,7 +21,10 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/home', 'HomeController@index')->name('home');
+
+    // Accounting Route
     Route::resource('accountingdashboard', 'AccountingDashboardController');
 
     Route::resource('accountclassification', 'Accounting\AccountClassificationController');
@@ -32,4 +35,12 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('chartofaccount', 'Accounting\ChartofAccountController');
+    // Accounting Route
+
+
+
+    // Inventory Route
+    Route::resource('inventorydashboard', 'Inventory\DashboardController');
+    Route::resource('material', 'Inventory\MaterialController');
+    Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
 });

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 14, 2022 at 04:38 AM
+-- Generation Time: Feb 15, 2022 at 11:47 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mgmcsoftware`
+-- Database: `skg`
 --
 
 -- --------------------------------------------------------
@@ -28,29 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account_classifications` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ac_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `account_classifications`
---
-
-INSERT INTO `account_classifications` (`id`, `name`, `ac_code`, `created_at`, `updated_at`) VALUES
-(1, 'Assets', '1-000', '2022-02-11 00:46:11', '2022-02-11 00:46:11'),
-(2, 'Equity', '3-000', '2022-02-11 00:46:39', '2022-02-11 00:46:39'),
-(4, 'Revenue', '4-000', '2022-02-11 00:46:52', '2022-02-11 00:46:52'),
-(5, 'COGS', '5-000', '2022-02-11 00:47:03', '2022-02-11 00:47:03'),
-(6, 'Other Income', '4-100', '2022-02-11 00:47:15', '2022-02-11 00:47:15'),
-(7, 'Operation Expenses', '5-100', '2022-02-11 00:47:26', '2022-02-11 00:47:26'),
-(8, 'Administration Expenses', '6-100', '2022-02-11 00:47:37', '2022-02-11 00:47:37'),
-(9, 'Selling & Distribution Expenses', '6-200', '2022-02-11 00:47:47', '2022-02-11 00:47:47'),
-(10, 'Finance Costs', '6-300', '2022-02-11 00:47:56', '2022-02-11 00:47:56'),
-(11, 'Other Expenses', '6-400', '2022-02-11 00:48:06', '2022-02-11 00:48:06'),
-(12, 'Liabilities', '2-000', '2022-02-11 00:46:25', '2022-02-11 00:46:25');
 
 -- --------------------------------------------------------
 
@@ -59,7 +42,7 @@ INSERT INTO `account_classifications` (`id`, `name`, `ac_code`, `created_at`, `u
 --
 
 CREATE TABLE `account_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_classification_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -75,7 +58,7 @@ CREATE TABLE `account_types` (
 --
 
 CREATE TABLE `chartof_accounts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `coa_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_type_id` int(11) NOT NULL,
@@ -92,7 +75,7 @@ CREATE TABLE `chartof_accounts` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -120,16 +103,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2022_02_10_103209_create_account_classifications_table', 2),
-(5, '2022_02_10_173302_create_account_types_table', 3),
-(6, '2022_02_11_065406_create_chartof_accounts_table', 4),
-(7, '2022_02_11_073056_add_account_classification_id_to_chartof_accounts_table', 5),
-(8, '2022_02_11_172145_add_opening_balance_to_chartof_accounts_table', 6),
-(9, '2022_02_11_173529_drop_opening_balance_from_chartof_accounts_table', 7),
-(10, '2022_02_11_174226_add_account_opening_balance_to_chartof_accounts_table', 8),
-(11, '2022_02_11_182521_drop_account_opening_balance_from_chartof_accounts_table', 9),
-(12, '2022_02_11_182700_add_account_opening_balance_to_chartof_accounts_table', 10),
-(13, '2022_02_14_033711_add_account_opening_balance_to_chartof_accounts_table', 11);
+(4, '2022_02_10_103209_create_account_classifications_table', 1),
+(5, '2022_02_10_173302_create_account_types_table', 1),
+(6, '2022_02_11_065406_create_chartof_accounts_table', 1),
+(7, '2022_02_11_073056_add_account_classification_id_to_chartof_accounts_table', 1),
+(8, '2022_02_14_033711_add_account_opening_balance_to_chartof_accounts_table', 1),
+(9, '2022_02_15_100945_create_unitos_of_measures_table', 2);
 
 -- --------------------------------------------------------
 
@@ -146,11 +125,33 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `unitos_of_measures`
+--
+
+CREATE TABLE `unitos_of_measures` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `unitos_of_measures`
+--
+
+INSERT INTO `unitos_of_measures` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Bags', NULL, '2022-02-15 04:17:11'),
+(2, 'Suds', '2022-02-15 04:05:15', '2022-02-15 04:05:15'),
+(4, 'Sht', '2022-02-15 04:07:45', '2022-02-15 04:07:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -165,7 +166,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$sEC8.T7pB0XueE8ovjiOmOnAif1m/H2H9eNoh95/zkgr7UUid7Uly', NULL, '2022-02-10 15:10:38', '2022-02-10 15:10:38');
+(1, 'Admin', 'admin@skg.com', NULL, '$2y$10$iY.PTOOlASzaLY549BHGH.aQorS3bbzjX7P9wcQ2QbJH/sGWI0aXa', NULL, '2022-02-14 04:00:05', '2022-02-14 04:00:05'),
+(2, 'Admin', 'admin@gmail.com', NULL, '$2y$10$8uBpiBB94GPnidoG.jGrCO1n/hPduvn42VIfuHE27QGwqxU3MMaPa', NULL, '2022-02-14 04:00:32', '2022-02-14 04:00:32');
 
 --
 -- Indexes for dumped tables
@@ -211,6 +213,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `unitos_of_measures`
+--
+ALTER TABLE `unitos_of_measures`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -225,37 +233,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account_classifications`
 --
 ALTER TABLE `account_classifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `account_types`
 --
 ALTER TABLE `account_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `chartof_accounts`
 --
 ALTER TABLE `chartof_accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `unitos_of_measures`
+--
+ALTER TABLE `unitos_of_measures`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
