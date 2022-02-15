@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ route('accounttype.index') }}" class="menu-link">
+                        <a href="{{ route('labour.index') }}" class="menu-link">
                             <div data-i2n="Without menu">Labour </div>
                         </a>
                     </li>

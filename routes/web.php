@@ -42,5 +42,7 @@ Route::middleware('auth')->group(function () {
     // Inventory Route
     Route::resource('inventorydashboard', 'Inventory\DashboardController');
     Route::resource('material', 'Inventory\MaterialController');
+
     Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
+    Route::resource('labour', 'Inventory\LabourController');
 });

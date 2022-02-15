@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMaterial;
+use App\Http\Requests\UpdateMaterial;
+use App\Models\Material;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -14,7 +17,12 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return view('inventory.material.index');
+        $materials = Material::query();
+        if (request('search')) {
+            $materials->where('name', 'Like', '%' . request('search') . '%');
+        }
+        $materials = $materials->orderBy('id', 'ASC')->paginate(50);
+        return view('inventory.material.index', compact('materials'));
     }
 
     /**
@@ -24,7 +32,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventory.material.create');
     }
 
     /**
@@ -33,9 +41,13 @@ class MaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMaterial $request)
     {
-        //
+        $material = new Material();
+        $material->name = $request->name;
+        $material->save();
+        return redirect()->route('material.create')
+            ->with('success', 'Created successfully.');
     }
 
     /**
@@ -57,7 +69,8 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        return view('inventory.material.edit', compact('material'));
     }
 
     /**
@@ -67,9 +80,12 @@ class MaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMaterial $request, $id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $material->name = $request->name;
+        $material->update();
+        return redirect()->back()->with('success', 'Updated successfully.');
     }
 
     /**
@@ -80,6 +96,9 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $material->delete();
+        return redirect()->route('material.index')
+            ->with('success', 'Deleted successfully.');
     }
 }

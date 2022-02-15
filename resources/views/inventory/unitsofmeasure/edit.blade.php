@@ -8,7 +8,7 @@
                 </div>
                 <div class="card-body">
                     <form action="{{ route('unitsofmeasure.update', $umo->id) }}" method="POST" autocomplete="off"
-                        id="my-form" role="form">
+                        id="update-form" role="form">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
@@ -36,4 +36,5 @@
 @endsection
 
 @section('script')
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateUnitsOfMeasure', '#update-form') !!}
 @endsection

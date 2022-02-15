@@ -6,10 +6,10 @@
 
                 <div class="card-body">
                     <div class="card-title header-elements">
-                        <h5 class="m-0 me-2">Units of Measure</h5>
+                        <h5 class="m-0 me-2">Labour</h5>
                         <div class="card-title-elements ms-auto">
                             <div class="card-header-elements ms-auto">
-                                <form action="{{ route('unitsofmeasure.index') }}" method="GET">
+                                <form action="{{ route('labour.index') }}" method="GET" autocomplete="off">
                                     <input type="text" class="form-control form-control-sm" placeholder="Search"
                                         name="search" />
                                 </form>
@@ -17,8 +17,7 @@
 
                             @include('layouts.includes.export')
 
-                            <a href="{{ route('unitsofmeasure.create') }}"
-                                class="dt-button create-new btn btn-primary btn-sm">
+                            <a href="{{ route('labour.create') }}" class="dt-button create-new btn btn-primary btn-sm">
                                 <span>
                                     <i class="bx bx-plus me-sm-2"></i>
                                     <span class="d-none d-sm-inline-block">Create</span>
@@ -38,13 +37,13 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($unitsofmeasures as $key => $unitsofmeasure)
+                            @foreach ($labours as $key => $labour)
                                 <tr>
                                     <td style="text-align: center;">
                                         {{ $key + 1 }}
                                     </td>
                                     <td style="text-align: center;">
-                                        {{ $unitsofmeasure->name }}
+                                        {{ $labour->name }}
                                     </td>
                                     <td style="text-align: center;">
                                         <div class="btn-group">
@@ -55,11 +54,10 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('unitsofmeasure.edit', $unitsofmeasure->id) }}">Edit</a>
+                                                        href="{{ route('labour.edit', $labour->id) }}">Edit</a>
                                                 </li>
                                                 <li>
-                                                    <form
-                                                        action="{{ route('unitsofmeasure.destroy', $unitsofmeasure->id) }}"
+                                                    <form action="{{ route('labour.destroy', $labour->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -74,7 +72,7 @@
                             @endforeach
                         </tbody>
                         <caption class="ms-1">
-                            {!! $unitsofmeasures->links() !!}
+                            {!! $labours->links() !!}
                         </caption>
                     </table>
                 </div>

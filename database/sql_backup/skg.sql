@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 15, 2022 at 11:47 AM
+-- Generation Time: Feb 15, 2022 at 05:49 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -86,6 +86,50 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `labours`
+--
+
+CREATE TABLE `labours` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `labours`
+--
+
+INSERT INTO `labours` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(2, 'Steel Fixers', '2022-02-15 09:44:28', '2022-02-15 09:47:40'),
+(3, 'Steel Fixer', '2022-02-15 09:44:51', '2022-02-15 09:44:51'),
+(4, 'Surveryor', '2022-02-15 09:45:03', '2022-02-15 09:45:03'),
+(5, 'Worker', '2022-02-15 09:45:09', '2022-02-15 09:45:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materials`
+--
+
+CREATE TABLE `materials` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(2, 'River Shingle', '2022-02-15 09:21:51', '2022-02-15 09:25:12'),
+(3, 'Jungle Wood', '2022-02-15 09:22:03', '2022-02-15 09:22:03');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -108,7 +152,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2022_02_11_065406_create_chartof_accounts_table', 1),
 (7, '2022_02_11_073056_add_account_classification_id_to_chartof_accounts_table', 1),
 (8, '2022_02_14_033711_add_account_opening_balance_to_chartof_accounts_table', 1),
-(9, '2022_02_15_100945_create_unitos_of_measures_table', 2);
+(9, '2022_02_15_100945_create_unitos_of_measures_table', 2),
+(10, '2022_02_15_151522_create_materials_table', 3),
+(11, '2022_02_15_160317_create_labours_table', 4);
 
 -- --------------------------------------------------------
 
@@ -201,6 +247,18 @@ ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `labours`
+--
+ALTER TABLE `labours`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -254,10 +312,22 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `labours`
+--
+ALTER TABLE `labours`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `unitos_of_measures`

@@ -7,14 +7,15 @@
                     <h5 class="mb-0">Units of Measure</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('unitsofmeasure.store') }}" method="POST" autocomplete="off" id="create-form"
-                        role="form">
+                    <form action="{{ route('material.update', $material->id) }}" method="POST" autocomplete="off"
+                        id="update-form" role="form">
                         @csrf
+                        @method('PUT')
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" />
+                                    value="{{ $material->name }}" />
                                 @error('name')
                                     <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
@@ -24,7 +25,7 @@
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="{{ route('unitsofmeasure.index') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ route('material.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -35,5 +36,5 @@
 @endsection
 
 @section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreUnitsOfMeasure', '#create-form') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateMaterial', '#update-form') !!}
 @endsection

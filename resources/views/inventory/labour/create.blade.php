@@ -4,10 +4,10 @@
         <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Units of Measure</h5>
+                    <h5 class="mb-0">Labour</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('unitsofmeasure.store') }}" method="POST" autocomplete="off" id="create-form"
+                    <form action="{{ route('labour.store') }}" method="POST" autocomplete="off" id="create-form"
                         role="form">
                         @csrf
                         <div class="row mb-3">
@@ -24,7 +24,7 @@
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="{{ route('unitsofmeasure.index') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ route('labour.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -35,5 +35,5 @@
 @endsection
 
 @section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreUnitsOfMeasure', '#create-form') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\StoreLabour', '#create-form') !!}
 @endsection

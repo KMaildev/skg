@@ -3,28 +3,27 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUnitsOfMeasure;
-use App\Http\Requests\UpdateUnitsOfMeasure;
-use App\Models\UnitosOfMeasure;
+use App\Http\Requests\StoreLabour;
+use App\Http\Requests\UpdateLabour;
+use App\Models\Labour;
 use Illuminate\Http\Request;
 
-class UnitsOfMeasureController extends Controller
+class LabourController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $unitsofmeasures = UnitosOfMeasure::query();
+        $labours = Labour::query();
         if (request('search')) {
-            $unitsofmeasures->where('name', 'Like', '%' . request('search') . '%');
+            $labours->where('name', 'Like', '%' . request('search') . '%');
         }
-        $unitsofmeasures = $unitsofmeasures->orderBy('id', 'ASC')->paginate(50);
-        return view('inventory.unitsofmeasure.index', compact('unitsofmeasures'));
+        $labours = $labours->orderBy('id', 'ASC')->paginate(50);
+        return view('inventory.labour.index', compact('labours'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +32,7 @@ class UnitsOfMeasureController extends Controller
      */
     public function create()
     {
-        return view('inventory.unitsofmeasure.create');
+        return view('inventory.labour.create');
     }
 
     /**
@@ -42,12 +41,12 @@ class UnitsOfMeasureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUnitsOfMeasure $request)
+    public function store(StoreLabour $request)
     {
-        $umo = new UnitosOfMeasure();
-        $umo->name = $request->name;
-        $umo->save();
-        return redirect()->route('unitsofmeasure.create')
+        $labour = new Labour();
+        $labour->name = $request->name;
+        $labour->save();
+        return redirect()->route('labour.create')
             ->with('success', 'Created successfully.');
     }
 
@@ -70,8 +69,8 @@ class UnitsOfMeasureController extends Controller
      */
     public function edit($id)
     {
-        $umo = UnitosOfMeasure::findOrFail($id);
-        return view('inventory.unitsofmeasure.edit', compact('umo'));
+        $labour = Labour::findOrFail($id);
+        return view('inventory.labour.edit', compact('labour'));
     }
 
     /**
@@ -81,11 +80,11 @@ class UnitsOfMeasureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUnitsOfMeasure $request, $id)
+    public function update(UpdateLabour $request, $id)
     {
-        $umo = UnitosOfMeasure::findOrFail($id);
-        $umo->name = $request->name;
-        $umo->update();
+        $labour = Labour::findOrFail($id);
+        $labour->name = $request->name;
+        $labour->update();
         return redirect()->back()->with('success', 'Updated successfully.');
     }
 
@@ -97,9 +96,9 @@ class UnitsOfMeasureController extends Controller
      */
     public function destroy($id)
     {
-        $umo = UnitosOfMeasure::findOrFail($id);
-        $umo->delete();
-        return redirect()->route('unitsofmeasure.index')
+        $labour = Labour::findOrFail($id);
+        $labour->delete();
+        return redirect()->route('labour.index')
             ->with('success', 'Deleted successfully.');
     }
 }
