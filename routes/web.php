@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
     //Project
     Route::resource('projectdashboard', 'Project\ProjectDashboardController');
-
     Route::resource('customers', 'CustomersController');
+    Route::resource('proposal', 'Project\ProposalController');
+    Route::resource('project', 'Project\ProjectController');
 });

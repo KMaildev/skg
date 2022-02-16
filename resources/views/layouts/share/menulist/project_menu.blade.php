@@ -23,7 +23,7 @@
 
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="{{ route('material.index') }}" class="menu-link">
+                        <a href="{{ route('proposal.index') }}" class="menu-link">
                             <div data-i2n="Without menu">Proposal</div>
                         </a>
                     </li>
@@ -34,7 +34,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('labour.index') }}" class="menu-link">
-                            <div data-i2n="Without menu">Contract </div>
+                            <div data-i2n="Without menu">Completed </div>
                         </a>
                     </li>
                 </ul>
