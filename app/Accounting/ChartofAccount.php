@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChartofAccount extends Model
 {
+    
     public function account_type_table()
     {
         return $this->belongsTo(AccountType::class, 'account_type_id', 'id'); 

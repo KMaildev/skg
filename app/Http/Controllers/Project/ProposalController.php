@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
 use App\Models\Projects;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProposalController extends Controller
@@ -15,11 +16,38 @@ class ProposalController extends Controller
      */
     public function index()
     {
-        $projects = Projects::query();
+
+        //https://stackoverflow.com/questions/61768376/how-to-calculate-a-few-days-left-or-the-last-few-days-in-carbon
+        //https://stackoverflow.com/questions/37672025/get-day-difference-between-two-date-using-carbon/51001799#51001799
+
+        $start_Date = '2022-02-16 01:56:00';
+        $start = Carbon::parse($start_Date);
+        $now = Carbon::now();
+        $length = $start->diffForHumans($now);
+
+        echo $length;
+
+        echo "<br>";
+        $end_Date = '2022-02-17 05:49:00';
+        $end = Carbon::parse($end_Date);
+        $lengthFromEnd = $end->diffForHumans($now);
+        // echo $lengthFromEnd;
+
+
+
+
+
+
+
+
+
+
+        $projects = Projects::where('project_status', 'Proposal')->paginate(30);
         if (request('search')) {
-            $projects->where('project_code', 'Like', '%' . request('search') . '%');
+            $projects = Projects::where('project_status', 'Proposal')->where(function ($query) {
+                $query->where('project_code', 'Like', '%' . request('search') . '%');
+            })->paginate(50);
         }
-        $projects = $projects->orderBy('id', 'ASC')->paginate(50);
         return view('project.proposal.index', compact('projects'));
     }
 

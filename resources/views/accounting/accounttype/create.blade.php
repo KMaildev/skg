@@ -1,6 +1,5 @@
 @extends('layouts.menus.accounting')
 @section('content')
-
     <div class="row justify-content-center">
         <div class="col-xl-6">
             <div class="card mb-4">

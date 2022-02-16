@@ -34,6 +34,9 @@ class CreateProjectsTable extends Migration
             $table->text('structure_design_upload_date')->nullable();
 
             $table->text('created_date')->nullable();
+            $table->text('remark')->nullable();
+            $table->text('project_status')->nullable();
+
             $table->timestamps();
         });
     }

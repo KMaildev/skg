@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProject;
 use App\Models\Customers;
+use App\Models\Projects;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -35,9 +37,17 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProject $request)
     {
-        //
+        $project = new Projects();
+        $project->customer_id = $request->customer;
+        $project->project_code = $request->project_code;
+        $project->remark = $request->remark;
+        $project->project_status = 'Proposal';
+        $project->created_date = date('Y-m-d');
+        $project->save();
+        return redirect()->route('project.create')
+            ->with('success', 'Created successfully.');
     }
 
     /**

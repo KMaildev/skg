@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     //Project
     Route::resource('projectdashboard', 'Project\ProjectDashboardController');
     Route::resource('customers', 'CustomersController');
+    Route::get('customerdependent/ajax/{id}', array('as' => 'customerdependent.ajax', 'uses' => 'CustomersController@dependentAjax'));
     Route::resource('proposal', 'Project\ProposalController');
     Route::resource('project', 'Project\ProjectController');
 });

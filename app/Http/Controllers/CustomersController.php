@@ -24,6 +24,12 @@ class CustomersController extends Controller
         return view('customers.index', compact('customers'));
     }
 
+    public function dependentAjax($id)
+    {
+        $customer = Customers::findOrFail($id);
+        return json_encode($customer);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
