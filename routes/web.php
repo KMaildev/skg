@@ -45,4 +45,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
     Route::resource('labour', 'Inventory\LabourController');
+
+
+    //Project
+    Route::resource('projectdashboard', 'Project\ProjectDashboardController');
+
+    Route::resource('customers', 'CustomersController');
 });
