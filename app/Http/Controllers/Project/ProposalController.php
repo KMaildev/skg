@@ -25,7 +25,7 @@ class ProposalController extends Controller
         $now = Carbon::now();
         $length = $start->diffForHumans($now);
 
-        echo $length;
+        // echo $length;
 
         echo "<br>";
         $end_Date = '2022-02-17 05:49:00';
@@ -34,6 +34,24 @@ class ProposalController extends Controller
         // echo $lengthFromEnd;
 
 
+
+        $startDate = Carbon::createFromFormat('Y-m-d H:i:s', '2022-02-16 10:45:00');
+        $endDate = Carbon::createFromFormat('Y-m-d H:i:s', '2022-02-16 10:45:00');
+
+        $days = $startDate->diffInDays($endDate);
+        $hours = $startDate
+            ->copy()
+            ->addDays($days)
+            ->diffInHours($endDate);
+        $minutes = $startDate
+            ->copy()
+            ->addDays($days)
+            ->addHours($hours)
+            ->diffInMinutes($endDate);
+
+        // echo $days . ' Days';
+        // echo $hours . ' Hours';
+        // echo $minutes;
 
 
 

@@ -4411,7 +4411,7 @@ textarea.form-control-lg {
 
 .progress {
   display: flex;
-  height: .75rem;
+  height: 7px;
   overflow: hidden;
   font-size: 0.625rem;
   background-color: #e9ecee;
@@ -6435,10 +6435,9 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
 }
 
 .table th {
-  text-transform: uppercase;
-  font-size: .75rem;
-  letter-spacing: 1px;
-  font-weight: bold
+  font-size: 15px;
+  /* letter-spacing: 1px; */
+  /* font-weight: bold */
 }
 
 .table:not(.table-dark) thead:not(.table-dark) th {
