@@ -29,7 +29,7 @@
   // Basic Dropzone
   // --------------------------------------------------------------------
 
-  const myDropzone = new Dropzone('#dropzone-basic', {
+  const myDropzone = new Dropzone('#dropzone_basic', {
     previewTemplate: previewTemplate,
     parallelUploads: 1,
     maxFilesize: 5,
@@ -39,7 +39,7 @@
 
   // Multiple Dropzone
   // --------------------------------------------------------------------
-  const dropzoneMulti = new Dropzone('#dropzone-multi', {
+  const dropzoneMulti = new Dropzone('#dropzone_multi', {
     previewTemplate: previewTemplate,
     parallelUploads: 1,
     maxFilesize: 5,

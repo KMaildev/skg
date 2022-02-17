@@ -53,4 +53,11 @@ Route::middleware('auth')->group(function () {
     Route::get('customerdependent/ajax/{id}', array('as' => 'customerdependent.ajax', 'uses' => 'CustomersController@dependentAjax'));
     Route::resource('proposal', 'Project\ProposalController');
     Route::resource('project', 'Project\ProjectController');
+
+
+    Route::resource('floorplan', 'FloorPlanController');
+    Route::get('floorplancreate/{id}', [
+        'as' => 'floorplan.create',
+        'uses' => 'FloorPlanController@create'
+    ]);
 });

@@ -32,7 +32,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}" />
 </head>
 
 <style>
