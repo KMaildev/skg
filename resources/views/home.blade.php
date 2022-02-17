@@ -4,7 +4,6 @@
         <div class="col-md-8 col-sm-12 col-lg-8">
             <div class="row">
 
-
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
                     <a href="{{ route('inventorydashboard.index') }}">
                         <div class="card">
@@ -35,15 +34,17 @@
 
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div class="avatar avatar-md mx-auto mb-3">
-                                <span class="avatar-initial rounded-circle bg-label-success"><i
-                                        class='bx bx-purchase-tag fs-3'></i></span>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="avatar avatar-md mx-auto mb-3">
+                                    <span class="avatar-initial rounded-circle bg-label-success"><i
+                                            class='bx bx-purchase-tag fs-3'></i></span>
+                                </div>
+                                <span class="d-block mb-1 text-nowrap">Purchase</span>
                             </div>
-                            <span class="d-block mb-1 text-nowrap">Purchase</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
@@ -98,7 +99,7 @@
                             <div class="card-body text-center">
                                 <div class="avatar avatar-md mx-auto mb-3">
                                     <span class="avatar-initial rounded-circle bg-label-info">
-                                        <i class="fa fa-user-check fs-3"></i>
+                                        <i class="bx bx-purchase-tag fs-3"></i>
                                     </span>
                                 </div>
                                 <span class="d-block mb-1 text-nowrap">Sale</span>
@@ -106,7 +107,6 @@
                         </div>
                     </a>
                 </div>
-
 
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
@@ -123,7 +123,6 @@
                         </div>
                     </a>
                 </div>
-
 
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
@@ -153,19 +152,35 @@
                 </div>
 
 
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                    <a href="">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="avatar avatar-md mx-auto mb-3">
+                                    <span class="avatar-initial rounded-circle bg-label-danger">
+                                        <i class='fa fa-cogs fs-3'></i>
+                                    </span>
+                                </div>
+                                <span class="d-block mb-1 text-nowrap">Setting</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div class="avatar avatar-md mx-auto mb-3">
-                                <span class="avatar-initial rounded-circle bg-label-danger">
-                                    <i class='fa fa-cogs fs-3'></i>
-                                </span>
+                    <a href="">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="avatar avatar-md mx-auto mb-3">
+                                    <span class="avatar-initial rounded-circle bg-label-danger">
+                                        <i class='bx bx-history fs-3'></i>
+                                    </span>
+                                </div>
+                                <span class="d-block mb-1 text-nowrap">Activities</span>
                             </div>
-
-                            <span class="d-block mb-1 text-nowrap">Setting</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
             </div>

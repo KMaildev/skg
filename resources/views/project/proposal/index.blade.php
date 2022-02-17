@@ -32,8 +32,8 @@
                         <thead class="tbbg">
                             <tr>
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
-                                <th style="color: white; text-align: center; width: 20%;">Customer <br> Name</th>
-                                <th style="color: white; text-align: center; width: 17%;">Floor <br> Plan</th>
+                                <th style="color: white; text-align: center; width: 20%;">Customer Name</th>
+                                <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
                                 <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
                                 <th style="color: white; text-align: center; width: 16%;">Exterior Design Fees</th>
                                 <th style="color: white; text-align: center; width: 16%;">Structure Design Fees</th>
@@ -77,8 +77,8 @@
                                         @endif
                                     </td>
 
-                                    <td>
-                                        <button type="button" class="btn rounded-pill btn-info btn-sm">Estimate</button>
+                                    <td style="text-align: center">
+                                        <a href="" class="btn rounded-pill btn-info btn-sm">Estimate</a>
                                     </td>
 
 
@@ -119,19 +119,19 @@
 
                                     <td style="text-align: center;">
                                         <div class="btn-group">
-                                            <button class="btn btn-info btn-xs dropdown-toggle" type="button"
+                                            <button class="btn btn-info btn-sm dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
                                                 Action
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('unitsofmeasure.edit', $project->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="#">Detail</a>
                                                 </li>
+
                                                 <li>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('unitsofmeasure.edit', $project->id) }}">Detail</a>
+                                                    <a class="dropdown-item" href="#">Contract</a>
                                                 </li>
+
                                             </ul>
                                         </div>
                                     </td>

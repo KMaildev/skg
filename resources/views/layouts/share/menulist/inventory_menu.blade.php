@@ -36,6 +36,19 @@
                 </a>
             </li>
 
+
+            <li class="menu-item">
+                <a href="{{ route('warehouseplan.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Warehouse Plan</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i1n="Layouts">Engineer Request</div>
+                </a>
+            </li>
+
         </ul>
     </div>
 </aside>

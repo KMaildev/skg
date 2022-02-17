@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
     Route::resource('labour', 'Inventory\LabourController');
 
+    Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
+
 
     //Project
     Route::resource('projectdashboard', 'Project\ProjectDashboardController');
@@ -60,4 +62,8 @@ Route::middleware('auth')->group(function () {
         'as' => 'floorplan.create',
         'uses' => 'FloorPlanController@create'
     ]);
+
+
+    //Engineering
+    Route::resource('engineeringrequest', 'EngineerRequestController');
 });
