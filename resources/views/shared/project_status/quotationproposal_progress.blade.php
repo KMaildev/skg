@@ -13,7 +13,7 @@
         </div>
         <div class="d-flex justify-content-end mb-1">
             <span>
-                <a href="{{ route('floorplan.create', ['id' => $project_id]) }}">
+                <a href="{{ route('quotationproposal.create', ['id' => $project_id]) }}">
                     Upload
                     <i class="bx bx-upload"></i>
                 </a>

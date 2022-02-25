@@ -33,10 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('accounttype', 'Accounting\AccountTypeController');
     Route::get('accounttypedependent/ajax/{id}', array('as' => 'accounttypedependent.ajax', 'uses' => 'Accounting\AccountTypeController@dependentAjax'));
 
-
     Route::resource('chartofaccount', 'Accounting\ChartofAccountController');
     // Accounting Route
-
 
 
     // Inventory Route
@@ -61,6 +59,12 @@ Route::middleware('auth')->group(function () {
     Route::get('floorplancreate/{id}', [
         'as' => 'floorplan.create',
         'uses' => 'FloorPlanController@create'
+    ]);
+
+    Route::resource('quotationproposal', 'QuotationProposalController');
+    Route::get('quotationproposalcreate/{id}', [
+        'as' => 'quotationproposal.create',
+        'uses' => 'QuotationProposalController@create'
     ]);
 
 

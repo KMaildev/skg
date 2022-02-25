@@ -33,6 +33,7 @@
                             <tr>
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
                                 <th style="color: white; text-align: center; width: 20%;">Customer Name</th>
+                                <th style="color: white; text-align: center; width: 20%;">Date</th>
                                 <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
                                 <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
                                 <th style="color: white; text-align: center; width: 16%;">Exterior Design Fees</th>
@@ -54,9 +55,19 @@
                                         {{ $project->customer_table->name ?? '' }}
                                     </td>
 
+                                    <td style="text-align: center; font-size: 13px; font-weight: bold;">
+                                        {{ $project->created_at }}
+                                    </td>
+
+                                    {{-- FloorPlan --}}
                                     <td style="text-align: center; font-size: 13px;">
                                         @php
-                                            $endDate = now()->shortRelativeDiffForHumans($project->updated_at, null, false);
+                                            //End Day Define
+                                            $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->created_at);
+                                            $endDay = $endDay->addDays(2);
+                                            //End Day Define
+                                            
+                                            $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
                                             $ednDateArr = explode(' ', $endDate);
                                             $floorPlanStatus = $ednDateArr[1];
                                         @endphp
@@ -65,7 +76,6 @@
                                             @include('shared.project_status.finished', ['date' =>
                                             $project->floor_plan_upload_date])
                                         @else
-
                                             @if ($floorPlanStatus == 'after')
                                                 @include('shared.project_status.expired', ['data' => $ednDateArr,
                                                 'project_id'
@@ -77,8 +87,37 @@
                                         @endif
                                     </td>
 
-                                    <td style="text-align: center">
-                                        <a href="" class="btn rounded-pill btn-info btn-sm">Estimate</a>
+                                    {{-- Quotation Proposal --}}
+                                    <td style="text-align: center; font-size: 13px;">
+                                        @if ($project->floor_plan_status == 'finished')
+                                            @php
+                                                //End Day Define
+                                                $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->floor_plan_upload_date);
+                                                $endDay = $endDay->addDays(1);
+                                                //End Day Define
+                                                
+                                                $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
+                                                $ednDateArr = explode(' ', $endDate);
+                                                $quotationProposalStatus = $ednDateArr[1];
+                                            @endphp
+
+                                            @if ($project->quotation_proposal_status == 'finished')
+                                                @include('shared.project_status.finished', ['date' =>
+                                                $project->floor_plan_upload_date])
+                                            @else
+                                                @if ($quotationProposalStatus == 'after')
+                                                    @include('shared.project_status.expired', ['data' => $ednDateArr,
+                                                    'project_id'
+                                                    => $project->id])
+                                                @elseif($quotationProposalStatus == 'before')
+                                                    @include('shared.project_status.quotationproposal_progress', ['data'
+                                                    => $ednDateArr,
+                                                    'project_id' => $project->id])
+                                                @endif
+                                            @endif
+                                        @elseif ($project->floor_plan_status == null)
+                                            @include('shared.project_status.pending')
+                                        @endif
                                     </td>
 
 
