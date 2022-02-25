@@ -1,7 +1,7 @@
 <li class="d-flex mb-2">
     <div class="avatar avatar-sm flex-shrink-0 me-3">
         <span class="avatar-initial rounded-circle bg-label-danger">
-            <i class="bx bx-x"></i>
+            <i class="bx bx-pause"></i>
         </span>
     </div>
     <div class="d-flex flex-column w-100">

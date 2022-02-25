@@ -7,6 +7,7 @@
                 <div class="card-body">
                     <div class="card-title header-elements">
                         <h5 class="m-0 me-2">Proposal</h5>
+                        <i class="bx bx-book"></i>
                         <div class="card-title-elements ms-auto">
                             <div class="card-header-elements ms-auto">
                                 <form action="{{ route('proposal.index') }}" method="GET" autocomplete="off">
@@ -33,6 +34,7 @@
                             <tr>
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
                                 <th style="color: white; text-align: center; width: 20%;">Customer Name</th>
+                                <th style="color: white; text-align: center; width: 20%;">Project Code</th>
                                 <th style="color: white; text-align: center; width: 20%;">Date</th>
                                 <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
                                 <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
@@ -53,6 +55,9 @@
 
                                     <td style="text-align: center; font-size: 13px; font-weight: bold;">
                                         {{ $project->customer_table->name ?? '' }}
+                                    </td>
+                                    <td style="text-align: center; font-size: 13px; font-weight: bold;">
+                                        {{ $project->project_code }}
                                     </td>
 
                                     <td style="text-align: center; font-size: 13px; font-weight: bold;">
@@ -122,21 +127,36 @@
 
 
                                     <td style="text-align: center; font-size: 13px;">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                                                role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
+                                        @if ($project->exterior_design_fees == null)
+                                            <a
+                                                href="{{ route('exterior_design_fees.exterior_design_fees_status', ['id' => $project->id]) }}">
+                                                <span class="badge badge-center bg-danger">
+                                                    <i class="bx bx-x"></i>
+                                                </span>
+                                            </a>
+                                        @else
+                                            <span class="badge badge-center bg-success">
+                                                <i class="bx bx-check"></i>
+                                            </span>
+                                            {{ $project->exterior_design_fees_date }}
+                                        @endif
                                     </td>
 
 
                                     <td style="text-align: center; font-size: 13px;">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                                                role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-
+                                        @if ($project->structure_design_fees == null)
+                                            <a
+                                                href="{{ route('structure_design_fees.structure_design_fees_status', ['id' => $project->id]) }}">
+                                                <span class="badge badge-center bg-danger">
+                                                    <i class="bx bx-x"></i>
+                                                </span>
+                                            </a>
+                                        @else
+                                            <span class="badge badge-center bg-success">
+                                                <i class="bx bx-check"></i>
+                                            </span>
+                                            {{ $project->structure_design_fees_date }}
+                                        @endif
                                     </td>
 
                                     <td style="text-align: center; font-size: 13px;">

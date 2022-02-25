@@ -67,6 +67,18 @@ Route::middleware('auth')->group(function () {
         'uses' => 'QuotationProposalController@create'
     ]);
 
+    Route::resource('exteriordesign', 'ExteriorDesignController');
+    Route::get('exterior_design_fees/{id}', [
+        'as' => 'exterior_design_fees.exterior_design_fees_status',
+        'uses' => 'ExteriorDesignController@exterior_design_fees_status'
+    ]);
+
+    Route::resource('structuredesign', 'StructureDesignController');
+    Route::get('structure_design_fees/{id}', [
+        'as' => 'structure_design_fees.structure_design_fees_status',
+        'uses' => 'StructureDesignController@structure_design_fees_status'
+    ]);
+
 
     //Engineering
     Route::resource('engineeringrequest', 'EngineerRequestController');
