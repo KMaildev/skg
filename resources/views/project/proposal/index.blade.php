@@ -159,20 +159,70 @@
                                         @endif
                                     </td>
 
+                                    {{-- Archi Exterior Design --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                                                role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
+                                        @if ($project->exterior_design_fees == 'done')
+                                            @php
+                                                //End Day Define
+                                                $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->exterior_design_fees_date);
+                                                $endDay = $endDay->addDays(21);
+                                                //End Day Define
+                                                
+                                                $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
+                                                $ednDateArr = explode(' ', $endDate);
+                                                $quotationProposalStatus = $ednDateArr[1];
+                                            @endphp
+
+                                            @if ($project->archi_exterior_design_status == 'finished')
+                                                @include('shared.project_status.finished', ['date' =>
+                                                $project->exterior_design_fees_date])
+                                            @else
+                                                @if ($quotationProposalStatus == 'after')
+                                                    @include('shared.project_status.expired', ['data' => $ednDateArr,
+                                                    'project_id'
+                                                    => $project->id])
+                                                @elseif($quotationProposalStatus == 'before')
+                                                    @include('shared.project_status.archiexteriordesign', ['data'
+                                                    => $ednDateArr,
+                                                    'project_id' => $project->id])
+                                                @endif
+                                            @endif
+                                        @elseif ($project->exterior_design_fees == null)
+                                            @include('shared.project_status.pending')
+                                        @endif
                                     </td>
 
+
                                     <td style="text-align: center; font-size: 13px;">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                                                role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
+                                        @if ($project->structure_design_fees == 'done')
+                                            @php
+                                                //End Day Define
+                                                $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->structure_design_fees_date);
+                                                $endDay = $endDay->addDays(21);
+                                                //End Day Define
+                                                
+                                                $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
+                                                $ednDateArr = explode(' ', $endDate);
+                                                $quotationProposalStatus = $ednDateArr[1];
+                                            @endphp
+
+                                            @if ($project->structure_design_status == 'finished')
+                                                @include('shared.project_status.finished', ['date' =>
+                                                $project->structure_design_fees_date])
+                                            @else
+                                                @if ($quotationProposalStatus == 'after')
+                                                    @include('shared.project_status.expired', ['data' => $ednDateArr,
+                                                    'project_id'
+                                                    => $project->id])
+                                                @elseif($quotationProposalStatus == 'before')
+                                                    @include('shared.project_status.structuredesign', ['data'
+                                                    => $ednDateArr,
+                                                    'project_id' => $project->id])
+                                                @endif
+                                            @endif
+                                        @elseif ($project->structure_design_fees == null)
+                                            @include('shared.project_status.pending')
+                                        @endif
                                     </td>
 
 

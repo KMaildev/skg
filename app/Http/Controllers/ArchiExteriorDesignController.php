@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArchiExteriorDesign;
 use App\Models\Projects;
-use App\Models\StructureDesign;
 use Illuminate\Http\Request;
 
-class StructureDesignController extends Controller
+class ArchiExteriorDesignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class StructureDesignController extends Controller
     public function create($id = null)
     {
         $id = $id;
-        return view('structuredesign.create', compact('id'));
+        return view('archiexteriordesign.create', compact('id'));
     }
 
     /**
@@ -41,10 +41,10 @@ class StructureDesignController extends Controller
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $path = $file->store('public/structuredesign');
+                $path = $file->store('public/archiexteriordesign');
                 $original_name = $file->getClientOriginalName();
 
-                $insert[$key]['structure_design_file'] = $path;
+                $insert[$key]['archi_exterior_design_file'] = $path;
                 $insert[$key]['original_name'] = $original_name;
                 $insert[$key]['project_id'] = $request->project_id;
                 $insert[$key]['remark'] = $request->remark;
@@ -55,11 +55,11 @@ class StructureDesignController extends Controller
                 $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
             }
         }
-        StructureDesign::insert($insert);
+        ArchiExteriorDesign::insert($insert);
 
         $project = Projects::findOrFail($id);
-        $project->structure_design_status = 'finished';
-        $project->structure_design_upload_date = date('Y-m-d H:i:s');
+        $project->archi_exterior_design_status = 'finished';
+        $project->archi_exterior_design_upload_date = date('Y-m-d H:i:s');
         $project->update();
         return redirect()->back()->with('success', 'Uploaded successfully.');
     }
@@ -74,23 +74,6 @@ class StructureDesignController extends Controller
     {
         //
     }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function structure_design_fees_status($id)
-    {
-        $project = Projects::findOrFail($id);
-        $project->structure_design_fees = 'done';
-        $project->structure_design_fees_date = date('Y-m-d H:i:s');
-        $project->update();
-        return redirect()->back()->with('success', 'Updated successfully.');
-    }
-
 
     /**
      * Show the form for editing the specified resource.

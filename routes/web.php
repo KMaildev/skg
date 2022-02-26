@@ -78,6 +78,17 @@ Route::middleware('auth')->group(function () {
         'as' => 'structure_design_fees.structure_design_fees_status',
         'uses' => 'StructureDesignController@structure_design_fees_status'
     ]);
+    Route::get('structuredesigncreate/{id}', [
+        'as' => 'structuredesigncreate.create',
+        'uses' => 'StructureDesignController@create'
+    ]);
+
+
+    Route::resource('archiexteriordesign', 'ArchiExteriorDesignController');
+    Route::get('archiexteriordesigncreate/{id}', [
+        'as' => 'archiexteriordesigncreate.create',
+        'uses' => 'ArchiExteriorDesignController@create'
+    ]);
 
 
     //Engineering
