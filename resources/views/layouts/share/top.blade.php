@@ -1,10 +1,10 @@
  <!-- Top -->
  <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-     <div class="container-xxl navbar-nav-right">
+     <div class="container-xxl navbar-nav-right" style="background-color: #296166">
 
          <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
              <a href="{{ route('home') }}" class="app-brand-link gap-2">
-                 <span class="app-brand-text demo menu-text fw-bold">SKG</span>
+                 <span class="app-brand-text demo menu-text fw-bold" style="color: white">SKG</span>
              </a>
              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
                  <i class="bx bx-x bx-sm align-middle"></i>
@@ -67,7 +67,7 @@
                                          <div class="flex-grow-1">
                                              <h6 class="mb-1">Alex Jones</h6>
                                              <p class="mb-0">Request code #220201
-                                            </p>
+                                             </p>
                                              <small class="text-muted">12hr ago</small>
                                          </div>
                                          <div class="flex-shrink-0 dropdown-notifications-actions">

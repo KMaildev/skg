@@ -41,7 +41,6 @@ class ProjectController extends Controller
     {
         $project = new Projects();
         $project->customer_id = $request->customer;
-        $project->project_code = $request->project_code;
         $project->remark = $request->remark;
         $project->project_status = 'Proposal';
         $project->created_date = date('Y-m-d');

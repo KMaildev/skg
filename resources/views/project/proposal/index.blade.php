@@ -57,7 +57,7 @@
                                         {{ $project->customer_table->name ?? '' }}
                                     </td>
                                     <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                        {{ $project->project_code }}
+                                        {{ $project->customer_table->project_code ?? '' }}
                                     </td>
 
                                     <td style="text-align: center; font-size: 13px; font-weight: bold;">
@@ -66,98 +66,36 @@
 
                                     {{-- FloorPlan --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @php
-                                            //End Day Define
-                                            $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->created_at);
-                                            $endDay = $endDay->addDays(2);
-                                            //End Day Define
-                                            
-                                            $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
-                                            $ednDateArr = explode(' ', $endDate);
-                                            $floorPlanStatus = $ednDateArr[1];
-                                        @endphp
-
-                                        @if ($project->floor_plan_status == 'finished')
-                                            @include('shared.project_status.finished', ['date' =>
-                                            $project->floor_plan_upload_date])
-                                        @else
-                                            @if ($floorPlanStatus == 'after')
-                                                @include('shared.project_status.expired', ['data' => $ednDateArr,
-                                                'project_id'
-                                                => $project->id])
-                                            @elseif($floorPlanStatus == 'before')
-                                                @include('shared.project_status.in_progress', ['data' => $ednDateArr,
-                                                'project_id' => $project->id])
-                                            @endif
-                                        @endif
+                                        @include(
+                                            'shared.project_status.floor_plan_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
 
                                     {{-- Quotation Proposal --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @if ($project->floor_plan_status == 'finished')
-                                            @php
-                                                //End Day Define
-                                                $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->floor_plan_upload_date);
-                                                $endDay = $endDay->addDays(1);
-                                                //End Day Define
-                                                
-                                                $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
-                                                $ednDateArr = explode(' ', $endDate);
-                                                $quotationProposalStatus = $ednDateArr[1];
-                                            @endphp
-
-                                            @if ($project->quotation_proposal_status == 'finished')
-                                                @include('shared.project_status.finished', ['date' =>
-                                                $project->floor_plan_upload_date])
-                                            @else
-                                                @if ($quotationProposalStatus == 'after')
-                                                    @include('shared.project_status.expired', ['data' => $ednDateArr,
-                                                    'project_id'
-                                                    => $project->id])
-                                                @elseif($quotationProposalStatus == 'before')
-                                                    @include('shared.project_status.quotationproposal_progress', ['data'
-                                                    => $ednDateArr,
-                                                    'project_id' => $project->id])
-                                                @endif
-                                            @endif
-                                        @elseif ($project->floor_plan_status == null)
-                                            @include('shared.project_status.pending')
-                                        @endif
+                                        @include(
+                                            'shared.project_status.quotation_proposal_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
 
-
+                                    {{-- Exterior Design Fees --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @if ($project->exterior_design_fees == null)
-                                            <a
-                                                href="{{ route('exterior_design_fees.exterior_design_fees_status', ['id' => $project->id]) }}">
-                                                <span class="badge badge-center bg-danger">
-                                                    <i class="bx bx-x"></i>
-                                                </span>
-                                            </a>
-                                        @else
-                                            <span class="badge badge-center bg-success">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                            {{ $project->exterior_design_fees_date }}
-                                        @endif
+                                        @include(
+                                            'shared.project_status.exterior_design_fees_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
 
-
+                                    {{-- Structure Design Fees --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @if ($project->structure_design_fees == null)
-                                            <a
-                                                href="{{ route('structure_design_fees.structure_design_fees_status', ['id' => $project->id]) }}">
-                                                <span class="badge badge-center bg-danger">
-                                                    <i class="bx bx-x"></i>
-                                                </span>
-                                            </a>
-                                        @else
-                                            <span class="badge badge-center bg-success">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                            {{ $project->structure_design_fees_date }}
-                                        @endif
+                                        @include(
+                                            'shared.project_status.structure_design_fees_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
+
 
                                     {{-- Archi Exterior Design --}}
                                     <td style="text-align: center; font-size: 13px;">
@@ -174,17 +112,24 @@
                                             @endphp
 
                                             @if ($project->archi_exterior_design_status == 'finished')
-                                                @include('shared.project_status.finished', ['date' =>
-                                                $project->exterior_design_fees_date])
+                                                @include(
+                                                    'shared.project_status.finished',
+                                                    ['date' => $project->exterior_design_fees_date]
+                                                )
                                             @else
                                                 @if ($quotationProposalStatus == 'after')
-                                                    @include('shared.project_status.expired', ['data' => $ednDateArr,
-                                                    'project_id'
-                                                    => $project->id])
+                                                    @include(
+                                                        'shared.project_status.expired',
+                                                        ['data' => $ednDateArr, 'project_id' => $project->id]
+                                                    )
                                                 @elseif($quotationProposalStatus == 'before')
-                                                    @include('shared.project_status.archiexteriordesign', ['data'
-                                                    => $ednDateArr,
-                                                    'project_id' => $project->id])
+                                                    @include(
+                                                        'shared.project_status.archiexteriordesign',
+                                                        [
+                                                            'data' => $ednDateArr,
+                                                            'project_id' => $project->id,
+                                                        ]
+                                                    )
                                                 @endif
                                             @endif
                                         @elseif ($project->exterior_design_fees == null)
@@ -207,17 +152,24 @@
                                             @endphp
 
                                             @if ($project->structure_design_status == 'finished')
-                                                @include('shared.project_status.finished', ['date' =>
-                                                $project->structure_design_fees_date])
+                                                @include(
+                                                    'shared.project_status.finished',
+                                                    ['date' => $project->structure_design_fees_date]
+                                                )
                                             @else
                                                 @if ($quotationProposalStatus == 'after')
-                                                    @include('shared.project_status.expired', ['data' => $ednDateArr,
-                                                    'project_id'
-                                                    => $project->id])
+                                                    @include(
+                                                        'shared.project_status.expired',
+                                                        ['data' => $ednDateArr, 'project_id' => $project->id]
+                                                    )
                                                 @elseif($quotationProposalStatus == 'before')
-                                                    @include('shared.project_status.structuredesign', ['data'
-                                                    => $ednDateArr,
-                                                    'project_id' => $project->id])
+                                                    @include(
+                                                        'shared.project_status.structuredesign',
+                                                        [
+                                                            'data' => $ednDateArr,
+                                                            'project_id' => $project->id,
+                                                        ]
+                                                    )
                                                 @endif
                                             @endif
                                         @elseif ($project->structure_design_fees == null)

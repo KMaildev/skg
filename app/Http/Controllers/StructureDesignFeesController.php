@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FloorPlan;
 use App\Models\Projects;
-use Facade\FlareClient\Stacktrace\File;
+use App\Models\Structure_design_fees;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class FloorPlanController extends Controller
+class StructureDesignFeesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,15 +21,13 @@ class FloorPlanController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function create($id = null)
     {
         $id = $id;
-        return view('floorplan.create', compact('id'));
+        return view('structuredesignfees.create', compact('id'));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -42,32 +38,28 @@ class FloorPlanController extends Controller
     public function store(Request $request)
     {
         $id = $request->project_id;
-
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $path = $file->store('public/floor_plans');
+                $path = $file->store('public/quotationproposal');
                 $original_name = $file->getClientOriginalName();
-
-                $insert[$key]['floor_plan_image'] = $path;
+                $insert[$key]['structure_design_fees'] = $path;
                 $insert[$key]['original_name'] = $original_name;
                 $insert[$key]['project_id'] = $request->project_id;
                 $insert[$key]['remark'] = $request->remark;
                 $insert[$key]['user_id'] = auth()->user()->id;
                 $insert[$key]['upload_date'] = date('Y-m-d');
                 $insert[$key]['upload_time'] = date('H:i:s');
-                $insert[$key]['upload_date_time'] = date('Y-m-d H:i:s');
                 $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
                 $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
             }
         }
-        FloorPlan::insert($insert);
+        Structure_design_fees::insert($insert);
 
         $project = Projects::findOrFail($id);
-        $project->floor_plan_status = 'finished';
-        $project->floor_plan_upload_date = date('Y-m-d H:i:s');
+        $project->structure_design_fees = 'done';
+        $project->structure_design_fees_date = date('Y-m-d H:i:s');
         $project->update();
-
-        return redirect()->back()->with('success', 'Uploaded successfully.');
+        return redirect()->back()->with('success', 'Updated successfully.');
     }
 
     /**
@@ -78,10 +70,9 @@ class FloorPlanController extends Controller
      */
     public function show($id)
     {
-        $floor_plan_images = FloorPlan::get()->where('project_id', $id);
-        return view('floorplan.show', compact('floor_plan_images'));
+        $structure_design_fees = Structure_design_fees::get()->where('project_id', $id);
+        return view('structuredesignfees.show', compact('structure_design_fees'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -115,10 +106,5 @@ class FloorPlanController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function profile_image_path()
-    {
     }
 }

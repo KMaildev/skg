@@ -35,6 +35,28 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ $customer->email }}" />
+                                @error('email')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Address</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                    name="address" value="{{ $customer->address }}" />
+                                @error('address')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <hr class="my-4 mx-n4" />
                         <h6 class="mb-b fw-normal">2. Site Info</h6>
@@ -81,6 +103,45 @@
                                 <input type="text" class="form-control @error('job_scope') is-invalid @enderror"
                                     name="job_scope" value="{{ $customer->job_scope }}" />
                                 @error('job_scope')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-username">Storeyed (Number of
+                                Storeyed)</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control @error('storeyed') is-invalid @enderror"
+                                    name="storeyed" value="{{ $customer->storeyed }}" />
+                                @error('storeyed')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <hr class="my-4 mx-n4" />
+                        <h6 class="mb-3 fw-normal">3. Project Info</h6>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Project
+                                Code</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control @error('project_code') is-invalid @enderror"
+                                    name="project_code" value="{{ $customer->project_code }}" />
+                                @error('project_code')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Remark</label>
+                            <div class="col-sm-9">
+                                <textarea id="basic-default-message"
+                                    class="form-control @error('remark') is-invalid @enderror"
+                                    name="remark">{{ $customer->remark }}</textarea>
+                                @error('remark')
                                     <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>

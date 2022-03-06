@@ -25,7 +25,6 @@ class StoreProject extends FormRequest
     {
         return [
             'customer' => 'required',
-            'project_code' => 'required|unique:projects,project_code',
         ];
     }
 }

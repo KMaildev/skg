@@ -23,8 +23,13 @@ class UpdateCustomer extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('customer');
         return [
             'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'site_location' => 'required',
+            'project_code' => 'required|unique:customers,project_code,' . $id,
         ];
     }
 }

@@ -30,6 +30,13 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-username">Address</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Address" readonly />
+                            </div>
+                        </div>
+
 
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-sm-end" for="alignment-username">Site
@@ -63,18 +70,21 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-username">Storeyed (Number of
+                                Storeyed)</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Storeyed" readonly />
+                            </div>
+                        </div>
+
 
                         <hr class="my-4 mx-n4" />
                         <h6 class="mb-3 fw-normal">2. Project Info</h6>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Project
-                                Code</label>
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-username">Project Code</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('project_code') is-invalid @enderror"
-                                    name="project_code" value="{{ old('project_code') }}" />
-                                @error('project_code')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
+                                <input type="text" class="form-control" id="ProjectCode" readonly />
                             </div>
                         </div>
 
@@ -119,10 +129,13 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
+                            $("#Address").val(data.address);
                             $("#siteLocation").val(data.site_location);
                             $("#buildingArea").val(data.building_area);
                             $("#constructionType").val(data.construction_type);
                             $("#jobScope").val(data.job_scope);
+                            $("#Storeyed").val(data.storeyed);
+                            $("#ProjectCode").val(data.project_code);
                         }
                     });
                 }

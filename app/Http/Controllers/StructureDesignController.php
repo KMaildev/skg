@@ -76,21 +76,6 @@ class StructureDesignController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function structure_design_fees_status($id)
-    {
-        $project = Projects::findOrFail($id);
-        $project->structure_design_fees = 'done';
-        $project->structure_design_fees_date = date('Y-m-d H:i:s');
-        $project->update();
-        return redirect()->back()->with('success', 'Updated successfully.');
-    }
-
 
     /**
      * Show the form for editing the specified resource.

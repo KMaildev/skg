@@ -72,7 +72,8 @@ class QuotationProposalController extends Controller
      */
     public function show($id)
     {
-        //
+        $quotationproposal_files = Quotationproposal::get()->where('project_id', $id);
+        return view('quotationproposal.show', compact('quotationproposal_files'));
     }
 
     /**

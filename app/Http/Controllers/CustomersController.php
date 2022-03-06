@@ -50,11 +50,16 @@ class CustomersController extends Controller
     {
         $customer = new Customers();
         $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->address = $request->address;
         $customer->site_location = $request->site_location;
         $customer->building_area = $request->building_area;
         $customer->construction_type = $request->construction_type;
         $customer->job_scope = $request->job_scope;
-        $customer->phone = $request->phone;
+        $customer->storeyed = $request->storeyed;
+        $customer->project_code = $request->project_code;
+        $customer->remark = $request->remark;
         $customer->created_date = date('Y-m-d');
         $customer->save();
         return redirect()->route('customers.create')
@@ -95,11 +100,16 @@ class CustomersController extends Controller
     {
         $customer = Customers::findOrFail($id);
         $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->address = $request->address;
         $customer->site_location = $request->site_location;
         $customer->building_area = $request->building_area;
         $customer->construction_type = $request->construction_type;
         $customer->job_scope = $request->job_scope;
-        $customer->phone = $request->phone;
+        $customer->storeyed = $request->storeyed;
+        $customer->project_code = $request->project_code;
+        $customer->remark = $request->remark;
         $customer->update();
         return redirect()->back()->with('success', 'Updated successfully.');
     }

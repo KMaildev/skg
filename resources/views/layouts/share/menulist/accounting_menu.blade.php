@@ -12,6 +12,121 @@
 
             <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div data-i2n="Layouts">Customers</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">
+                                Invoices </div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Customers </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-user-check"></i>
+                    <div data-i2n="Layouts">Suppliers</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">
+                                Bill </div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Suppliers </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-calculator"></i>
+                    <div data-i2n="Layouts">Accounting</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Cash Book </div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Journal Entries </div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Fixed Assets </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-bar-chart-alt"></i>
+                    <div data-i2n="Layouts">Reporting</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Profit and Loss</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Balance Sheet</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Aged Receivable</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">Aged Payable</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">
+                                General Ledger</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">
+                                Trial Balance</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i2n="Without menu">
+                                Bank & Cash</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i2n="Layouts">Chart of accounts</div>
                 </a>
@@ -33,6 +148,13 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-edit"></i>
+                    <div data-i1n="Layouts">Note</div>
+                </a>
             </li>
         </ul>
     </div>
