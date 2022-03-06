@@ -40,6 +40,7 @@
                                 <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
                                 <th style="color: white; text-align: center; width: 16%;">Exterior Design Fees</th>
                                 <th style="color: white; text-align: center; width: 16%;">Structure Design Fees</th>
+                                <th style="color: white; text-align: center; width: 16%;">Approved By</th>
                                 <th style="color: white; text-align: center; width: 16%;">Archi Exterior Design</th>
                                 <th style="color: white; text-align: center; width: 16%;">Structure Design</th>
                                 <th style="color: white; text-align: center; width: 16%;">Actions</th>
@@ -96,87 +97,29 @@
                                         )
                                     </td>
 
+                                    {{-- FloorPlan --}}
+                                    <td style="text-align: center; font-size: 13px;">
+                                        @include(
+                                            'shared.project_status.approved_by',
+                                            ['project' => $project]
+                                        )
+                                    </td>
 
                                     {{-- Archi Exterior Design --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @if ($project->exterior_design_fees == 'done')
-                                            @php
-                                                //End Day Define
-                                                $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->exterior_design_fees_date);
-                                                $endDay = $endDay->addDays(21);
-                                                //End Day Define
-                                                
-                                                $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
-                                                $ednDateArr = explode(' ', $endDate);
-                                                $quotationProposalStatus = $ednDateArr[1];
-                                            @endphp
-
-                                            @if ($project->archi_exterior_design_status == 'finished')
-                                                @include(
-                                                    'shared.project_status.finished',
-                                                    ['date' => $project->exterior_design_fees_date]
-                                                )
-                                            @else
-                                                @if ($quotationProposalStatus == 'after')
-                                                    @include(
-                                                        'shared.project_status.expired',
-                                                        ['data' => $ednDateArr, 'project_id' => $project->id]
-                                                    )
-                                                @elseif($quotationProposalStatus == 'before')
-                                                    @include(
-                                                        'shared.project_status.archiexteriordesign',
-                                                        [
-                                                            'data' => $ednDateArr,
-                                                            'project_id' => $project->id,
-                                                        ]
-                                                    )
-                                                @endif
-                                            @endif
-                                        @elseif ($project->exterior_design_fees == null)
-                                            @include('shared.project_status.pending')
-                                        @endif
+                                        @include(
+                                            'shared.project_status.archi_exterior_design_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
 
-
+                                    {{-- Structure Design --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @if ($project->structure_design_fees == 'done')
-                                            @php
-                                                //End Day Define
-                                                $endDay = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $project->structure_design_fees_date);
-                                                $endDay = $endDay->addDays(21);
-                                                //End Day Define
-                                                
-                                                $endDate = now()->shortRelativeDiffForHumans($endDay, null, false);
-                                                $ednDateArr = explode(' ', $endDate);
-                                                $quotationProposalStatus = $ednDateArr[1];
-                                            @endphp
-
-                                            @if ($project->structure_design_status == 'finished')
-                                                @include(
-                                                    'shared.project_status.finished',
-                                                    ['date' => $project->structure_design_fees_date]
-                                                )
-                                            @else
-                                                @if ($quotationProposalStatus == 'after')
-                                                    @include(
-                                                        'shared.project_status.expired',
-                                                        ['data' => $ednDateArr, 'project_id' => $project->id]
-                                                    )
-                                                @elseif($quotationProposalStatus == 'before')
-                                                    @include(
-                                                        'shared.project_status.structuredesign',
-                                                        [
-                                                            'data' => $ednDateArr,
-                                                            'project_id' => $project->id,
-                                                        ]
-                                                    )
-                                                @endif
-                                            @endif
-                                        @elseif ($project->structure_design_fees == null)
-                                            @include('shared.project_status.pending')
-                                        @endif
+                                        @include(
+                                            'shared.project_status.structure_design_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
-
 
                                     <td style="text-align: center;">
                                         <div class="btn-group">
@@ -185,12 +128,22 @@
                                                 Action
                                             </button>
                                             <ul class="dropdown-menu">
+
                                                 <li>
-                                                    <a class="dropdown-item" href="#">Detail</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('project.edit', $project->id) }}">Remark</a>
+                                                </li>
+
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('project.show', $project->id) }}">Detail</a>
                                                 </li>
 
                                                 <li>
                                                     <a class="dropdown-item" href="#">Contract</a>
+                                                </li>
+
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Completed</a>
                                                 </li>
 
                                             </ul>

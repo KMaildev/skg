@@ -72,7 +72,8 @@ class ArchiExteriorDesignController extends Controller
      */
     public function show($id)
     {
-        //
+        $archi_exterior_designs = ArchiExteriorDesign::get()->where('project_id', $id);
+        return view('archiexteriordesign.show', compact('archi_exterior_designs'));
     }
 
     /**

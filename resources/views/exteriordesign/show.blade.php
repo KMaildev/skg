@@ -1,7 +1,7 @@
 @extends('layouts.menus.project')
 @section('content')
     <h4 class="py-3 breadcrumb-wrapper mb-4">
-        <span class="text-muted fw-light">Project /</span> Quotation Proposal
+        <span class="text-muted fw-light">Project /</span> Exterior Design Fees	
     </h4>
     <div class="card">
         <h5 class="card-header">Files</h5>

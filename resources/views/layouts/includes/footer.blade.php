@@ -26,6 +26,9 @@
 <script src="{{ asset('assets/vendor/libs/dropzone/dropzone.js') }}"></script>
 <script src="{{ asset('assets/js/forms-file-upload.js') }}"></script>
 
+<script src="{{ asset('assets/summernote/summernote-lite.min.js') }}"></script>
+
+
 
 <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 @yield('script')

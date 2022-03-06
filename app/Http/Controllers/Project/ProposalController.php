@@ -19,7 +19,7 @@ class ProposalController extends Controller
         $projects = Projects::where('project_status', 'Proposal')->paginate(30);
         if (request('search')) {
             $projects = Projects::where('project_status', 'Proposal')->where(function ($query) {
-                $query->where('project_code', 'Like', '%' . request('search') . '%');
+                $query->where('customer_id', 'Like', '%' . request('search') . '%');
             })->paginate(50);
         }
         return view('project.proposal.index', compact('projects'));

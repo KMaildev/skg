@@ -43,7 +43,7 @@
             </div>
             <div class="d-flex justify-content-between mb-1">
                 <span>
-                    <a href="{{ route('exteriordesign.show', $project->id) }}">
+                    <a href="{{ route('structuredesignfees.show', $project->id) }}">
                         View File
                     </a>
                 </span>

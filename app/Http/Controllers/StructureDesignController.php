@@ -72,7 +72,8 @@ class StructureDesignController extends Controller
      */
     public function show($id)
     {
-        //
+        $structure_designs = StructureDesign::get()->where('project_id', $id);
+        return view('structuredesign.show', compact('structure_designs'));
     }
 
 

@@ -95,6 +95,12 @@ Route::middleware('auth')->group(function () {
     ]);
 
 
+    Route::resource('approvedby', 'ApprovedByController');
+    Route::get('approvedbycreate/{id}', [
+        'as' => 'approvedbycreate.create',
+        'uses' => 'ApprovedByController@create'
+    ]);
+
     //Engineering
     Route::resource('engineeringrequest', 'EngineerRequestController');
 });

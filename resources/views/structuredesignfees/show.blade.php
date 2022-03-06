@@ -1,7 +1,7 @@
 @extends('layouts.menus.project')
 @section('content')
     <h4 class="py-3 breadcrumb-wrapper mb-4">
-        <span class="text-muted fw-light">Project /</span> Quotation Proposal
+        <span class="text-muted fw-light">Project /</span> Structure Design Fees
     </h4>
     <div class="card">
         <h5 class="card-header">Files</h5>
@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach ($exterior_design_fees as $key => $value)
+                    @foreach ($structure_design_fees as $key => $value)
                         <tr>
                             <td>
                                 {{ $key + 1 }}
@@ -27,7 +27,7 @@
                                 <strong>{{ $value->original_name }}</strong>
                             </td>
                             <td>
-                                <a href="{{ Storage::url($value->exterior_design_fees) }}">
+                                <a href="{{ Storage::url($value->structure_design_fees) }}">
                                     <i class="fa fa-download fa-lg text-danger"></i>
                                     <strong>Download</strong>
                                 </a>
