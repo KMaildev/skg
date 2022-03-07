@@ -103,4 +103,13 @@ Route::middleware('auth')->group(function () {
 
     //Engineering
     Route::resource('engineeringrequest', 'EngineerRequestController');
+
+
+    //HR
+    Route::resource('hrdashboard', 'HrDashboardController');
+
+    //Department
+    Route::resource('department', 'DepartmentController');
+    Route::resource('role', 'RoleController');
+    Route::resource('permission', 'PermissionController');
 });

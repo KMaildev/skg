@@ -110,7 +110,7 @@
 
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
-                    <a href="#">
+                    <a href="{{ route('hrdashboard.index') }}">
                         <div class="card">
                             <div class="card-body text-center">
                                 <div class="avatar avatar-md mx-auto mb-3">
@@ -137,19 +137,6 @@
                     </div>
                 </div>
 
-
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div class="avatar avatar-md mx-auto mb-3">
-                                <span class="avatar-initial rounded-circle bg-label-info">
-                                    <i class='fa fa-users fs-3'></i>
-                                </span>
-                            </div>
-                            <span class="d-block mb-1 text-nowrap">Users</span>
-                        </div>
-                    </div>
-                </div>
 
 
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
