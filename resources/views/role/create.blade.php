@@ -1,7 +1,7 @@
 @extends('layouts.menus.hr')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-xl-6">
+        <div class="col-xl-12 col-md-12 col-lg-12">
             <div class="card mb-4">
                 <h5 class="card-header">Role</h5>
                 <div class="card-body">

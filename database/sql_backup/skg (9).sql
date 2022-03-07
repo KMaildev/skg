@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2022 at 07:05 PM
+-- Generation Time: Mar 07, 2022 at 08:52 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -75,8 +75,7 @@ CREATE TABLE `approved_bies` (
 --
 
 INSERT INTO `approved_bies` (`id`, `project_id`, `user_id`, `approved_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/approvedby/IpnQYJGW9jO67VxLaM19FQJh1nD7iNyNr2VQtP5j.pdf', 'sample.pdf', NULL, '2022-03-06', '23:36:41', '2022-03-06 17:06:41', '2022-03-06 17:06:41'),
-(2, 2, 2, 'public/approvedby/YLKwudcW9nl3d8RMdB8x8cAI799DkztxSMhLhPrT.docx', 'Quotation Proposal - Ko Wai Yan Min (South Oakala).docx', 'Approved', '2022-03-06', '23:36:56', '2022-03-06 17:06:56', '2022-03-06 17:06:56');
+(1, 1, 2, 'public/approvedby/7bXIkGrsGhqbsPOpO5J5xoPqTMW0qc4qFkGwHRYu.pdf', 'sample.pdf', NULL, '2022-03-07', '14:00:02', '2022-03-07 07:30:02', '2022-03-07 07:30:02');
 
 -- --------------------------------------------------------
 
@@ -102,13 +101,9 @@ CREATE TABLE `archi_exterior_designs` (
 --
 
 INSERT INTO `archi_exterior_designs` (`id`, `project_id`, `user_id`, `archi_exterior_design_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/archiexteriordesign/P82HyJsRv7Htb8JzKWtcJMcoo3vSXb8Wrvk7cTWV.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-06', '22:28:18', '2022-03-06 15:58:18', '2022-03-06 15:58:18'),
-(2, 1, 2, 'public/archiexteriordesign/ZB2ibb3xDiteR2VsZtA4AXdvMtoBKuHoeDZcF4LR.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-06', '22:28:18', '2022-03-06 15:58:18', '2022-03-06 15:58:18'),
-(3, 1, 2, 'public/archiexteriordesign/Aij2lIF8TyMRAzQ4q15BPmTXnLplywBf7voVYBTg.jpg', 'floor_plan_3.jpeg', NULL, '2022-03-06', '22:28:18', '2022-03-06 15:58:18', '2022-03-06 15:58:18'),
-(4, 2, 2, 'public/archiexteriordesign/zjRcV6on2ECB7yxzOY5FAw3afk6W9mveWs05jmyU.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-06', '22:29:41', '2022-03-06 15:59:41', '2022-03-06 15:59:41'),
-(5, 3, 2, 'public/archiexteriordesign/dHHgyNwNkB7rbnD8FAqQPFtMq7nYJjXJIQPdFpWI.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-06', '22:41:33', '2022-03-06 16:11:33', '2022-03-06 16:11:33'),
-(6, 1, 2, 'public/archiexteriordesign/dEx7Rq8uhzuik64TGhVG67Y6maJv6f7TAl6odLxa.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-06', '22:57:31', '2022-03-06 16:27:31', '2022-03-06 16:27:31'),
-(7, 1, 2, 'public/archiexteriordesign/mpmsbQeA9C27CIGjH6lphK8cODXeN0EsaAzR3s7R.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-06', '23:00:19', '2022-03-06 16:30:19', '2022-03-06 16:30:19');
+(1, 1, 2, 'public/archiexteriordesign/dSBd9ERaopcvbUTOdOobELkMr8mWgkHilSpw126P.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-07', '10:42:13', '2022-03-07 04:12:13', '2022-03-07 04:12:13'),
+(2, 1, 2, 'public/archiexteriordesign/Ifw32WVZCABdvDb9XkUarVmI3v2vx4OxxG8CjacE.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-07', '10:42:13', '2022-03-07 04:12:13', '2022-03-07 04:12:13'),
+(3, 1, 2, 'public/archiexteriordesign/eY3AuePWZ9axSKsEvql4y1HugJVKWlbrFqfxL6jo.jpg', 'floor_plan_3.jpeg', NULL, '2022-03-07', '10:42:13', '2022-03-07 04:12:13', '2022-03-07 04:12:13');
 
 -- --------------------------------------------------------
 
@@ -156,12 +151,37 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `site_location`, `building_area`, `construction_type`, `job_scope`, `created_date`, `created_at`, `updated_at`, `phone`, `project_code`, `remark`, `address`, `storeyed`, `email`) VALUES
-(1, 'Ko Moe Aung Win WIn', 'Nyaung Shwe \"Township\'\'\".', '29\'-0\" L x 46\'-0\" Bx 23\'-0\"Ht;', '1.5 Storeyed  Residence Building.', 'Substructure+ Super Structure Work', '2022-02-16', '2022-02-16 02:14:35', '2022-03-06 06:22:13', '09444161554', 'P-00002', NULL, 'Yangon', NULL, NULL),
-(2, 'Aung Aung', 'Hlaing, Yangon', '29\'-0\" L x 46\'-0\" Bx 23\'-0\"Ht;', '1.5 Storeyed  Residence Building.', 'Substructure+ Super Structure Work', '2022-02-16', '2022-02-09 02:21:26', '2022-02-16 02:22:14', '09255678857', NULL, NULL, NULL, NULL, NULL),
-(3, 'Daw Soe Soe', 'YGN', 'YGN', 'YGN', NULL, '2022-02-25', '2022-02-25 05:12:38', '2022-02-25 05:12:38', '09444303998', NULL, NULL, NULL, NULL, NULL),
-(4, 'May', 'Hlaing Township, Yangon', '40 ft *  60ft', '2 Storeyed Building', 'Construction', '2022-02-25', '2022-02-25 09:45:34', '2022-02-25 09:45:34', '09-255378857', NULL, NULL, NULL, NULL, NULL),
-(5, 'Mg Mg', 'Yangon, Insein', NULL, NULL, NULL, '2022-03-06', '2022-03-06 05:54:30', '2022-03-06 05:54:30', '09444161997', 'P-00003', 'No Remark', 'Yangon', '2.5', NULL),
-(6, 'Daw Soe Soe Aung', 'Yangon, Hlaing', '29\'-0\" L x 46\'-0\" Bx 23\'-0\"Ht;', '1.5 Storeyed  Residence Building.', 'Substructure+ Super Structure Work', '2022-03-06', '2022-03-06 05:55:47', '2022-03-06 06:05:36', '09555181776', 'P-00001', 'No', 'Yangon', '1.5', 'soe@gmail.com');
+(1, 'Mg Mg', 'Yangon', 'Yangon', 'Yangon', 'Yangon', '2022-03-07', '2022-03-07 04:09:33', '2022-03-07 04:09:33', '09444161997', 'P-00001', NULL, 'Yangon', 'Yangon', 'mgmg@gmail.com'),
+(2, 'Aung Aung', 'YGN', NULL, NULL, NULL, '2022-03-07', '2022-03-07 04:10:01', '2022-03-07 04:10:01', '09444161997', 'P-00002', NULL, 'YGN', NULL, 'aung@gmail.com'),
+(3, 'Soe Soe', 'YGN', NULL, NULL, NULL, '2022-03-07', '2022-03-07 04:10:39', '2022-03-07 04:10:39', '09255678857', 'P-00003', NULL, 'YGN', NULL, 'soe@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(1, 'Management/Director', '2022-03-07 17:28:07', '2022-03-07 17:28:07'),
+(2, 'Management/ Manager', '2022-03-07 17:28:17', '2022-03-07 17:28:17'),
+(3, 'HR', '2022-03-07 17:28:25', '2022-03-07 17:28:25'),
+(4, 'Marketing', '2022-03-07 17:28:33', '2022-03-07 17:28:33'),
+(5, 'Finance', '2022-03-07 17:28:40', '2022-03-07 17:28:40'),
+(6, 'Archi Designer', '2022-03-07 17:28:47', '2022-03-07 17:28:47'),
+(7, 'Structure Designer', '2022-03-07 17:28:54', '2022-03-07 17:28:54'),
+(8, 'Operation', '2022-03-07 17:29:03', '2022-03-07 17:29:03'),
+(9, 'Engineer', '2022-03-07 17:29:06', '2022-03-07 17:29:06');
 
 -- --------------------------------------------------------
 
@@ -187,7 +207,7 @@ CREATE TABLE `exterior_design_fees` (
 --
 
 INSERT INTO `exterior_design_fees` (`id`, `project_id`, `user_id`, `exterior_design_fees`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/quotationproposal/6LTnJCnXeNgLBlRuPoQFP8n6NSTVpIJNNH6FDqAf.pdf', 'sample.pdf', NULL, '2022-03-06', '23:15:18', '2022-03-06 16:45:18', '2022-03-06 16:45:18');
+(1, 1, 2, 'public/quotationproposal/dAZwD5WojMjDDMoHQTl5jNb2SYIV4hboM7J3peuj.pdf', 'sample.pdf', NULL, '2022-03-07', '10:41:54', '2022-03-07 04:11:54', '2022-03-07 04:11:54');
 
 -- --------------------------------------------------------
 
@@ -229,8 +249,9 @@ CREATE TABLE `floor_plans` (
 --
 
 INSERT INTO `floor_plans` (`id`, `project_id`, `user_id`, `floor_plan_image`, `upload_date`, `upload_time`, `upload_date_time`, `created_at`, `updated_at`, `original_name`, `remark`) VALUES
-(1, 1, 2, 'public/floor_plans/lzVqkaxAbdoqt0UN8x5TcwwKJkht0IbJIHFcxeWV.jpg', '2022-03-06', '22:54:17', '2022-03-06 22:54:17', '2022-03-06 16:24:17', '2022-03-06 16:24:17', 'floor_plan_2.jpeg', NULL),
-(2, 1, 2, 'public/floor_plans/9GDhchK7WIX5SV1dQAaGAwO0ekhslEuM3G0FULET.jpg', '2022-03-06', '23:11:47', '2022-03-06 23:11:47', '2022-03-06 16:41:47', '2022-03-06 16:41:47', 'floor_plan_3.jpeg', NULL);
+(1, 1, 2, 'public/floor_plans/cSqghMYIrsjhuSzyiA5PJBkmPuPcvy84Ile8N4Hb.jpg', '2022-03-07', '10:41:29', '2022-03-07 10:41:29', '2022-03-07 04:11:29', '2022-03-07 04:11:29', 'floor_plan_1.jpeg', NULL),
+(2, 1, 2, 'public/floor_plans/Kbjwp75mx0gVKRnI3NQjhF5iuhZSuGhoSqKCOGJZ.jpg', '2022-03-07', '10:41:29', '2022-03-07 10:41:29', '2022-03-07 04:11:29', '2022-03-07 04:11:29', 'floor_plan_2.jpeg', NULL),
+(3, 1, 2, 'public/floor_plans/UPw2EZFkP5FLIMssaNkhVCNjTkVdAX6T5quGTbw4.jpg', '2022-03-07', '10:41:29', '2022-03-07 10:41:29', '2022-03-07 04:11:29', '2022-03-07 04:11:29', 'floor_plan_3.jpeg', NULL);
 
 -- --------------------------------------------------------
 
@@ -338,7 +359,45 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (36, '2022_03_06_185209_create_exterior_design_fees_table', 29),
 (37, '2022_03_06_191013_create_structure_design_fees_table', 30),
 (38, '2022_03_06_232222_add_approved_by_to_projects_table', 31),
-(39, '2022_03_06_232721_create_approved_bies_table', 32);
+(39, '2022_03_06_232721_create_approved_bies_table', 32),
+(40, '2022_03_07_153017_create_departments_table', 33),
+(41, '2022_03_07_160507_create_permission_tables', 34),
+(42, '2022_03_07_224304_add_phone_to_users_table', 35),
+(43, '2022_03_08_013300_add_display_order_to_projects_table', 36);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(5, 'App\\User', 6),
+(6, 'App\\User', 7),
+(7, 'App\\User', 1),
+(7, 'App\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -351,6 +410,47 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(5, 'floor_plan_view', 'web', '2022-03-07 17:32:08', '2022-03-07 17:32:08'),
+(6, 'floor_plan_create', 'web', '2022-03-07 17:32:13', '2022-03-07 17:32:13'),
+(7, 'quotation_proposal_view', 'web', '2022-03-07 17:33:00', '2022-03-07 17:33:00'),
+(8, 'quotation_proposal_create', 'web', '2022-03-07 17:33:04', '2022-03-07 17:33:04'),
+(9, 'archi_exterior_design_view', 'web', '2022-03-07 17:34:42', '2022-03-07 17:34:42'),
+(10, 'archi_exterior_design_create', 'web', '2022-03-07 17:34:47', '2022-03-07 17:34:47'),
+(11, 'accept_project_module', 'web', '2022-03-07 17:49:20', '2022-03-07 17:49:20'),
+(12, 'accept_inventory_module', 'web', '2022-03-07 17:57:01', '2022-03-07 17:57:01'),
+(13, 'accept_purchase_module', 'web', '2022-03-07 17:57:24', '2022-03-07 17:57:24'),
+(14, 'accept_engineer_module', 'web', '2022-03-07 17:57:41', '2022-03-07 17:57:41'),
+(15, 'accept_accounting_module', 'web', '2022-03-07 17:57:52', '2022-03-07 17:57:52'),
+(16, 'accept_qs_module', 'web', '2022-03-07 17:58:08', '2022-03-07 17:58:08'),
+(17, 'accept_sale_module', 'web', '2022-03-07 17:58:22', '2022-03-07 17:58:22'),
+(18, 'accept_hr_module', 'web', '2022-03-07 17:58:33', '2022-03-07 17:58:33'),
+(19, 'accept_documents_module', 'web', '2022-03-07 17:58:46', '2022-03-07 17:58:46'),
+(20, 'accept_setting_module', 'web', '2022-03-07 17:58:59', '2022-03-07 17:58:59'),
+(21, 'accept_activities_module', 'web', '2022-03-07 17:59:12', '2022-03-07 17:59:12'),
+(22, 'structure_design_view', 'web', '2022-03-07 18:11:53', '2022-03-07 18:11:53'),
+(23, 'structure_design_create', 'web', '2022-03-07 18:11:59', '2022-03-07 18:11:59'),
+(24, 'exterior_design_fees_view', 'web', '2022-03-07 18:17:14', '2022-03-07 18:17:14'),
+(25, 'structure_design_fees_view', 'web', '2022-03-07 18:17:33', '2022-03-07 18:17:33');
 
 -- --------------------------------------------------------
 
@@ -379,16 +479,18 @@ CREATE TABLE `projects` (
   `exterior_design_fees_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `structure_design_fees_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `approved_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `approved_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `approved_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `display_order` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `customer_id`, `floor_plan_status`, `floor_plan_upload_date`, `quotation_proposal_status`, `quotation_proposal_date`, `exterior_design_fees`, `structure_design_fees`, `archi_exterior_design_status`, `archi_exterior_design_upload_date`, `structure_design_status`, `structure_design_upload_date`, `created_date`, `remark`, `project_status`, `created_at`, `updated_at`, `exterior_design_fees_date`, `structure_design_fees_date`, `approved_status`, `approved_date`) VALUES
-(1, 6, 'finished', '2022-03-06 23:11:47', 'finished', '2022-03-06 22:49:07', 'done', NULL, 'finished', '2022-03-06 23:00:19', 'finished', '2022-03-06 23:02:41', '2022-03-06', '<p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Php artisan migrate</span></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Php artisan make:controller PizzaController -r</span></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">php artisan make:model Pizza -m</span></p><p><b style=\"font-weight:normal;\" id=\"docs-internal-guid-1e6b57ed-7fff-bbbb-163b-fa03bc327cc2\"><br></b></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Roboto,sans-serif;color:#202124;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">php artisan make:request StoreAccountClassification</span></p><p><b style=\"font-weight:normal;\"><br></b></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Roboto,sans-serif;color:#202124;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">php artisan make:model User -m</span></p><p><b style=\"font-weight:normal;\"><br></b></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Roboto,sans-serif;color:#202124;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">php artisan make:migration add_paid_to_users_table --table=users</span></p><p><b style=\"font-weight:normal;\"><br></b></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Roboto,sans-serif;color:#202124;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">php artisan optimize:clear</span></p><p><b style=\"font-weight:normal;\"><br></b></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Roboto,sans-serif;color:#202124;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">php artisan make:migration create_users_table --create=users</span></p><p><br></p><p dir=\"ltr\" style=\"line-height:1.569228;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Roboto,sans-serif;color:#202124;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">$ php artisan make:migration drop_user_table</span></p>', 'Proposal', '2022-03-06 16:12:48', '2022-03-06 17:45:08', '2022-03-06 23:15:18', NULL, 'approved', '2022-03-06 23:36:41'),
-(2, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'finished', '2022-03-06 23:07:37', '2022-03-06', NULL, 'Proposal', '2022-03-06 16:21:11', '2022-03-06 17:06:56', NULL, NULL, 'approved', '2022-03-06 23:36:56');
+INSERT INTO `projects` (`id`, `customer_id`, `floor_plan_status`, `floor_plan_upload_date`, `quotation_proposal_status`, `quotation_proposal_date`, `exterior_design_fees`, `structure_design_fees`, `archi_exterior_design_status`, `archi_exterior_design_upload_date`, `structure_design_status`, `structure_design_upload_date`, `created_date`, `remark`, `project_status`, `created_at`, `updated_at`, `exterior_design_fees_date`, `structure_design_fees_date`, `approved_status`, `approved_date`, `display_order`) VALUES
+(1, 1, 'finished', '2022-03-07 10:41:29', 'finished', '2022-03-07 10:41:44', 'done', 'done', 'finished', '2022-03-07 10:42:13', 'finished', '2022-03-07 10:42:25', '2022-03-07', '<h2 style=\"margin-right: 0px; margin-bottom: 10px; margin-left: 0px; padding: 0px; font-family: DauphinPlain; font-size: 24px; line-height: 24px; color: rgb(0, 0, 0);\">What is Lorem Ipsum?</h2><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px;\"><strong style=\"margin: 0px; padding: 0px;\">Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, <span style=\"background-color: rgb(255, 255, 0);\">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </span>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Proposal', '2022-03-07 04:10:47', '2022-03-07 19:51:51', '2022-03-07 10:41:54', '2022-03-07 10:42:02', 'approved', '2022-03-07 14:00:02', 3),
+(2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-07', NULL, 'Proposal', '2022-03-07 04:10:52', '2022-03-07 19:50:33', NULL, NULL, NULL, NULL, 1),
+(3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-07', NULL, 'Proposal', '2022-03-07 04:10:55', '2022-03-07 19:51:51', NULL, NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -414,7 +516,80 @@ CREATE TABLE `quotationproposals` (
 --
 
 INSERT INTO `quotationproposals` (`id`, `project_id`, `user_id`, `quotation_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/quotationproposal/Ud3P6rVkzbim5ulkbbipxgJ6QhlkN3c18vDwI1zK.docx', 'Quotation Proposal - Ko Wai Yan Min (South Oakala).docx', NULL, '2022-03-06', '22:49:07', '2022-03-06 16:19:07', '2022-03-06 16:19:07');
+(1, 1, 2, 'public/quotationproposal/bqfjuOi1RFpPCsvoOeYNtgDfLWqByvF5zJCucZVF.pdf', 'sample.pdf', NULL, '2022-03-07', '10:41:44', '2022-03-07 04:11:44', '2022-03-07 04:11:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(5, 'Marketing', 'web', '2022-03-07 17:33:53', '2022-03-07 17:33:53'),
+(6, 'Archi Designer', 'web', '2022-03-07 17:35:47', '2022-03-07 17:35:47'),
+(7, 'Management/Director', 'web', '2022-03-07 17:37:37', '2022-03-07 17:37:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(5, 5),
+(5, 7),
+(6, 5),
+(6, 7),
+(7, 5),
+(7, 7),
+(8, 5),
+(8, 7),
+(9, 6),
+(9, 7),
+(10, 6),
+(10, 7),
+(11, 5),
+(11, 6),
+(11, 7),
+(12, 7),
+(13, 7),
+(14, 7),
+(15, 7),
+(16, 7),
+(17, 7),
+(18, 7),
+(19, 7),
+(20, 7),
+(21, 7),
+(22, 6),
+(22, 7),
+(23, 6),
+(23, 7),
+(24, 6),
+(24, 7),
+(25, 6),
+(25, 7);
 
 -- --------------------------------------------------------
 
@@ -440,8 +615,9 @@ CREATE TABLE `structure_designs` (
 --
 
 INSERT INTO `structure_designs` (`id`, `project_id`, `user_id`, `structure_design_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/structuredesign/DviDYUARjQ5gpoufOpuJtMDVzrzipZfDSxM5mAsX.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-06', '23:02:41', '2022-03-06 16:32:41', '2022-03-06 16:32:41'),
-(2, 2, 2, 'public/structuredesign/VNJcDI0HCBscZZfumM2PkqybZHUI1vuOaZXyPdyI.jpg', 'floor_plan_3.jpeg', NULL, '2022-03-06', '23:07:37', '2022-03-06 16:37:37', '2022-03-06 16:37:37');
+(1, 1, 2, 'public/structuredesign/aiCZsUk3n3dTytoXft2APW4vuKZJNIAf14XWbpfl.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-07', '10:42:25', '2022-03-07 04:12:25', '2022-03-07 04:12:25'),
+(2, 1, 2, 'public/structuredesign/5Lax5F9js2KT8ipLYI5ODwU6O8d4JhLzCjqQkJgL.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-07', '10:42:25', '2022-03-07 04:12:25', '2022-03-07 04:12:25'),
+(3, 1, 2, 'public/structuredesign/PhOjDrsOb5jixljjG642R6JAeArtmRATFCQJO3sL.jpg', 'floor_plan_3.jpeg', NULL, '2022-03-07', '10:42:25', '2022-03-07 04:12:25', '2022-03-07 04:12:25');
 
 -- --------------------------------------------------------
 
@@ -461,6 +637,13 @@ CREATE TABLE `structure_design_fees` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `structure_design_fees`
+--
+
+INSERT INTO `structure_design_fees` (`id`, `project_id`, `user_id`, `structure_design_fees`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 'public/quotationproposal/LKmCYaqrK5NGLQHscbXJ0fpnbNVgWkN6qGvqSXuF.pdf', 'sample.pdf', NULL, '2022-03-07', '10:42:02', '2022-03-07 04:12:02', '2022-03-07 04:12:02');
 
 -- --------------------------------------------------------
 
@@ -498,16 +681,24 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `employee_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nrc_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@skg.com', NULL, '$2y$10$iY.PTOOlASzaLY549BHGH.aQorS3bbzjX7P9wcQ2QbJH/sGWI0aXa', NULL, '2022-02-14 04:00:05', '2022-02-14 04:00:05'),
-(2, 'Admin', 'admin@gmail.com', NULL, '$2y$10$8uBpiBB94GPnidoG.jGrCO1n/hPduvn42VIfuHE27QGwqxU3MMaPa', NULL, '2022-02-14 04:00:32', '2022-02-14 04:00:32');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `employee_id`, `phone`, `nrc_number`, `gender`, `address`, `department_id`) VALUES
+(1, 'Admin', 'admin@skg.com', NULL, '$2y$10$iY.PTOOlASzaLY549BHGH.aQorS3bbzjX7P9wcQ2QbJH/sGWI0aXa', NULL, '2022-02-14 04:00:05', '2022-03-07 17:38:09', 'EMP-00001', '0912312313', '-', 'male', 'YGN', 2),
+(2, 'Admin', 'admin@gmail.com', NULL, '$2y$10$8uBpiBB94GPnidoG.jGrCO1n/hPduvn42VIfuHE27QGwqxU3MMaPa', NULL, '2022-02-14 04:00:32', '2022-03-07 17:38:26', 'EMP-00002', '09555161776', '5/aab(n)009887', 'male', 'YGN', 2),
+(6, 'Marketing', 'marketing@gmail.com', NULL, '$2y$10$8.NVzFpqB/GAJak.cF4C.uEsQg8mknhrECHT3bo7Ipuuu3q27t5zu', NULL, '2022-03-07 17:39:27', '2022-03-07 17:39:27', 'EMP-00003', '09123123123', '-', 'male', 'YGN', 4),
+(7, 'Archi Designer', 'archidesigner@gmail.com', NULL, '$2y$10$vvZIJuHQYd7WWa.vq4tsDOXHrH7R0H2kNpcYvPN1EE07URD6oGRcK', NULL, '2022-03-07 18:22:19', '2022-03-07 18:22:19', 'EMP-00004', '09123123122', '-', 'male', 'YGN', 6);
 
 --
 -- Indexes for dumped tables
@@ -553,6 +744,12 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `exterior_design_fees`
 --
 ALTER TABLE `exterior_design_fees`
@@ -589,10 +786,31 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
 -- Indexes for table `projects`
@@ -605,6 +823,20 @@ ALTER TABLE `projects`
 --
 ALTER TABLE `quotationproposals`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indexes for table `structure_designs`
@@ -629,7 +861,8 @@ ALTER TABLE `unitos_of_measures`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_phone_unique` (`phone`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -651,13 +884,13 @@ ALTER TABLE `account_types`
 -- AUTO_INCREMENT for table `approved_bies`
 --
 ALTER TABLE `approved_bies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `archi_exterior_designs`
 --
 ALTER TABLE `archi_exterior_designs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `chartof_accounts`
@@ -669,7 +902,13 @@ ALTER TABLE `chartof_accounts`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `exterior_design_fees`
@@ -687,7 +926,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `floor_plans`
 --
 ALTER TABLE `floor_plans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `labours`
@@ -705,13 +944,19 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `quotationproposals`
@@ -720,16 +965,22 @@ ALTER TABLE `quotationproposals`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `structure_designs`
 --
 ALTER TABLE `structure_designs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `structure_design_fees`
 --
 ALTER TABLE `structure_design_fees`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `unitos_of_measures`
@@ -741,7 +992,30 @@ ALTER TABLE `unitos_of_measures`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

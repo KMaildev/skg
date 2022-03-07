@@ -16,7 +16,12 @@ class ProposalController extends Controller
      */
     public function index()
     {
-        $projects = Projects::where('project_status', 'Proposal')->paginate(30);
+        // $projects = Projects::where('project_status', 'Proposal')->paginate(30);
+        $projects = Projects::select("*")
+            ->where("project_status", 'Proposal')
+            ->orderByDesc("display_order")
+            ->paginate(30);
+
         if (request('search')) {
             $projects = Projects::where('project_status', 'Proposal')->where(function ($query) {
                 $query->where('customer_id', 'Like', '%' . request('search') . '%');

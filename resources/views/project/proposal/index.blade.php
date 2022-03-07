@@ -36,20 +36,39 @@
                                 <th style="color: white; text-align: center; width: 20%;">Customer Name</th>
                                 <th style="color: white; text-align: center; width: 20%;">Project Code</th>
                                 <th style="color: white; text-align: center; width: 20%;">Date</th>
-                                <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
-                                <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
-                                <th style="color: white; text-align: center; width: 16%;">Exterior Design Fees</th>
-                                <th style="color: white; text-align: center; width: 16%;">Structure Design Fees</th>
+                                @can('floor_plan_view')
+                                    <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
+                                @endcan
+
+                                @can('quotation_proposal_view')
+                                    <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
+                                @endcan
+
+                                @can('exterior_design_fees_view')
+                                    <th style="color: white; text-align: center; width: 16%;">Exterior Design Fees</th>
+                                @endcan
+
+                                @can('structure_design_fees_view')
+                                    <th style="color: white; text-align: center; width: 16%;">Structure Design Fees</th>
+                                @endcan
+
                                 <th style="color: white; text-align: center; width: 16%;">Approved By</th>
-                                <th style="color: white; text-align: center; width: 16%;">Archi Exterior Design</th>
-                                <th style="color: white; text-align: center; width: 16%;">Structure Design</th>
+
+                                @can('archi_exterior_design_view')
+                                    <th style="color: white; text-align: center; width: 16%;">Archi Exterior Design</th>
+                                @endcan
+
+                                @can('structure_design_view')
+                                    <th style="color: white; text-align: center; width: 16%;">Structure Design</th>
+                                @endcan
+
                                 <th style="color: white; text-align: center; width: 16%;">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="table-border-bottom-0">
+                        <tbody class="table-border-bottom-0 row_position" id="tablecontents">
 
                             @foreach ($projects as $key => $project)
-                                <tr>
+                                <tr class="row1" data-id="{{ $project->id }}">
                                     <td style="text-align: center; font-size: 13px; font-weight: bold;">
                                         {{ $key + 1 }}
                                     </td>
@@ -66,38 +85,46 @@
                                     </td>
 
                                     {{-- FloorPlan --}}
-                                    <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.project_status.floor_plan_status',
-                                            ['project' => $project]
-                                        )
-                                    </td>
+                                    @can('floor_plan_view')
+                                        <td style="text-align: center; font-size: 13px;">
+                                            @include(
+                                                'shared.project_status.floor_plan_status',
+                                                ['project' => $project]
+                                            )
+                                        </td>
+                                    @endcan
 
                                     {{-- Quotation Proposal --}}
-                                    <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.project_status.quotation_proposal_status',
-                                            ['project' => $project]
-                                        )
-                                    </td>
+                                    @can('quotation_proposal_view')
+                                        <td style="text-align: center; font-size: 13px;">
+                                            @include(
+                                                'shared.project_status.quotation_proposal_status',
+                                                ['project' => $project]
+                                            )
+                                        </td>
+                                    @endcan
 
                                     {{-- Exterior Design Fees --}}
-                                    <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.project_status.exterior_design_fees_status',
-                                            ['project' => $project]
-                                        )
-                                    </td>
+                                    @can('exterior_design_fees_view')
+                                        <td style="text-align: center; font-size: 13px;">
+                                            @include(
+                                                'shared.project_status.exterior_design_fees_status',
+                                                ['project' => $project]
+                                            )
+                                        </td>
+                                    @endcan
 
                                     {{-- Structure Design Fees --}}
-                                    <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.project_status.structure_design_fees_status',
-                                            ['project' => $project]
-                                        )
-                                    </td>
+                                    @can('structure_design_fees_view')
+                                        <td style="text-align: center; font-size: 13px;">
+                                            @include(
+                                                'shared.project_status.structure_design_fees_status',
+                                                ['project' => $project]
+                                            )
+                                        </td>
+                                    @endcan
 
-                                    {{-- FloorPlan --}}
+                                    {{-- approved_by --}}
                                     <td style="text-align: center; font-size: 13px;">
                                         @include(
                                             'shared.project_status.approved_by',
@@ -106,20 +133,24 @@
                                     </td>
 
                                     {{-- Archi Exterior Design --}}
-                                    <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.project_status.archi_exterior_design_status',
-                                            ['project' => $project]
-                                        )
-                                    </td>
+                                    @can('archi_exterior_design_view')
+                                        <td style="text-align: center; font-size: 13px;">
+                                            @include(
+                                                'shared.project_status.archi_exterior_design_status',
+                                                ['project' => $project]
+                                            )
+                                        </td>
+                                    @endcan
 
                                     {{-- Structure Design --}}
-                                    <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.project_status.structure_design_status',
-                                            ['project' => $project]
-                                        )
-                                    </td>
+                                    @can('structure_design_view')
+                                        <td style="text-align: center; font-size: 13px;">
+                                            @include(
+                                                'shared.project_status.structure_design_status',
+                                                ['project' => $project]
+                                            )
+                                        </td>
+                                    @endcan
 
                                     <td style="text-align: center;">
                                         <div class="btn-group">
@@ -135,7 +166,8 @@
                                                 </li>
 
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ route('project.show', $project->id) }}">Detail</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('project.show', $project->id) }}">Detail</a>
                                                 </li>
 
                                                 <li>
@@ -161,4 +193,54 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("#tablecontents").sortable({
+                delay: 150,
+                items: "tr",
+                cursor: 'move',
+                opacity: 0.6,
+                update: function() {
+                    sendOrderToServer();
+                }
+            });
+
+            function sendOrderToServer() {
+                var order = [];
+                var token = $('meta[name="csrf-token"]').attr('content');
+                $('tr.row1').each(function(index, element) {
+                    order.push({
+                        id: $(this).attr('data-id'),
+                        position: index + 1,
+                    });
+                });
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    // url: "{{ url('projectsortable') }}",
+                    url: "/projectsortable",
+                    data: {
+                        order: order,
+                        _token: token
+                    },
+                    success: function(response) {
+                        if (response.status == "success") {
+                            console.log(response);
+                            alert(response);
+                            alert("w");
+                        } else {
+                            console.log(response);
+                            alert(response);
+                            alert("E");
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

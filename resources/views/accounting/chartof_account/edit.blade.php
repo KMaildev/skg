@@ -105,9 +105,6 @@
         var account_classification_id = document.getElementById("account_classification_id");
 
 
-
-
-
         $(document).ready(function() {
             $('select[name="account_type"]').on('change', function() {
                 var classificationID = $(this).val();

@@ -105,4 +105,20 @@ class ProjectController extends Controller
     {
         //
     }
+
+
+    public function projectsortable(Request $request)
+    {
+        $posts = Projects::all();
+
+        foreach ($posts as $post) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $post->id) {
+                    $post->display_order = $order['position'];
+                    $post->update();
+                }
+            }
+        }
+        return response('Update Successfully.', 200);
+    }
 }

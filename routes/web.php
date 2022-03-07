@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('customerdependent/ajax/{id}', array('as' => 'customerdependent.ajax', 'uses' => 'CustomersController@dependentAjax'));
     Route::resource('proposal', 'Project\ProposalController');
     Route::resource('project', 'Project\ProjectController');
+    Route::post('projectsortable', 'Project\ProjectController@projectsortable');
 
 
     Route::resource('floorplan', 'FloorPlanController');
@@ -112,4 +113,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('department', 'DepartmentController');
     Route::resource('role', 'RoleController');
     Route::resource('permission', 'PermissionController');
+
+    Route::resource('employee', 'EmployeeController');
 });

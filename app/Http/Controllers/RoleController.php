@@ -44,6 +44,7 @@ class RoleController extends Controller
         $role = new Role();
         $role->name = $request->name;
         $role->save();
+        $role->givePermissionTo($request->permissions);
         return redirect()->back()->with('success', 'Role is successfully created.');
     }
 
@@ -67,7 +68,9 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        return view('role.edit', compact('role'));
+        $old_permissions = $role->permissions->pluck('id')->toArray();
+        $permissions = Permission::all();
+        return view('role.edit', compact('role', 'old_permissions', 'permissions'));
     }
 
     /**
@@ -82,6 +85,10 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $role->name = $request->name;
         $role->update();
+        $old_permissions = $role->permissions->pluck('name')->toArray();
+        $role->revokePermissionTo($old_permissions);
+        $role->givePermissionTo($request->permissions);
+
         return redirect()->back()->with('success', 'Role is successfully updated.');
     }
 
@@ -93,6 +100,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect()->back()->with('success', 'Role is successfully deleted.');
     }
 }

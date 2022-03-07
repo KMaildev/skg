@@ -11,8 +11,15 @@
             </li>
 
             <li class="menu-item">
-                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <a href="{{ route('employee.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div data-i1n="Layouts">Employees</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
                     <div data-i2n="Layouts">Configuration</div>
                 </a>
 

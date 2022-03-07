@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
         <div class="col-xl-6">
             <div class="card mb-4">
-                <h5 class="card-header">Role</h5>
+                <h5 class="card-header">Permission</h5>
                 <div class="card-body">
 
                     <form action="{{ route('permission.update', $permission->id) }}" method="POST" autocomplete="off"
