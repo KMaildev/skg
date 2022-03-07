@@ -58,7 +58,14 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Projects::findOrFail($id);
-        return view('project.project.show', compact('project'));
+        $floor_plan_images = Projects::find($id)->floor_plans_table;
+        $quotationproposals = Projects::find($id)->quotationproposals_table;
+        $exterior_design_fees = Projects::find($id)->exterior_design_fees_table;
+        $structure_design_fees = Projects::find($id)->structure_design_fees_table;
+        $archi_exterior_designs = Projects::find($id)->archi_exterior_designs_table;
+        $structure_designs = Projects::find($id)->structure_designs_table;
+        $approved_bies = Projects::find($id)->approved_bies_table;
+        return view('project.project.show', compact('project', 'floor_plan_images', 'quotationproposals', 'exterior_design_fees', 'structure_design_fees', 'archi_exterior_designs', 'structure_designs', 'approved_bies'));
     }
 
     /**

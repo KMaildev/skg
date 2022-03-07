@@ -10,4 +10,40 @@ class Projects extends Model
     {
         return $this->belongsTo(Customers::class, 'customer_id', 'id');
     }
+
+    public function floor_plans_table()
+    {
+        return $this->hasMany(FloorPlan::class, 'project_id', 'id');
+    }
+
+    public function quotationproposals_table()
+    {
+        return $this->hasMany(Quotationproposal::class, 'project_id', 'id');
+    }
+
+    public function exterior_design_fees_table()
+    {
+        return $this->hasMany(Exterior_design_fees::class, 'project_id', 'id');
+    }
+
+    public function structure_design_fees_table()
+    {
+        return $this->hasMany(Structure_design_fees::class, 'project_id', 'id');
+    }
+
+    public function archi_exterior_designs_table()
+    {
+        return $this->hasMany(ArchiExteriorDesign::class, 'project_id', 'id');
+    }
+
+    public function structure_designs_table()
+    {
+        return $this->hasMany(StructureDesign::class, 'project_id', 'id');
+    }
+
+
+    public function approved_bies_table()
+    {
+        return $this->hasMany(ApprovedBy::class, 'project_id', 'id');
+    }
 }

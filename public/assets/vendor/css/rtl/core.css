@@ -16056,7 +16056,7 @@ html:not([dir=rtl]) .text-end {
 }
 
 html:not([dir=rtl]) .text-center {
-  text-align: center !important
+  /* text-align: center !important */
 }
 
 html:not([dir=rtl]) .rounded-end {

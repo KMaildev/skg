@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\exterior_design_fees;
-use App\Models\Exterior_design_fees as ModelsExterior_design_fees;
+use App\Models\Exterior_design_fees;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 
