@@ -52,7 +52,7 @@
                                     <th style="color: white; text-align: center; width: 16%;">Structure Design Fees</th>
                                 @endcan
 
-                                <th style="color: white; text-align: center; width: 16%;">Approved By</th>
+                                <th style="color: white; text-align: center; width: 16%;">No Fees but Allowed</th>
 
                                 @can('archi_exterior_design_view')
                                     <th style="color: white; text-align: center; width: 16%;">Archi Exterior Design</th>
@@ -178,15 +178,22 @@
                                                     <a class="dropdown-item" href="#">Completed</a>
                                                 </li>
 
+                                                <li>
+                                                    <form action="{{ route('project.destroy', $project->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="dropdown-item del_confirm"
+                                                            id="confirm-text" data-toggle="tooltip">Delete</button>
+                                                    </form>
+                                                </li>
+
                                             </ul>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <caption class="ms-1">
-                            {!! $projects->links() !!}
-                        </caption>
                     </table>
                 </div>
 

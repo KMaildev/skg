@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCustomer;
 use App\Http\Requests\UpdateCustomer;
 use App\Models\Customers;
+use App\Models\Projects;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -122,6 +123,11 @@ class CustomersController extends Controller
      */
     public function destroy($id)
     {
-        return 'Not Allowed';
+        $customer = Customers::findOrFail($id);
+        $customer->delete();
+        Projects::where('customer_id', $id)->delete();
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Deleted successfully.');
     }
 }

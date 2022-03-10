@@ -7,13 +7,13 @@
         <h5 class="card-header">Files</h5>
         <div class="table-responsive text-nowrap">
             <table class="table">
-                <thead>
+                <thead class="tbbg">
                     <tr>
-                        <th>#</th>
-                        <th>File Name</th>
-                        <th>Download</th>
-                        <th>Upload Date</th>
-                        <th>Upload By</th>
+                        <th style="color: white;">#</th>
+                        <th style="color: white;">File Name</th>
+                        <th style="color: white;">Download</th>
+                        <th style="color: white;">Upload Date</th>
+                        <th style="color: white;">Upload By</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -27,7 +27,7 @@
                                 <strong>{{ $value->original_name }}</strong>
                             </td>
                             <td>
-                                <a href="{{ Storage::url($value->quotation_file) }}">
+                                <a href="{{ Storage::url($value->quotation_file) }}" download="">
                                     <i class="fa fa-download fa-lg text-danger"></i>
                                     <strong>Download</strong>
                                 </a>

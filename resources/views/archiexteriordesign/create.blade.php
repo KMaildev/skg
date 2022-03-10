@@ -21,10 +21,9 @@
                         @csrf
                         <input type="hidden" value="{{ $id }}" name="project_id">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Photo</label>
+                            <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">File</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="file" id="files" multiple name="files[]"
-                                    accept="image/*">
+                                <input class="form-control" type="file" multiple name="files[]">
                                 <div class="preview_images my-2"> </div>
                             </div>
                         </div>

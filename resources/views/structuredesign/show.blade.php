@@ -1,24 +1,49 @@
 @extends('layouts.menus.project')
 @section('content')
     <h4 class="py-3 breadcrumb-wrapper mb-4">
-        <span class="text-muted fw-light">Project / </span> Structure Design
+        <span class="text-muted fw-light">Project /</span> Structure Design
     </h4>
-    <div class="row mb-5">
-        @foreach ($structure_designs as $key => $value)
-            <div class="col-md-3 col-lg-3 col-sm-12 mb-3">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $value->original_name }}</h5>
-                        <h6 class="card-subtitle text-muted">{{ $value->created_at }}</h6>
-                        <p class="card-text py-1">
-                            Upload By {{ $value->users_table->name ?? '' }}
-                        </p>
-                        <img class="img-fluid d-flex mx-auto my-4"
-                            src="{{ Storage::url($value->structure_design_file) }}"
-                            alt="{{ $value->original_name }}" />
-                    </div>
-                </div>
-            </div>
-        @endforeach
+    <div class="card">
+        <h5 class="card-header">Files</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead class="tbbg">
+                    <tr>
+                        <th style="color: white">#</th>
+                        <th style="color: white">File Name</th>
+                        <th style="color: white">Download</th>
+                        <th style="color: white">Upload Date</th>
+                        <th style="color: white">Upload By</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach ($structure_designs as $key => $value)
+                        <tr>
+                            <td>
+                                {{ $key + 1 }}
+                            </td>
+
+                            <td>
+                                <strong>{{ $value->original_name }}</strong>
+                            </td>
+                            <td>
+                                <a href="{{ Storage::url($value->structure_design_file) }}" download="">
+                                    <i class="fa fa-download fa-lg text-danger"></i>
+                                    <strong>Download</strong>
+                                </a>
+                            </td>
+                            <td>
+                                <i class="fa fa-calendar fa-lg text-success"></i>
+                                <strong>{{ $value->created_at }}</strong>
+                            </td>
+                            <td>
+                                <i class="fa fa-user fa-lg text-success"></i>
+                                <strong>{{ $value->users_table->name ?? '' }}</strong>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

@@ -4,7 +4,7 @@
 
          <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
              <a href="{{ route('home') }}" class="app-brand-link gap-2">
-                 <span class="app-brand-text demo menu-text fw-bold" style="color: white">SKG</span>
+                 <span class="app-brand-text demo menu-text fw-bold" style="color: white">SK GROUP</span>
              </a>
              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
                  <i class="bx bx-x bx-sm align-middle"></i>
@@ -134,7 +134,7 @@
                                          </div>
                                      </div>
                                      <div class="flex-grow-1">
-                                         <span class="fw-semibold d-block lh-1">MGMC</span>
+                                         <span class="fw-semibold d-block lh-1">SK GROUP</span>
                                          <small>Admin</small>
                                      </div>
                                  </div>

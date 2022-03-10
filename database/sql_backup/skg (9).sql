@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2022 at 08:52 PM
+-- Generation Time: Mar 07, 2022 at 09:03 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account_classifications` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ac_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -42,13 +42,13 @@ CREATE TABLE `account_classifications` (
 --
 
 CREATE TABLE `account_types` (
-  `id` int(10) UNSIGNED NOT NULL,
   `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_classification_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `financial_statement` enum('BalanceSheet','IncomeStatement') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -58,7 +58,7 @@ CREATE TABLE `account_types` (
 --
 
 CREATE TABLE `approved_bies` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `approved_file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -70,13 +70,6 @@ CREATE TABLE `approved_bies` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `approved_bies`
---
-
-INSERT INTO `approved_bies` (`id`, `project_id`, `user_id`, `approved_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/approvedby/7bXIkGrsGhqbsPOpO5J5xoPqTMW0qc4qFkGwHRYu.pdf', 'sample.pdf', NULL, '2022-03-07', '14:00:02', '2022-03-07 07:30:02', '2022-03-07 07:30:02');
-
 -- --------------------------------------------------------
 
 --
@@ -84,7 +77,7 @@ INSERT INTO `approved_bies` (`id`, `project_id`, `user_id`, `approved_file`, `or
 --
 
 CREATE TABLE `archi_exterior_designs` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `archi_exterior_design_file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -96,15 +89,6 @@ CREATE TABLE `archi_exterior_designs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `archi_exterior_designs`
---
-
-INSERT INTO `archi_exterior_designs` (`id`, `project_id`, `user_id`, `archi_exterior_design_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/archiexteriordesign/dSBd9ERaopcvbUTOdOobELkMr8mWgkHilSpw126P.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-07', '10:42:13', '2022-03-07 04:12:13', '2022-03-07 04:12:13'),
-(2, 1, 2, 'public/archiexteriordesign/Ifw32WVZCABdvDb9XkUarVmI3v2vx4OxxG8CjacE.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-07', '10:42:13', '2022-03-07 04:12:13', '2022-03-07 04:12:13'),
-(3, 1, 2, 'public/archiexteriordesign/eY3AuePWZ9axSKsEvql4y1HugJVKWlbrFqfxL6jo.jpg', 'floor_plan_3.jpeg', NULL, '2022-03-07', '10:42:13', '2022-03-07 04:12:13', '2022-03-07 04:12:13');
-
 -- --------------------------------------------------------
 
 --
@@ -112,7 +96,7 @@ INSERT INTO `archi_exterior_designs` (`id`, `project_id`, `user_id`, `archi_exte
 --
 
 CREATE TABLE `chartof_accounts` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `coa_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_type_id` int(11) NOT NULL,
@@ -129,7 +113,7 @@ CREATE TABLE `chartof_accounts` (
 --
 
 CREATE TABLE `customers` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `site_location` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `building_area` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -145,15 +129,6 @@ CREATE TABLE `customers` (
   `storeyed` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `name`, `site_location`, `building_area`, `construction_type`, `job_scope`, `created_date`, `created_at`, `updated_at`, `phone`, `project_code`, `remark`, `address`, `storeyed`, `email`) VALUES
-(1, 'Mg Mg', 'Yangon', 'Yangon', 'Yangon', 'Yangon', '2022-03-07', '2022-03-07 04:09:33', '2022-03-07 04:09:33', '09444161997', 'P-00001', NULL, 'Yangon', 'Yangon', 'mgmg@gmail.com'),
-(2, 'Aung Aung', 'YGN', NULL, NULL, NULL, '2022-03-07', '2022-03-07 04:10:01', '2022-03-07 04:10:01', '09444161997', 'P-00002', NULL, 'YGN', NULL, 'aung@gmail.com'),
-(3, 'Soe Soe', 'YGN', NULL, NULL, NULL, '2022-03-07', '2022-03-07 04:10:39', '2022-03-07 04:10:39', '09255678857', 'P-00003', NULL, 'YGN', NULL, 'soe@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -190,7 +165,7 @@ INSERT INTO `departments` (`id`, `title`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `exterior_design_fees` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `exterior_design_fees` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -201,13 +176,6 @@ CREATE TABLE `exterior_design_fees` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `exterior_design_fees`
---
-
-INSERT INTO `exterior_design_fees` (`id`, `project_id`, `user_id`, `exterior_design_fees`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/quotationproposal/dAZwD5WojMjDDMoHQTl5jNb2SYIV4hboM7J3peuj.pdf', 'sample.pdf', NULL, '2022-03-07', '10:41:54', '2022-03-07 04:11:54', '2022-03-07 04:11:54');
 
 -- --------------------------------------------------------
 
@@ -231,7 +199,7 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `floor_plans` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `floor_plan_image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -244,15 +212,6 @@ CREATE TABLE `floor_plans` (
   `remark` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `floor_plans`
---
-
-INSERT INTO `floor_plans` (`id`, `project_id`, `user_id`, `floor_plan_image`, `upload_date`, `upload_time`, `upload_date_time`, `created_at`, `updated_at`, `original_name`, `remark`) VALUES
-(1, 1, 2, 'public/floor_plans/cSqghMYIrsjhuSzyiA5PJBkmPuPcvy84Ile8N4Hb.jpg', '2022-03-07', '10:41:29', '2022-03-07 10:41:29', '2022-03-07 04:11:29', '2022-03-07 04:11:29', 'floor_plan_1.jpeg', NULL),
-(2, 1, 2, 'public/floor_plans/Kbjwp75mx0gVKRnI3NQjhF5iuhZSuGhoSqKCOGJZ.jpg', '2022-03-07', '10:41:29', '2022-03-07 10:41:29', '2022-03-07 04:11:29', '2022-03-07 04:11:29', 'floor_plan_2.jpeg', NULL),
-(3, 1, 2, 'public/floor_plans/UPw2EZFkP5FLIMssaNkhVCNjTkVdAX6T5quGTbw4.jpg', '2022-03-07', '10:41:29', '2022-03-07 10:41:29', '2022-03-07 04:11:29', '2022-03-07 04:11:29', 'floor_plan_3.jpeg', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -260,7 +219,7 @@ INSERT INTO `floor_plans` (`id`, `project_id`, `user_id`, `floor_plan_image`, `u
 --
 
 CREATE TABLE `labours` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -271,10 +230,10 @@ CREATE TABLE `labours` (
 --
 
 INSERT INTO `labours` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(2, 'Steel Fixers', '2022-02-15 09:44:28', '2022-02-15 09:47:40'),
-(3, 'Steel Fixer', '2022-02-15 09:44:51', '2022-02-15 09:44:51'),
-(4, 'Surveryor', '2022-02-15 09:45:03', '2022-02-15 09:45:03'),
-(5, 'Worker', '2022-02-15 09:45:09', '2022-02-15 09:45:09');
+(1, 'Steel Fixers', '2022-02-15 09:44:28', '2022-02-15 09:47:40'),
+(2, 'Steel Fixer', '2022-02-15 09:44:51', '2022-02-15 09:44:51'),
+(3, 'Surveryor', '2022-02-15 09:45:03', '2022-02-15 09:45:03'),
+(4, 'Worker', '2022-02-15 09:45:09', '2022-02-15 09:45:09');
 
 -- --------------------------------------------------------
 
@@ -283,7 +242,7 @@ INSERT INTO `labours` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `materials` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -459,7 +418,7 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 --
 
 CREATE TABLE `projects` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `floor_plan_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `floor_plan_upload_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -483,15 +442,6 @@ CREATE TABLE `projects` (
   `display_order` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `projects`
---
-
-INSERT INTO `projects` (`id`, `customer_id`, `floor_plan_status`, `floor_plan_upload_date`, `quotation_proposal_status`, `quotation_proposal_date`, `exterior_design_fees`, `structure_design_fees`, `archi_exterior_design_status`, `archi_exterior_design_upload_date`, `structure_design_status`, `structure_design_upload_date`, `created_date`, `remark`, `project_status`, `created_at`, `updated_at`, `exterior_design_fees_date`, `structure_design_fees_date`, `approved_status`, `approved_date`, `display_order`) VALUES
-(1, 1, 'finished', '2022-03-07 10:41:29', 'finished', '2022-03-07 10:41:44', 'done', 'done', 'finished', '2022-03-07 10:42:13', 'finished', '2022-03-07 10:42:25', '2022-03-07', '<h2 style=\"margin-right: 0px; margin-bottom: 10px; margin-left: 0px; padding: 0px; font-family: DauphinPlain; font-size: 24px; line-height: 24px; color: rgb(0, 0, 0);\">What is Lorem Ipsum?</h2><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px;\"><strong style=\"margin: 0px; padding: 0px;\">Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, <span style=\"background-color: rgb(255, 255, 0);\">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </span>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Proposal', '2022-03-07 04:10:47', '2022-03-07 19:51:51', '2022-03-07 10:41:54', '2022-03-07 10:42:02', 'approved', '2022-03-07 14:00:02', 3),
-(2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-07', NULL, 'Proposal', '2022-03-07 04:10:52', '2022-03-07 19:50:33', NULL, NULL, NULL, NULL, 1),
-(3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-07', NULL, 'Proposal', '2022-03-07 04:10:55', '2022-03-07 19:51:51', NULL, NULL, NULL, NULL, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -499,7 +449,7 @@ INSERT INTO `projects` (`id`, `customer_id`, `floor_plan_status`, `floor_plan_up
 --
 
 CREATE TABLE `quotationproposals` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `quotation_file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -510,13 +460,6 @@ CREATE TABLE `quotationproposals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `quotationproposals`
---
-
-INSERT INTO `quotationproposals` (`id`, `project_id`, `user_id`, `quotation_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/quotationproposal/bqfjuOi1RFpPCsvoOeYNtgDfLWqByvF5zJCucZVF.pdf', 'sample.pdf', NULL, '2022-03-07', '10:41:44', '2022-03-07 04:11:44', '2022-03-07 04:11:44');
 
 -- --------------------------------------------------------
 
@@ -598,7 +541,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 --
 
 CREATE TABLE `structure_designs` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `structure_design_file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -610,15 +553,6 @@ CREATE TABLE `structure_designs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `structure_designs`
---
-
-INSERT INTO `structure_designs` (`id`, `project_id`, `user_id`, `structure_design_file`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/structuredesign/aiCZsUk3n3dTytoXft2APW4vuKZJNIAf14XWbpfl.jpg', 'floor_plan_1.jpeg', NULL, '2022-03-07', '10:42:25', '2022-03-07 04:12:25', '2022-03-07 04:12:25'),
-(2, 1, 2, 'public/structuredesign/5Lax5F9js2KT8ipLYI5ODwU6O8d4JhLzCjqQkJgL.jpg', 'floor_plan_2.jpeg', NULL, '2022-03-07', '10:42:25', '2022-03-07 04:12:25', '2022-03-07 04:12:25'),
-(3, 1, 2, 'public/structuredesign/PhOjDrsOb5jixljjG642R6JAeArtmRATFCQJO3sL.jpg', 'floor_plan_3.jpeg', NULL, '2022-03-07', '10:42:25', '2022-03-07 04:12:25', '2022-03-07 04:12:25');
-
 -- --------------------------------------------------------
 
 --
@@ -626,7 +560,7 @@ INSERT INTO `structure_designs` (`id`, `project_id`, `user_id`, `structure_desig
 --
 
 CREATE TABLE `structure_design_fees` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `structure_design_fees` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -638,13 +572,6 @@ CREATE TABLE `structure_design_fees` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `structure_design_fees`
---
-
-INSERT INTO `structure_design_fees` (`id`, `project_id`, `user_id`, `structure_design_fees`, `original_name`, `remark`, `upload_date`, `upload_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'public/quotationproposal/LKmCYaqrK5NGLQHscbXJ0fpnbNVgWkN6qGvqSXuF.pdf', 'sample.pdf', NULL, '2022-03-07', '10:42:02', '2022-03-07 04:12:02', '2022-03-07 04:12:02');
-
 -- --------------------------------------------------------
 
 --
@@ -652,7 +579,7 @@ INSERT INTO `structure_design_fees` (`id`, `project_id`, `user_id`, `structure_d
 --
 
 CREATE TABLE `unitos_of_measures` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -665,7 +592,7 @@ CREATE TABLE `unitos_of_measures` (
 INSERT INTO `unitos_of_measures` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Bags', NULL, '2022-02-15 04:17:11'),
 (2, 'Suds', '2022-02-15 04:05:15', '2022-02-15 04:05:15'),
-(4, 'Sht', '2022-02-15 04:07:45', '2022-02-15 04:07:45');
+(3, 'Sht', '2022-02-15 04:07:45', '2022-02-15 04:07:45');
 
 -- --------------------------------------------------------
 
@@ -872,37 +799,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account_classifications`
 --
 ALTER TABLE `account_classifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `account_types`
 --
 ALTER TABLE `account_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `approved_bies`
 --
 ALTER TABLE `approved_bies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `archi_exterior_designs`
 --
 ALTER TABLE `archi_exterior_designs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `chartof_accounts`
 --
 ALTER TABLE `chartof_accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -914,7 +841,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `exterior_design_fees`
 --
 ALTER TABLE `exterior_design_fees`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -926,19 +853,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `floor_plans`
 --
 ALTER TABLE `floor_plans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `labours`
 --
 ALTER TABLE `labours`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -956,13 +883,13 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quotationproposals`
 --
 ALTER TABLE `quotationproposals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -974,19 +901,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `structure_designs`
 --
 ALTER TABLE `structure_designs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `structure_design_fees`
 --
 ALTER TABLE `structure_design_fees`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `unitos_of_measures`
 --
 ALTER TABLE `unitos_of_measures`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

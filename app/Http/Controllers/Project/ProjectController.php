@@ -103,7 +103,9 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Projects::findOrFail($id);
+        $customer->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 
 

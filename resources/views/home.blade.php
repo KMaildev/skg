@@ -37,7 +37,7 @@
                 @endcan
 
                 @can('accept_purchase_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
                         <a href="#">
                             <div class="card">
                                 <div class="card-body text-center">
@@ -53,7 +53,7 @@
                 @endcan
 
                 @can('accept_engineer_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
                         <a href="#">
                             <div class="card">
                                 <div class="card-body text-center">
@@ -70,7 +70,7 @@
                 @endcan
 
                 @can('accept_accounting_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
                         <a href="{{ route('accountingdashboard.index') }}">
                             <div class="card">
                                 <div class="card-body text-center">
@@ -87,7 +87,7 @@
                 @endcan
 
                 @can('accept_qs_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
                         <a href="#">
                             <div class="card">
                                 <div class="card-body text-center">
@@ -105,7 +105,7 @@
 
 
                 @can('accept_sale_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
                         <a href="#">
                             <div class="card">
                                 <div class="card-body text-center">

@@ -76,6 +76,15 @@
                                                     <a class="dropdown-item"
                                                         href="{{ route('customers.edit', $customer->id) }}">Edit</a>
                                                 </li>
+                                                <li>
+                                                    <form action="{{ route('customers.destroy', $customer->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="dropdown-item del_confirm"
+                                                            id="confirm-text" data-toggle="tooltip">Delete</button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </div>
                                     </td>

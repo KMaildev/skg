@@ -1,5 +1,6 @@
 <?php
 
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

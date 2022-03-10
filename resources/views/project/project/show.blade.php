@@ -342,26 +342,50 @@
                     <div class="tab-pane fade show active" id="FloorPlan" role="tabpanel" aria-labelledby="FloorPlan-tab">
                         <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
                             <div class="row">
-                                @if (count($floor_plan_images) > 0)
-                                    @foreach ($floor_plan_images as $key => $value)
-                                        <div class="col-md-3 col-lg-3 col-sm-12 mb-3">
-                                            <div class="card h-100">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ $value->original_name }}</h5>
-                                                    <h6 class="card-subtitle text-muted">{{ $value->created_at }}</h6>
-                                                    <p class="card-text py-1">
-                                                        Upload By {{ $value->users_table->name ?? '' }}
-                                                    </p>
-                                                    <img class="img-fluid d-flex mx-auto my-4"
-                                                        src="{{ Storage::url($value->floor_plan_image) }}"
-                                                        alt="{{ $value->original_name }}" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <p style="color: red;">Record not found</p>
-                                @endif
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                        <thead class="tbbg">
+                                            <tr>
+                                                <th style="color: white;">#</th>
+                                                <th style="color: white;">File Name</th>
+                                                <th style="color: white;">Download</th>
+                                                <th style="color: white;">Upload Date</th>
+                                                <th style="color: white;">Upload By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @if (count($floor_plan_images) > 0)
+                                                @foreach ($floor_plan_images as $key => $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $key + 1 }}
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>{{ $value->original_name }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ Storage::url($value->floor_plan_image) }}" download="">
+                                                                <i class="fa fa-download fa-lg text-danger"></i>
+                                                                <strong>Download</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-calendar fa-lg text-success"></i>
+                                                            <strong>{{ $value->created_at }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-user fa-lg text-success"></i>
+                                                            <strong>{{ $value->users_table->name ?? '' }}</strong>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p style="color: red;">Record not found</p>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -394,7 +418,7 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->quotation_file) }}">
+                                                            <a href="{{ Storage::url($value->quotation_file) }}" download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -447,7 +471,7 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->exterior_design_fees) }}">
+                                                            <a href="{{ Storage::url($value->exterior_design_fees) }}" download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -500,7 +524,7 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->structure_design_fees) }}">
+                                                            <a href="{{ Storage::url($value->structure_design_fees) }}" download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -553,7 +577,7 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->approved_file) }}">
+                                                            <a href="{{ Storage::url($value->approved_file) }}" download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -584,26 +608,51 @@
                         aria-labelledby="ArchiExteriorDesign-tab">
                         <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
                             <div class="row">
-                                @if (count($archi_exterior_designs) > 0)
-                                    @foreach ($archi_exterior_designs as $key => $value)
-                                        <div class="col-md-3 col-lg-3 col-sm-12 mb-3">
-                                            <div class="card h-100">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ $value->original_name }}</h5>
-                                                    <h6 class="card-subtitle text-muted">{{ $value->created_at }}</h6>
-                                                    <p class="card-text py-1">
-                                                        Upload By {{ $value->users_table->name ?? '' }}
-                                                    </p>
-                                                    <img class="img-fluid d-flex mx-auto my-4"
-                                                        src="{{ Storage::url($value->archi_exterior_design_file) }}"
-                                                        alt="{{ $value->original_name }}" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <p style="color: red;">Record not found</p>
-                                @endif
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                        <thead class="tbbg">
+                                            <tr>
+                                                <th style="color: white;">#</th>
+                                                <th style="color: white;">File Name</th>
+                                                <th style="color: white;">Download</th>
+                                                <th style="color: white;">Upload Date</th>
+                                                <th style="color: white;">Upload By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @if (count($archi_exterior_designs) > 0)
+                                                @foreach ($archi_exterior_designs as $key => $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $key + 1 }}
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>{{ $value->original_name }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <a
+                                                                href="{{ Storage::url($value->archi_exterior_design_file) }}" download="">
+                                                                <i class="fa fa-download fa-lg text-danger"></i>
+                                                                <strong>Download</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-calendar fa-lg text-success"></i>
+                                                            <strong>{{ $value->created_at }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-user fa-lg text-success"></i>
+                                                            <strong>{{ $value->users_table->name ?? '' }}</strong>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p style="color: red;">Record not found</p>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -611,28 +660,54 @@
 
                     {{-- StructureDesign --}}
                     <div class="tab-pane fade" id="StructureDesign" role="tabpanel" aria-labelledby="StructureDesign-tab">
+
                         <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
                             <div class="row">
-                                @if (count($structure_designs) > 0)
-                                    @foreach ($structure_designs as $key => $value)
-                                        <div class="col-md-3 col-lg-3 col-sm-12 mb-3">
-                                            <div class="card h-100">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ $value->original_name }}</h5>
-                                                    <h6 class="card-subtitle text-muted">{{ $value->created_at }}</h6>
-                                                    <p class="card-text py-1">
-                                                        Upload By {{ $value->users_table->name ?? '' }}
-                                                    </p>
-                                                    <img class="img-fluid d-flex mx-auto my-4"
-                                                        src="{{ Storage::url($value->structure_design_file) }}"
-                                                        alt="{{ $value->original_name }}" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <p style="color: red;">Record not found</p>
-                                @endif
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                        <thead class="tbbg">
+                                            <tr>
+                                                <th style="color: white;">#</th>
+                                                <th style="color: white;">File Name</th>
+                                                <th style="color: white;">Download</th>
+                                                <th style="color: white;">Upload Date</th>
+                                                <th style="color: white;">Upload By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @if (count($structure_designs) > 0)
+                                                @foreach ($structure_designs as $key => $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $key + 1 }}
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>{{ $value->original_name }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <a
+                                                                href="{{ Storage::url($value->structure_design_file) }}" download="">
+                                                                <i class="fa fa-download fa-lg text-danger"></i>
+                                                                <strong>Download</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-calendar fa-lg text-success"></i>
+                                                            <strong>{{ $value->created_at }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-user fa-lg text-success"></i>
+                                                            <strong>{{ $value->users_table->name ?? '' }}</strong>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p style="color: red;">Record not found</p>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

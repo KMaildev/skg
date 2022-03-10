@@ -13,7 +13,7 @@
                             <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">File</label>
                             <div class="col-sm-9">
                                 <input class="form-control" type="file" id="files" multiple name="files[]"
-                                    accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx, .pdf">
+                                    >
                             </div>
                         </div>
 

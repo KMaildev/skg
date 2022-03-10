@@ -50,6 +50,7 @@ class FloorPlanController extends Controller
 
                 $insert[$key]['floor_plan_image'] = $path;
                 $insert[$key]['original_name'] = $original_name;
+
                 $insert[$key]['project_id'] = $request->project_id;
                 $insert[$key]['remark'] = $request->remark;
                 $insert[$key]['user_id'] = auth()->user()->id;
@@ -60,6 +61,7 @@ class FloorPlanController extends Controller
                 $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
             }
         }
+
         FloorPlan::insert($insert);
 
         $project = Projects::findOrFail($id);
@@ -115,10 +117,5 @@ class FloorPlanController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function profile_image_path()
-    {
     }
 }
