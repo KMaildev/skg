@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
     <link href="{{ asset('assets/summernote/summernote-lite.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}" />
+
+    
 </head>
 
 <style>

@@ -333,6 +333,17 @@
                                 aria-selected="false">Structure Design</button>
                         </li>
 
+                        <li class="nav-item">
+                            <button class="nav-link" id="Permit-tab" data-bs-toggle="tab" data-bs-target="#Permit"
+                                role="tab" aria-controls="profile" aria-selected="false">Permit</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" id="Contract-tab" data-bs-toggle="tab"
+                                data-bs-target="#Contract" role="tab" aria-controls="profile"
+                                aria-selected="false">Contract</button>
+                        </li>
+
                     </ul>
                 </div>
 
@@ -365,7 +376,8 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->floor_plan_image) }}" download="">
+                                                            <a href="{{ Storage::url($value->floor_plan_image) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -418,7 +430,8 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->quotation_file) }}" download="">
+                                                            <a href="{{ Storage::url($value->quotation_file) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -471,7 +484,8 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->exterior_design_fees) }}" download="">
+                                                            <a href="{{ Storage::url($value->exterior_design_fees) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -524,7 +538,8 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->structure_design_fees) }}" download="">
+                                                            <a href="{{ Storage::url($value->structure_design_fees) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -577,7 +592,8 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ Storage::url($value->approved_file) }}" download="">
+                                                            <a href="{{ Storage::url($value->approved_file) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -631,8 +647,8 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a
-                                                                href="{{ Storage::url($value->archi_exterior_design_file) }}" download="">
+                                                            <a href="{{ Storage::url($value->archi_exterior_design_file) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>
@@ -686,8 +702,118 @@
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
                                                         <td>
-                                                            <a
-                                                                href="{{ Storage::url($value->structure_design_file) }}" download="">
+                                                            <a href="{{ Storage::url($value->structure_design_file) }}"
+                                                                download="">
+                                                                <i class="fa fa-download fa-lg text-danger"></i>
+                                                                <strong>Download</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-calendar fa-lg text-success"></i>
+                                                            <strong>{{ $value->created_at }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-user fa-lg text-success"></i>
+                                                            <strong>{{ $value->users_table->name ?? '' }}</strong>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p style="color: red;">Record not found</p>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{-- Permit Proposal --}}
+                    <div class="tab-pane fade" id="Permit" role="tabpanel"
+                        aria-labelledby="Permit-tab">
+                        <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
+                            <div class="row">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                        <thead class="tbbg">
+                                            <tr>
+                                                <th style="color: white;">#</th>
+                                                <th style="color: white;">File Name</th>
+                                                <th style="color: white;">Download</th>
+                                                <th style="color: white;">Upload Date</th>
+                                                <th style="color: white;">Upload By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @if (count($permits) > 0)
+                                                @foreach ($permits as $key => $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $key + 1 }}
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>{{ $value->original_name }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ Storage::url($value->permit_file) }}"
+                                                                download="">
+                                                                <i class="fa fa-download fa-lg text-danger"></i>
+                                                                <strong>Download</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-calendar fa-lg text-success"></i>
+                                                            <strong>{{ $value->created_at }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-user fa-lg text-success"></i>
+                                                            <strong>{{ $value->users_table->name ?? '' }}</strong>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p style="color: red;">Record not found</p>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{-- Contract Proposal --}}
+                    <div class="tab-pane fade" id="Contract" role="tabpanel"
+                        aria-labelledby="Contract-tab">
+                        <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
+                            <div class="row">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                        <thead class="tbbg">
+                                            <tr>
+                                                <th style="color: white;">#</th>
+                                                <th style="color: white;">File Name</th>
+                                                <th style="color: white;">Download</th>
+                                                <th style="color: white;">Upload Date</th>
+                                                <th style="color: white;">Upload By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @if (count($contracts) > 0)
+                                                @foreach ($contracts as $key => $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $key + 1 }}
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>{{ $value->original_name }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ Storage::url($value->contract_file) }}"
+                                                                download="">
                                                                 <i class="fa fa-download fa-lg text-danger"></i>
                                                                 <strong>Download</strong>
                                                             </a>

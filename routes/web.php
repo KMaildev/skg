@@ -103,6 +103,20 @@ Route::middleware('auth')->group(function () {
         'uses' => 'ApprovedByController@create'
     ]);
 
+
+    Route::resource('permit', 'PermitController');
+    Route::get('permitcreate/{id}', [
+        'as' => 'permitcreate.create',
+        'uses' => 'PermitController@create'
+    ]);
+
+
+    Route::resource('contract', 'ContractController');
+    Route::get('contractcreate/{id}', [
+        'as' => 'contractcreate.create',
+        'uses' => 'ContractController@create'
+    ]);
+
     //Engineering
     Route::resource('engineeringrequest', 'EngineerRequestController');
 
@@ -116,4 +130,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('permission', 'PermissionController');
 
     Route::resource('employee', 'EmployeeController');
+    Route::resource('profile', 'ProfileController');
+    Route::resource('changepassword', 'ChangePasswordController');
 });

@@ -41,9 +41,20 @@ class Projects extends Model
         return $this->hasMany(StructureDesign::class, 'project_id', 'id');
     }
 
-
     public function approved_bies_table()
     {
         return $this->hasMany(ApprovedBy::class, 'project_id', 'id');
+    }
+
+
+    public function permits_table()
+    {
+        return $this->hasMany(Permit::class, 'project_id', 'id');
+    }
+
+
+    public function contracts_table()
+    {
+        return $this->hasMany(Contract::class, 'project_id', 'id');
     }
 }
