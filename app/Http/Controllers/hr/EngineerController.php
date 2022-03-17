@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\hr;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectsUsers;
+use App\Models\Customers;
+use App\Models\Projects;
+use App\Models\ProjectsUsers;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,8 +19,8 @@ class EngineerController extends Controller
      */
     public function index()
     {
-        $employees = User::get()->where('department_id', 9);
-        return view('hr.engineer.index', compact('employees'));
+        $projects_users = User::where('department_id', 9)->get();
+        return view('hr.engineer.index', compact('projects_users'));
     }
 
     /**
@@ -35,9 +39,14 @@ class EngineerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectsUsers $request)
     {
-        //
+        $project = new ProjectsUsers();
+        $project->projects_id = $request->project_id;
+        $project->user_id = $request->engineering_id;
+        $project->status = '';
+        $project->save();
+        return redirect()->back()->with('success', 'Added.');
     }
 
     /**
@@ -60,6 +69,19 @@ class EngineerController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function add_project($id)
+    {
+        $customers = Customers::all();
+        $employees = User::findOrFail($id);
+        return view('hr.engineer.add_project', compact('employees', 'customers'));
     }
 
     /**

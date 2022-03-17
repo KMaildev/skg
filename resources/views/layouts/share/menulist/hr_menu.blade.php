@@ -18,7 +18,7 @@
             </li>
 
 
-            <li class="menu-item" hidden>
+            <li class="menu-item">
                 <a href="{{ route('engineer.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i1n="Layouts">Engineers</div>

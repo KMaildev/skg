@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Department;
+use App\Models\Projects;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +12,8 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use Notifiable, HasRoles;
+
+    protected $guarded = [];
 
     /**
      * The attributes that are mass assignable.
@@ -42,5 +45,10 @@ class User extends Authenticatable
     public function department()
     {
         return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Projects::class, 'projects_users');
     }
 }

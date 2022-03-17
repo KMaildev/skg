@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Projects extends Model
 {
+    protected $guarded = [];
+
     public function customer_table()
     {
         return $this->belongsTo(Customers::class, 'customer_id', 'id');
@@ -61,5 +64,10 @@ class Projects extends Model
     public function processing_files_table()
     {
         return $this->hasMany(ProcessingFile::class, 'project_id', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'projects_users');
     }
 }

@@ -28,25 +28,32 @@
                         <thead class="tbbg">
                             <tr>
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
-                                <th style="color: white; text-align: center;">Employee ID</th>
-                                <th style="color: white; text-align: center;">Name</th>
+                                <th style="color: white; text-align: center;">Engineer</th>
+                                <th style="color: white; text-align: center;">Project Code</th>
                                 <th style="color: white; text-align: center;">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($employees as $key => $value)
+                            @foreach ($projects_users as $key => $value)
                                 <tr>
                                     <td style="text-align: center;">
                                         {{ $key + 1 }}
                                     </td>
-                                    <td style="text-align: center;">
-                                        {{ $value->employee_id }}
-                                    </td>
+
                                     <td style="text-align: center;">
                                         {{ $value->name }}
                                     </td>
+
                                     <td style="text-align: center;">
-                                        <a href="" class="btn btn-primary btn-sm">
+                                        @foreach ($value->projects as $project)
+                                            <span class="badge bg-primary">
+                                                {{ $project->customer_table->project_code ?? '' }}
+                                            </span>
+                                        @endforeach
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <a href="{{ route('project_add', $value->id) }}" class="btn btn-primary btn-sm">
                                             <span class="tf-icons bx bx-plus"></span>
                                             &nbsp; Add project
                                         </a>

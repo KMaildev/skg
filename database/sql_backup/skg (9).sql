@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2022 at 09:46 AM
+-- Generation Time: Mar 17, 2022 at 01:08 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -421,7 +421,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (0, '2022_03_12_112634_create_permits_table', 37),
 (0, '2022_03_12_114056_create_contracts_table', 38),
 (0, '2022_03_17_125912_add_processing_file_and_processing_file_upload_date_to_projects', 38),
-(0, '2022_03_17_135030_create_processing_files_table', 39);
+(0, '2022_03_17_135030_create_processing_files_table', 39),
+(0, '2022_03_17_162206_create_projects_users_table', 40),
+(0, '2022_03_17_165639_create_projects_users_table', 41),
+(0, '2022_03_17_165826_create_projects_users_table', 42);
 
 -- --------------------------------------------------------
 
@@ -470,7 +473,10 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (6, 'App\\User', 17),
 (6, 'App\\User', 18),
 (6, 'App\\User', 4),
-(7, 'App\\User', 19);
+(7, 'App\\User', 19),
+(5, 'App\\User', 20),
+(5, 'App\\User', 21),
+(5, 'App\\User', 22);
 
 -- --------------------------------------------------------
 
@@ -645,6 +651,32 @@ INSERT INTO `projects` (`id`, `customer_id`, `floor_plan_status`, `floor_plan_up
 (31, 30, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-17', NULL, 'Proposal', '2022-03-16 17:20:51', '2022-03-17 03:53:15', NULL, NULL, NULL, NULL, 28, NULL, NULL, 'finished', '2022-03-17 00:21:10', NULL, NULL),
 (32, 31, NULL, NULL, 'finished', '2022-03-17 00:31:02', NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-17', NULL, 'Proposal', '2022-03-16 17:30:01', '2022-03-17 03:53:15', NULL, NULL, NULL, NULL, 29, NULL, NULL, 'finished', '2022-03-17 00:31:23', NULL, NULL),
 (33, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-17', NULL, 'Proposal', '2022-03-16 17:40:39', '2022-03-17 03:53:15', NULL, NULL, NULL, NULL, 30, NULL, NULL, 'finished', '2022-03-17 00:41:37', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects_users`
+--
+
+CREATE TABLE `projects_users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `projects_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `projects_users`
+--
+
+INSERT INTO `projects_users` (`id`, `projects_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 20, NULL, NULL, NULL),
+(2, 5, 20, NULL, NULL, NULL),
+(3, 6, 21, NULL, NULL, NULL),
+(6, 32, 20, '', '2022-03-17 12:03:18', '2022-03-17 12:03:18'),
+(7, 4, 20, '', '2022-03-17 12:04:56', '2022-03-17 12:04:56');
 
 -- --------------------------------------------------------
 
@@ -901,7 +933,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (16, 'Ma Thu Zar Hein', 'mazar.skgroup@gmail.com', NULL, '$2y$10$KbpXC0..XWyU3fPmMVabnebR1NX8SPkMCBBHJ3yJO9fjKXTsWRKbq', '03sTzJsT0CqdHV603Y2OQ2IgRzpGwyo0HANPBBLivvR85DxfsmIrVQRawhFv', '2022-03-17 04:24:34', '2022-03-17 06:02:05', 'EMP - 00016', '09740875438', '9/KaPaTa(N)195155', 'female', 'No(205(3B),Aung Thiri street, Myot Thit Quarter, Dawbon Tsp', 8),
 (17, 'Ma Kay Thi Hlaing', 'kaymama.skgroup@gmail.com', NULL, '$2y$10$y4Iu4PTyPTB2pv3jLgcEuum.BLKeGSKgiodG5SoRtnPt0Zqfa9r8W', NULL, '2022-03-17 04:26:53', '2022-03-17 04:26:53', 'EMP - 00017', '09751446027', '12/LaMaTa(N)000705', 'female', 'No.52, 89 street, Mingalar Taung Nyut Tsp', 8),
 (18, 'Ma Hsu Myat Win', 'hsumyat.skgroup@gmail.com', NULL, '$2y$10$oPB3qKCyQnzBIerf/mBBRuP3z81CGXDY4nIE1pQ.gpNyctD3nx4Yy', NULL, '2022-03-17 04:28:05', '2022-03-17 04:28:05', 'EMP - 00018', '09751445220', '7/PhaMaNa (N)220433', 'female', 'No.(205/3B), Aung Thiri Street, Myo Thit Quarter, Dawpon Tsp', 8),
-(19, 'AUNG HTET PAING', 'aunghtetpaing.skgroup@gmail.com', NULL, '$2y$10$gQfTPFveu0nOs7Wob8Hb3.UYTTpz3o3gJnEQlt7sAZVCYjOb6MC9S', NULL, '2022-03-17 04:38:03', '2022-03-17 04:38:03', 'EMP - 00019', '09751445870', '12/Lathana(N)021656', 'male', 'No. 74, Min Nanda Road, Dawpone Tsp, Yangon', 1);
+(19, 'AUNG HTET PAING', 'aunghtetpaing.skgroup@gmail.com', NULL, '$2y$10$gQfTPFveu0nOs7Wob8Hb3.UYTTpz3o3gJnEQlt7sAZVCYjOb6MC9S', NULL, '2022-03-17 04:38:03', '2022-03-17 04:38:03', 'EMP - 00019', '09751445870', '12/Lathana(N)021656', 'male', 'No. 74, Min Nanda Road, Dawpone Tsp, Yangon', 1),
+(20, 'eng1', 'eng1@gmail.com', NULL, '$2y$10$XnIu2JETNPds2jvpQghVIOjvPiZ7m8m4zCKkRBx7vbFHZyJ39w9LS', NULL, '2022-03-17 09:29:32', '2022-03-17 09:29:32', 'EMP-00020', '0912312312', '5/abc(n)009223', 'male', 'YGN', 9),
+(21, 'eng2', 'eng2@gmail.com', NULL, '$2y$10$hOhQtry/aVKTro5J4oFdsusSNs5msEALux4JQcl6mT7q5DC9b3n9u', NULL, '2022-03-17 09:30:20', '2022-03-17 09:30:20', 'EMP-00021', '09123121231', 'nrc(n)093442', 'male', 'ygn', 9),
+(22, 'eng3', 'eng3@gmail.com', NULL, '$2y$10$LVNaZXT8xmM9jlIKzW4sbOq1w1yN5p/Lij9etvbDVohrMP436nTAC', NULL, '2022-03-17 11:43:03', '2022-03-17 11:43:03', 'EMP-000010', '0955516154', '5/abc(n)009234', 'male', 'ygn', 9);
 
 --
 -- Indexes for dumped tables
@@ -1001,6 +1036,12 @@ ALTER TABLE `processing_files`
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `projects_users`
+--
+ALTER TABLE `projects_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1122,6 +1163,12 @@ ALTER TABLE `projects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT for table `projects_users`
+--
+ALTER TABLE `projects_users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `quotationproposals`
 --
 ALTER TABLE `quotationproposals`
@@ -1143,7 +1190,7 @@ ALTER TABLE `structure_design_fees`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

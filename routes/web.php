@@ -129,9 +129,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('engineeringrequest', 'EngineerRequestController');
 
 
+
     //HR
     Route::resource('hrdashboard', 'HrDashboardController');
     Route::resource('engineer', 'hr\EngineerController');
+    Route::get('project_add/{id}', [
+        'as' => 'project_add',
+        'uses' => 'hr\EngineerController@add_project'
+    ]);
 
     //Department
     Route::resource('department', 'DepartmentController');
