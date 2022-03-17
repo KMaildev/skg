@@ -105,6 +105,8 @@ class StructureDesignFeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Structure_design_fees::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

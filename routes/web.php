@@ -63,6 +63,14 @@ Route::middleware('auth')->group(function () {
         'uses' => 'FloorPlanController@create'
     ]);
 
+
+    Route::resource('processingfile', 'ProcessingFileController');
+    Route::get('processingfilecreate/{id}', [
+        'as' => 'createprocessingfile.create',
+        'uses' => 'ProcessingFileController@create'
+    ]);
+
+
     Route::resource('quotationproposal', 'QuotationProposalController');
     Route::get('quotationproposalcreate/{id}', [
         'as' => 'quotationproposal.create',
@@ -123,6 +131,7 @@ Route::middleware('auth')->group(function () {
 
     //HR
     Route::resource('hrdashboard', 'HrDashboardController');
+    Route::resource('engineer', 'hr\EngineerController');
 
     //Department
     Route::resource('department', 'DepartmentController');

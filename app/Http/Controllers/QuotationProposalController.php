@@ -107,6 +107,8 @@ class QuotationProposalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Quotationproposal::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

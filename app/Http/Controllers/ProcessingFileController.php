@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permit;
+use App\Http\Requests\StoreProcessingFile;
+use App\Models\ProcessingFile;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 
-class PermitController extends Controller
+class ProcessingFileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class PermitController extends Controller
     public function create($id = null)
     {
         $id = $id;
-        return view('permit.create', compact('id'));
+        return view('processingfile.create', compact('id'));
     }
 
     /**
@@ -41,10 +42,10 @@ class PermitController extends Controller
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $path = $file->store('public/permit');
+                $path = $file->store('public/processing_file');
                 $original_name = $file->getClientOriginalName();
 
-                $insert[$key]['permit_file'] = $path;
+                $insert[$key]['processing_file'] = $path;
                 $insert[$key]['original_name'] = $original_name;
                 $insert[$key]['project_id'] = $request->project_id;
                 $insert[$key]['remark'] = $request->remark;
@@ -55,11 +56,11 @@ class PermitController extends Controller
                 $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
             }
         }
-        Permit::insert($insert);
+        ProcessingFile::insert($insert);
 
         $project = Projects::findOrFail($id);
-        $project->permit_status = 'finished';
-        $project->permit_upload_date = date('Y-m-d H:i:s');
+        $project->processing_file = 'finished';
+        $project->processing_file_upload_date = date('Y-m-d H:i:s');
         $project->update();
         return redirect()->back()->with('success', 'Uploaded successfully.');
     }
@@ -72,8 +73,8 @@ class PermitController extends Controller
      */
     public function show($id)
     {
-        $permits = Permit::get()->where('project_id', $id);
-        return view('permit.show', compact('permits'));
+        $processing_files = ProcessingFile::get()->where('project_id', $id);
+        return view('processingfile.show', compact('processing_files'));
     }
 
     /**
@@ -107,7 +108,7 @@ class PermitController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Permit::findOrFail($id);
+        $delete = ProcessingFile::findOrFail($id);
         $delete->delete();
         return redirect()->back()->with('success', 'Deleted successfully.');
     }

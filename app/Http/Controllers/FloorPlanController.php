@@ -116,6 +116,8 @@ class FloorPlanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = FloorPlan::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

@@ -57,4 +57,9 @@ class Projects extends Model
     {
         return $this->hasMany(Contract::class, 'project_id', 'id');
     }
+
+    public function processing_files_table()
+    {
+        return $this->hasMany(ProcessingFile::class, 'project_id', 'id');
+    }
 }

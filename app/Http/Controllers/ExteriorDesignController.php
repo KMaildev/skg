@@ -106,6 +106,8 @@ class ExteriorDesignController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Exterior_design_fees::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

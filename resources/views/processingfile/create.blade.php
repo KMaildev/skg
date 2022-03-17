@@ -15,11 +15,11 @@
         <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="col-xxl">
                 <div class="card mb-4">
-                    <h5 class="card-header">Structure Design</h5>
-                    <form class="card-body" autocomplete="off" action="{{ route('structuredesign.store') }}"
+                    <h5 class="card-header">Processing File </h5>
+                    <form class="card-body" autocomplete="off" action="{{ route('processingfile.store') }}"
                         method="POST" id="create-form" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" value="{{ $id }}" name="project_id">
+                        <input type="hidden" value="{{ $id }}" name="project_id" required>
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">File</label>
                             <div class="col-sm-9">
@@ -44,7 +44,7 @@
                             <div class="row justify-content-end">
                                 <div class="col-sm-9">
                                     <button type="submit" class="btn btn-primary me-sm-2 me-1">Save</button>
-                                    <a href="{{ route('proposal.index') }}" class="btn btn-label-secondary">Cancel</a>
+                                    <a href="{{ route('customers.index') }}" class="btn btn-label-secondary">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -56,25 +56,5 @@
 @endsection
 
 @section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreStructureDesign', '#create-form') !!}
-    <script>
-        $(function() {
-            var previewImages = function(input, imgPreviewPlaceholder) {
-                if (input.files) {
-                    var fileLength = input.files.length;
-                    for (i = 0; i < fileLength; i++) {
-                        var reader = new FileReader();
-                        reader.onload = function(event) {
-                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
-                                imgPreviewPlaceholder);
-                        }
-                        reader.readAsDataURL(input.files[i]);
-                    }
-                }
-            };
-            $('#files').on('change', function() {
-                previewImages(this, 'div.preview_images');
-            });
-        });
-    </script>
+    {!! JsValidator::formRequest('App\Http\Requests\StoreProcessingFile', '#create-form') !!}
 @endsection

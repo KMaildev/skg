@@ -107,6 +107,8 @@ class ContractController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Contract::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

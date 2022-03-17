@@ -37,6 +37,13 @@ class CreateProjectsTable extends Migration
             $table->text('remark')->nullable();
             $table->text('project_status')->nullable();
 
+
+            $table->text('permit_status')->nullable();
+            $table->text('permit_upload_date')->nullable();
+
+            $table->text('contract_status')->nullable();
+            $table->text('contract_upload_date')->nullable();
+
             $table->timestamps();
         });
     }

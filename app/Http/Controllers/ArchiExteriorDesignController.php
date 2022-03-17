@@ -107,6 +107,8 @@ class ArchiExteriorDesignController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = ArchiExteriorDesign::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

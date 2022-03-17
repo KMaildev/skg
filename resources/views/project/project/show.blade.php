@@ -291,7 +291,15 @@
                     <ul class="nav nav-tabs card-header-tabs" id="nav-tabs" role="tablist">
 
                         <li class="nav-item">
-                            <button class="nav-link active" id="FloorPlan-tab" data-bs-toggle="tab"
+                            <button class="nav-link active" id="ProcessingFile-tab" data-bs-toggle="tab"
+                                data-bs-target="#ProcessingFile" role="tab" aria-controls="ProcessingFile"
+                                aria-selected="true">
+                                Processing File
+                            </button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" id="FloorPlan-tab" data-bs-toggle="tab"
                                 data-bs-target="#FloorPlan" role="tab" aria-controls="FloorPlan" aria-selected="true">
                                 Floor Plan
                             </button>
@@ -349,8 +357,9 @@
 
                 <div class="tab-content" id="myTabContent">
 
-                    {{-- Floor Plan --}}
-                    <div class="tab-pane fade show active" id="FloorPlan" role="tabpanel" aria-labelledby="FloorPlan-tab">
+                    {{-- Processing File --}}
+                    <div class="tab-pane fade show active" id="ProcessingFile" role="tabpanel"
+                        aria-labelledby="ProcessingFile-tab">
                         <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
                             <div class="row">
                                 <div class="table-responsive text-nowrap">
@@ -362,6 +371,79 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @if (count($processing_files) > 0)
+                                                @foreach ($processing_files as $key => $value)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $key + 1 }}
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>{{ $value->original_name }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ Storage::url($value->processing_file) }}"
+                                                                download="">
+                                                                <i class="fa fa-download fa-lg text-danger"></i>
+                                                                <strong>Download</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-calendar fa-lg text-success"></i>
+                                                            <strong>{{ $value->created_at }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-user fa-lg text-success"></i>
+                                                            <strong>{{ $value->users_table->name ?? '' }}</strong>
+                                                        </td>
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form
+                                                                    action="{{ route('processingfile.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p style="color: red;">Record not found</p>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{-- Floor Plan --}}
+                    <div class="tab-pane fade" id="FloorPlan" role="tabpanel" aria-labelledby="FloorPlan-tab">
+                        <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
+                            <div class="row">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                        <thead class="tbbg">
+                                            <tr>
+                                                <th style="color: white;">#</th>
+                                                <th style="color: white;">File Name</th>
+                                                <th style="color: white;">Download</th>
+                                                <th style="color: white;">Upload Date</th>
+                                                <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -390,6 +472,18 @@
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form action="{{ route('floorplan.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -416,6 +510,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -444,6 +541,21 @@
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form
+                                                                    action="{{ route('quotationproposal.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -470,6 +582,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -498,6 +613,21 @@
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form
+                                                                    action="{{ route('exteriordesign.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -524,6 +654,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -537,6 +670,7 @@
                                                         <td>
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
+
                                                         <td>
                                                             <a href="{{ Storage::url($value->structure_design_fees) }}"
                                                                 download="">
@@ -544,14 +678,31 @@
                                                                 <strong>Download</strong>
                                                             </a>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-calendar fa-lg text-success"></i>
                                                             <strong>{{ $value->created_at }}</strong>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form
+                                                                    action="{{ route('structuredesignfees.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -578,6 +729,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -606,6 +760,20 @@
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form action="{{ route('approvedby.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -633,6 +801,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -653,14 +824,31 @@
                                                                 <strong>Download</strong>
                                                             </a>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-calendar fa-lg text-success"></i>
                                                             <strong>{{ $value->created_at }}</strong>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form
+                                                                    action="{{ route('archiexteriordesign.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -688,6 +876,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -708,14 +899,30 @@
                                                                 <strong>Download</strong>
                                                             </a>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-calendar fa-lg text-success"></i>
                                                             <strong>{{ $value->created_at }}</strong>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form
+                                                                    action="{{ route('structuredesign.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -730,8 +937,7 @@
 
 
                     {{-- Permit Proposal --}}
-                    <div class="tab-pane fade" id="Permit" role="tabpanel"
-                        aria-labelledby="Permit-tab">
+                    <div class="tab-pane fade" id="Permit" role="tabpanel" aria-labelledby="Permit-tab">
                         <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
                             <div class="row">
                                 <div class="table-responsive text-nowrap">
@@ -743,6 +949,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -756,6 +965,7 @@
                                                         <td>
                                                             <strong>{{ $value->original_name }}</strong>
                                                         </td>
+
                                                         <td>
                                                             <a href="{{ Storage::url($value->permit_file) }}"
                                                                 download="">
@@ -763,14 +973,30 @@
                                                                 <strong>Download</strong>
                                                             </a>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-calendar fa-lg text-success"></i>
                                                             <strong>{{ $value->created_at }}</strong>
                                                         </td>
+
                                                         <td>
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form action="{{ route('permit.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else
@@ -785,8 +1011,7 @@
 
 
                     {{-- Contract Proposal --}}
-                    <div class="tab-pane fade" id="Contract" role="tabpanel"
-                        aria-labelledby="Contract-tab">
+                    <div class="tab-pane fade" id="Contract" role="tabpanel" aria-labelledby="Contract-tab">
                         <div class="col-md-12 col-lg-12 col-xl-12 mb-6 order-0">
                             <div class="row">
                                 <div class="table-responsive text-nowrap">
@@ -798,6 +1023,9 @@
                                                 <th style="color: white;">Download</th>
                                                 <th style="color: white;">Upload Date</th>
                                                 <th style="color: white;">Upload By</th>
+                                                @can('project_file_delete')
+                                                    <th style="color: white;">Action</th>
+                                                @endcan
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -826,6 +1054,20 @@
                                                             <i class="fa fa-user fa-lg text-success"></i>
                                                             <strong>{{ $value->users_table->name ?? '' }}</strong>
                                                         </td>
+
+                                                        @can('project_file_delete')
+                                                            <td>
+                                                                <form action="{{ route('contract.destroy', $value->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button"
+                                                                        class="del_confirm btn btn-danger btn-sm"
+                                                                        id="confirm-text">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+
                                                     </tr>
                                                 @endforeach
                                             @else

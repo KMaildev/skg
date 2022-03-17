@@ -108,6 +108,8 @@ class ApprovedByController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = ApprovedBy::findOrFail($id);
+        $delete->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

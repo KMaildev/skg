@@ -38,7 +38,9 @@
                                 <th style="color: white; text-align: center;">Construction Type</th>
                                 <th style="color: white; text-align: center;">Job Scope</th>
                                 <th style="color: white; text-align: center;">Date</th>
-                                <th style="color: white; text-align: center;">Actions</th>
+                                @can('customer_edit_delete')
+                                    <th style="color: white; text-align: center;">Actions</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
@@ -65,29 +67,33 @@
                                     <td style="text-align: center;">
                                         {{ $customer->created_date }}
                                     </td>
-                                    <td style="text-align: center;">
-                                        <div class="btn-group">
-                                            <button class="btn btn-info btn-xs dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('customers.edit', $customer->id) }}">Edit</a>
-                                                </li>
-                                                <li>
-                                                    <form action="{{ route('customers.destroy', $customer->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="dropdown-item del_confirm"
-                                                            id="confirm-text" data-toggle="tooltip">Delete</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
+
+                                    @can('customer_edit_delete')
+                                        <td style="text-align: center;">
+                                            <div class="btn-group">
+                                                <button class="btn btn-info btn-xs dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('customers.edit', $customer->id) }}">Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('customers.destroy', $customer->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="dropdown-item del_confirm"
+                                                                id="confirm-text" data-toggle="tooltip">Delete</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    @endcan
+
                                 </tr>
                             @endforeach
                         </tbody>

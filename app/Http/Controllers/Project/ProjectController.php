@@ -67,7 +67,8 @@ class ProjectController extends Controller
         $approved_bies = Projects::find($id)->approved_bies_table;
         $permits = Projects::find($id)->permits_table;
         $contracts = Projects::find($id)->contracts_table;
-        return view('project.project.show', compact('project', 'floor_plan_images', 'quotationproposals', 'exterior_design_fees', 'structure_design_fees', 'archi_exterior_designs', 'structure_designs', 'approved_bies', 'permits', 'contracts'));
+        $processing_files = Projects::find($id)->processing_files_table;
+        return view('project.project.show', compact('project', 'floor_plan_images', 'quotationproposals', 'exterior_design_fees', 'structure_design_fees', 'archi_exterior_designs', 'structure_designs', 'approved_bies', 'permits', 'contracts', 'processing_files'));
     }
 
     /**

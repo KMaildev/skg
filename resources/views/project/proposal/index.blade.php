@@ -36,6 +36,7 @@
                                 <th style="color: white; text-align: center; width: 20%;">Customer Name</th>
                                 <th style="color: white; text-align: center; width: 20%;">Project Code</th>
                                 <th style="color: white; text-align: center; width: 20%;">Date</th>
+                                <th style="color: white; text-align: center; width: 20%;">Processing File</th>
                                 @can('floor_plan_view')
                                     <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
                                 @endcan
@@ -66,7 +67,9 @@
 
                                 <th style="color: white; text-align: center; width: 16%;">Contract</th>
 
-                                <th style="color: white; text-align: center; width: 16%;">Actions</th>
+                                @can('project_delete')
+                                    <th style="color: white; text-align: center; width: 16%;">Actions</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0 row_position" id="tablecontents">
@@ -86,6 +89,13 @@
 
                                     <td style="text-align: center; font-size: 13px; font-weight: bold;">
                                         {{ $project->created_at }}
+                                    </td>
+
+                                    <td style="text-align: center; font-size: 13px;">
+                                        @include(
+                                            'shared.project_status.processing_file_status',
+                                            ['project' => $project]
+                                        )
                                     </td>
 
                                     {{-- FloorPlan --}}
@@ -172,43 +182,46 @@
                                         )
                                     </td>
 
+                                    @can('project_delete')
+                                        <td style="text-align: center;">
+                                            <div class="demo-inline-spacing">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-info btn-xs dropdown-toggle" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('project.edit', $project->id) }}">Remark</a>
+                                                        </li>
 
-                                    <td style="text-align: center;">
-                                        <div class="demo-inline-spacing">
-                                            <div class="btn-group">
-                                                <button class="btn btn-info btn-xs dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Action
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('project.edit', $project->id) }}">Remark</a>
-                                                    </li>
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('project.show', $project->id) }}">Detail</a>
+                                                        </li>
 
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('project.show', $project->id) }}">Detail</a>
-                                                    </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="#">Completed</a>
+                                                        </li>
 
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">Completed</a>
-                                                    </li>
 
-                                                    <li>
-                                                        <form action="{{ route('project.destroy', $project->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" class="dropdown-item del_confirm"
-                                                                id="confirm-text" data-toggle="tooltip">Delete</button>
-                                                        </form>
-                                                    </li>
+                                                        <li>
+                                                            <form action="{{ route('project.destroy', $project->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="dropdown-item del_confirm"
+                                                                    id="confirm-text" data-toggle="tooltip">Delete</button>
+                                                            </form>
+                                                        </li>
 
-                                                </ul>
+
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>
