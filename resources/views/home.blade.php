@@ -53,8 +53,8 @@
                 @endcan
 
                 @can('accept_engineer_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
-                        <a href="#">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                        <a href="{{ route('engineerdashboard.index') }}">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div class="avatar avatar-md mx-auto mb-3">

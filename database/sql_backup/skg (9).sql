@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2022 at 10:14 AM
+-- Generation Time: Mar 19, 2022 at 09:13 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -281,8 +281,10 @@ CREATE TABLE `fixed_assets` (
 --
 
 INSERT INTO `fixed_assets` (`id`, `item_name`, `unit`, `qty`, `desciption`, `main_warehouse_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Nos', 6, 'No', 1, '2022-03-19 08:43:14', '2022-03-19 08:43:14'),
-(2, 'T Column', 'Nos', 1400, NULL, 1, '2022-03-19 08:44:10', '2022-03-19 08:44:10');
+(2, 'T Column', 'Nos', 25, NULL, 1, '2022-03-19 08:44:10', '2022-03-19 18:41:51'),
+(3, 'Submersible Pump', 'Nos', 13, NULL, 1, '2022-03-19 11:00:06', '2022-03-19 11:00:06'),
+(4, 'Concrete Mixer', 'Nos', 10, NULL, 1, '2022-03-19 11:00:18', '2022-03-19 11:00:18'),
+(5, 'Generator', 'Nos', 10, NULL, 1, '2022-03-19 11:00:32', '2022-03-19 11:00:32');
 
 -- --------------------------------------------------------
 
@@ -523,9 +525,9 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (6, 'App\\User', 18),
 (6, 'App\\User', 4),
 (7, 'App\\User', 19),
-(5, 'App\\User', 20),
-(5, 'App\\User', 21),
-(5, 'App\\User', 22);
+(0, 'App\\User', 20),
+(0, 'App\\User', 21),
+(0, 'App\\User', 22);
 
 -- --------------------------------------------------------
 
@@ -798,7 +800,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (5, 'Marketing', 'web', '2022-03-07 17:33:53', '2022-03-07 17:33:53'),
 (6, 'Archi Designer', 'web', '2022-03-07 17:35:47', '2022-03-07 17:35:47'),
-(7, 'Management/Director', 'web', '2022-03-07 17:37:37', '2022-03-07 17:37:37');
+(7, 'Management/Director', 'web', '2022-03-07 17:37:37', '2022-03-07 17:37:37'),
+(0, 'Engineer', 'web', '2022-03-19 18:46:23', '2022-03-19 18:46:23');
 
 -- --------------------------------------------------------
 
@@ -866,7 +869,8 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (25, 7),
 (26, 7),
 (27, 7),
-(28, 7);
+(28, 7),
+(14, 0);
 
 -- --------------------------------------------------------
 
@@ -1185,7 +1189,7 @@ ALTER TABLE `exterior_design_fees`
 -- AUTO_INCREMENT for table `fixed_assets`
 --
 ALTER TABLE `fixed_assets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `floor_plans`

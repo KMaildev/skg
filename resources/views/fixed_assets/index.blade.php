@@ -35,24 +35,45 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($fixed_assets as $key => $warehouse)
+                            @foreach ($fixed_assets as $key => $fixed_asset)
                                 <tr>
                                     <td style="text-align: center;">
                                         {{ $key + 1 }}
                                     </td>
                                     <td style="text-align: center;">
-                                        {{ $warehouse->item_name ?? '-' }}
+                                        {{ $fixed_asset->item_name ?? '-' }}
                                     </td>
                                     <td style="text-align: center;">
-                                        {{ $warehouse->unit ?? '-' }}
+                                        {{ $fixed_asset->unit ?? '-' }}
                                     </td>
                                     <td style="text-align: center;">
-                                        {{ number_format($warehouse->qty) }}
+                                        {{ number_format($fixed_asset->qty) }}
                                     </td>
                                     <td style="text-align: center;">
-                                        {{ $warehouse->desciption }}
+                                        {{ $fixed_asset->desciption }}
                                     </td>
                                     <td style="text-align: center;">
+                                        <div class="btn-group">
+                                            <button class="btn btn-info btn-xs dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('fixedassets.edit', $fixed_asset->id) }}">Edit</a>
+                                                </li>
+                                                <li>
+                                                    <form action="{{ route('fixedassets.destroy', $fixed_asset->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="dropdown-item del_confirm"
+                                                            id="confirm-text" data-toggle="tooltip">Delete</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -60,7 +81,7 @@
                         <tr>
                             <th colspan="3">Total</th>
                             <th style="text-align: center; font-weight: bold">
-                                {{ $warehouse->sum('qty') }}
+                                {{ $fixed_assets->sum('qty') }}
                             </th>
                         </tr>
                     </table>

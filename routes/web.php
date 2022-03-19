@@ -126,8 +126,7 @@ Route::middleware('auth')->group(function () {
         'uses' => 'ContractController@create'
     ]);
 
-    //Engineering
-    Route::resource('engineeringrequest', 'EngineerRequestController');
+
 
 
 
@@ -161,4 +160,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
     Route::resource('mainwarehouse', 'MainWarehouseController');
     Route::resource('fixedassets', 'FixedAssetsController');
+
+
+
+    //Engineering
+    Route::resource('engineerdashboard', 'Engineer\EngineerDashboardController');
+    Route::resource('sites', 'Engineer\SitesController');
+    Route::resource('engrequest', 'Engineer\EngRequestController');
+    Route::get('engrequest_create/{id}', [
+        'as' => 'engrequest_create',
+        'uses' => 'Engineer\EngRequestController@engrequest_create'
+    ]);
+
+    Route::resource('engineeringrequest', 'EngineerRequestController');
 });
