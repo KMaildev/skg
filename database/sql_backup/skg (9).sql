@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2022 at 01:08 PM
+-- Generation Time: Mar 19, 2022 at 10:14 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -262,6 +262,31 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fixed_assets`
+--
+
+CREATE TABLE `fixed_assets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `item_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unit` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `desciption` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_warehouse_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fixed_assets`
+--
+
+INSERT INTO `fixed_assets` (`id`, `item_name`, `unit`, `qty`, `desciption`, `main_warehouse_id`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Nos', 6, 'No', 1, '2022-03-19 08:43:14', '2022-03-19 08:43:14'),
+(2, 'T Column', 'Nos', 1400, NULL, 1, '2022-03-19 08:44:10', '2022-03-19 08:44:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `floor_plans`
 --
 
@@ -329,6 +354,28 @@ INSERT INTO `labours` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'Steel Fixer', '2022-02-15 09:44:51', '2022-02-15 09:44:51'),
 (3, 'Surveryor', '2022-02-15 09:45:03', '2022-02-15 09:45:03'),
 (4, 'Worker', '2022-02-15 09:45:09', '2022-02-15 09:45:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_warehouses`
+--
+
+CREATE TABLE `main_warehouses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `warehouse_code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `warehouse_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `main_warehouses`
+--
+
+INSERT INTO `main_warehouses` (`id`, `warehouse_code`, `warehouse_name`, `location`, `created_at`, `updated_at`) VALUES
+(1, 'W-00001', 'Main Warehouse', 'Yangon', '2022-03-19 07:19:49', '2022-03-19 07:36:43');
 
 -- --------------------------------------------------------
 
@@ -424,7 +471,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (0, '2022_03_17_135030_create_processing_files_table', 39),
 (0, '2022_03_17_162206_create_projects_users_table', 40),
 (0, '2022_03_17_165639_create_projects_users_table', 41),
-(0, '2022_03_17_165826_create_projects_users_table', 42);
+(0, '2022_03_17_165826_create_projects_users_table', 42),
+(0, '2022_03_19_134244_create_main_warehouses_table', 43),
+(0, '2022_03_19_141838_create_fixed_assets_table', 44);
 
 -- --------------------------------------------------------
 
@@ -672,11 +721,11 @@ CREATE TABLE `projects_users` (
 --
 
 INSERT INTO `projects_users` (`id`, `projects_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 20, NULL, NULL, NULL),
-(2, 5, 20, NULL, NULL, NULL),
-(3, 6, 21, NULL, NULL, NULL),
-(6, 32, 20, '', '2022-03-17 12:03:18', '2022-03-17 12:03:18'),
-(7, 4, 20, '', '2022-03-17 12:04:56', '2022-03-17 12:04:56');
+(1, 2, 20, '', '2022-03-19 05:28:57', '2022-03-19 05:28:57'),
+(2, 5, 20, '', '2022-03-19 05:29:05', '2022-03-19 05:29:05'),
+(3, 33, 20, '', '2022-03-19 05:29:15', '2022-03-19 05:29:15'),
+(4, 15, 21, '', '2022-03-19 05:29:24', '2022-03-19 05:29:24'),
+(5, 31, 22, '', '2022-03-19 05:29:31', '2022-03-19 05:29:31');
 
 -- --------------------------------------------------------
 
@@ -997,6 +1046,12 @@ ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `fixed_assets`
+--
+ALTER TABLE `fixed_assets`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `floor_plans`
 --
 ALTER TABLE `floor_plans`
@@ -1006,6 +1061,12 @@ ALTER TABLE `floor_plans`
 -- Indexes for table `labours`
 --
 ALTER TABLE `labours`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `main_warehouses`
+--
+ALTER TABLE `main_warehouses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1121,6 +1182,12 @@ ALTER TABLE `exterior_design_fees`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `fixed_assets`
+--
+ALTER TABLE `fixed_assets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `floor_plans`
 --
 ALTER TABLE `floor_plans`
@@ -1131,6 +1198,12 @@ ALTER TABLE `floor_plans`
 --
 ALTER TABLE `labours`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `main_warehouses`
+--
+ALTER TABLE `main_warehouses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `materials`
@@ -1166,7 +1239,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `projects_users`
 --
 ALTER TABLE `projects_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `quotationproposals`

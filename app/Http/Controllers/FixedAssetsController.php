@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\hr;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProjectsUsers;
-use App\Models\Customers;
-use App\Models\Projects;
-use App\Models\ProjectsUsers;
-use App\User;
+use App\Http\Requests\StoreFixedAssets;
+use App\Models\FixedAssets;
+use App\Models\MainWarehouse;
 use Illuminate\Http\Request;
 
-class EngineerController extends Controller
+class FixedAssetsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +16,7 @@ class EngineerController extends Controller
      */
     public function index()
     {
-        $projects_users = User::where('department_id', 9)->get();
-        return view('hr.engineer.index', compact('projects_users'));
+        return view('fixed_assets.index');
     }
 
     /**
@@ -30,7 +26,8 @@ class EngineerController extends Controller
      */
     public function create()
     {
-        //
+        $mainwarehouses = MainWarehouse::all();
+        return view('fixed_assets.create', compact('mainwarehouses'));
     }
 
     /**
@@ -39,14 +36,16 @@ class EngineerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectsUsers $request)
+    public function store(StoreFixedAssets $request)
     {
-        $project = new ProjectsUsers();
-        $project->projects_id = $request->project_id;
-        $project->user_id = $request->engineering_id;
-        $project->status = '';
-        $project->save();
-        return redirect()->back()->with('success', 'Added.');
+        $fixed_assets = new FixedAssets();
+        $fixed_assets->main_warehouse_id = $request->main_warehouse;
+        $fixed_assets->item_name = $request->item_name;
+        $fixed_assets->unit = $request->unit;
+        $fixed_assets->qty = $request->qty;
+        $fixed_assets->desciption = $request->remark;
+        $fixed_assets->save();
+        return redirect()->back()->with('success', 'Created successfully.');
     }
 
     /**
@@ -69,20 +68,6 @@ class EngineerController extends Controller
     public function edit($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function add_project($id)
-    {
-        $customers = Customers::all();
-        $projects = Projects::all();
-        $employees = User::findOrFail($id);
-        return view('hr.engineer.add_project', compact('employees', 'customers', 'projects'));
     }
 
     /**

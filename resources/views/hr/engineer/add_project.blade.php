@@ -33,11 +33,11 @@
                                 <select id="CustomerId" class="select2 form-select form-select-lg" data-allow-clear="false"
                                     name="project_id">
                                     <option value="">--Please Select Customer--</option>
-                                    @foreach ($customers as $customer)
-                                        <option value="{{ $customer->id }}">
-                                            {{ $customer->name }}
+                                    @foreach ($projects as $project)
+                                        <option value="{{ $project->id }}">
+                                            {{ $project->customer_table->name ?? '' }}
                                             @
-                                            {{ $customer->project_code }}
+                                            {{ $project->customer_table->project_code ?? '' }}
                                         </option>
                                     @endforeach
                                 </select>

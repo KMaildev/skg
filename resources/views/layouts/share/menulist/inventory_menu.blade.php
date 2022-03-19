@@ -11,6 +11,13 @@
 
 
             <li class="menu-item">
+                <a href="{{ route('fixedassets.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Fixed Assets</div>
+                </a>
+            </li>
+
+
+            <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <div data-i2n="Layouts">Products</div>
                 </a>
@@ -47,6 +54,21 @@
                 <a href="#" class="menu-link">
                     <div data-i1n="Layouts">Engineer Request</div>
                 </a>
+            </li>
+
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <div data-i2n="Layouts">Configuration</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('mainwarehouse.index') }}" class="menu-link">
+                            <div data-i2n="Without menu">Main Warehouse</div>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
         </ul>

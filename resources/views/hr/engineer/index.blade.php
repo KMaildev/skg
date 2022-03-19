@@ -57,6 +57,9 @@
                                             <span class="tf-icons bx bx-plus"></span>
                                             &nbsp; Add project
                                         </a>
+                                        <a href="" class="btn btn-success btn-sm">
+                                            Actions
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

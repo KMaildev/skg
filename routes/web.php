@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // Inventory Route
     Route::resource('inventorydashboard', 'Inventory\DashboardController');
+
     Route::resource('material', 'Inventory\MaterialController');
 
     Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
@@ -146,4 +147,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('employee', 'EmployeeController');
     Route::resource('profile', 'ProfileController');
     Route::resource('changepassword', 'ChangePasswordController');
+
+
+
+    // Inventory Route
+    Route::resource('inventorydashboard', 'Inventory\DashboardController');
+
+    Route::resource('material', 'Inventory\MaterialController');
+
+    Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
+    Route::resource('labour', 'Inventory\LabourController');
+
+    Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
+    Route::resource('mainwarehouse', 'MainWarehouseController');
+    Route::resource('fixedassets', 'FixedAssetsController');
 });

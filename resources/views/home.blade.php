@@ -13,7 +13,7 @@
                                         <span class="avatar-initial rounded-circle bg-label-danger"><i
                                                 class='fa fa-chart-bar fs-3'></i></span>
                                     </div>
-                                    <span class="d-block mb-1 text-nowrap">Inventory</span>
+                                    <span class="d-block mb-1 text-nowrap">Warehouse</span>
                                 </div>
                             </div>
                         </a>
