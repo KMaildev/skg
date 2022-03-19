@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFixedAssets;
+use App\Http\Requests\UpdateFixedAssets;
 use App\Models\FixedAssets;
 use App\Models\MainWarehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FixedAssetsController extends Controller
 {
@@ -16,7 +18,8 @@ class FixedAssetsController extends Controller
      */
     public function index()
     {
-        return view('fixed_assets.index');
+        $fixed_assets = FixedAssets::paginate(30);
+        return view('fixed_assets.index', compact('fixed_assets'));
     }
 
     /**
@@ -67,7 +70,9 @@ class FixedAssetsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mainwarehouses = MainWarehouse::all();
+        $fixed_assets = FixedAssets::findOrFail($id);
+        return view('fixed_assets.edit', compact('fixed_assets', 'mainwarehouses'));
     }
 
     /**
@@ -77,9 +82,16 @@ class FixedAssetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateFixedAssets $request, $id)
     {
-        //
+        $fixed_assets = FixedAssets::findOrFail($id);
+        $fixed_assets->main_warehouse_id = $request->main_warehouse;
+        $fixed_assets->item_name = $request->item_name;
+        $fixed_assets->unit = $request->unit;
+        $fixed_assets->qty = $request->qty;
+        $fixed_assets->desciption = $request->remark;
+        $fixed_assets->update();
+        return redirect()->back()->with('success', 'Updated successfully.');
     }
 
     /**
@@ -90,6 +102,8 @@ class FixedAssetsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fixed_assets = FixedAssets::findOrFail($id);
+        $fixed_assets->delete();
+        return redirect()->back()->with('success', 'Deleted successfully.');
     }
 }

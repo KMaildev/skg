@@ -11,7 +11,7 @@
                         </li>
                         <li class="nav-item">
                             <button class="nav-link " data-bs-toggle="tab" data-bs-target="#form-tabs-account"
-                                role="tab" aria-selected="false">Excel to Export</button>
+                                role="tab" aria-selected="false"> Import Excel</button>
                         </li>
                     </ul>
                 </div>
