@@ -172,5 +172,16 @@ Route::middleware('auth')->group(function () {
         'uses' => 'Engineer\EngRequestController@engrequest_create'
     ]);
 
+    Route::resource('requestitem', 'Engineer\RequestItem');
+    Route::post('requestitemstore', [
+        'as' => 'requestitemstore',
+        'uses' => 'Engineer\RequestItem@store'
+    ]);
+
+    Route::get('get_reques_titem_ajax', [
+        'as' => 'get_reques_titem_ajax',
+        'uses' => 'Engineer\RequestItem@index'
+    ]);
+
     Route::resource('engineeringrequest', 'EngineerRequestController');
 });

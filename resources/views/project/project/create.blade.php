@@ -91,8 +91,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Remark</label>
                             <div class="col-sm-9">
-                                <textarea id="basic-default-message"
-                                    class="form-control @error('remark') is-invalid @enderror"
+                                <textarea id="basic-default-message" class="form-control @error('remark') is-invalid @enderror"
                                     name="remark">{{ old('remark') }}</textarea>
                                 @error('remark')
                                     <div class="invalid-feedback"> {{ $message }} </div>

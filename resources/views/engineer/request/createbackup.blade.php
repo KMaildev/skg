@@ -65,7 +65,8 @@
                         <hr class="my-4 mx-n4" />
                         <h6 class="mb-3 fw-bold" style="font-weight: bold; font-size: 15px;">2. Request Items</h6>
                         <div>
-                            <table class="table table-bordered" id="dynamicAddRemove" style="margin-bottom: 20px;">
+                            <table class="table table-bordered">
+
                                 <tr>
                                     <th>Item Name</th>
                                     <th>Quantity</th>
@@ -83,22 +84,25 @@
                                             @endforeach
                                         </select>
                                     </td>
-
                                     <td>
-                                        <input type="text" class="form-control" name="addMoreInputFields[0][quantity]"/>
+                                        <input type="text" class="form-control @error('quantity') is-invalid @enderror"
+                                            name="quantity" id="quantity" />
                                         @error('quantity')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
                                     </td>
-
                                     <td>
-                                        <button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button>
+                                        <button type="button" class="btn btn-success" id="butsave">
+                                            Add
+                                        </button>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <input type="text" class="form-control" id="ItemName" />
+                                </tr>
                             </table>
-                            <button type="button" class="btn btn-success" id="dynamic-ar">
-                                Add
-                            </button>
+                            <button type="submit" class="btn btn-outline-success btn-block">Save</button>
                         </div>
                     </form>
                 </div>
@@ -112,17 +116,44 @@
 
     <script>
         $(document).ready(function() {
-            var i = 0;
-            $("#dynamic-ar").click(function() {
-                ++i;
-                $("#dynamicAddRemove").append(
-                    '<tr><td><select class="select2 form-select" data-allow-clear="false" name="addMoreInputFields[' +
-                    i + '][item_name]">@foreach ($fixed_assets as $key => $value)<option value="{{ $value->id }}">{{ $value->item_name ?? '-' }}</option>@endforeach </select></td><td><input type="text" class="form-control" name="addMoreInputFields[' +
-                i + '][quantity]"/></td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr>');
+            $('#butsave').on('click', function() {
+                var item_name = $('#item_name').val();
+                var quantity = $('#quantity').val();
+                var project_id = $('#project_id').val();
+                if (item_name != "" && quantity != "" && project_id != "") {
+                    $.ajax({
+                        url: "/requestitemstore",
+                        type: "POST",
+                        data: {
+                            _token: $("#csrf").val(),
+                            item_name: item_name,
+                            quantity: quantity,
+                            project_id: project_id,
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                get_items()
+                            } else {
+                                alert("Error")
+                            }
+                        }
+                    });
+                } else {
+                    alert('Please fill all the field !');
+                }
             });
-            $(document).on('click', '.remove-input-field', function() {
-                $(this).parents('tr').remove();
-            });
+
+            function get_items() {
+                $.ajax({
+                    url: '/get_reques_titem_ajax',
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $("#ItemName").val(data.fixed_asset_id);
+                        $("#Quantity").val(data.quantity);
+                    }
+                });
+            }
         });
     </script>
 @endsection

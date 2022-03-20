@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Engineer;
 
 use App\Http\Controllers\Controller;
-use App\Models\FixedAssets;
-use App\Models\Projects;
-use App\User;
+use App\Models\RequestItem as ModelsRequestItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class EngRequestController extends Controller
+class RequestItem extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,8 @@ class EngRequestController extends Controller
      */
     public function index()
     {
-        //
+        $items = ModelsRequestItem::all();
+        return json_encode($items);
     }
 
     /**
@@ -25,7 +25,7 @@ class EngRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create()
     {
         //
     }
@@ -38,7 +38,20 @@ class EngRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        DB::table('request_items')->insert([
+            'fixed_asset_id' => $request->input('item_name'),
+            'quantity' => $request->input('quantity'),
+            'user_id' => $user_id,
+            'project_id' => $request->input('project_id'),
+
+        ]);
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Data inserted successfully'
+            ]
+        );
     }
 
     /**
@@ -84,12 +97,5 @@ class EngRequestController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function engrequest_create($id = null)
-    {
-        $fixed_assets = FixedAssets::all();
-        $project = Projects::findOrFail($id);
-        return view('engineer.request.create', compact('fixed_assets', 'project'));
     }
 }
