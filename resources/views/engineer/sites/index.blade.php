@@ -76,7 +76,9 @@
                                                             href="{{ route('engrequest_create', $project->id) }}">Request</a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="">Request Lists</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('engrequest.show', $project->id) }}">Request
+                                                            Lists</a>
                                                     </li>
                                                     <li>
                                                         <a class="dropdown-item" href="">Site Detail</a>

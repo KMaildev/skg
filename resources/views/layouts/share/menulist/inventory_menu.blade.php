@@ -17,7 +17,7 @@
             </li>
 
 
-            <li class="menu-item">
+            <li class="menu-item" hidden>
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <div data-i2n="Layouts">Products</div>
                 </a>
@@ -37,7 +37,7 @@
             </li>
 
 
-            <li class="menu-item">
+            <li class="menu-item" hidden>
                 <a href="{{ route('unitsofmeasure.index') }}" class="menu-link">
                     <div data-i1n="Layouts">Units of Measure</div>
                 </a>

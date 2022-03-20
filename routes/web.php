@@ -166,22 +166,13 @@ Route::middleware('auth')->group(function () {
     //Engineering
     Route::resource('engineerdashboard', 'Engineer\EngineerDashboardController');
     Route::resource('sites', 'Engineer\SitesController');
+    
     Route::resource('engrequest', 'Engineer\EngRequestController');
     Route::get('engrequest_create/{id}', [
         'as' => 'engrequest_create',
         'uses' => 'Engineer\EngRequestController@engrequest_create'
     ]);
-
     Route::resource('requestitem', 'Engineer\RequestItem');
-    Route::post('requestitemstore', [
-        'as' => 'requestitemstore',
-        'uses' => 'Engineer\RequestItem@store'
-    ]);
-
-    Route::get('get_reques_titem_ajax', [
-        'as' => 'get_reques_titem_ajax',
-        'uses' => 'Engineer\RequestItem@index'
-    ]);
-
+    
     Route::resource('engineeringrequest', 'EngineerRequestController');
 });

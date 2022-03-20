@@ -1,5 +1,20 @@
 @extends('layouts.menus.inventory')
 @section('content')
+    <style>
+        table {
+            border: 1px solid #000
+        }
+
+        table td {
+            border: 1px solid #000;
+            padding: 5px;
+        }
+
+        .collapse-row.collapsed+tr {
+            display: none;
+        }
+
+    </style>
     <div class="row justify-content-center">
         <div class="col-md-12 col-sm-12 col-lg-12">
             <div class="card">
@@ -21,218 +36,113 @@
                     </div>
                 </div>
 
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered" id="export_excel">
-                        <thead class="tbbg">
-                            <tr>
-                                <th style="color: white; text-align: center; width: 1%;">#</th>
-                                <th style="color: white; text-align: center; width: 20%;">Project Code</th>
-                                <th style="color: white; text-align: center; width: 20%;">Customer Name</th>
-                                <th style="color: white; text-align: center; width: 20%;">Location</th>
-                                <th style="color: white; text-align: center; width: 17%;">Construction Type</th>
-                                <th style="color: white; text-align: center; width: 17%;">Work Scope</th>
-                                <th style="color: white; text-align: center; width: 10%;">Item Name & Quantity</th>
-                                <th style="color: white; text-align: center; width: 10%;">Buy/ Procurement</th>
-                                <th style="color: white; text-align: center; width: 10%;">Procurement Status</th>
-                                <th style="color: white; text-align: center; width: 10%;">Transfer in to VR Warehouse</th>
-                                <th style="color: white; text-align: center; width: 16%;">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
+                <div class="col-md">
+                    <div class="accordion mt-3 accordion-header-primary" id="accordionStyle1">
+                        <div class="accordion-item card">
+                            <table class="table">
+                                <thead class="tbbg">
+                                    <tr>
+                                        <th style="color: white; text-align: center; width: 1%">#</th>
+                                        <th style="color: white; text-align: center; width: 14%">Items Name</th>
+                                        <th style="color: white; text-align: center; width: 14%">Main Warehouse</th>
+                                        <th style="color: white; text-align: center; width: 14%">Quantity</th>
+                                        <th style="color: white; text-align: center; width: 14%">Action</th>
+                                        <th style="color: white; background-color: white; width: 0%;">
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($fixed_assets_with_eng_request_items as $key => $fixed_assets_with_eng_request_item)
+                                        <tr class="accordion-button collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#accordionStyle1-{{ $key }}" aria-expanded="true">
+                                            <td>
+                                                <i class="tabularinfo__icon fa fa-plus"></i>
+                                            </td>
 
-                            <tr>
-                                <td>1</td>
+                                            <td style="text-align: center">
+                                                {{ $fixed_assets_with_eng_request_item->item_name }}
+                                            </td>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    SKG-220101
-                                </td>
+                                            <td style="text-align: center">
+                                                {{ number_format($fixed_assets_with_eng_request_item->qty) }}
+                                            </td>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Ko Moe Aung Win WIn
-                                </td>
+                                            <td style="text-align: center">
+                                                {{ number_format($fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity')) }}
+                                            </td>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Nyaung Shwe Township
-                                </td>
+                                            <td style="text-align: center">
+                                                -
+                                            </td>
+                                        </tr>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    1.5 Storeyed Residence Building.
-                                </td>
+                                        <tr id="accordionStyle1-{{ $key }}" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionStyle1">
+                                            <td colspan="5">
+                                                <table class="table tabularinfo tabularinfo--child"
+                                                    style="margin-bottom: 4px !important;">
+                                                    <thead>
+                                                        <tr style="background-color: #cad2d9;">
+                                                            <th width="1%">#</th>
+                                                            <th width="20%;" style="text-align: center">Project Code /
+                                                                Engineer</th>
+                                                            <th width="20%;"></th>
+                                                            <th width="20%;" style="text-align: center">Quantity</th>
+                                                            <th width="20%;" style="text-align: center"></th>
+                                                        </tr>
+                                                        @foreach ($fixed_assets_with_eng_request_item->eng_request_items_table as $key => $item)
+                                                            <tr class="clickable js-tabularinfo-toggle"
+                                                                data-toggle="collapse" id="" data-target=".subrow1">
+                                                                <th width="1%">{{ $key + 1 }}</th>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Ground Floor
-                                </td>
+                                                                <th style="text-align: center">
+                                                                    {{ $item->customer_table->project_code ?? '' }}
+                                                                    @
+                                                                    {{ $item->users_table->name ?? '' }}
+                                                                </th>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <a href="" class="btn rounded-pill btn-info btn-sm">Detail</a>
-                                </td>
+                                                                <th></th>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <a href="" class="btn btn-danger btn-xs">Status</a>
-                                </td>
+                                                                <th width="20%;" style="text-align: center">
+                                                                    {{ number_format($item->quantity) }}
+                                                                </th>
 
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <span class="badge badge-center bg-success"><i class="bx bx-check"></i></span>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <button type="button" class="btn btn-success btn-xs">
-                                        <span class="tf-icons bx bx-check"></span>&nbsp; Done
-                                    </button>
-                                </td>
-
-                                <td style="text-align: center;">
-                                    <div class="btn-group">
-                                        <button class="btn btn-info btn-sm dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-
-                                            <li>
-                                                <a class="dropdown-item" href="#">Detail</a>
-                                            </li>
-
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('engineeringrequest.index') }}">Engineer Request </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>2</td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    SKG-220102
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Daw Mya Mya Thwe
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Dagon Township
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    2 Storeyed Residence Building.
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    First Floor
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <a href="" class="btn rounded-pill btn-info btn-sm">Detail</a>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <a href="" class="btn btn-danger btn-xs">Status</a>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <span class="badge badge-center bg-danger"><i class="bx bx-x"></i></span>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <button type="button" class="btn btn-danger btn-xs">
-                                        <span class="tf-icons bx bx-x"></span>&nbsp; Ready
-                                    </button>
-                                </td>
-
-                                <td style="text-align: center;">
-                                    <div class="btn-group">
-                                        <button class="btn btn-info btn-sm dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-
-                                            <li>
-                                                <a class="dropdown-item" href="#">Detail</a>
-                                            </li>
-
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('engineeringrequest.index') }}">Engineer Request </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>3</td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    SKG-220103
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Aung Aung
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    North Dagon Township
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    3 Storeyed Residence Building.
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    Second Floor
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <a href="" class="btn rounded-pill btn-info btn-sm">Detail</a>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <a href="" class="btn btn-danger btn-xs">Status</a>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <span class="badge badge-center bg-success"><i class="bx bx-check"></i></span>
-                                </td>
-
-                                <td style="text-align: center; font-size: 13px; font-weight: bold;">
-                                    <button type="button" class="btn btn-success btn-xs">
-                                        <span class="tf-icons bx bx-check"></span>&nbsp; Done
-                                    </button>
-                                </td>
-
-                                <td style="text-align: center;">
-                                    <div class="btn-group">
-                                        <button class="btn btn-info btn-sm dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-
-                                            <li>
-                                                <a class="dropdown-item" href="#">Detail</a>
-                                            </li>
-
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('engineeringrequest.index') }}">Engineer Request </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                                                <th width="13%;" style="text-align: center">
+                                                                    <a href="#" class="btn btn-success btn-sm">
+                                                                        Action
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        @endforeach
+                                                        <tr style="background-color: #e3e7ea;">
+                                                            <th colspan="3">Total</th>
+                                                            <th style="text-align: center; font-weight: bold">
+                                                                {{ number_format($fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity')) }}
+                                                            </th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.js-tabularinfo').bootstrapTable({
+                escape: true,
+                showHeader: true
+            });
+        });
+    </script>
 @endsection

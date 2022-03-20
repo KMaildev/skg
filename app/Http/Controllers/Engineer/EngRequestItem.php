@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;
+namespace App\Http\Controllers\Engineer;
 
 use App\Http\Controllers\Controller;
-use App\Models\FixedAssets;
-use App\Models\RequestInfo;
 use Illuminate\Http\Request;
 
-class WarehousePlanController extends Controller
+class EngRequestItem extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class WarehousePlanController extends Controller
      */
     public function index()
     {
-        $fixed_assets_with_eng_request_items = FixedAssets::with('eng_request_items_table')->get();
-        return view('inventory.warehouseplan.index', compact('fixed_assets_with_eng_request_items'));
+        //
     }
 
     /**

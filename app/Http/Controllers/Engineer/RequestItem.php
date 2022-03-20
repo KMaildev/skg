@@ -38,20 +38,6 @@ class RequestItem extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = auth()->user()->id;
-        DB::table('request_items')->insert([
-            'fixed_asset_id' => $request->input('item_name'),
-            'quantity' => $request->input('quantity'),
-            'user_id' => $user_id,
-            'project_id' => $request->input('project_id'),
-
-        ]);
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'Data inserted successfully'
-            ]
-        );
     }
 
     /**
