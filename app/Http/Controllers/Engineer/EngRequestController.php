@@ -74,9 +74,9 @@ class EngRequestController extends Controller
      */
     public function show($id)
     {
-        $request_infos = RequestInfo::get()->where('project_id', $id);
+        // $request_infos = RequestInfo::get()->where('project_id', $id);
         $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('project_id', $id);
-        return view('engineer.request.show', compact('request_infos', 'eng_request_items'));
+        return view('engineer.request.show', compact('eng_request_items'));
     }
 
     /**

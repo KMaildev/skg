@@ -51,8 +51,8 @@
             </li>
 
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <div data-i1n="Layouts">Engineer Request</div>
+                <a href="{{ route('managerequest.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Manage Request</div>
                 </a>
             </li>
 

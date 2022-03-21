@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('labour', 'Inventory\LabourController');
 
     Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
+    Route::resource('managerequest', 'Inventory\ManageRequestController');
 
 
     //Project
