@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
-use App\Models\FixedAssets;
+use App\Models\QsTeamCheckPass;
 use App\Models\RequestInfo;
 use Illuminate\Http\Request;
 
-class ManageRequestController extends Controller
+class QsTeamCheckController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,7 @@ class ManageRequestController extends Controller
      */
     public function index()
     {
-        $eng_request_infos = RequestInfo::with('eng_request_items_table')->orderBy('id', 'DESC')->get();
-        return view('inventory.manage_request.index', compact('eng_request_infos'));
+        //
     }
 
     /**
@@ -25,9 +24,10 @@ class ManageRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null)
     {
-        //
+        $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('id', $id);
+        return view('inventory.qs_team_check.create', compact('eng_request_items'));
     }
 
     /**
@@ -38,7 +38,23 @@ class ManageRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        $eng_request_item_id = $request->request_item_id;
+        $eng_request_qty = $request->eng_request_qty;
+        $project_id = $request->project_id;
+
+        foreach ($request->passed_qty as $key => $value) {
+            $insert[$key]['user_id'] = $user_id;
+            $insert[$key]['eng_request_item_id'] = $eng_request_item_id[$key];
+            $insert[$key]['project_id'] = $project_id;
+            $insert[$key]['eng_request_qty'] = $eng_request_qty[$key];
+            $insert[$key]['qs_passed_qty'] = $value;
+            $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
+            $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+        }
+
+        QsTeamCheckPass::insert($insert);
+        return redirect()->back()->with('success', 'Created successfully.');
     }
 
     /**
@@ -49,8 +65,6 @@ class ManageRequestController extends Controller
      */
     public function show($id)
     {
-        $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('id', $id);
-        return view('inventory.manage_request.show', compact('eng_request_items'));
     }
 
     /**

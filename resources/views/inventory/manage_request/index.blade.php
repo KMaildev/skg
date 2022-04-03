@@ -14,30 +14,44 @@
                                         name="search" />
                                 </form>
                             </div>
-
                             @include('layouts.includes.export')
-
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md">
                     <div class="table-responsive text-nowrap">
-                        <table class="table">
+                        <table class="table table-bordered">
                             <thead class="tbbg">
                                 <tr>
                                     <th style="color: white; text-align: center; width: 1%">#</th>
-                                    <th style="color: white; text-align: center; width: 14%">Request code</th>
-                                    <th style="color: white; text-align: center; width: 14%">Request Date</th>
-                                    <th style="color: white; text-align: center; width: 5%">Procurement Check </th>
-                                    <th style="color: white; text-align: center; width: 14%">Transferred</th>
-                                    <th style="color: white; text-align: center; width: 14%">From</th>
-                                    <th style="color: white; text-align: center; width: 14%">To</th>
-                                    <th style="color: white; text-align: center; width: 14%">Sent by Store or Engineer
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Engineer Request
                                     </th>
-                                    <th style="color: white; text-align: center; width: 14%">Approved by Management</th>
-                                    <th style="color: white; text-align: center; width: 14%">Received by Engineer</th>
-                                    <th style="color: white; text-align: center; width: 14%">Action</th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Request code
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Request Date
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Accept / Reject
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        QS Team Check & Pass
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Logistics Team Check & Sent
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Transferred from
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Transferred to
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
+                                        Received by Engineer
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,33 +60,51 @@
                                         <td>
                                             {{ $key + 1 }}
                                         </td>
+
+                                        <td style="text-align: center">
+                                            {{ $request_info->user_table->name ?? '' }}
+                                        </td>
+
                                         <td style="text-align: center">
                                             {{ $request_info->request_code }}
                                         </td>
+
                                         <td style="text-align: center">
                                             {{ $request_info->request_date }}
                                         </td>
+
+                                        {{-- Accept / Reject --}}
                                         <td style="text-align: center">
-                                            Yes
+                                            @include(
+                                                'shared.managerequest.accept_reject_status',
+                                                ['request_info' => $request_info]
+                                            )
                                         </td>
+
+                                        {{-- QS Team Check & Pass --}}
+                                        <td style="text-align: center">
+                                            @include(
+                                                'shared.managerequest.qs_team_check_pass_status',
+                                                ['request_info' => $request_info]
+                                            )
+                                        </td>
+
                                         <td style="text-align: center">
                                             Warehouse
                                         </td>
-                                        <td style="text-align: center">
-                                            Warehouse
-                                        </td>
+
                                         <td style="text-align: center">
                                             {{ $request_info->customer_table->project_code ?? '' }}
                                         </td>
-                                        <td style="text-align: center">
-                                            Null
-                                        </td>
+
                                         <td style="text-align: center">
                                             Yes
                                         </td>
+
                                         <td style="text-align: center">
                                             Recevied
                                         </td>
+
                                         <td style="text-align: center;">
                                             <div class="btn-group">
                                                 <button class="btn btn-info btn-xs dropdown-toggle" type="button"

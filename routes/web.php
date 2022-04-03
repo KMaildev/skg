@@ -162,6 +162,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
     Route::resource('mainwarehouse', 'MainWarehouseController');
     Route::resource('fixedassets', 'FixedAssetsController');
+    Route::resource('accept_reject_status', 'Inventory\AcceptRejectStatusController');
+    Route::resource('qs_team_check', 'Inventory\QsTeamCheckController');
+    Route::get('qs_team_check_create/{id}', [
+        'as' => 'qs_team_check_create',
+        'uses' => 'Inventory\QsTeamCheckController@create'
+    ]);
 
 
 

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
-use App\Models\FixedAssets;
+use App\Http\Requests\StoreAcceptRejectStatus;
+use App\Models\AcceptRejectStatus;
 use App\Models\RequestInfo;
 use Illuminate\Http\Request;
 
-class ManageRequestController extends Controller
+class AcceptRejectStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,7 @@ class ManageRequestController extends Controller
      */
     public function index()
     {
-        $eng_request_infos = RequestInfo::with('eng_request_items_table')->orderBy('id', 'DESC')->get();
-        return view('inventory.manage_request.index', compact('eng_request_infos'));
+        //
     }
 
     /**
@@ -36,9 +36,22 @@ class ManageRequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAcceptRejectStatus $request)
     {
-        //
+        $accept_reject = new AcceptRejectStatus();
+        $accept_reject->user_id = auth()->user()->id;
+        $accept_reject->accept_reject_statuse = $request->accept_reject_status;
+        $accept_reject->accept_reject_date = date("Y-m-d");
+        $accept_reject->request_info_id = $request->request_info_id;
+        $accept_reject->save();
+
+        $id = $request->request_info_id;
+        $request_info = RequestInfo::findOrFail($id);
+        $request_info->accept_reject_status = $request->accept_reject_status;
+        $request_info->accept_reject_date = date('Y-m-d H:i:s');
+        $request_info->update();
+
+        return redirect()->back()->with('success', 'Successful.');
     }
 
     /**
@@ -49,8 +62,7 @@ class ManageRequestController extends Controller
      */
     public function show($id)
     {
-        $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('id', $id);
-        return view('inventory.manage_request.show', compact('eng_request_items'));
+        //
     }
 
     /**
