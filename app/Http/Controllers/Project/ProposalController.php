@@ -32,6 +32,18 @@ class ProposalController extends Controller
         return view('project.proposal.index', compact('projects'));
     }
 
+
+    public function grid_view()
+    {
+        $projects = Projects::orderBy('display_order', 'ASC')->get();
+        if (request('search')) {
+            $projects = Projects::where('project_status', 'Proposal')->where(function ($query) {
+                $query->where('customer_id', 'Like', '%' . request('search') . '%');
+            })->paginate(50);
+        }
+        return view('project.proposal.grid_view', compact('projects'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

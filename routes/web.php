@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('customers', 'CustomersController');
     Route::get('customerdependent/ajax/{id}', array('as' => 'customerdependent.ajax', 'uses' => 'CustomersController@dependentAjax'));
     Route::resource('proposal', 'Project\ProposalController');
+    Route::get('proposal_grid_view', 'Project\ProposalController@grid_view');
     Route::resource('project', 'Project\ProjectController');
     Route::post('projectsortable', 'Project\ProjectController@projectsortable');
 
@@ -167,13 +168,13 @@ Route::middleware('auth')->group(function () {
     //Engineering
     Route::resource('engineerdashboard', 'Engineer\EngineerDashboardController');
     Route::resource('sites', 'Engineer\SitesController');
-    
+
     Route::resource('engrequest', 'Engineer\EngRequestController');
     Route::get('engrequest_create/{id}', [
         'as' => 'engrequest_create',
         'uses' => 'Engineer\EngRequestController@engrequest_create'
     ]);
     Route::resource('requestitem', 'Engineer\RequestItem');
-    
+
     Route::resource('engineeringrequest', 'EngineerRequestController');
 });

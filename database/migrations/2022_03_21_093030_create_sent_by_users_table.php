@@ -15,6 +15,11 @@ class CreateSentByUsersTable extends Migration
     {
         Schema::create('sent_by_users', function (Blueprint $table) {
             $table->id();
+            $table->integer('request_info_id');
+            $table->integer('user_id');
+            $table->integer('project_id');
+            $table->integer('customer_id');
+            $table->text('sending_date')->nullable();
             $table->timestamps();
         });
     }

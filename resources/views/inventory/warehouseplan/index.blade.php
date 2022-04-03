@@ -45,7 +45,8 @@
                                         <th style="color: white; text-align: center; width: 1%">#</th>
                                         <th style="color: white; text-align: center; width: 14%">Items Name</th>
                                         <th style="color: white; text-align: center; width: 14%">Main Warehouse</th>
-                                        <th style="color: white; text-align: center; width: 14%">Quantity</th>
+                                        <th style="color: white; text-align: center; width: 14%">Site On Hand</th>
+                                        <th style="color: white; text-align: center; width: 14%">Remaining Balance</th>
                                         <th style="color: white; text-align: center; width: 14%">Action</th>
                                         <th style="color: white; background-color: white; width: 0%;">
                                         </th>
@@ -72,13 +73,17 @@
                                             </td>
 
                                             <td style="text-align: center">
+                                                {{ $fixed_assets_with_eng_request_item->qty -$fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity') }}
+                                            </td>
+
+                                            <td style="text-align: center">
                                                 -
                                             </td>
                                         </tr>
 
                                         <tr id="accordionStyle1-{{ $key }}" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionStyle1">
-                                            <td colspan="5">
+                                            <td colspan="6">
                                                 <table class="table tabularinfo tabularinfo--child"
                                                     style="margin-bottom: 4px !important;">
                                                     <thead>
@@ -87,7 +92,8 @@
                                                             <th width="20%;" style="text-align: center">Project Code /
                                                                 Engineer</th>
                                                             <th width="20%;"></th>
-                                                            <th width="20%;" style="text-align: center">Quantity</th>
+                                                            <th width="20%;" style="text-align: center"></th>
+                                                            <th width="20%;" style="text-align: center"></th>
                                                             <th width="20%;" style="text-align: center"></th>
                                                         </tr>
                                                         @foreach ($fixed_assets_with_eng_request_item->eng_request_items_table as $key => $item)
@@ -106,19 +112,25 @@
                                                                 <th width="20%;" style="text-align: center">
                                                                     {{ number_format($item->quantity) }}
                                                                 </th>
-
-                                                                <th width="13%;" style="text-align: center">
-                                                                    <a href="#" class="btn btn-success btn-sm">
-                                                                        Action
-                                                                    </a>
-                                                                </th>
+                                                                <th></th>
+                                                                <th></th>
                                                             </tr>
                                                         @endforeach
                                                         <tr style="background-color: #e3e7ea;">
-                                                            <th colspan="3">Total</th>
+                                                            <th colspan="2">Total</th>
+
+                                                            <th style="text-align: center; font-weight: bold">
+                                                                {{ number_format($fixed_assets_with_eng_request_item->qty) }}
+                                                            </th>
+
                                                             <th style="text-align: center; font-weight: bold">
                                                                 {{ number_format($fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity')) }}
                                                             </th>
+
+                                                            <th style="text-align: center; font-weight: bold">
+                                                                {{ $fixed_assets_with_eng_request_item->qty -$fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity') }}
+                                                            </th>
+
                                                             <th></th>
                                                         </tr>
                                                     </thead>
