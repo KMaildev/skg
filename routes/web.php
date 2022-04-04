@@ -176,7 +176,14 @@ Route::middleware('auth')->group(function () {
     ]);
 
     Route::resource('transferhistory', 'Inventory\TransferhistoryController');
+
     Route::resource('inventory_engineer_return', 'Inventory\EngineerReturnController');
+
+    Route::resource('inventory_qs_team_check', 'Inventory\ReturnQsTeamCheckController');
+    Route::get('inventory_qs_team_check_create/{id}', [
+        'as' => 'inventory_qs_team_check_create',
+        'uses' => 'Inventory\ReturnQsTeamCheckController@create'
+    ]);
 
 
 

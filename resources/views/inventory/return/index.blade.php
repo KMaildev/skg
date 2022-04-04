@@ -62,7 +62,10 @@
                                         </td>
 
                                         <td>
-                                            NULL
+                                            @include(
+                                                'shared.engineer_return.qs_team_check_pass_status',
+                                                ['engineer_return_infos' => $return]
+                                            )
                                         </td>
 
                                         <td>
