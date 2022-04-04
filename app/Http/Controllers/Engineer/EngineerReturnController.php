@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;
+namespace App\Http\Controllers\Engineer;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreQsTeamCheck;
-use App\Models\QsTeamCheckPass;
-use App\Models\RequestInfo;
+use App\Http\Requests\StoreEngineerReturn;
+use App\Models\EngineerReturnInfo;
+use App\Models\FixedAssets;
+use App\Models\return_item;
+use App\Models\ReturnItem;
+use App\User;
 use Illuminate\Http\Request;
 
-class QsTeamCheckController extends Controller
+class EngineerReturnController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +20,9 @@ class QsTeamCheckController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+        $returns = EngineerReturnInfo::where('return_user_id', $user_id)->get();
+        return view('engineer.return.index', compact('returns'));
     }
 
     /**
@@ -25,10 +30,12 @@ class QsTeamCheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create()
     {
-        $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('id', $id);
-        return view('inventory.qs_team_check.create', compact('eng_request_items'));
+        $fixed_assets = FixedAssets::all();
+        $user_id = auth()->user()->id;
+        $projects_users = User::where('id', $user_id)->get();
+        return view('engineer.return.create', compact('fixed_assets', 'projects_users'));
     }
 
     /**
@@ -37,28 +44,26 @@ class QsTeamCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQsTeamCheck $request)
+    public function store(StoreEngineerReturn $request)
     {
         $user_id = auth()->user()->id;
-        $eng_request_item_id = $request->request_item_id;
-        $eng_request_qty = $request->eng_request_qty;
-        $project_id = $request->project_id;
-        $request_info_id = $request->request_info_id;
+        $eng_return = new EngineerReturnInfo();
+        $eng_return->return_code = $request->return_code;
+        $eng_return->return_date = $request->return_date;
+        $eng_return->return_from_id = $request->return_from;
+        $eng_return->return_user_id = $user_id;
+        $eng_return->save();
+        $eng_return_id = $eng_return->id;
 
-        foreach ($request->passed_qty as $key => $value) {
+        foreach ($request->returnItemFields as $key => $value) {
+            $insert[$key]['fixed_asset_id'] = $value['item_name'];
+            $insert[$key]['quantity'] = $value['quantity'];
             $insert[$key]['user_id'] = $user_id;
-            $insert[$key]['eng_request_item_id'] = $eng_request_item_id[$key];
-            $insert[$key]['project_id'] = $project_id;
-            $insert[$key]['eng_request_qty'] = $eng_request_qty[$key];
-            $insert[$key]['qs_passed_qty'] = $value;
+            $insert[$key]['engineer_return_info_id'] = $eng_return_id;
             $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
             $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
         }
-        QsTeamCheckPass::insert($insert);
-
-        $request_info = RequestInfo::findOrFail($request_info_id);
-        $request_info->qs_team_check_status = 'finished';
-        $request_info->update();
+        ReturnItem::insert($insert);
         return redirect()->back()->with('success', 'Created successfully.');
     }
 
@@ -70,6 +75,7 @@ class QsTeamCheckController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**

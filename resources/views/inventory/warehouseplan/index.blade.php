@@ -69,15 +69,27 @@
                                             </td>
 
                                             <td style="text-align: center">
-                                                {{ number_format($fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity')) }}
+                                                @php
+                                                    $site_on_hand_total = 0;
+                                                @endphp
+                                                @foreach ($fixed_assets_with_eng_request_item->eng_request_items_table as $item)
+                                                    @if ($item->request_info_table->received_by_engineer_status == 'received')
+                                                        @php
+                                                            $site_on_hand_total += (float) $item->qs_team_check_passes_warehouse_plan->qs_passed_qty;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ $site_on_hand_total }}
                                             </td>
 
                                             <td style="text-align: center">
-                                                {{ $fixed_assets_with_eng_request_item->qty -$fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity') }}
+                                                {{ $fixed_assets_with_eng_request_item->qty - $site_on_hand_total }}
                                             </td>
 
                                             <td style="text-align: center">
-                                                -
+                                                <a href="" class="btn btn-sm btn-primary">
+                                                    Detail
+                                                </a>
                                             </td>
                                         </tr>
 
@@ -96,6 +108,10 @@
                                                             <th width="20%;" style="text-align: center"></th>
                                                             <th width="20%;" style="text-align: center"></th>
                                                         </tr>
+
+                                                        @php
+                                                            $site_on_hand = 0;
+                                                        @endphp
                                                         @foreach ($fixed_assets_with_eng_request_item->eng_request_items_table as $key => $item)
                                                             <tr class="clickable js-tabularinfo-toggle"
                                                                 data-toggle="collapse" id="" data-target=".subrow1">
@@ -110,12 +126,18 @@
                                                                 <th></th>
 
                                                                 <th width="20%;" style="text-align: center">
-                                                                    {{ number_format($item->quantity) }}
+                                                                    @if ($item->request_info_table->received_by_engineer_status == 'received')
+                                                                        {{ $item->qs_team_check_passes_warehouse_plan->qs_passed_qty ?? 0 }}
+                                                                        @php
+                                                                            $site_on_hand += (float) $item->qs_team_check_passes_warehouse_plan->qs_passed_qty;
+                                                                        @endphp
+                                                                    @endif
                                                                 </th>
                                                                 <th></th>
                                                                 <th></th>
                                                             </tr>
                                                         @endforeach
+
                                                         <tr style="background-color: #e3e7ea;">
                                                             <th colspan="2">Total</th>
 
@@ -124,15 +146,16 @@
                                                             </th>
 
                                                             <th style="text-align: center; font-weight: bold">
-                                                                {{ number_format($fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity')) }}
+                                                                {{ $site_on_hand }}
                                                             </th>
 
                                                             <th style="text-align: center; font-weight: bold">
-                                                                {{ $fixed_assets_with_eng_request_item->qty -$fixed_assets_with_eng_request_item->eng_request_items_table->sum('quantity') }}
+                                                                {{ $fixed_assets_with_eng_request_item->qty - $site_on_hand }}
                                                             </th>
 
                                                             <th></th>
                                                         </tr>
+
                                                     </thead>
                                                 </table>
                                             </td>

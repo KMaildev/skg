@@ -26,4 +26,15 @@ class RequestInfo extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function main_warehouse_table()
+    {
+        return $this->belongsTo(MainWarehouse::class, 'main_warehouse_id', 'id');
+    }
+
+
+    public function request_infos_table()
+    {
+        return $this->belongsTo(RequestInfo::class, 'other_site_id', 'id');
+    }
 }

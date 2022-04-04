@@ -15,6 +15,18 @@
                 </a>
             </li>
 
+            <li class="menu-item">
+                <a href="{{ route('manage_my_request.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Manage My Request</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('engineer_return.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Engineer Return</div>
+                </a>
+            </li>
+
         </ul>
     </div>
 </aside>

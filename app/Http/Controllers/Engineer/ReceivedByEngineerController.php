@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;
+namespace App\Http\Controllers\Engineer;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreQsTeamCheck;
-use App\Models\QsTeamCheckPass;
+use App\Http\Requests\StoreReceivedByEngineer;
+use App\Models\ReceivedByEngineer;
 use App\Models\RequestInfo;
 use Illuminate\Http\Request;
 
-class QsTeamCheckController extends Controller
+class ReceivedByEngineerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,10 +25,9 @@ class QsTeamCheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create()
     {
-        $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('id', $id);
-        return view('inventory.qs_team_check.create', compact('eng_request_items'));
+        //
     }
 
     /**
@@ -37,29 +36,22 @@ class QsTeamCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQsTeamCheck $request)
+    public function store(StoreReceivedByEngineer $request)
     {
         $user_id = auth()->user()->id;
-        $eng_request_item_id = $request->request_item_id;
-        $eng_request_qty = $request->eng_request_qty;
-        $project_id = $request->project_id;
+        $received_by_engineer = new ReceivedByEngineer();
+        $received_by_engineer->request_info_id = $request->request_info_id;
+        $received_by_engineer->received_status = 'received';
+        $received_by_engineer->received_date = $request->received_date;
+        $received_by_engineer->user_id = $user_id;
+        $received_by_engineer->save();
+
         $request_info_id = $request->request_info_id;
-
-        foreach ($request->passed_qty as $key => $value) {
-            $insert[$key]['user_id'] = $user_id;
-            $insert[$key]['eng_request_item_id'] = $eng_request_item_id[$key];
-            $insert[$key]['project_id'] = $project_id;
-            $insert[$key]['eng_request_qty'] = $eng_request_qty[$key];
-            $insert[$key]['qs_passed_qty'] = $value;
-            $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
-            $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
-        }
-        QsTeamCheckPass::insert($insert);
-
         $request_info = RequestInfo::findOrFail($request_info_id);
-        $request_info->qs_team_check_status = 'finished';
+        $request_info->received_by_engineer_status = 'received';
+        $request_info->received_date = $request->received_date;
         $request_info->update();
-        return redirect()->back()->with('success', 'Created successfully.');
+        return redirect()->back()->with('success', 'Process is completed.');
     }
 
     /**
@@ -70,6 +62,7 @@ class QsTeamCheckController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**

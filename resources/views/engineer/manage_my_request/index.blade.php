@@ -1,4 +1,4 @@
-@extends('layouts.menus.inventory')
+@extends('layouts.menus.engineer')
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12 col-sm-12 col-lg-12">
@@ -6,14 +6,8 @@
 
                 <div class="card-body">
                     <div class="card-title header-elements">
-                        <h5 class="m-0 me-2">Manage Request</h5>
+                        <h5 class="m-0 me-2">Manage My Request</h5>
                         <div class="card-title-elements ms-auto">
-                            <div class="card-header-elements ms-auto">
-                                <form action="#" method="GET" autocomplete="off">
-                                    <input type="text" class="form-control form-control-sm" placeholder="Search"
-                                        name="search" />
-                                </form>
-                            </div>
                             @include('layouts.includes.export')
                         </div>
                     </div>
@@ -25,9 +19,6 @@
                             <thead class="tbbg">
                                 <tr>
                                     <th style="color: white; text-align: center; width: 1%">#</th>
-                                    <th style="color: white; text-align: center; width: 14%">
-                                        Engineer Request
-                                    </th>
                                     <th style="color: white; text-align: center; width: 14%">
                                         Request code
                                     </th>
@@ -65,10 +56,6 @@
                                         </td>
 
                                         <td style="text-align: center">
-                                            {{ $request_info->user_table->name ?? '' }}
-                                        </td>
-
-                                        <td style="text-align: center">
                                             {{ $request_info->request_code }}
                                         </td>
 
@@ -79,7 +66,7 @@
                                         {{-- Accept / Reject --}}
                                         <td style="text-align: center">
                                             @include(
-                                                'shared.managerequest.accept_reject_status',
+                                                'shared.managerequest.engineer.accept_reject_status',
                                                 ['request_info' => $request_info]
                                             )
                                         </td>
@@ -87,7 +74,7 @@
                                         {{-- QS Team Check & Pass --}}
                                         <td style="text-align: center">
                                             @include(
-                                                'shared.managerequest.qs_team_check_pass_status',
+                                                'shared.managerequest.engineer.qs_team_check_pass_status',
                                                 ['request_info' => $request_info]
                                             )
                                         </td>
@@ -95,8 +82,10 @@
                                         {{-- Logistics Team Check & Sent --}}
                                         <td style="text-align: center">
                                             @include(
-                                                'shared.managerequest.logistics_team_check_sent_status',
-                                                ['request_info' => $request_info]
+                                                'shared.managerequest.engineer.logistics_team_check_sent_status',
+                                                [
+                                                    'request_info' => $request_info,
+                                                ]
                                             )
                                         </td>
 
@@ -114,28 +103,15 @@
 
                                         <td style="text-align: center">
                                             @include(
-                                                'shared.managerequest.received_by_engineer_status',
+                                                'shared.managerequest.engineer.received_by_engineer_status',
                                                 [
                                                     'request_info' => $request_info,
                                                 ]
                                             )
                                         </td>
 
-                                        <td style="text-align: center;">
-                                            <div class="btn-group">
-                                                <button class="btn btn-info btn-xs dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Action
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('managerequest.show', $request_info->id) }}">
-                                                            Items Detail
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <td>
+                                            Coming soon
                                         </td>
                                     </tr>
                                 @endforeach

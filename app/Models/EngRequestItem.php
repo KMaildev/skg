@@ -26,4 +26,14 @@ class EngRequestItem extends Model
     {
         return $this->hasMany(QsTeamCheckPass::class, 'eng_request_item_id', 'id');
     }
+
+    public function qs_team_check_passes_warehouse_plan()
+    {
+        return $this->belongsTo(QsTeamCheckPass::class, 'id', 'eng_request_item_id');
+    }
+
+    public function request_info_table()
+    {
+        return $this->belongsTo(RequestInfo::class, 'request_info_id', 'id');
+    }
 }

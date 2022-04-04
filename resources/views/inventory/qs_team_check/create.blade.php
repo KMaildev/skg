@@ -39,6 +39,8 @@
                                 id="create-form">
                                 @csrf
                                 <input type="hidden" value="{{ $request_info->project_id }}" name="project_id" required>
+                                <input type="hidden" value="{{ $request_info->id }}" name="request_info_id" required>
+
                                 <table class="table table-bordered">
                                     <thead class="tbbg">
                                         <tr>
@@ -103,7 +105,7 @@
                                             {{ $qs_passed_qty_total }}
                                         </th>
                                         <th style="text-align: center">
-                                            <input type="submit" class="btn btn-success btn-sm">
+                                            <input type="submit" class="btn btn-success btn-sm" value="Save">
                                         </th>
                                     </tr>
                                 </table>

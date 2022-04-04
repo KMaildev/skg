@@ -169,6 +169,15 @@ Route::middleware('auth')->group(function () {
         'uses' => 'Inventory\QsTeamCheckController@create'
     ]);
 
+    Route::resource('logistics_team_check', 'Inventory\LogisticsTeamCheckController');
+    Route::get('logistics_team_check_create/{id}', [
+        'as' => 'logistics_team_check_create',
+        'uses' => 'Inventory\LogisticsTeamCheckController@create'
+    ]);
+
+    Route::resource('transferhistory', 'Inventory\TransferhistoryController');
+    Route::resource('inventory_engineer_return', 'Inventory\EngineerReturnController');
+
 
 
     //Engineering
@@ -181,6 +190,8 @@ Route::middleware('auth')->group(function () {
         'uses' => 'Engineer\EngRequestController@engrequest_create'
     ]);
     Route::resource('requestitem', 'Engineer\RequestItem');
-
     Route::resource('engineeringrequest', 'EngineerRequestController');
+    Route::resource('manage_my_request', 'Engineer\ManageMyRequestController');
+    Route::resource('received_by_engineer', 'Engineer\ReceivedByEngineerController');
+    Route::resource('engineer_return', 'Engineer\EngineerReturnController');
 });
