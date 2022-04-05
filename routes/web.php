@@ -185,6 +185,14 @@ Route::middleware('auth')->group(function () {
         'uses' => 'Inventory\ReturnQsTeamCheckController@create'
     ]);
 
+    Route::resource('return_logistics_team_check', 'Inventory\ReturnLogisticsTeamCheckController');
+    Route::get('return_logistics_team_check_create/{id}', [
+        'as' => 'return_logistics_team_check_create',
+        'uses' => 'Inventory\ReturnLogisticsTeamCheckController@create'
+    ]);
+
+    Route::resource('received_by_store_manager', 'Inventory\ReceivedByStoreManagerController');
+
 
 
     //Engineering

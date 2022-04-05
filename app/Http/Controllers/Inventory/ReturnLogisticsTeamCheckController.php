@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTransferInfo;
-use App\Models\Customers;
+use App\Models\EngineerReturnInfo;
 use App\Models\MainWarehouse;
-use App\Models\RequestInfo;
-use App\Models\TransferInfo;
+use App\Models\ReturnTransferInfo;
 use Illuminate\Http\Request;
 
-class LogisticsTeamCheckController extends Controller
+class ReturnLogisticsTeamCheckController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,10 +27,9 @@ class LogisticsTeamCheckController extends Controller
      */
     public function create($id = null)
     {
-        $request_info = RequestInfo::findOrFail($id);
+        $return_info = EngineerReturnInfo::findOrFail($id);
         $mainwarehouses = MainWarehouse::all();
-        $request_info_lists = RequestInfo::where('logistics_team_check_sent_status', 'finished')->get();
-        return view('inventory.logistics_team_check.create', compact('request_info', 'mainwarehouses', 'request_info_lists'));
+        return view('inventory.return_logistics_team_check.create', compact('return_info', 'mainwarehouses'));
     }
 
     /**
@@ -41,43 +38,23 @@ class LogisticsTeamCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTransferInfo $request)
+    public function store(Request $request)
     {
         $user_id = auth()->user()->id;
-        $transfer_info = new TransferInfo();
+        $transfer_info = new ReturnTransferInfo();
 
         $transfer_info->transfer_from = $request->transfer_from;
-        $transfer_from = $request->transfer_from;
-        if ($transfer_from == 'warehouse') {
-            $transfer_info->main_warehouse_id = $request->main_warehouse_id ?? 0;
-            $transfer_info->eng_request_info_id = 0;
-        } else {
-            $transfer_info->main_warehouse_id = 0;
-            $transfer_info->eng_request_info_id = $request->eng_request_info_id ?? 0;
-        }
-
-        $transfer_info->transferred_to = $request->transferred_to;
+        $transfer_info->transfer_to_warehouse_id = $request->transfer_to_warehouse_id;
         $transfer_info->sent_date = $request->sent_date;
         $transfer_info->remark = $request->remark;
-        $transfer_info->request_info_id = $request->request_info_id;
+        $transfer_info->engineer_return_info_id = $request->engineer_return_info_id;
         $transfer_info->user_id = $user_id;
         $transfer_info->save();
 
-
-        $request_info_id = $request->request_info_id;
-        $request_info = RequestInfo::findOrFail($request_info_id);
-        $request_info->logistics_team_check_sent_status = 'finished';
-
-        $request_info->transfer_from_status = $request->transfer_from;
-        if ($transfer_from == 'warehouse') {
-            $request_info->main_warehouse_id = $request->main_warehouse_id ?? 0;
-            $request_info->other_site_id = 0;
-        } else {
-            $request_info->main_warehouse_id = 0;
-            $request_info->other_site_id = $request->eng_request_info_id ?? 0;
-        }
-
-        $request_info->update();
+        $engineer_return_info_id = $request->engineer_return_info_id;
+        $return_info = EngineerReturnInfo::findOrFail($engineer_return_info_id);
+        $return_info->logistics_team_check_sent_status = 'finished';
+        $return_info->update();
         return redirect()->back()->with('success', 'Process is completed.');
     }
 

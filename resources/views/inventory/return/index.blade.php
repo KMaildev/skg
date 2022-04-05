@@ -69,11 +69,17 @@
                                         </td>
 
                                         <td>
-                                            NULL
+                                            @include(
+                                                'shared.engineer_return.logistics_team_check_sent_status',
+                                                ['engineer_return_infos' => $return]
+                                            )
                                         </td>
 
                                         <td>
-                                            NUll
+                                            @include(
+                                                'shared.engineer_return.received_by_store_manager_status',
+                                                ['engineer_return_infos' => $return]
+                                            )
                                         </td>
 
                                         <td>
