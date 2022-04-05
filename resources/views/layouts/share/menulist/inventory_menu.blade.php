@@ -69,7 +69,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="#" class="menu-link">
+                <a href="{{ route('transferhistory.index') }}" class="menu-link">
                     <div data-i1n="Layouts">
                         Transfer History
                     </div>

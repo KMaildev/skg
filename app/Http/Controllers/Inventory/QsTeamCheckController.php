@@ -41,9 +41,11 @@ class QsTeamCheckController extends Controller
     {
         $user_id = auth()->user()->id;
         $eng_request_item_id = $request->request_item_id;
+        $fixed_asset_id = $request->fixed_asset_id;
         $eng_request_qty = $request->eng_request_qty;
         $project_id = $request->project_id;
         $request_info_id = $request->request_info_id;
+
 
         foreach ($request->passed_qty as $key => $value) {
             $insert[$key]['user_id'] = $user_id;
@@ -53,8 +55,12 @@ class QsTeamCheckController extends Controller
             $insert[$key]['qs_passed_qty'] = $value;
             $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
             $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            $insert[$key]['request_info_id'] =  $request_info_id;
+            $insert[$key]['fixed_asset_id'] = $request->fixed_asset_id[$key];
+            $insert[$key]['transferred_from_id'] = 0;
         }
         QsTeamCheckPass::insert($insert);
+
 
         $request_info = RequestInfo::findOrFail($request_info_id);
         $request_info->qs_team_check_status = 'finished';

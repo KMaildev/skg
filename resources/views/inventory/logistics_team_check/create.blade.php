@@ -37,7 +37,6 @@
                     <form class="card-body" autocomplete="off" action="{{ route('logistics_team_check.store') }}"
                         method="POST" id="create-form">
                         @csrf
-
                         <input type="hidden" value="{{ $request_info->id }}" name="request_info_id" readonly>
                         <hr class="my-4 mx-n4" />
                         <h6 class="mb-b fw-normal">1. Transfer Info</h6>

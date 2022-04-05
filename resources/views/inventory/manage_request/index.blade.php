@@ -131,7 +131,7 @@
                                                     <li>
                                                         <a class="dropdown-item"
                                                             href="{{ route('managerequest.show', $request_info->id) }}">
-                                                            Items Detail
+                                                            Item Detail
                                                         </a>
                                                     </li>
                                                 </ul>

@@ -63,6 +63,8 @@
                                                 </td>
 
                                                 <td>
+                                                    <input type="hidden" value="{{ $item->fixed_assets_table->id ?? 0 }}"
+                                                        name="fixed_asset_id[]">
                                                     {{ $item->fixed_assets_table->item_name ?? '' }}
                                                 </td>
 

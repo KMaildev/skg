@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customers;
+use App\Models\EngRequestItem;
+use App\Models\FixedAssets;
 use App\Models\RequestInfo;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransferhistoryController extends Controller
 {
@@ -15,8 +20,18 @@ class TransferhistoryController extends Controller
      */
     public function index()
     {
-        $request_infos = RequestInfo::all();
-        return view('inventory.transferhistory.index', compact('request_infos'));
+        $users = User::where('department_id', 9)->get();
+        $fixed_assets = FixedAssets::all();
+        $request_items = EngRequestItem::orderBy('id', 'ASC')->get();
+
+        if (request('fixed_asset_id') || request('user_id')) {
+            $request_items = EngRequestItem::where(function ($query) {
+                $query->orWhere('fixed_asset_id', request('fixed_asset_id'));
+                $query->where('user_id', request('user_id'));
+            })->get();
+        }
+
+        return view('inventory.transferhistory.index', compact('request_items', 'users', 'fixed_assets'));
     }
 
     /**

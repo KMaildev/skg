@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Inventory\QsTeamCheckController;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,5 +37,17 @@ class RequestInfo extends Model
     public function request_infos_table()
     {
         return $this->belongsTo(RequestInfo::class, 'other_site_id', 'id');
+    }
+
+
+    public function request_infos_table_another()
+    {
+        return $this->belongsTo(RequestInfo::class, 'id', 'other_site_id');
+    }
+
+
+    public function qs_team_check_passes_table()
+    {
+        return $this->belongsTo(QsTeamCheckPass::class, 'id', 'request_info_id');
     }
 }

@@ -64,6 +64,11 @@ class LogisticsTeamCheckController extends Controller
         $transfer_info->save();
 
 
+
+
+
+
+
         $request_info_id = $request->request_info_id;
         $request_info = RequestInfo::findOrFail($request_info_id);
         $request_info->logistics_team_check_sent_status = 'finished';
@@ -76,8 +81,13 @@ class LogisticsTeamCheckController extends Controller
             $request_info->main_warehouse_id = 0;
             $request_info->other_site_id = $request->eng_request_info_id ?? 0;
         }
-
         $request_info->update();
+
+
+
+
+
+
         return redirect()->back()->with('success', 'Process is completed.');
     }
 

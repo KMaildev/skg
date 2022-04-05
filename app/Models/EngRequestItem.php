@@ -36,4 +36,20 @@ class EngRequestItem extends Model
     {
         return $this->belongsTo(RequestInfo::class, 'request_info_id', 'id');
     }
+
+
+
+
+    // For Transferhistory
+
+
+
+
+
+
+
+
+
+
+
 }
