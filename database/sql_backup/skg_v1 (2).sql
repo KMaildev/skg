@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2022 at 04:29 AM
+-- Generation Time: Apr 05, 2022 at 09:18 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -36,40 +36,6 @@ CREATE TABLE `accept_reject_statuses` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `request_info_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `accept_reject_statuses`
---
-
-INSERT INTO `accept_reject_statuses` (`id`, `user_id`, `accept_reject_statuse`, `accept_reject_date`, `created_at`, `updated_at`, `request_info_id`) VALUES
-(1, 1, 'accept', '2022-04-03', '2022-04-03 14:30:59', '2022-04-03 14:30:59', 2),
-(2, 1, 'reject', '2022-04-03', '2022-04-03 14:32:57', '2022-04-03 14:32:57', 1),
-(3, 1, 'accept', '2022-04-03', '2022-04-03 14:34:06', '2022-04-03 14:34:06', 1),
-(4, 1, 'reject', '2022-04-03', '2022-04-03 14:34:10', '2022-04-03 14:34:10', 1),
-(5, 1, 'reject', '2022-04-03', '2022-04-03 14:34:25', '2022-04-03 14:34:25', 2),
-(6, 1, 'accept', '2022-04-03', '2022-04-03 15:31:10', '2022-04-03 15:31:10', 2),
-(7, 1, 'accept', '2022-04-03', '2022-04-03 15:31:14', '2022-04-03 15:31:14', 1),
-(8, 1, 'reject', '2022-04-03', '2022-04-03 16:01:41', '2022-04-03 16:01:41', 1),
-(9, 1, 'accept', '2022-04-03', '2022-04-03 16:01:46', '2022-04-03 16:01:46', 1),
-(10, 1, 'accept', '2022-04-03', '2022-04-03 16:03:53', '2022-04-03 16:03:53', 1),
-(11, 1, 'reject', '2022-04-04', '2022-04-03 18:31:46', '2022-04-03 18:31:46', 3),
-(12, 1, 'reject', '2022-04-04', '2022-04-03 18:31:51', '2022-04-03 18:31:51', 4),
-(13, 1, 'accept', '2022-04-04', '2022-04-04 10:40:08', '2022-04-04 10:40:08', 3),
-(14, 1, 'accept', '2022-04-04', '2022-04-04 10:40:12', '2022-04-04 10:40:12', 4),
-(15, 1, 'reject', '2022-04-04', '2022-04-04 10:49:41', '2022-04-04 10:49:41', 4),
-(16, 1, 'accept', '2022-04-04', '2022-04-04 12:37:00', '2022-04-04 12:37:00', 1),
-(17, 1, 'accept', '2022-04-04', '2022-04-04 13:58:42', '2022-04-04 13:58:42', 1),
-(18, 1, 'accept', '2022-04-04', '2022-04-04 13:59:45', '2022-04-04 13:59:45', 2),
-(19, 1, 'accept', '2022-04-04', '2022-04-04 14:47:46', '2022-04-04 14:47:46', 3),
-(20, 1, 'accept', '2022-04-04', '2022-04-04 14:50:46', '2022-04-04 14:50:46', 4),
-(21, 1, 'reject', '2022-04-04', '2022-04-04 14:59:20', '2022-04-04 14:59:20', 5),
-(22, 1, 'accept', '2022-04-04', '2022-04-04 17:01:07', '2022-04-04 17:01:07', 1),
-(23, 1, 'accept', '2022-04-04', '2022-04-04 17:04:08', '2022-04-04 17:04:08', 2),
-(24, 1, 'accept', '2022-04-04', '2022-04-04 17:23:27', '2022-04-04 17:23:27', 3),
-(25, 1, 'accept', '2022-04-05', '2022-04-04 17:33:32', '2022-04-04 17:33:32', 4),
-(26, 1, 'accept', '2022-04-05', '2022-04-04 17:37:12', '2022-04-04 17:37:12', 1),
-(27, 1, 'accept', '2022-04-05', '2022-04-04 17:38:21', '2022-04-04 17:38:21', 2),
-(28, 1, 'accept', '2022-04-05', '2022-04-04 18:58:07', '2022-04-04 18:58:07', 3);
 
 -- --------------------------------------------------------
 
@@ -300,13 +266,6 @@ CREATE TABLE `engineer_return_infos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `engineer_return_infos`
---
-
-INSERT INTO `engineer_return_infos` (`id`, `return_code`, `return_date`, `return_from_id`, `return_user_id`, `qs_team_check_pass_status`, `logistics_team_check_sent_status`, `received_store_manager_status`, `created_at`, `updated_at`) VALUES
-(1, 'R-00001', '2022-04-05', 2, 20, 'finished', 'finished', 'received', '2022-04-04 20:14:46', '2022-04-05 02:28:51');
-
 -- --------------------------------------------------------
 
 --
@@ -324,15 +283,6 @@ CREATE TABLE `eng_request_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `eng_request_items`
---
-
-INSERT INTO `eng_request_items` (`id`, `fixed_asset_id`, `quantity`, `user_id`, `project_id`, `request_info_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 20, 2, 1, 2, '2022-04-04 17:37:04', '2022-04-04 17:37:04'),
-(2, 1, 1, 20, 5, 2, 4, '2022-04-04 17:38:15', '2022-04-04 17:38:15'),
-(3, 3, 2, 20, 6, 3, 5, '2022-04-04 18:58:00', '2022-04-04 18:58:00');
 
 -- --------------------------------------------------------
 
@@ -401,7 +351,6 @@ CREATE TABLE `fixed_assets` (
 
 INSERT INTO `fixed_assets` (`id`, `item_name`, `unit`, `qty`, `desciption`, `main_warehouse_id`, `created_at`, `updated_at`) VALUES
 (1, 'Vibrator', 'Nos', 6, NULL, 1, '2022-03-21 03:59:37', '2022-03-21 03:59:37'),
-(2, 'T Column', 'Nos', 400, NULL, 1, '2022-03-21 03:59:51', '2022-03-21 03:59:51'),
 (3, 'Concrete Mixer', 'Nos', 10, NULL, 1, '2022-03-21 04:00:10', '2022-03-21 04:00:10'),
 (4, 'Generator', 'Nos', 10, NULL, 1, '2022-03-21 04:00:19', '2022-03-21 04:00:19');
 
@@ -632,7 +581,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (0, '2022_04_05_033802_create_return_qs_team_check_passes_table', 62),
 (0, '2022_04_05_084058_create_return_logistics_team_checks_table', 63),
 (0, '2022_04_05_084142_create_return_transfer_infos_table', 63),
-(0, '2022_04_05_085512_create_received_by_store_managers_table', 64);
+(0, '2022_04_05_085512_create_received_by_store_managers_table', 64),
+(0, '2022_04_05_124342_create_variable_assets_table', 65),
+(0, '2022_04_05_131028_create_variable_request_infos_table', 66),
+(0, '2022_04_05_131336_create_variable_request_items_table', 67);
 
 -- --------------------------------------------------------
 
@@ -894,14 +846,6 @@ CREATE TABLE `qs_team_check_passes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `qs_team_check_passes`
---
-
-INSERT INTO `qs_team_check_passes` (`id`, `user_id`, `eng_request_item_id`, `project_id`, `eng_request_qty`, `qs_passed_qty`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2, 2, 2, '2022-04-04 17:37:16', '2022-04-04 17:37:16'),
-(2, 1, 2, 5, 1, 1, '2022-04-04 17:38:25', '2022-04-04 17:38:25');
-
 -- --------------------------------------------------------
 
 --
@@ -967,14 +911,6 @@ CREATE TABLE `received_by_engineers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `received_by_engineers`
---
-
-INSERT INTO `received_by_engineers` (`id`, `request_info_id`, `received_status`, `received_date`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'received', '2022-04-05T00:07', 20, '2022-04-04 17:37:38', '2022-04-04 17:37:38'),
-(2, 2, 'received', '2022-04-05T00:08', 20, '2022-04-04 17:38:48', '2022-04-04 17:38:48');
-
 -- --------------------------------------------------------
 
 --
@@ -990,13 +926,6 @@ CREATE TABLE `received_by_store_managers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `received_by_store_managers`
---
-
-INSERT INTO `received_by_store_managers` (`id`, `engineer_return_infos_id`, `received_status`, `received_date`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'received', '2022-04-05T08:58', 1, '2022-04-05 02:28:51', '2022-04-05 02:28:51');
 
 -- --------------------------------------------------------
 
@@ -1024,15 +953,6 @@ CREATE TABLE `request_infos` (
   `received_by_engineer_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `received_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `request_infos`
---
-
-INSERT INTO `request_infos` (`id`, `request_code`, `request_date`, `work_scope`, `user_id`, `project_id`, `customer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `logistics_team_check_sent_status`, `transfer_from_status`, `main_warehouse_id`, `other_site_id`, `received_by_engineer_status`, `received_date`) VALUES
-(1, 'R-00001', '2022-04-05', 'Floor', 20, 2, 2, '2022-04-04 17:37:04', '2022-04-04 17:37:38', 'accept', '2022-04-05 00:07:12', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-05T00:07'),
-(2, 'R-00002', '2022-04-05', 'Floor', 20, 5, 4, '2022-04-04 17:38:15', '2022-04-04 17:38:48', 'accept', '2022-04-05 00:08:21', 'finished', 'finished', 'other_site', 0, 1, 'received', '2022-04-05T00:08'),
-(3, 'R-00003', '2022-04-05', 'dasdf', 20, 6, 5, '2022-04-04 18:58:00', '2022-04-04 18:58:07', 'accept', '2022-04-05 01:28:07', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1066,14 +986,6 @@ CREATE TABLE `return_items` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `return_items`
---
-
-INSERT INTO `return_items` (`id`, `fixed_asset_id`, `quantity`, `user_id`, `engineer_return_info_id`, `created_at`, `updated_at`) VALUES
-(1, '1', '2', 20, 1, '2022-04-04 20:14:46', '2022-04-04 20:14:46'),
-(2, '2', '2', 20, 1, '2022-04-04 20:14:46', '2022-04-04 20:14:46');
-
 -- --------------------------------------------------------
 
 --
@@ -1101,14 +1013,6 @@ CREATE TABLE `return_qs_team_check_passes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `return_qs_team_check_passes`
---
-
-INSERT INTO `return_qs_team_check_passes` (`id`, `user_id`, `return_item_id`, `qs_passed_qty`, `created_at`, `updated_at`) VALUES
-(1, '1', '1', 2, '2022-04-04 21:11:50', '2022-04-04 21:11:50'),
-(2, '1', '2', 2, '2022-04-04 21:11:50', '2022-04-04 21:11:50');
-
 -- --------------------------------------------------------
 
 --
@@ -1126,13 +1030,6 @@ CREATE TABLE `return_transfer_infos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `return_transfer_infos`
---
-
-INSERT INTO `return_transfer_infos` (`id`, `transfer_from`, `transfer_to_warehouse_id`, `sent_date`, `remark`, `engineer_return_info_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'YGN_DGSK_0001', '1', '2022-04-05T08:47', 'Ok', '1', 1, '2022-04-05 02:17:40', '2022-04-05 02:17:40');
 
 -- --------------------------------------------------------
 
@@ -1316,14 +1213,6 @@ CREATE TABLE `transfer_infos` (
   `eng_request_info_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `transfer_infos`
---
-
-INSERT INTO `transfer_infos` (`id`, `transfer_from`, `main_warehouse_id`, `sent_date`, `remark`, `user_id`, `created_at`, `updated_at`, `transferred_to`, `request_info_id`, `eng_request_info_id`) VALUES
-(1, 'warehouse', 1, '2022-04-05T00:07', NULL, 1, '2022-04-04 17:37:28', '2022-04-04 17:37:28', 'YGN_DGSK_0001', 1, 0),
-(2, 'other_site', 0, '2022-04-05T00:08', NULL, 1, '2022-04-04 17:38:36', '2022-04-04 17:38:36', 'YGN- SOKL- 00002', 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -1395,6 +1284,55 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (19, 'AUNG HTET PAING', 'aunghtetpaing.skgroup@gmail.com', NULL, '$2y$10$gQfTPFveu0nOs7Wob8Hb3.UYTTpz3o3gJnEQlt7sAZVCYjOb6MC9S', NULL, '2022-03-17 04:38:03', '2022-03-17 04:38:03', 'EMP - 00019', '09751445870', '12/Lathana(N)021656', 'male', 'No. 74, Min Nanda Road, Dawpone Tsp, Yangon', 1),
 (20, 'Eng1', 'eng1@gmail.com', NULL, '$2y$10$9Gl0HeAIan5HNTV9a371P.s4gMx63RnzIwgiiv6IuJ8E1zSGgrXpS', NULL, '2022-03-20 19:25:49', '2022-03-20 19:25:49', 'EMP-00010', '09444171665', '5/abc(n)009887', 'male', 'ygn', 9),
 (21, 'eng2', 'eng2@gmail.com', NULL, '$2y$10$xPOH4Ery.q4oASfETtn6EejHicZQ1LZcczs69QFyclLXvC.jlippK', NULL, '2022-04-04 16:00:25', '2022-04-04 16:00:25', 'EMP-000010', '09444161887', '5/abc(4)009887', 'male', 'ygn', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variable_assets`
+--
+
+CREATE TABLE `variable_assets` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `item_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unit` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `remark` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_warehouse_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variable_request_infos`
+--
+
+CREATE TABLE `variable_request_infos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `engineer_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variable_request_items`
+--
+
+CREATE TABLE `variable_request_items` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `variable_asset_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -1629,6 +1567,24 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `variable_assets`
+--
+ALTER TABLE `variable_assets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `variable_request_infos`
+--
+ALTER TABLE `variable_request_infos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `variable_request_items`
+--
+ALTER TABLE `variable_request_items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1636,7 +1592,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accept_reject_statuses`
 --
 ALTER TABLE `accept_reject_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `account_classifications`
@@ -1690,13 +1646,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `engineer_return_infos`
 --
 ALTER TABLE `engineer_return_infos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `eng_request_items`
 --
 ALTER TABLE `eng_request_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `exterior_design_fees`
@@ -1768,7 +1724,7 @@ ALTER TABLE `projects_users`
 -- AUTO_INCREMENT for table `qs_team_check_passes`
 --
 ALTER TABLE `qs_team_check_passes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quotationproposals`
@@ -1780,19 +1736,19 @@ ALTER TABLE `quotationproposals`
 -- AUTO_INCREMENT for table `received_by_engineers`
 --
 ALTER TABLE `received_by_engineers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `received_by_store_managers`
 --
 ALTER TABLE `received_by_store_managers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `request_infos`
 --
 ALTER TABLE `request_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `request_items`
@@ -1804,7 +1760,7 @@ ALTER TABLE `request_items`
 -- AUTO_INCREMENT for table `return_items`
 --
 ALTER TABLE `return_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `return_logistics_team_checks`
@@ -1816,13 +1772,13 @@ ALTER TABLE `return_logistics_team_checks`
 -- AUTO_INCREMENT for table `return_qs_team_check_passes`
 --
 ALTER TABLE `return_qs_team_check_passes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `return_transfer_infos`
 --
 ALTER TABLE `return_transfer_infos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sent_by_users`
@@ -1846,13 +1802,31 @@ ALTER TABLE `structure_design_fees`
 -- AUTO_INCREMENT for table `transfer_infos`
 --
 ALTER TABLE `transfer_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `variable_assets`
+--
+ALTER TABLE `variable_assets`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `variable_request_infos`
+--
+ALTER TABLE `variable_request_infos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `variable_request_items`
+--
+ALTER TABLE `variable_request_items`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

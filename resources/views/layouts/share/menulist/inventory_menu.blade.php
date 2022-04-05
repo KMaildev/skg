@@ -16,6 +16,12 @@
                 </a>
             </li>
 
+            <li class="menu-item">
+                <a href="{{ route('variable_assets.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Variable Assets</div>
+                </a>
+            </li>
+
 
             <li class="menu-item" hidden>
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -62,14 +68,13 @@
                 </a>
             </li>
 
-            <li class="menu-item" hidden>
-                <a href="{{ route('transferhistory.index') }}" class="menu-link">
+            <li class="menu-item">
+                <a href="#" class="menu-link">
                     <div data-i1n="Layouts">
                         Transfer History
                     </div>
                 </a>
             </li>
-
 
             <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">

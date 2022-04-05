@@ -27,6 +27,12 @@
                 </a>
             </li>
 
+            <li class="menu-item">
+                <a href="{{ route('engineer_variable_assets.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Variable Assets</div>
+                </a>
+            </li>
+
         </ul>
     </div>
 </aside>

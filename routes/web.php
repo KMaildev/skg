@@ -192,7 +192,7 @@ Route::middleware('auth')->group(function () {
     ]);
 
     Route::resource('received_by_store_manager', 'Inventory\ReceivedByStoreManagerController');
-
+    Route::resource('variable_assets', 'Inventory\VariableAssetsController');
 
 
     //Engineering
@@ -209,4 +209,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('manage_my_request', 'Engineer\ManageMyRequestController');
     Route::resource('received_by_engineer', 'Engineer\ReceivedByEngineerController');
     Route::resource('engineer_return', 'Engineer\EngineerReturnController');
+    Route::resource('engineer_variable_assets', 'Engineer\EngineerVariableAssetsController');
 });
