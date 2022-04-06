@@ -49,7 +49,8 @@ class ManageMyRequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $eng_request_items = RequestInfo::with('eng_request_items_table')->get()->where('id', $id);
+        return view('engineer.manage_my_request.show', compact('eng_request_items'));
     }
 
     /**

@@ -10,4 +10,11 @@ class ReturnItem extends Model
     {
         return $this->belongsTo(FixedAssets::class, 'fixed_asset_id', 'id');
     }
+
+    public function return_qs_team_check_passes_table()
+    {
+        return $this->belongsTo(ReturnQsTeamCheckPass::class, 'id', 'return_item_id');
+    }
+
+    
 }

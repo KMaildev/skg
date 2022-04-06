@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Engineer\EngRequestItem;
+use App\Http\Controllers\Engineer\RequestItem;
 use App\Models\FixedAssets;
 use App\Models\RequestInfo;
+use App\User;
 use Illuminate\Http\Request;
 
 class WarehousePlanController extends Controller
@@ -49,7 +52,8 @@ class WarehousePlanController extends Controller
      */
     public function show($id)
     {
-        //
+        $fixed_assets = FixedAssets::findOrFail($id);
+        return view('inventory.warehouseplan.show', compact('fixed_assets'));
     }
 
     /**

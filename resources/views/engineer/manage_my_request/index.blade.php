@@ -110,8 +110,21 @@
                                             )
                                         </td>
 
-                                        <td>
-                                            Coming soon
+                                        <td style="text-align: center;">
+                                            <div class="btn-group">
+                                                <button class="btn btn-info btn-xs dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('manage_my_request.show', $request_info->id) }}">
+                                                            Item Detail
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

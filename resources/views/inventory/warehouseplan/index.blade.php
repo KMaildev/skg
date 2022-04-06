@@ -87,8 +87,9 @@
                                             </td>
 
                                             <td style="text-align: center">
-                                                <a href="" class="btn btn-sm btn-primary">
-                                                    Detail
+                                                <a onclick="window.location.href='{{ route('warehouseplan.show', $fixed_assets_with_eng_request_item->id) }}'"
+                                                    href="" class="btn btn-sm btn-primary">
+                                                    Transfer History
                                                 </a>
                                             </td>
                                         </tr>

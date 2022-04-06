@@ -45,45 +45,58 @@
                             <tbody>
                                 @foreach ($returns as $key => $return)
                                     <tr>
-
-                                        <td>
+                                        <td style="text-align: center">
                                             {{ $key + 1 }}
                                         </td>
-                                        <td>
+
+                                        <td style="text-align: center">
                                             {{ $return->return_code }}
                                         </td>
 
-                                        <td>
+                                        <td style="text-align: center">
                                             {{ $return->return_date }}
                                         </td>
 
-                                        <td>
+                                        <td style="text-align: center">
                                             {{ $return->customer_table->project_code ?? '' }}
                                         </td>
 
-                                        <td>
+                                        <td style="text-align: center">
                                             @include(
                                                 'shared.engineer_return.qs_team_check_pass_status',
                                                 ['engineer_return_infos' => $return]
                                             )
                                         </td>
 
-                                        <td>
+                                        <td style="text-align: center">
                                             @include(
                                                 'shared.engineer_return.logistics_team_check_sent_status',
                                                 ['engineer_return_infos' => $return]
                                             )
                                         </td>
 
-                                        <td>
+                                        <td style="text-align: center">
                                             @include(
                                                 'shared.engineer_return.received_by_store_manager_status',
                                                 ['engineer_return_infos' => $return]
                                             )
                                         </td>
 
-                                        <td>
-                                            Coming soon
+                                        <td style="text-align: center;">
+                                            <div class="btn-group">
+                                                <button class="btn btn-info btn-xs dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('inventory_engineer_return.show', $return->id) }}">
+                                                            Item Detail
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
 
                                     </tr>

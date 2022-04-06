@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class EngineerReturnInfo extends Model
@@ -15,4 +16,21 @@ class EngineerReturnInfo extends Model
     {
         return $this->hasMany(ReturnItem::class);
     }
+
+    public function user_table()
+    {
+        return $this->belongsTo(User::class, 'return_user_id', 'id');
+    }
+
+    public function fixed_assets_table()
+    {
+        return $this->belongsTo(FixedAssets::class, 'fixed_asset_id', 'id');
+    }
+
+    public function return_transfer_info_table()
+    {
+        return $this->belongsTo(ReturnTransferInfo::class, 'id', 'engineer_return_info_id');
+    }
+
+    
 }
