@@ -61,3 +61,14 @@
 .inner-wrapper {
     display: flex;
 }
+
+
+
+/* Second Table  */
+.second_table,
+th,
+td {
+    border: 1px solid black;
+    background-color: #D6EEEE;
+    font-size: 12px;
+}

@@ -57,4 +57,8 @@ class RequestInfo extends Model
         return $this->belongsTo(AcceptRejectStatus::class, 'id', 'request_info_id')->latest();
     }
 
+    public function transfer_infos_table()
+    {
+        return $this->belongsTo(TransferInfo::class, 'id', 'request_info_id')->latest();
+    }
 }

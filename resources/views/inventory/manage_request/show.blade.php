@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div
                                 class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
-                                <div>
+                                <div class="col-md-8 col-lg-8">
                                     <h4>Request code #{{ $request_info->request_code }}</h4>
                                     <div class="mb-2">
                                         <span class="me-1">Engineer:</span>
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-xl-0 mb-4">
+                                <div class="col-md-4 col-lg-4">
                                     <h4>Status</h4>
                                     <div class="mb-2">
                                         <span class="me-1">Accept or Reject :</span>
