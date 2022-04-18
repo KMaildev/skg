@@ -50,4 +50,11 @@ class RequestInfo extends Model
     {
         return $this->belongsTo(QsTeamCheckPass::class, 'id', 'request_info_id');
     }
+
+
+    public function accept_reject_statuses_table()
+    {
+        return $this->belongsTo(AcceptRejectStatus::class, 'id', 'request_info_id')->latest();
+    }
+
 }

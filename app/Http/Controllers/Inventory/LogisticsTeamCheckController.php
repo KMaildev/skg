@@ -63,15 +63,10 @@ class LogisticsTeamCheckController extends Controller
         $transfer_info->user_id = $user_id;
         $transfer_info->save();
 
-
-
-
-
-
-
         $request_info_id = $request->request_info_id;
         $request_info = RequestInfo::findOrFail($request_info_id);
         $request_info->logistics_team_check_sent_status = 'finished';
+        $request_info->logistics_team_check_sent_date = date('Y-m-d H:i:sa');
 
         $request_info->transfer_from_status = $request->transfer_from;
         if ($transfer_from == 'warehouse') {
@@ -82,12 +77,6 @@ class LogisticsTeamCheckController extends Controller
             $request_info->other_site_id = $request->eng_request_info_id ?? 0;
         }
         $request_info->update();
-
-
-
-
-
-
         return redirect()->back()->with('success', 'Process is completed.');
     }
 

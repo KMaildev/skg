@@ -53,8 +53,8 @@ class QsTeamCheckController extends Controller
             $insert[$key]['project_id'] = $project_id;
             $insert[$key]['eng_request_qty'] = $eng_request_qty[$key];
             $insert[$key]['qs_passed_qty'] = $value;
-            $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
-            $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
+            $insert[$key]['updated_at'] =  date('Y-m-d H:i:sa');
             $insert[$key]['request_info_id'] =  $request_info_id;
             $insert[$key]['fixed_asset_id'] = $request->fixed_asset_id[$key];
             $insert[$key]['transferred_from_id'] = 0;
@@ -64,6 +64,7 @@ class QsTeamCheckController extends Controller
 
         $request_info = RequestInfo::findOrFail($request_info_id);
         $request_info->qs_team_check_status = 'finished';
+        $request_info->qs_team_check_date = date('Y-m-d H:i:sa');
         $request_info->update();
         return redirect()->back()->with('success', 'Created successfully.');
     }

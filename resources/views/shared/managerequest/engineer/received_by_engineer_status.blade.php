@@ -45,7 +45,7 @@
                                     Received Date
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="datetime-local" class="form-control" name="received_date" required>
+                                    <input type="text" class="form-control date_picker" name="received_date" required>
                                 </div>
                             </div>
                         </div>

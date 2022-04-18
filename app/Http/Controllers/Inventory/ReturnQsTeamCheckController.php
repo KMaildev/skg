@@ -49,13 +49,14 @@ class ReturnQsTeamCheckController extends Controller
             $insert[$key]['user_id'] = $user_id;
             $insert[$key]['return_item_id'] = $return_item_id[$key];
             $insert[$key]['qs_passed_qty'] = $value;
-            $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
-            $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
+            $insert[$key]['updated_at'] =  date('Y-m-d H:i:sa');
         }
         ReturnQsTeamCheckPass::insert($insert);
 
         $request_info = EngineerReturnInfo::findOrFail($engineer_return_info_id);
         $request_info->qs_team_check_pass_status = 'finished';
+        
         $request_info->update();
         return redirect()->back()->with('success', 'Created successfully.');
     }

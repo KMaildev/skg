@@ -11,6 +11,12 @@
                                 <div>
                                     <h4>Request code #{{ $request_info->request_code }}</h4>
                                     <div class="mb-2">
+                                        <span class="me-1">Engineer:</span>
+                                        <span class="fw-semibold">
+                                            {{ $request_info->user_table->name ?? '' }}
+                                        </span>
+                                    </div>
+                                    <div class="mb-2">
                                         <span class="me-1">Request Date:</span>
                                         <span class="fw-semibold">{{ $request_info->request_date }}</span>
                                     </div>

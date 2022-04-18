@@ -48,7 +48,7 @@ class AcceptRejectStatusController extends Controller
         $id = $request->request_info_id;
         $request_info = RequestInfo::findOrFail($id);
         $request_info->accept_reject_status = $request->accept_reject_status;
-        $request_info->accept_reject_date = date('Y-m-d H:i:s');
+        $request_info->accept_reject_date = date('Y-m-d H:i:sa');
         $request_info->update();
 
         return redirect()->back()->with('success', 'Successful.');

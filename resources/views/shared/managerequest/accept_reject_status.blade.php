@@ -8,6 +8,9 @@
                 <div class="progress-bar bg-success" style="width: 100%" role="progressbar" aria-valuenow="100"
                     aria-valuemin="100" aria-valuemax="100"></div>
             </div>
+            <span style="font-size: 12px;">
+                {{ $request_info->accept_reject_date }}
+            </span>
         </div>
     </a>
 @elseif ($request_info->accept_reject_status == 'reject')
