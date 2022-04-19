@@ -4,13 +4,13 @@
         <div class="col-md-10 col-sm-12 col-lg-10">
             <div class="card mb-3">
                 <div class="tab-content">
-
                     <h5>Variable Assets</h5>
                     <br>
                     <div class="tab-pane fade active show" role="tabpanel">
-                        <form action="{{ route('variable_assets.store') }}" method="POST" autocomplete="off"
-                            id="create-form" role="form">
+                        <form action="{{ route('variable_assets.update', $variable_asset->id) }}" method="POST"
+                            autocomplete="off" id="edit-form" role="form">
                             @csrf
+                            @method('PUT')
                             <div class="row g-3">
 
                                 <div class="row py-2">
@@ -22,7 +22,8 @@
                                             name="main_warehouse">
                                             <option value="">Select</option>
                                             @foreach ($mainwarehouses as $mainwarehouse)
-                                                <option value="{{ $mainwarehouse->id }}">
+                                                <option value="{{ $mainwarehouse->id }}"
+                                                    @if ($variable_asset->main_warehouse_id == $mainwarehouse->id) selected @endif>
                                                     {{ $mainwarehouse->warehouse_name }}
                                                 </option>
                                             @endforeach
@@ -39,7 +40,7 @@
                                             Desciption or Item Name
                                         </label>
                                         <input type="text" class="form-control @error('item_name') is-invalid @enderror"
-                                            name="item_name" />
+                                            name="item_name" value="{{ $variable_asset->item_name }}" />
                                         @error('item_name')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -49,7 +50,7 @@
                                         <label class="form-label" for="formtabs-last-name"
                                             style="font-weight: bold">Unit</label>
                                         <input type="text" class="form-control @error('unit') is-invalid @enderror"
-                                            name="unit" />
+                                            name="unit" value="{{ $variable_asset->unit }}" />
                                         @error('unit')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -59,7 +60,7 @@
                                         <label class="form-label" for="formtabs-last-name"
                                             style="font-weight: bold">Qty</label>
                                         <input type="text" class="form-control @error('qty') is-invalid @enderror"
-                                            name="qty" value="0" />
+                                            name="qty" value="0" value="{{ $variable_asset->qty }}" />
                                         @error('qty')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -69,7 +70,7 @@
                                         <label class="form-label" for="formtabs-last-name"
                                             style="font-weight: bold">Remark</label>
                                         <input type="text" class="form-control @error('remark') is-invalid @enderror"
-                                            name="remark" />
+                                            name="remark" value="{{ $variable_asset->remark }}" />
                                         @error('remark')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -79,6 +80,14 @@
                                         <label for="TagifyBasic" class="form-label"
                                             style="font-weight: bold">Size</label>
                                         <select class="select2entry form-select" multiple name="sizes[]">
+                                            @php
+                                                $sizes = explode(',', $variable_asset->sizes);
+                                            @endphp
+                                            @foreach ($sizes as $key => $value)
+                                                <option selected="selected">
+                                                    {{ $value }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -96,5 +105,5 @@
 @endsection
 
 @section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreVariableAssets', '#create-form') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateVariableAssets', '#edit-form') !!}
 @endsection

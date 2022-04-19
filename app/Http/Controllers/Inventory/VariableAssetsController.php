@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreVariableAssets;
+use App\Http\Requests\UpdateVariableAssets;
 use App\Models\MainWarehouse;
 use App\Models\VariableAssets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class VariableAssetsController extends Controller
 {
@@ -38,7 +41,7 @@ class VariableAssetsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVariableAssets $request)
     {
         $variable_assets = new VariableAssets();
         $variable_assets->main_warehouse_id = $request->main_warehouse;
@@ -46,6 +49,12 @@ class VariableAssetsController extends Controller
         $variable_assets->unit = $request->unit;
         $variable_assets->qty = $request->qty;
         $variable_assets->remark = $request->remark;
+        if ($request->has('sizes')) {
+            $sizes = $request->sizes;
+            $variable_assets->sizes = implode(',', $sizes);
+        } else {
+            $variable_assets->sizes = 'null';
+        }
         $variable_assets->save();
         return redirect()->back()->with('success', 'Created successfully.');
     }
@@ -69,7 +78,9 @@ class VariableAssetsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mainwarehouses = MainWarehouse::all();
+        $variable_asset = VariableAssets::findOrFail($id);
+        return view('inventory.variable_assets.edit', compact('variable_asset', 'mainwarehouses'));
     }
 
     /**
@@ -79,9 +90,23 @@ class VariableAssetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateVariableAssets $request, $id)
     {
-        //
+        $variable_assets = VariableAssets::findOrFail($id);
+        $variable_assets->main_warehouse_id = $request->main_warehouse;
+        $variable_assets->item_name = $request->item_name;
+        $variable_assets->unit = $request->unit;
+        $variable_assets->qty = $request->qty;
+        $variable_assets->remark = $request->remark;
+
+        if ($request->has('sizes')) {
+            $sizes = $request->sizes;
+            $variable_assets->sizes = implode(',', $sizes);
+        } else {
+            $variable_assets->sizes = 'null';
+        }
+        $variable_assets->update();
+        return redirect()->back()->with('success', 'Updated successfully.');
     }
 
     /**

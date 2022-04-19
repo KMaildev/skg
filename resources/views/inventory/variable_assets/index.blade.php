@@ -6,7 +6,7 @@
 
                 <div class="card-body">
                     <div class="card-title header-elements">
-                        <h5 class="m-0 me-2">Fixed Assets</h5>
+                        <h5 class="m-0 me-2">Variable Assets</h5>
                         <div class="card-title-elements ms-auto">
                             @include('layouts.includes.export')
 
@@ -21,7 +21,6 @@
                     </div>
                 </div>
 
-
                 <div class="table-responsive text-nowrap">
                     <table class="table table-bordered table-sm" id="export_excel">
                         <thead class="tbbg">
@@ -29,6 +28,7 @@
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
                                 <th style="color: white; text-align: center;">Item Name</th>
                                 <th style="color: white; text-align: center;">Unit</th>
+                                <th style="color: white; text-align: center;">Size</th>
                                 <th style="color: white; text-align: center;">Original(Qty)</th>
                                 <th style="color: white; text-align: center;">Request(Qty)</th>
                                 <th style="color: white; text-align: center;">Remaining Balance</th>
@@ -51,6 +51,11 @@
                                     <td style="text-align: center;">
                                         {{ $variable_asset->unit ?? '-' }}
                                     </td>
+
+                                    <td style="text-align: center;">
+                                        {{ $variable_asset->sizes ?? '' }}
+                                    </td>
+
                                     <td style="text-align: center;">
                                         {{ number_format($variable_asset->qty) }}
                                     </td>
@@ -72,10 +77,10 @@
                                         {{ $variable_asset->qty - $site_on_hand_total }}
                                     </td>
 
-
                                     <td style="text-align: center;">
                                         {{ $variable_asset->remark }}
                                     </td>
+
                                     <td style="text-align: center;">
                                         <div class="btn-group">
                                             <button class="btn btn-info btn-xs dropdown-toggle" type="button"
@@ -85,8 +90,9 @@
                                             <ul class="dropdown-menu">
 
                                                 <li>
-                                                    <a href="#" class="dropdown-item">
-                                                        Request Item Detail
+                                                    <a href="{{ route('variable_assets.edit', $variable_asset->id) }}"
+                                                        class="dropdown-item">
+                                                        Edit
                                                     </a>
                                                 </li>
 
@@ -100,6 +106,14 @@
                                                             id="confirm-text" data-toggle="tooltip">Delete</button>
                                                     </form>
                                                 </li>
+
+                                                <li>
+                                                    <a href="#" class="dropdown-item">
+                                                        Request Item Detail
+                                                    </a>
+                                                </li>
+
+
                                             </ul>
                                         </div>
                                     </td>
@@ -107,7 +121,7 @@
                             @endforeach
                         </tbody>
                         <tr>
-                            <th colspan="3">Total</th>
+                            <th colspan="4">Total</th>
                             <th style="text-align: center; font-weight: bold">
                                 {{ $variable_assets->sum('qty') }}
                             </th>

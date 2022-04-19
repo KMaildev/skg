@@ -19,9 +19,14 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 <script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<script src="{{ asset('assets/js/forms-selects.js') }}"></script>
+
+
+{{-- <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/js/forms-selects.js') }}"></script> --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+<script src="{{ asset('js/selects_form.js') }}"></script>
 
 <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
@@ -42,6 +47,11 @@
 <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/daterangepicker.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+
+
+<script src="{{ asset('assets/vendor/libs/tagify/tagify.js') }}"></script>
+<script src="{{ asset('assets/js/forms-tagify.js') }}"></script>
+
 @yield('script')
 
 <script type="text/javascript">
