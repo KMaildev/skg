@@ -53,6 +53,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('variable_assets_request', 'ManageVariableRequest\VariableAssetsRequestController');
     Route::resource('variable_accept_reject_status', 'ManageVariableRequest\VariableAcceptRejectStatusController');
+    Route::resource('variable_qs_team_check', 'ManageVariableRequest\VariableQsTeamCheckController');
+
+    Route::get('variable_qs_team_check_create/{id}', [
+        'as' => 'variable_qs_team_check_create',
+        'uses' => 'ManageVariableRequest\VariableQsTeamCheckController@create'
+    ]);
 
 
     //Project
@@ -134,7 +140,6 @@ Route::middleware('auth')->group(function () {
     ]);
 
 
-
     //HR
     Route::resource('hrdashboard', 'HrDashboardController');
     Route::resource('engineer', 'hr\EngineerController');
@@ -151,7 +156,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('employee', 'EmployeeController');
     Route::resource('profile', 'ProfileController');
     Route::resource('changepassword', 'ChangePasswordController');
-
 
 
     // Inventory Route

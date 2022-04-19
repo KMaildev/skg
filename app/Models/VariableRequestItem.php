@@ -15,4 +15,9 @@ class VariableRequestItem extends Model
     {
         return $this->belongsTo(VariableAssets::class, 'variable_asset_id', 'id');
     }
+
+    public function variable_qs_team_checks_table()
+    {
+        return $this->hasMany(VariableQsTeamCheck::class, 'variable_request_item_id', 'id');
+    }
 }

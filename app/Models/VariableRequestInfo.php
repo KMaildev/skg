@@ -16,4 +16,9 @@ class VariableRequestInfo extends Model
     {
         return $this->hasMany(VariableRequestItem::class);
     }
+
+    public function customer_table()
+    {
+        return $this->belongsTo(Customers::class, 'customer_id', 'id');
+    }
 }

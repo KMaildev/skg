@@ -130,6 +130,14 @@
                                         )
                                     </td>
 
+                                    {{-- QS Team Check & Pass --}}
+                                    <td style="text-align: center">
+                                        @include(
+                                            'shared.variable_assets_request.manager.qs_team_check_pass_status',
+                                            ['request_info' => $request_info]
+                                        )
+                                    </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
