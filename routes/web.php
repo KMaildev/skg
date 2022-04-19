@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('variable_assets_size', 'Inventory\VariableAssetsSizeController');
     Route::get('variable_assets_size_ajax/{id}', array('as' => 'variable_assets_size_ajax', 'uses' => 'Inventory\VariableAssetsSizeController@getAllVariableAssetsSizes'));
 
+    Route::resource('variable_assets_request', 'ManageVariableRequest\VariableAssetsRequestController');
+    Route::resource('variable_accept_reject_status', 'ManageVariableRequest\VariableAcceptRejectStatusController');
 
 
     //Project

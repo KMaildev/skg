@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ route('variable_assets.index') }}" class="menu-link">
+                        <a href="{{ route('variable_assets_request.index') }}" class="menu-link">
                             <div data-i2n="Without menu">Variable Assets Request</div>
                         </a>
                     </li>
