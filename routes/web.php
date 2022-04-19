@@ -48,6 +48,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
     Route::resource('managerequest', 'Inventory\ManageRequestController');
+    Route::resource('variable_assets_size', 'Inventory\VariableAssetsSizeController');
+    Route::get('variable_assets_size_ajax/{id}', array('as' => 'variable_assets_size_ajax', 'uses' => 'Inventory\VariableAssetsSizeController@getAllVariableAssetsSizes'));
+
 
 
     //Project
@@ -127,8 +130,6 @@ Route::middleware('auth')->group(function () {
         'as' => 'contractcreate.create',
         'uses' => 'ContractController@create'
     ]);
-
-
 
 
 

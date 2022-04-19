@@ -7,6 +7,7 @@ use App\Http\Requests\StoreVariableAssets;
 use App\Http\Requests\UpdateVariableAssets;
 use App\Models\MainWarehouse;
 use App\Models\VariableAssets;
+use App\Models\VariableAssetsSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -56,6 +57,19 @@ class VariableAssetsController extends Controller
             $variable_assets->sizes = 'null';
         }
         $variable_assets->save();
+
+        $variable_asset_id = $variable_assets->id;
+        if ($request->has('sizes')) {
+            $sizes = $request->sizes;
+            foreach ($sizes as $key => $value) {
+                $insert[$key]['size'] = $value;
+                $insert[$key]['variable_asset_id'] = $variable_asset_id;
+                $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
+                $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            }
+            VariableAssetsSize::insert($insert);
+        }
+
         return redirect()->back()->with('success', 'Created successfully.');
     }
 
@@ -106,6 +120,21 @@ class VariableAssetsController extends Controller
             $variable_assets->sizes = 'null';
         }
         $variable_assets->update();
+
+        // variable_assets_sizes update & delete
+        $variable_assets_sizes = VariableAssetsSize::get()->where('variable_asset_id', $id);
+        $variable_assets_sizes->each->delete();
+        if ($request->has('sizes')) {
+            $sizes = $request->sizes;
+            foreach ($sizes as $key => $value) {
+                $insert[$key]['size'] = $value;
+                $insert[$key]['variable_asset_id'] = $id;
+                $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
+                $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            }
+            VariableAssetsSize::insert($insert);
+        }
+
         return redirect()->back()->with('success', 'Updated successfully.');
     }
 

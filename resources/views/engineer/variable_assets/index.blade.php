@@ -6,7 +6,7 @@
 
                 <div class="card-body">
                     <div class="card-title header-elements">
-                        <h5 class="m-0 me-2">Variable Assets</h5>
+                        <h5 class="m-0 me-2">Variable Assets Request</h5>
                         <div class="card-title-elements ms-auto">
                             @include('layouts.includes.export')
 

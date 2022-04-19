@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Engineer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreVariableRequestInfo;
 use App\Models\FixedAssets;
 use App\Models\VariableAssets;
 use App\Models\VariableRequestInfo;
@@ -43,7 +44,7 @@ class EngineerVariableAssetsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVariableRequestInfo $request)
     {
         $user_id = auth()->user()->id;
         $variable_asset = new VariableRequestInfo();
@@ -57,6 +58,7 @@ class EngineerVariableAssetsController extends Controller
         foreach ($request->returnItemFields as $key => $value) {
             $insert[$key]['variable_asset_id'] = $value['item_name'];
             $insert[$key]['quantity'] = $value['quantity'];
+            $insert[$key]['size'] = $value['size'];
             $insert[$key]['user_id'] = $user_id;
             $insert[$key]['variable_request_info_id'] = $variable_asset_id;
             $insert[$key]['created_at'] =  date('Y-m-d H:i:s');

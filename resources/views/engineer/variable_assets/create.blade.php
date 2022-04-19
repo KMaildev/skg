@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname"
-                                            style="font-weight: bold">Code</label>
+                                            style="font-weight: bold">Request Code</label>
                                         <input type="text" class="form-control @error('code') is-invalid @enderror"
                                             name="code" />
                                         @error('code')
@@ -32,7 +32,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Date</label>
-                                        <input type="date" class="form-control" placeholder="Month DD, YYYY"
+                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
                                             id="flatpickr-human-friendly" name="date"
                                              />
                                         @error('date')
@@ -41,7 +41,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="col-md-4">
                                 <div class="row">
@@ -70,21 +69,33 @@
                         <div>
                             <table class="table table-bordered" id="dynamicAddRemove" style="margin-bottom: 20px;">
                                 <tr>
-                                    <th>Item Name</th>
-                                    <th>Quantity</th>
-                                    <th>Action</th>
+                                    <th style="width: 40%; text-align: center;">Item Name & Size</th>
+                                    <th style="width: 10%; text-align: center;">Size</th>
+                                    <th style="width: 10%; text-align: center;">Quantity</th>
+                                    <th style="width: 10%; text-align: center;">Action</th>
                                 </tr>
                                 <tr>
                                     <td>
                                         <select class="select2 form-select form-select-lg" data-allow-clear="false"
                                             name="returnItemFields[0][item_name]" id="item_name">
-                                            <option value="">--Please Item Name--</option>
+                                            <option value="">--Item Name--</option>
                                             @foreach ($variable_assets as $key => $value)
                                                 <option value="{{ $value->id }}">
                                                     {{ $value->item_name ?? '-' }}
+                                                    @if ($value->sizes)
+                                                        = Size : 
+                                                        {{ $value->sizes }}
+                                                    @endif
                                                 </option>
                                             @endforeach
                                         </select>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="form-control" name="returnItemFields[0][size]" />
+                                        @error('size')
+                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
                                     </td>
 
                                     <td>
@@ -114,7 +125,7 @@
 @endsection
 
 @section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreEngineerReturn', '#create-form') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\StoreVariableRequestInfo', '#create-form') !!}
 
     <script>
         $(document).ready(function() {
@@ -123,12 +134,30 @@
                 ++i;
                 console.log(i);
                 $("#dynamicAddRemove").append(
-                    '<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]"> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}">{{ $value->item_name ?? '-' }}</option> @endforeach </select></td > <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr> '
+                    '<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]"> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}">{{ $value->item_name ?? '-' }} @if ($value->sizes) = Size : {{ $value->sizes }} @endif</option> @endforeach </select></td ><td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][size]" /> </td> <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr> '
                 );
             });
             $(document).on('click', '.remove-input-field', function() {
                 $(this).parents('tr').remove();
             });
         });
+    </script>
+
+
+    <script type="text/javascript">
+        function getVariableAssetsSizes(sel)
+        {
+            var variable_asset_id = sel.value;
+            if (variable_asset_id) {
+                $.ajax({
+                    url: '/variable_assets_size_ajax/' + variable_asset_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data)
+                    }
+                });
+            }
+        }
     </script>
 @endsection
