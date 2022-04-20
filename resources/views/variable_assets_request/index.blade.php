@@ -138,6 +138,39 @@
                                         )
                                     </td>
 
+                                    {{-- Logistics Team Check --}}
+                                    <td style="text-align: center">
+                                        @include(
+                                            'shared.variable_assets_request.manager.logistics_team_check_status',
+                                            [
+                                                'request_info' => $request_info,
+                                            ]
+                                        )
+                                    </td>
+
+                                    {{-- Management --}}
+                                    <td style="text-align: center">
+                                        @include(
+                                            'shared.variable_assets_request.manager.management_accept_reject_status',
+                                            [
+                                                'request_info' => $request_info,
+                                            ]
+                                        )
+                                    </td>
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <td style="text-align: center; font-size: 13px;">
+                                        @include(
+                                            'shared.variable_assets_request.manager.variable_actual_voucher',
+                                            ['request_info' => $request_info]
+                                        )
+                                    </td>
+
+
+
                                 </tr>
                             @endforeach
                         </tbody>

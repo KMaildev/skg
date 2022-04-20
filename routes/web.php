@@ -60,6 +60,12 @@ Route::middleware('auth')->group(function () {
         'uses' => 'ManageVariableRequest\VariableQsTeamCheckController@create'
     ]);
 
+    Route::resource('management_accept_reject', 'ManageVariableRequest\ManagementVariableAcceptRejectStatusController');
+    Route::resource('variable_actual_voucher', 'ManageVariableRequest\VariableActualVoucherController');
+    Route::get('variable_actual_voucher_upload/{id}', [
+        'as' => 'variable_actual_voucher_upload',
+        'uses' => 'ManageVariableRequest\VariableActualVoucherController@actual_voucher_upload'
+    ]);
 
     //Project
     Route::resource('projectdashboard', 'Project\ProjectDashboardController');
