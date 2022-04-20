@@ -30,7 +30,6 @@ $floorPlanStatus = $ednDateArr[1];
                     aria-valuemin="100" aria-valuemax="100"></div>
             </div>
             <div class="d-flex justify-content-between mb-1">
-
                 <span>
                     <a href="{{ route('floorplan.show', $project->id) }}">
                         View File

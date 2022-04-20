@@ -65,9 +65,6 @@
                                 <th style="color: white; text-align: center; width: 14%">
                                     Finance
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
-                                    Action
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,6 +159,7 @@
                                     <td></td>
                                     <td></td>
 
+                                    {{-- Actual Voucher --}}
                                     <td style="text-align: center; font-size: 13px;">
                                         @include(
                                             'shared.variable_assets_request.manager.variable_actual_voucher',
@@ -170,6 +168,15 @@
                                     </td>
 
 
+                                    {{-- Finance --}}
+                                    <td style="text-align: center; font-size: 13px;">
+                                        @include(
+                                            'shared.variable_assets_request.manager.variable_finance_payment_slip',
+                                            [
+                                                'request_info' => $request_info,
+                                            ]
+                                        )
+                                    </td>
 
                                 </tr>
                             @endforeach

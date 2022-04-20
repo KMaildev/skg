@@ -54,10 +54,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('variable_assets_request', 'ManageVariableRequest\VariableAssetsRequestController');
     Route::resource('variable_accept_reject_status', 'ManageVariableRequest\VariableAcceptRejectStatusController');
     Route::resource('variable_qs_team_check', 'ManageVariableRequest\VariableQsTeamCheckController');
-
     Route::get('variable_qs_team_check_create/{id}', [
         'as' => 'variable_qs_team_check_create',
         'uses' => 'ManageVariableRequest\VariableQsTeamCheckController@create'
+    ]);
+
+    Route::resource('variable_logistics_team_check', 'ManageVariableRequest\VariableLogisticsTeamCheckController');
+    Route::get('variable_logistics_check_create/{id}', [
+        'as' => 'variable_logistics_check_create',
+        'uses' => 'ManageVariableRequest\VariableLogisticsTeamCheckController@create'
     ]);
 
     Route::resource('management_accept_reject', 'ManageVariableRequest\ManagementVariableAcceptRejectStatusController');
@@ -65,6 +70,12 @@ Route::middleware('auth')->group(function () {
     Route::get('variable_actual_voucher_upload/{id}', [
         'as' => 'variable_actual_voucher_upload',
         'uses' => 'ManageVariableRequest\VariableActualVoucherController@actual_voucher_upload'
+    ]);
+
+    Route::resource('variable_finance', 'ManageVariableRequest\VariableFinancePaymentSlipController');
+    Route::get('finance_payslip_upload/{id}', [
+        'as' => 'finance_payslip_upload',
+        'uses' => 'ManageVariableRequest\VariableFinancePaymentSlipController@payment_slip_upload'
     ]);
 
     //Project

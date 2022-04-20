@@ -1,5 +1,5 @@
 @if ($request_info->logistics_team_check)
-    <a href="{{ route('logistics_team_check_create', ['id' => $request_info->id]) }}">
+    <a href="{{ route('variable_logistics_check_create', ['id' => $request_info->id]) }}">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>Finished</span>
@@ -14,7 +14,7 @@
         </div>
     </a>
 @else
-    <a href="{{ route('logistics_team_check_create', ['id' => $request_info->id]) }}">
+    <a href="{{ route('variable_logistics_check_create', ['id' => $request_info->id]) }}">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>No</span>

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\ManageVariableRequest;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreVariableActualVouchers;
-use App\Models\VariableActualVoucher;
+use App\Http\Requests\StoreVariableFinancePaymentSlips;
+use App\Models\VariableFinancePaymentSlip;
 use App\Models\VariableRequestInfo;
 use Illuminate\Http\Request;
 
-class VariableActualVoucherController extends Controller
+class VariableFinancePaymentSlipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,6 +27,7 @@ class VariableActualVoucherController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -35,20 +36,19 @@ class VariableActualVoucherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreVariableActualVouchers $request)
+    public function store(StoreVariableFinancePaymentSlips $request)
     {
         $id = $request->variable_request_info_id;
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $key => $file) {
-                $path = $file->store('public/actual_voucher');
+                $path = $file->store('public/variable_finance_payment_slip');
                 $original_name = $file->getClientOriginalName();
-
-                $insert[$key]['actual_voucher_file'] = $path;
+                $insert[$key]['finance_payment_slip_file'] = $path;
                 $insert[$key]['original_name'] = $original_name;
                 $insert[$key]['variable_request_info_id'] = $request->variable_request_info_id;
-                $insert[$key]['actual_voucher_upload_status'] = 'finished';
-                $insert[$key]['actual_voucher_upload_date'] = date('Y-m-d H:i:sa');
+                $insert[$key]['finance_payment_slip_upload'] = 'finished';
+                $insert[$key]['finance_payment_slip_upload_date'] = date('Y-m-d H:i:sa');
                 $insert[$key]['remark'] = $request->remark;
                 $insert[$key]['user_id'] = auth()->user()->id;
                 $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
@@ -56,11 +56,11 @@ class VariableActualVoucherController extends Controller
             }
         }
 
-        VariableActualVoucher::insert($insert);
+        VariableFinancePaymentSlip::insert($insert);
 
         $request_info = VariableRequestInfo::findOrFail($id);
-        $request_info->actual_voucher_upload = 'finished';
-        $request_info->actual_voucher_upload_date = date('Y-m-d H:i:sa');
+        $request_info->finance_payment_slip_upload = 'finished';
+        $request_info->finance_payment_slip_upload_date = date('Y-m-d H:i:sa');
         $request_info->update();
         return redirect()->back()->with('success', 'Your processing has been completed.');
     }
@@ -73,8 +73,8 @@ class VariableActualVoucherController extends Controller
      */
     public function show($id)
     {
-        $variable_actual_vouchers = VariableActualVoucher::get()->where('variable_request_info_id', $id);
-        return view('variable_assets_request.variable_actual_voucher.show', compact('variable_actual_vouchers'));
+        $finance_payment_slips = VariableFinancePaymentSlip::get()->where('variable_request_info_id', $id);
+        return view('variable_assets_request.finance_payment_slip.show', compact('finance_payment_slips'));
     }
 
     /**
@@ -111,9 +111,10 @@ class VariableActualVoucherController extends Controller
         //
     }
 
-    public function actual_voucher_upload($id = null)
+
+    public function payment_slip_upload($id = null)
     {
         $request_info = VariableRequestInfo::findOrFail($id);
-        return view('variable_assets_request.variable_actual_voucher.create', compact('request_info'));
+        return view('variable_assets_request.finance_payment_slip.create', compact('request_info'));
     }
 }

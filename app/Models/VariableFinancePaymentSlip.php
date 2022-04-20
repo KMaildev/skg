@@ -5,7 +5,7 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class VariableActualVoucher extends Model
+class VariableFinancePaymentSlip extends Model
 {
     public function users_table()
     {
