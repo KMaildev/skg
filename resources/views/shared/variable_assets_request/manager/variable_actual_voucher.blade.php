@@ -33,7 +33,7 @@
         <div class="d-flex justify-content-between mb-1">
             <span>No</span>
         </div>
-        <div class="progress" style="height:6px;">
+        <div class="progress" style="height: 3px;">
             <div class="progress-bar bg-danger" style="width: 100%" role="progressbar" aria-valuenow="100"
                 aria-valuemin="100" aria-valuemax="100"></div>
         </div>

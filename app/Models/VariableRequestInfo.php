@@ -21,4 +21,9 @@ class VariableRequestInfo extends Model
     {
         return $this->belongsTo(Customers::class, 'customer_id', 'id');
     }
+
+    public function variable_logistics_team_sends_table()
+    {
+        return $this->belongsTo(VariableLogisticsTeamSend::class, 'id', 'variable_request_info_id');
+    }
 }

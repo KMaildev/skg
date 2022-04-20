@@ -51,6 +51,9 @@
                                     Management
                                 </th>
                                 <th style="color: white; text-align: center; width: 14%">
+                                    Logistics Team Send
+                                </th>
+                                <th style="color: white; text-align: center; width: 14%">
                                     Transferred from
                                 </th>
                                 <th style="color: white; text-align: center; width: 14%">
@@ -155,9 +158,35 @@
                                         )
                                     </td>
 
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    {{-- Logistics Team Send --}}
+                                    <td>
+                                        @include(
+                                            'shared.variable_assets_request.manager.logistics_team_send_status',
+                                            [
+                                                'request_info' => $request_info,
+                                            ]
+                                        )
+                                    </td>
+
+                                    {{-- Transferred from --}}
+                                    <td>
+                                        {{ $request_info->variable_logistics_team_sends_table->main_warehouses_table->warehouse_code ?? '' }}
+                                    </td>
+
+                                    {{-- Transferred to --}}
+                                    <td>
+                                        {{ $request_info->variable_logistics_team_sends_table->transfer_to ?? '' }}
+                                    </td>
+
+                                    <!-- Received by Engineer -->
+                                    <td style="text-align: center; font-size: 13px;">
+                                        @include(
+                                            'shared.variable_assets_request.manager.received_by_engineer_status',
+                                            [
+                                                'request_info' => $request_info,
+                                            ]
+                                        )
+                                    </td>
 
                                     {{-- Actual Voucher --}}
                                     <td style="text-align: center; font-size: 13px;">
@@ -177,6 +206,8 @@
                                             ]
                                         )
                                     </td>
+
+
 
                                 </tr>
                             @endforeach

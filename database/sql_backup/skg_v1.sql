@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 19, 2022 at 09:03 PM
+-- Generation Time: Apr 20, 2022 at 08:57 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -507,6 +507,30 @@ INSERT INTO `main_warehouses` (`id`, `warehouse_code`, `warehouse_name`, `locati
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `management_variable_accept_reject_statuses`
+--
+
+CREATE TABLE `management_variable_accept_reject_statuses` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `management_accept_reject_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `management_accept_reject_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `management_variable_accept_reject_statuses`
+--
+
+INSERT INTO `management_variable_accept_reject_statuses` (`id`, `user_id`, `management_accept_reject_status`, `management_accept_reject_date`, `variable_request_info_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 'accept', '2022-04-20 21:26:09pm', 3, '2022-04-20 14:56:09', '2022-04-20 14:56:09'),
+(2, 1, 'reject', '2022-04-20 21:26:28pm', 1, '2022-04-20 14:56:28', '2022-04-20 14:56:28');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `materials`
 --
 
@@ -636,7 +660,18 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (0, '2022_04_20_000631_add_accept_reject_fields_to_variable_request_infos_table', 75),
 (0, '2022_04_20_000739_create_variable_accept_reject_statuses_table', 76),
 (0, '2022_04_20_004952_add_qs_team_check_status_fields_to_variable_request_infos_table', 77),
-(0, '2022_04_20_010142_create_variable_qs_team_checks_table', 78);
+(0, '2022_04_20_010142_create_variable_qs_team_checks_table', 78),
+(0, '2022_04_20_210838_create_management_variable_accept_reject_statuses_table', 79),
+(0, '2022_04_20_213721_add_actual_voucher_fields_to_variable_request_infos_table', 80),
+(0, '2022_04_20_214411_create_variable_actual_vouchers_table', 81),
+(0, '2022_04_20_215701_add_remark_to_variable_actual_vouchers_table', 82),
+(0, '2022_04_20_224200_create_variable_finance_payment_slips_table', 83),
+(0, '2022_04_21_001049_create_variable_received_by_engineers_table', 84),
+(0, '2022_04_21_003353_add_logistics_team_send_fields_to_variable_request_infos_table', 85),
+(0, '2022_04_21_003714_create_variable_logistics_team_sends_table', 86),
+(0, '2022_04_21_010126_remove_transfer_from_from_variable_logistics_team_sends_table', 87),
+(0, '2022_04_21_010327_add_transfer_to_customer_id_to_variable_logistics_team_sends_table', 88),
+(0, '2022_04_21_010932_add_remark_to_variable_logistics_team_sends_table', 89);
 
 -- --------------------------------------------------------
 
@@ -1450,7 +1485,46 @@ INSERT INTO `variable_accept_reject_statuses` (`id`, `user_id`, `accept_reject_s
 (1, 1, 'accept', '2022-04-20', 3, '2022-04-19 17:48:40', '2022-04-19 17:48:40'),
 (2, 1, 'reject', '2022-04-20', 3, '2022-04-19 17:49:11', '2022-04-19 17:49:11'),
 (3, 1, 'accept', '2022-04-20', 1, '2022-04-19 17:49:23', '2022-04-19 17:49:23'),
-(4, 1, 'accept', '2022-04-20', 3, '2022-04-19 17:49:27', '2022-04-19 17:49:27');
+(4, 1, 'accept', '2022-04-20', 3, '2022-04-19 17:49:27', '2022-04-19 17:49:27'),
+(5, 1, 'accept', '2022-04-20', 3, '2022-04-20 14:45:39', '2022-04-20 14:45:39'),
+(6, 1, 'accept', '2022-04-20', 3, '2022-04-20 14:46:39', '2022-04-20 14:46:39'),
+(7, 1, 'accept', '2022-04-20', 3, '2022-04-20 14:48:46', '2022-04-20 14:48:46'),
+(8, 1, 'accept', '2022-04-20', 2, '2022-04-20 14:48:52', '2022-04-20 14:48:52'),
+(9, 1, 'accept', '2022-04-20', 3, '2022-04-20 14:50:29', '2022-04-20 14:50:29'),
+(10, 1, 'accept', '2022-04-20', 3, '2022-04-20 14:50:42', '2022-04-20 14:50:42'),
+(11, 1, 'accept', '2022-04-20', 3, '2022-04-20 14:52:36', '2022-04-20 14:52:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variable_actual_vouchers`
+--
+
+CREATE TABLE `variable_actual_vouchers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `actual_voucher_upload_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actual_voucher_upload_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actual_voucher_file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `original_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `remark` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variable_actual_vouchers`
+--
+
+INSERT INTO `variable_actual_vouchers` (`id`, `user_id`, `actual_voucher_upload_status`, `actual_voucher_upload_date`, `actual_voucher_file`, `original_name`, `variable_request_info_id`, `created_at`, `updated_at`, `remark`) VALUES
+(1, 1, 'finished', '2022-04-20 22:04:41pm', 'public/actual_voucher/xlyQZUeIA3m1qqu5ZeLMRfykMQVN5FbSKlZvPA6J.png', 'bank.png', 3, '2022-04-20 15:34:41', '2022-04-20 15:34:41', 'Ok'),
+(2, 1, 'finished', '2022-04-20 22:06:36pm', 'public/actual_voucher/Sad7APbiwKEtbRMa2NQMORIf55hKWYArNXHKgSpY.webp', 'Bank.webp', 3, '2022-04-20 15:36:36', '2022-04-20 15:36:36', 'Ok'),
+(3, 1, 'finished', '2022-04-20 22:08:50pm', 'public/actual_voucher/xWmFGFyhYaPAeymtOWrPfCzu04RJDZHrHAFxMyuo.webp', 'Bank.webp', 3, '2022-04-20 15:38:50', '2022-04-20 15:38:50', NULL),
+(4, 1, 'finished', '2022-04-20 22:11:04pm', 'public/actual_voucher/0OGmNidMzKEKuArcIfXYsdDhR27Pv2WXvLeZoifl.webp', 'Bank.webp', 3, '2022-04-20 15:41:04', '2022-04-20 15:41:04', NULL),
+(5, 1, 'finished', '2022-04-20 22:13:07pm', 'public/actual_voucher/Oy2DYyQqMUqSgfZUdVTBSaeXFXNY7wkgUyAA7gWC.webp', 'Bank.webp', 3, '2022-04-20 15:43:07', '2022-04-20 15:43:07', NULL),
+(6, 1, 'finished', '2022-04-20 22:14:26pm', 'public/actual_voucher/EDSbddY3f44Br2fmgT6nXscYXXFSxCGHMnVplfJj.png', 'bank.png', 3, '2022-04-20 15:44:26', '2022-04-20 15:44:26', NULL),
+(7, 1, 'finished', '2022-04-20 22:14:55pm', 'public/actual_voucher/vFGCGsYE9Upxm8KAF1AMr0gLMzjFbEhsQ0jFcbcd.webp', 'Bank.webp', 2, '2022-04-20 15:44:55', '2022-04-20 15:44:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -1512,6 +1586,61 @@ INSERT INTO `variable_assets_sizes` (`id`, `variable_asset_id`, `size`, `created
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `variable_finance_payment_slips`
+--
+
+CREATE TABLE `variable_finance_payment_slips` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `finance_payment_slip_upload` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `finance_payment_slip_upload_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `finance_payment_slip_file` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `original_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `remark` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variable_finance_payment_slips`
+--
+
+INSERT INTO `variable_finance_payment_slips` (`id`, `user_id`, `finance_payment_slip_upload`, `finance_payment_slip_upload_date`, `finance_payment_slip_file`, `original_name`, `variable_request_info_id`, `remark`, `created_at`, `updated_at`) VALUES
+(1, 1, 'finished', '2022-04-20 23:00:11pm', 'public/actual_voucher/C0Q9ded3VhYDwtQPnLrLGoMKRYZW9a1Za8nzuD8Z.png', 'bank.png', 3, NULL, '2022-04-20 16:30:11', '2022-04-20 16:30:11'),
+(2, 1, 'finished', '2022-04-20 23:03:53pm', 'public/variable_finance_payment_slip/ieh2wEaq04H6v5KqgfQivIxIcWKBS5Q6uE5J1ReL.pdf', 'sample.pdf', 2, NULL, '2022-04-20 16:33:53', '2022-04-20 16:33:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variable_logistics_team_sends`
+--
+
+CREATE TABLE `variable_logistics_team_sends` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `transfer_from_warehouse_id` int(11) DEFAULT NULL,
+  `transfer_to` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sent_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variable_request_info_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `transfer_to_customer_id` int(11) DEFAULT NULL,
+  `remark` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variable_logistics_team_sends`
+--
+
+INSERT INTO `variable_logistics_team_sends` (`id`, `transfer_from_warehouse_id`, `transfer_to`, `sent_date`, `user_id`, `variable_request_info_id`, `created_at`, `updated_at`, `transfer_to_customer_id`, `remark`) VALUES
+(1, 1, 'YGN_KGG_00029', '2022-04-21 12:00 AM', '1', '4', '2022-04-20 18:41:53', '2022-04-20 18:41:53', 30, NULL),
+(3, 1, 'YGN_DGSK_0001', '2022-04-21 12:00 AM', '1', '1', '2022-04-20 18:43:12', '2022-04-20 18:43:12', 2, NULL),
+(4, 1, 'YGN_DGSK_0001', '2022-04-21 12:00 AM', '1', '3', '2022-04-20 18:56:09', '2022-04-20 18:56:09', 2, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `variable_qs_team_checks`
 --
 
@@ -1538,6 +1667,30 @@ INSERT INTO `variable_qs_team_checks` (`id`, `user_id`, `variable_request_item_i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `variable_received_by_engineers`
+--
+
+CREATE TABLE `variable_received_by_engineers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `received_by_engineer_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `received_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variable_received_by_engineers`
+--
+
+INSERT INTO `variable_received_by_engineers` (`id`, `user_id`, `received_by_engineer_status`, `received_date`, `variable_request_info_id`, `created_at`, `updated_at`) VALUES
+(1, 20, 'received', '2022-04-21 12:00 AM', 2, '2022-04-20 17:46:58', '2022-04-20 17:46:58'),
+(2, 20, 'received', '2022-04-21 12:00 AM', 3, '2022-04-20 18:56:27', '2022-04-20 18:56:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `variable_request_infos`
 --
 
@@ -1558,17 +1711,24 @@ CREATE TABLE `variable_request_infos` (
   `management_accept_reject_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `management_accept_reject_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `received_by_engineer_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `received_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `received_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actual_voucher_upload` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actual_voucher_upload_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `finance_payment_slip_upload` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `finance_payment_slip_upload_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logistics_team_send_status` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logistics_team_send_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `variable_request_infos`
 --
 
-INSERT INTO `variable_request_infos` (`id`, `code`, `date`, `customer_id`, `engineer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `qs_team_check_date`, `logistics_team_check`, `logistics_team_check_date`, `management_accept_reject_status`, `management_accept_reject_date`, `received_by_engineer_status`, `received_date`) VALUES
-(1, 'R-00001', '2022-04-19', 2, 20, '2022-04-19 09:25:13', '2022-04-19 19:02:54', 'accept', '2022-04-20 00:19:23am', 'finished', '2022-04-20 01:32:54am', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'R-00001', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 15:32:29', '2022-04-19 15:32:29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'R-00002', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 16:09:50', '2022-04-19 19:02:19', 'accept', '2022-04-20 00:19:27am', 'finished', '2022-04-20 01:32:19am', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `variable_request_infos` (`id`, `code`, `date`, `customer_id`, `engineer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `qs_team_check_date`, `logistics_team_check`, `logistics_team_check_date`, `management_accept_reject_status`, `management_accept_reject_date`, `received_by_engineer_status`, `received_date`, `actual_voucher_upload`, `actual_voucher_upload_date`, `finance_payment_slip_upload`, `finance_payment_slip_upload_date`, `logistics_team_send_status`, `logistics_team_send_date`) VALUES
+(1, 'R-00001', '2022-04-19', 2, 20, '2022-04-19 09:25:13', '2022-04-20 18:43:12', 'accept', '2022-04-20 00:19:23am', 'finished', '2022-04-20 01:32:54am', NULL, NULL, 'reject', '2022-04-20 21:26:28pm', NULL, NULL, NULL, NULL, NULL, NULL, 'finished', '2022-04-21 01:13:12am'),
+(2, 'R-00001', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 15:32:29', '2022-04-20 17:46:58', 'accept', '2022-04-20 21:18:52pm', NULL, NULL, NULL, NULL, NULL, NULL, 'received', '2022-04-21 12:00 AM', 'finished', '2022-04-20 22:14:55pm', 'finished', '2022-04-20 23:03:53pm', NULL, NULL),
+(3, 'R-00002', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 16:09:50', '2022-04-20 18:56:28', 'accept', '2022-04-20 21:22:36pm', 'finished', '2022-04-20 01:32:19am', NULL, NULL, 'accept', '2022-04-20 21:26:09pm', 'received', '2022-04-21 12:00 AM', 'finished', '2022-04-20 22:14:26pm', 'finished', '2022-04-20 23:00:11pm', 'finished', '2022-04-21 01:26:09am'),
+(4, 'R-00003', '2022-04-20 12:00 AM', 30, 21, '2022-04-20 17:28:48', '2022-04-20 18:42:54', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'finished', '2022-04-21 01:12:54am');
 
 -- --------------------------------------------------------
 
@@ -1595,7 +1755,8 @@ INSERT INTO `variable_request_items` (`id`, `variable_asset_id`, `quantity`, `us
 (1, '1', '1', 20, 1, '2022-04-19 09:25:13', '2022-04-19 09:25:13', NULL),
 (2, '1', '1', 20, 2, '2022-04-19 15:32:29', '2022-04-19 15:32:29', '1.5'),
 (3, '17', '2', 20, 2, '2022-04-19 15:32:29', '2022-04-19 15:32:29', '1.5'),
-(4, '1', '1', 20, 3, '2022-04-19 16:09:50', '2022-04-19 16:09:50', '1.5');
+(4, '1', '1', 20, 3, '2022-04-19 16:09:50', '2022-04-19 16:09:50', '1.5'),
+(5, '1', '1', 21, 4, '2022-04-20 17:28:48', '2022-04-20 17:28:48', '1.5');
 
 --
 -- Indexes for dumped tables
@@ -1701,6 +1862,12 @@ ALTER TABLE `labours`
 -- Indexes for table `main_warehouses`
 --
 ALTER TABLE `main_warehouses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `management_variable_accept_reject_statuses`
+--
+ALTER TABLE `management_variable_accept_reject_statuses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1836,6 +2003,12 @@ ALTER TABLE `variable_accept_reject_statuses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `variable_actual_vouchers`
+--
+ALTER TABLE `variable_actual_vouchers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `variable_assets`
 --
 ALTER TABLE `variable_assets`
@@ -1848,9 +2021,27 @@ ALTER TABLE `variable_assets_sizes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `variable_finance_payment_slips`
+--
+ALTER TABLE `variable_finance_payment_slips`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `variable_logistics_team_sends`
+--
+ALTER TABLE `variable_logistics_team_sends`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `variable_qs_team_checks`
 --
 ALTER TABLE `variable_qs_team_checks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `variable_received_by_engineers`
+--
+ALTER TABLE `variable_received_by_engineers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1964,6 +2155,12 @@ ALTER TABLE `labours`
 --
 ALTER TABLE `main_warehouses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `management_variable_accept_reject_statuses`
+--
+ALTER TABLE `management_variable_accept_reject_statuses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `materials`
@@ -2095,7 +2292,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `variable_accept_reject_statuses`
 --
 ALTER TABLE `variable_accept_reject_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `variable_actual_vouchers`
+--
+ALTER TABLE `variable_actual_vouchers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `variable_assets`
@@ -2110,22 +2313,40 @@ ALTER TABLE `variable_assets_sizes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `variable_finance_payment_slips`
+--
+ALTER TABLE `variable_finance_payment_slips`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `variable_logistics_team_sends`
+--
+ALTER TABLE `variable_logistics_team_sends`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `variable_qs_team_checks`
 --
 ALTER TABLE `variable_qs_team_checks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `variable_received_by_engineers`
+--
+ALTER TABLE `variable_received_by_engineers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `variable_request_infos`
 --
 ALTER TABLE `variable_request_infos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `variable_request_items`
 --
 ALTER TABLE `variable_request_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

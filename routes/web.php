@@ -78,6 +78,13 @@ Route::middleware('auth')->group(function () {
         'uses' => 'ManageVariableRequest\VariableFinancePaymentSlipController@payment_slip_upload'
     ]);
 
+    Route::resource('variable_logistics_send', 'ManageVariableRequest\VariableLogisticsTeamSendController');
+    Route::get('variable_logistics_send_form/{id}', [
+        'as' => 'variable_logistics_send_form',
+        'uses' => 'ManageVariableRequest\VariableLogisticsTeamSendController@send_form'
+    ]);
+
+
     //Project
     Route::resource('projectdashboard', 'Project\ProjectDashboardController');
     Route::resource('customers', 'CustomersController');
@@ -234,4 +241,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('received_by_engineer', 'Engineer\ReceivedByEngineerController');
     Route::resource('engineer_return', 'Engineer\EngineerReturnController');
     Route::resource('engineer_variable_assets', 'Engineer\EngineerVariableAssetsController');
+    Route::resource('variable_engineer_received', 'Engineer\VariableReceivedByEngineerController');
 });
