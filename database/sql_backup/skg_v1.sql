@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 20, 2022 at 08:57 PM
+-- Generation Time: Apr 21, 2022 at 08:07 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -671,7 +671,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (0, '2022_04_21_003714_create_variable_logistics_team_sends_table', 86),
 (0, '2022_04_21_010126_remove_transfer_from_from_variable_logistics_team_sends_table', 87),
 (0, '2022_04_21_010327_add_transfer_to_customer_id_to_variable_logistics_team_sends_table', 88),
-(0, '2022_04_21_010932_add_remark_to_variable_logistics_team_sends_table', 89);
+(0, '2022_04_21_010932_add_remark_to_variable_logistics_team_sends_table', 89),
+(0, '2022_04_21_232735_create_variable_logistics_team_checks_table', 90),
+(0, '2022_04_21_234757_create_variable_payments_table', 91);
 
 -- --------------------------------------------------------
 
@@ -1613,6 +1615,34 @@ INSERT INTO `variable_finance_payment_slips` (`id`, `user_id`, `finance_payment_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `variable_logistics_team_checks`
+--
+
+CREATE TABLE `variable_logistics_team_checks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `variable_request_item_id` int(11) DEFAULT NULL,
+  `eng_request_qty` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `qs_passed_qty` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variable_asset_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variable_logistics_team_checks`
+--
+
+INSERT INTO `variable_logistics_team_checks` (`id`, `variable_request_info_id`, `user_id`, `variable_request_item_id`, `eng_request_qty`, `qs_passed_qty`, `price`, `variable_asset_id`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 4, '1', '1', '1000', 1, '2022-04-21 17:49:20', '2022-04-21 17:49:20'),
+(2, 2, 1, 2, '1', '1', '1000', 1, '2022-04-21 17:56:47', '2022-04-21 17:56:47'),
+(3, 2, 1, 3, '2', '2', '1000', 17, '2022-04-21 17:56:47', '2022-04-21 17:56:47');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `variable_logistics_team_sends`
 --
 
@@ -1641,6 +1671,32 @@ INSERT INTO `variable_logistics_team_sends` (`id`, `transfer_from_warehouse_id`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `variable_payments`
+--
+
+CREATE TABLE `variable_payments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `variable_request_info_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `transportation` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `labor` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banking_percent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `extra` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variable_payments`
+--
+
+INSERT INTO `variable_payments` (`id`, `variable_request_info_id`, `user_id`, `transportation`, `labor`, `banking_percent`, `extra`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, '1000', '1000', '10', '1000', '2022-04-21 17:49:20', '2022-04-21 17:49:20'),
+(2, 2, 1, '0', '0', '0', '0', '2022-04-21 17:56:47', '2022-04-21 17:56:47');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `variable_qs_team_checks`
 --
 
@@ -1662,7 +1718,9 @@ CREATE TABLE `variable_qs_team_checks` (
 
 INSERT INTO `variable_qs_team_checks` (`id`, `user_id`, `variable_request_item_id`, `eng_request_qty`, `qs_passed_qty`, `variable_request_info_id`, `variable_asset_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 4, '1', '1', 3, 1, '2022-04-19 19:02:19', '2022-04-19 19:02:19'),
-(2, 1, 1, '1', '1', 1, 1, '2022-04-19 19:02:54', '2022-04-19 19:02:54');
+(2, 1, 1, '1', '1', 1, 1, '2022-04-19 19:02:54', '2022-04-19 19:02:54'),
+(3, 1, 2, '1', '1', 2, 1, '2022-04-21 15:03:01', '2022-04-21 15:03:01'),
+(4, 1, 3, '2', '2', 2, 17, '2022-04-21 15:03:01', '2022-04-21 15:03:01');
 
 -- --------------------------------------------------------
 
@@ -1726,8 +1784,8 @@ CREATE TABLE `variable_request_infos` (
 
 INSERT INTO `variable_request_infos` (`id`, `code`, `date`, `customer_id`, `engineer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `qs_team_check_date`, `logistics_team_check`, `logistics_team_check_date`, `management_accept_reject_status`, `management_accept_reject_date`, `received_by_engineer_status`, `received_date`, `actual_voucher_upload`, `actual_voucher_upload_date`, `finance_payment_slip_upload`, `finance_payment_slip_upload_date`, `logistics_team_send_status`, `logistics_team_send_date`) VALUES
 (1, 'R-00001', '2022-04-19', 2, 20, '2022-04-19 09:25:13', '2022-04-20 18:43:12', 'accept', '2022-04-20 00:19:23am', 'finished', '2022-04-20 01:32:54am', NULL, NULL, 'reject', '2022-04-20 21:26:28pm', NULL, NULL, NULL, NULL, NULL, NULL, 'finished', '2022-04-21 01:13:12am'),
-(2, 'R-00001', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 15:32:29', '2022-04-20 17:46:58', 'accept', '2022-04-20 21:18:52pm', NULL, NULL, NULL, NULL, NULL, NULL, 'received', '2022-04-21 12:00 AM', 'finished', '2022-04-20 22:14:55pm', 'finished', '2022-04-20 23:03:53pm', NULL, NULL),
-(3, 'R-00002', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 16:09:50', '2022-04-20 18:56:28', 'accept', '2022-04-20 21:22:36pm', 'finished', '2022-04-20 01:32:19am', NULL, NULL, 'accept', '2022-04-20 21:26:09pm', 'received', '2022-04-21 12:00 AM', 'finished', '2022-04-20 22:14:26pm', 'finished', '2022-04-20 23:00:11pm', 'finished', '2022-04-21 01:26:09am'),
+(2, 'R-00001', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 15:32:29', '2022-04-21 17:56:47', 'accept', '2022-04-20 21:18:52pm', 'finished', '2022-04-21 21:33:01pm', 'finished', '2022-04-22 00:26:47am', NULL, NULL, 'received', '2022-04-21 12:00 AM', 'finished', '2022-04-20 22:14:55pm', 'finished', '2022-04-20 23:03:53pm', NULL, NULL),
+(3, 'R-00002', '2022-04-19 12:00 AM', 2, 20, '2022-04-19 16:09:50', '2022-04-21 17:49:20', 'accept', '2022-04-20 21:22:36pm', 'finished', '2022-04-20 01:32:19am', 'finished', '2022-04-22 00:19:20am', 'accept', '2022-04-20 21:26:09pm', 'received', '2022-04-21 12:00 AM', 'finished', '2022-04-20 22:14:26pm', 'finished', '2022-04-20 23:00:11pm', 'finished', '2022-04-21 01:26:09am'),
 (4, 'R-00003', '2022-04-20 12:00 AM', 30, 21, '2022-04-20 17:28:48', '2022-04-20 18:42:54', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'finished', '2022-04-21 01:12:54am');
 
 -- --------------------------------------------------------
@@ -2027,9 +2085,21 @@ ALTER TABLE `variable_finance_payment_slips`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `variable_logistics_team_checks`
+--
+ALTER TABLE `variable_logistics_team_checks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `variable_logistics_team_sends`
 --
 ALTER TABLE `variable_logistics_team_sends`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `variable_payments`
+--
+ALTER TABLE `variable_payments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2319,16 +2389,28 @@ ALTER TABLE `variable_finance_payment_slips`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `variable_logistics_team_checks`
+--
+ALTER TABLE `variable_logistics_team_checks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `variable_logistics_team_sends`
 --
 ALTER TABLE `variable_logistics_team_sends`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `variable_payments`
+--
+ALTER TABLE `variable_payments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `variable_qs_team_checks`
 --
 ALTER TABLE `variable_qs_team_checks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `variable_received_by_engineers`
