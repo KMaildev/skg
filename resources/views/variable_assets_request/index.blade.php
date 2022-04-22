@@ -32,11 +32,17 @@
                                 <th style="color: white; text-align: center; width: 14%">
                                     Request code
                                 </th>
-                                <th style="color: white; text-align: center; padding-right: 50px; padding-left: 50px;">
-                                    Request Items
+                                <th style="color: white; text-align: center; width: 14%">
+                                    Work Scope
                                 </th>
                                 <th style="color: white; text-align: center; width: 14%">
                                     Request Date
+                                </th>
+                                <th style="color: white; text-align: center; width: 14%">
+                                    Need Date
+                                </th>
+                                <th style="color: white; text-align: center; padding-right: 50px; padding-left: 50px;">
+                                    Request Items
                                 </th>
                                 <th style="color: white; text-align: center; width: 14%">
                                     Accept / Reject
@@ -85,6 +91,18 @@
                                         {{ $request_info->code }}
                                     </td>
 
+                                    <td style="text-align: center">
+                                        {{ $request_info->work_scope }}
+                                    </td>
+
+                                    <td style="text-align: center">
+                                        {{ $request_info->date }}
+                                    </td>
+
+                                    <td style="text-align: center">
+                                        {{ $request_info->need_date }}
+                                    </td>
+
                                     <td>
                                         <table style="width: 100%">
                                             <tr>
@@ -118,9 +136,7 @@
                                         </table>
                                     </td>
 
-                                    <td style="text-align: center">
-                                        {{ $request_info->date }}
-                                    </td>
+                                    
 
                                     {{-- Accept / Reject --}}
                                     <td style="text-align: center">

@@ -33,9 +33,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Return Date</label>
-                                        <input type="date" class="form-control" placeholder="Month DD, YYYY"
-                                            id="flatpickr-human-friendly" name="return_date"
-                                             />
+                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
+                                            name="return_date" />
                                         @error('return_date')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -122,10 +121,7 @@
             var i = 0;
             $("#dynamic-ar").click(function() {
                 ++i;
-                console.log(i);
-                $("#dynamicAddRemove").append(
-                    '<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]"> @foreach ($fixed_assets as $key => $value) <option value="{{ $value->id }}">{{ $value->item_name ?? '-' }}</option> @endforeach </select></td > <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr> '
-                );
+                $("#dynamicAddRemove").append('<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]" id="item_name"> <option value="">--Please Item Name--</option> @foreach ($fixed_assets as $key => $value) <option value="{{ $value->id }}"> {{ $value->item_name ?? '-' }} </option> @endforeach</select> </td > <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr>');
             });
             $(document).on('click', '.remove-input-field', function() {
                 $(this).parents('tr').remove();

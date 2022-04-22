@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEngineerReturn extends FormRequest
+class StoreRetrunQsTeamCheckPasses extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class StoreEngineerReturn extends FormRequest
     public function rules()
     {
         return [
-            'return_code' => 'required|unique:engineer_return_infos,return_code',
-            'return_date' => 'required',
-            'return_from' => 'required',
+            'engineer_return_info_id' => 'required',
+            'return_item_id.*' => 'required',
+            'passed_qty.*' => 'required|numeric',
         ];
     }
 }

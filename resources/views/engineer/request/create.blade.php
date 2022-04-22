@@ -11,14 +11,13 @@
                         id="create-form">
                         @csrf
 
-                        <input type="hidden" name="project_id" value="{{ $project->id }}" id="project_id">
-                        <input type="hidden" name="customer_id" value="{{ $project->customer_table->id }}">
-
+                        {{-- {{ $project->id }} --}}
+                        <input type="hidden" name="project_id" value="0" id="project_id">
 
                         <h6 class="mb-b fw-bold" style="font-weight: bold; font-size: 15px;">1. Request Info</h6>
                         <div class="row g-3">
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname"
@@ -32,13 +31,32 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="flatpickr-human-friendly"
+                                            style="font-weight: bold">Site</label>
+                                        <select class="select2 form-select form-select" data-allow-clear="false"
+                                            name="customer_id">
+                                            <option value="">--Please Site--</option>
+                                            @foreach ($projects_users as $key => $value)
+                                                @foreach ($value->projects as $project)
+                                                    <option value="{{ $project->customer_table->id ?? '' }}">
+                                                        {{ $project->customer_table->project_code ?? '' }}
+                                                    </option>
+                                                @endforeach
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Request Date</label>
-                                        <input type="date" class="form-control" placeholder="Month DD, YYYY"
-                                            id="flatpickr-human-friendly" name="request_date"
+                                        <input type="text" class="form-control date_picker" name="request_date"
                                             value="{{ date('Y-m-d') }}" />
                                         @error('request_date')
                                             <div class="invalid-feedback"> {{ $message }} </div>
@@ -48,7 +66,7 @@
                             </div>
 
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname"
@@ -61,7 +79,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
 

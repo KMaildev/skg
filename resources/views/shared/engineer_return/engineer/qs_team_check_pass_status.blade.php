@@ -1,5 +1,5 @@
-@if ($engineer_return_infos->logistics_team_check_sent_status)
-    <a href="{{ route('return_logistics_team_check_create', ['id' => $engineer_return_infos->id]) }}">
+@if ($engineer_return_infos->qs_team_check_pass_status)
+    <a href="#">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>Finished</span>
@@ -9,12 +9,12 @@
                     aria-valuemin="100" aria-valuemax="100"></div>
             </div>
             <span style="font-size: 12px; text-align: left">
-                {{ $engineer_return_infos->logistics_team_check_sent_date }}
+                {{ $engineer_return_infos->qs_team_check_pass_date }}
             </span>
         </div>
     </a>
 @else
-    <a href="{{ route('return_logistics_team_check_create', ['id' => $engineer_return_infos->id]) }}">
+    <a href="#">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>No</span>

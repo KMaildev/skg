@@ -27,6 +27,8 @@ class StoreVariableRequestInfo extends FormRequest
             'code' => 'required|unique:variable_request_infos,code',
             'date' => 'required',
             'customer_id' => 'required',
+            'need_date' => 'required',
+            'work_scope' => 'required',
         ];
     }
 }

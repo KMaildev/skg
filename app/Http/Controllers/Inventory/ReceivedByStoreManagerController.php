@@ -49,6 +49,7 @@ class ReceivedByStoreManagerController extends Controller
         $request_info_id = $request->engineer_return_infos_id;
         $request_info = EngineerReturnInfo::findOrFail($request_info_id);
         $request_info->received_store_manager_status = 'received';
+        $request_info->received_store_manager_date = date('Y-m-d H:i:sa');
         $request_info->update();
         return redirect()->back()->with('success', 'Process is completed.');
     }

@@ -1,11 +1,12 @@
-@extends('layouts.menus.inventory')
+@extends('layouts.menus.engineer')
 @section('content')
     <div class="row justify-content-center">
         <div class="row invoice-preview">
             <div class="col-xl-12 col-md-12 mb-md-0">
                 <div class="card invoice-preview-card m-2">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
+                        <div
+                            class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
                             <div class="col-md-8 col-lg-8">
                                 <h4>Return code #{{ $return_info->return_code }}</h4>
                                 <div class="mb-2">

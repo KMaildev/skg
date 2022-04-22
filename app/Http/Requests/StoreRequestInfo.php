@@ -26,7 +26,7 @@ class StoreRequestInfo extends FormRequest
         return [
             'project_id' => 'required',
             'customer_id' => 'required',
-            'request_code' => 'required',
+            'request_code' => 'required|unique:request_infos,request_code',
             'request_date' => 'required',
             'work_scope' => 'required',
             'requestItemFields.*.item_name' => 'required',

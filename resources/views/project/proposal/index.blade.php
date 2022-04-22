@@ -36,7 +36,6 @@
         }
 
         /* Fixed Headers */
-
         th {
             position: -webkit-sticky;
             position: sticky;
@@ -64,145 +63,6 @@
             /* background: linear-gradient(90deg, #666 0%, #666 calc(100% - .05em), #ccc calc(100% - .05em), #ccc 100%); */
         }
 
-        /* Scrolling wrapper */
-
-        div[tabindex="0"][aria-labelledby][role="region"] {
-            overflow: auto;
-        }
-
-        div[tabindex="0"][aria-labelledby][role="region"]:focus {
-            box-shadow: 0 0 .5em rgba(0, 0, 0, .5);
-            outline: .1em solid rgba(0, 0, 0, .1);
-        }
-
-        div[tabindex="0"][aria-labelledby][role="region"] table {
-            margin: 0;
-        }
-
-        div[tabindex="0"][aria-labelledby][role="region"].rowheaders {
-            background:
-                linear-gradient(to right, transparent 30%, rgba(255, 255, 255, 0)),
-                linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%,
-                radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
-                radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
-            background-repeat: no-repeat;
-            background-color: #fff;
-            background-size: 4em 100%, 4em 100%, 1.4em 100%, 1.4em 100%;
-            background-position: 0 0, 100%, 0 0, 100%;
-            background-attachment: local, local, scroll, scroll;
-        }
-
-        div[tabindex="0"][aria-labelledby][role="region"].colheaders {
-            background:
-                linear-gradient(white 30%, rgba(255, 255, 255, 0)),
-                linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
-                radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
-                radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
-            background-repeat: no-repeat;
-            background-color: #fff;
-            background-size: 100% 4em, 100% 4em, 100% 1.4em, 100% 1.4em;
-            background-attachment: local, local, scroll, scroll;
-        }
-
-        /* Strictly for making the scrolling happen. */
-
-        th[scope=row] {
-            min-width: 10%;
-        }
-
-        @media all and (min-width: 30em) {
-            th[scope=row] {
-                min-width: 10%;
-            }
-        }
-
-        th[scope=row]+td {
-            min-width: 10%;
-        }
-
-        div[tabindex="0"][aria-labelledby][role="region"]:nth-child(3) {
-            max-height: 18em;
-        }
-
-        div[tabindex="0"][aria-labelledby][role="region"]:nth-child(7) {
-            max-height: 15em;
-            margin: 0 1em;
-        }
-
-        /* ========== */
-
-        .intro {
-            max-width: 100%;
-            margin: 1em auto;
-        }
-
-        .table-scroll {
-            position: relative;
-            width: 100%;
-            z-index: 1;
-            margin: auto;
-            overflow: auto;
-            height: 700px;
-        }
-
-        .table-scroll table {
-            width: 100%;
-            min-width: 100%;
-            margin: auto;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        .table-wrap {
-            position: relative;
-        }
-
-        .table-scroll th,
-        .table-scroll td {
-            padding: 8px 8px;
-            border: 1.6px solid #bfbfbf;
-            background: #fff;
-        }
-
-        .table-scroll thead th {
-            background: #2e696e;
-            color: #fff;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-        }
-
-        /* safari and ios need the tfoot itself to be position:sticky also */
-        .table-scroll tfoot,
-        .table-scroll tfoot th,
-        .table-scroll tfoot td {
-            position: -webkit-sticky;
-            position: sticky;
-            bottom: 0;
-            background: #666;
-            color: #fff;
-            z-index: 4;
-        }
-
-        a:focus {
-            background: red;
-        }
-
-        /* testing links*/
-
-        th:first-child {
-            position: -webkit-sticky;
-            position: sticky;
-            left: 0;
-            z-index: 2;
-            background: #ccc;
-        }
-
-        thead th:first-child,
-        tfoot th:first-child {
-            z-index: 5;
-        }
-
     </style>
     <div class="row justify-content-center">
         <div class="col-md-12 col-sm-12 col-lg-12">
@@ -210,7 +70,6 @@
 
                 <div class="card-body">
                     <div class="card-title header-elements">
-                        <p style="color: red; font-size: 19px;">Maintenance in  Progress </p>
                         <h5 class="m-0 me-2">Proposal</h5>
                         <div class="card-title-elements ms-auto">
                             @include('layouts.includes.export')
@@ -225,9 +84,8 @@
                     </div>
                 </div>
 
-
-                <div class="table-responsive text-nowrap rowheaders table-scroll" role="region" aria-labelledby="HeadersCol"
-                    tabindex="0">
+                <div class="table-responsive text-nowrap rowheaders table-scroll outer-wrapper" role="region"
+                    aria-labelledby="HeadersCol" tabindex="0">
                     <table class="table table-bordered main-table" id="export_excel">
                         <thead class="tbbg">
                             <tr>
@@ -235,45 +93,74 @@
                                     style="color: white; text-align: center; width: 1%; background-color: #2e696e !important">
                                     #
                                 </th>
-                                <th style="color: white; text-align: center; width: 10%;">Customer Name</th>
+
+                                <th
+                                    style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                                    Customer Name</th>
+
                                 <th
                                     style="color: white; text-align: center; width: 20%; background-color: #2e696e !important">
                                     Project Code</th>
-                                <th style="color: white; text-align: center; width: 20%;">Date</th>
-                                <th style="color: white; text-align: center; width: 20%;">Processing File</th>
+
+                                <th
+                                    style="color: white; text-align: center; width: 20%; background-color: #2e696e !important">
+                                    Date</th>
+                                <th
+                                    style="color: white; text-align: center; width: 20%; background-color: #2e696e !important">
+                                    Processing File</th>
 
                                 @can('floor_plan_view')
-                                    <th style="color: white; text-align: center; width: 17%;">Floor Plan</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 17%; background-color: #2e696e !important">
+                                        Floor Plan</th>
                                 @endcan
 
                                 @can('quotation_proposal_view')
-                                    <th style="color: white; text-align: center; width: 10%;">Quotation Proposal</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                                        Quotation Proposal</th>
                                 @endcan
 
                                 @can('exterior_design_fees_view')
-                                    <th style="color: white; text-align: center; width: 16%;">Exterior Design Fees</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                        Exterior Design Fees</th>
                                 @endcan
 
                                 @can('structure_design_fees_view')
-                                    <th style="color: white; text-align: center; width: 16%;">Structure Design Fees</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                        Structure Design Fees</th>
                                 @endcan
 
-                                <th style="color: white; text-align: center; width: 16%;">No Fees but Allowed</th>
+                                <th
+                                    style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                    No Fees but Allowed</th>
 
                                 @can('archi_exterior_design_view')
-                                    <th style="color: white; text-align: center; width: 16%;">Archi Exterior Design</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                        Archi Exterior Design</th>
                                 @endcan
 
                                 @can('structure_design_view')
-                                    <th style="color: white; text-align: center; width: 16%;">Structure Design</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                        Structure Design</th>
                                 @endcan
 
-                                <th style="color: white; text-align: center; width: 16%;">Permit</th>
+                                <th
+                                    style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                    Permit</th>
 
-                                <th style="color: white; text-align: center; width: 16%;">Contract</th>
+                                <th
+                                    style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                    Contract</th>
 
                                 @can('project_delete')
-                                    <th style="color: white; text-align: center; width: 16%;">Actions</th>
+                                    <th
+                                        style="color: white; text-align: center; width: 16%; background-color: #2e696e !important">
+                                        Actions</th>
                                 @endcan
                             </tr>
                         </thead>
@@ -434,6 +321,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="pseduo-track"></div>
 
             </div>
         </div>

@@ -50,6 +50,8 @@ class EngineerVariableAssetsController extends Controller
         $variable_asset = new VariableRequestInfo();
         $variable_asset->code = $request->code;
         $variable_asset->date = $request->date;
+        $variable_asset->need_date = $request->need_date;
+        $variable_asset->work_scope = $request->work_scope;
         $variable_asset->customer_id = $request->customer_id;
         $variable_asset->engineer_id = $user_id;
         $variable_asset->save();

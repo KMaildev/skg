@@ -68,7 +68,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-sm-end" for="alignment-username">Sent Date</label>
                             <div class="col-sm-9">
-                                <input type="datetime-local" class="form-control" name="sent_date" />
+                                <input type="text" class="form-control date_picker" name="sent_date" />
                             </div>
                         </div>
 

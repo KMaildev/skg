@@ -13,7 +13,7 @@
                         <h6 class="mb-b fw-bold" style="font-weight: bold; font-size: 15px;">1. Info</h6>
                         <div class="row g-3">
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname"
@@ -27,22 +27,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="flatpickr-human-friendly"
-                                            style="font-weight: bold">Date</label>
-                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
-                                            id="flatpickr-human-friendly" name="date"
-                                             />
-                                        @error('date')
-                                            <div class="invalid-feedback"> {{ $message }} </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="flatpickr-human-friendly"
@@ -58,6 +43,48 @@
                                                 @endforeach
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="flatpickr-human-friendly"
+                                            style="font-weight: bold">Request Date</label>
+                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
+                                            id="flatpickr-human-friendly" name="date" />
+                                        @error('date')
+                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="flatpickr-human-friendly"
+                                            style="font-weight: bold">Need Date</label>
+                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
+                                            id="flatpickr-human-friendly" name="need_date" />
+                                        @error('need_date')
+                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="flatpickr-human-friendly"
+                                            style="font-weight: bold">Work Scope</label>
+                                        <input type="text" class="form-control" name="work_scope" />
+                                        @error('work_scope')
+                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +110,7 @@
                                                 <option value="{{ $value->id }}">
                                                     {{ $value->item_name ?? '-' }}
                                                     @if ($value->sizes)
-                                                        = Size : 
+                                                        = Size :
                                                         {{ $value->sizes }}
                                                     @endif
                                                 </option>
@@ -132,10 +159,7 @@
             var i = 0;
             $("#dynamic-ar").click(function() {
                 ++i;
-                console.log(i);
-                $("#dynamicAddRemove").append(
-                    '<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]"> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}">{{ $value->item_name ?? '-' }} @if ($value->sizes) = Size : {{ $value->sizes }} @endif</option> @endforeach </select></td ><td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][size]" /> </td> <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr> '
-                );
+                $("#dynamicAddRemove").append('<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]" id="item_name"><option value="">--Item Name--</option> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}"> {{ $value->item_name ?? '-' }} @if ($value->sizes) = Size : {{ $value->sizes }} @endif </option> @endforeach </select></td> <td> <input type="text" class = "form-control" name = "returnItemFields[' + i + '][size]" /> </td> <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr>');
             });
             $(document).on('click', '.remove-input-field', function() {
                 $(this).parents('tr').remove();
@@ -145,8 +169,7 @@
 
 
     <script type="text/javascript">
-        function getVariableAssetsSizes(sel)
-        {
+        function getVariableAssetsSizes(sel) {
             var variable_asset_id = sel.value;
             if (variable_asset_id) {
                 $.ajax({

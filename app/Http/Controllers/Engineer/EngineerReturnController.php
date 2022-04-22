@@ -75,7 +75,8 @@ class EngineerReturnController extends Controller
      */
     public function show($id)
     {
-        //
+        $return_info = EngineerReturnInfo::findOrFail($id);
+        return view('engineer.return.show', compact('return_info'));
     }
 
     /**

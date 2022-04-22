@@ -92,7 +92,7 @@
                                                     <li>
                                                         <a class="dropdown-item"
                                                             href="{{ route('inventory_engineer_return.show', $return->id) }}">
-                                                            Item Detail
+                                                            Detail
                                                         </a>
                                                     </li>
                                                 </ul>

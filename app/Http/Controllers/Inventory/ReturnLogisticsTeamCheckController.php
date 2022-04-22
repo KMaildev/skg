@@ -54,6 +54,7 @@ class ReturnLogisticsTeamCheckController extends Controller
         $engineer_return_info_id = $request->engineer_return_info_id;
         $return_info = EngineerReturnInfo::findOrFail($engineer_return_info_id);
         $return_info->logistics_team_check_sent_status = 'finished';
+        $return_info->logistics_team_check_sent_date = date('Y-m-d H:i:sa');
         $return_info->update();
         return redirect()->back()->with('success', 'Process is completed.');
     }

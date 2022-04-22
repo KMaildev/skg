@@ -8,6 +8,9 @@
                 <div class="progress-bar bg-success" style="width: 100%" role="progressbar" aria-valuenow="100"
                     aria-valuemin="100" aria-valuemax="100"></div>
             </div>
+            <span style="font-size: 12px; text-align: left">
+                {{ $engineer_return_infos->qs_team_check_pass_date }}
+            </span>
         </div>
     </a>
 @else

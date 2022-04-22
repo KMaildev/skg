@@ -8,6 +8,9 @@
                 <div class="progress-bar bg-success" style="width: 100%" role="progressbar" aria-valuenow="100"
                     aria-valuemin="100" aria-valuemax="100"></div>
             </div>
+            <span style="font-size: 12px; text-align: left">
+                {{ $engineer_return_infos->received_store_manager_date }}
+            </span>
         </div>
     </a>
 @else
@@ -47,7 +50,7 @@
                                     Received Date
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="datetime-local" class="form-control" name="received_date" required>
+                                    <input type="text" class="form-control date_picker" name="received_date" required>
                                 </div>
                             </div>
                         </div>

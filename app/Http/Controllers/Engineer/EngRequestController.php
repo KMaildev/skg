@@ -28,9 +28,15 @@ class EngRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create()
     {
-        //
+        $user_id = auth()->user()->id;
+        $fixed_assets = FixedAssets::all();
+
+        // $project = Projects::findOrFail($id);
+
+        $projects_users = User::where('id', $user_id)->get();
+        return view('engineer.request.create', compact('fixed_assets', 'projects_users'));
     }
 
     /**
@@ -47,7 +53,7 @@ class EngRequestController extends Controller
         $request_info->request_date = $request->request_date;
         $request_info->work_scope = $request->work_scope;
         $request_info->user_id = $user_id;
-        $request_info->project_id = $request->project_id;
+        $request_info->project_id = $request->project_id ?? 0;
         $request_info->customer_id = $request->customer_id;
         $request_info->save();
         $request_info_id = $request_info->id;
@@ -56,11 +62,11 @@ class EngRequestController extends Controller
             $insert[$key]['fixed_asset_id'] = $value['item_name'];
             $insert[$key]['quantity'] = $value['quantity'];
             $insert[$key]['user_id'] = $user_id;
-            $insert[$key]['project_id'] = $request->project_id;
+            $insert[$key]['project_id'] = $request->project_id ?? 0;
             $insert[$key]['customer_id'] = $request->customer_id;
             $insert[$key]['request_info_id'] = $request_info_id;
-            $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
-            $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
+            $insert[$key]['updated_at'] =  date('Y-m-d H:i:sa');
         }
         EngRequestItem::insert($insert);
         return redirect()->back()->with('success', 'Created successfully.');
@@ -115,8 +121,10 @@ class EngRequestController extends Controller
 
     public function engrequest_create($id = null)
     {
+        $user_id = auth()->user()->id;
         $fixed_assets = FixedAssets::all();
         $project = Projects::findOrFail($id);
-        return view('engineer.request.create', compact('fixed_assets', 'project'));
+        $projects_users = User::where('id', $user_id)->get();
+        return view('engineer.request.create', compact('fixed_assets', 'project', 'projects_users'));
     }
 }

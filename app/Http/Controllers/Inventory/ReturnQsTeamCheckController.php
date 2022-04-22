@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRetrunQsTeamCheckPasses;
 use App\Models\EngineerReturnInfo;
 use App\Models\ReturnItem;
 use App\Models\ReturnQsTeamCheckPass;
@@ -38,16 +39,16 @@ class ReturnQsTeamCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRetrunQsTeamCheckPasses $request)
     {
         $user_id = auth()->user()->id;
         $engineer_return_info_id = $request->engineer_return_info_id;
-
         $return_item_id = $request->return_item_id;
 
         foreach ($request->passed_qty as $key => $value) {
             $insert[$key]['user_id'] = $user_id;
             $insert[$key]['return_item_id'] = $return_item_id[$key];
+            $insert[$key]['engineer_return_info_id'] = $engineer_return_info_id;
             $insert[$key]['qs_passed_qty'] = $value;
             $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
             $insert[$key]['updated_at'] =  date('Y-m-d H:i:sa');
@@ -56,7 +57,7 @@ class ReturnQsTeamCheckController extends Controller
 
         $request_info = EngineerReturnInfo::findOrFail($engineer_return_info_id);
         $request_info->qs_team_check_pass_status = 'finished';
-        
+        $request_info->qs_team_check_pass_date = date('Y-m-d H:i:sa');
         $request_info->update();
         return redirect()->back()->with('success', 'Created successfully.');
     }
