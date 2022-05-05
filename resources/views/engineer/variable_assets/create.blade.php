@@ -15,7 +15,7 @@
 
                             <div class="col-md-3">
                                 <div class="row">
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label class="form-label" for="basic-default-fullname"
                                             style="font-weight: bold">Request Code</label>
                                         <input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -29,7 +29,7 @@
 
                             <div class="col-md-3">
                                 <div class="row">
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Site</label>
                                         <select class="select2 form-select form-select" data-allow-clear="false"
@@ -50,7 +50,7 @@
 
                             <div class="col-md-3">
                                 <div class="row">
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Request Date</label>
                                         <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
@@ -64,7 +64,7 @@
 
                             <div class="col-md-3">
                                 <div class="row">
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Need Date</label>
                                         <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
@@ -78,7 +78,7 @@
 
                             <div class="col-md-4">
                                 <div class="row">
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Work Scope</label>
                                         <input type="text" class="form-control" name="work_scope" />
@@ -92,16 +92,14 @@
 
 
                         <hr class="my-4 mx-n4" />
-                        <h6 class="mb-3 fw-bold" style="font-weight: bold; font-size: 15px;">2. Items</h6>
+                        <h6 class=" fw-bold" style="font-weight: bold; font-size: 15px;">2. Items</h6>
                         <div>
                             <table class="table table-bordered" id="dynamicAddRemove" style="margin-bottom: 20px;">
                                 <tr>
-                                    <th style="width: 40%; text-align: center;">Item Name & Size</th>
-                                    <th style="width: 10%; text-align: center;">Size</th>
-                                    <th style="width: 10%; text-align: center;">Quantity</th>
-                                    <th style="width: 10%; text-align: center;">Action</th>
-                                </tr>
                                 <tr>
+                                    <td>
+                                        Item Name & Size
+                                    </td>
                                     <td>
                                         <select class="select2 form-select form-select-lg" data-allow-clear="false"
                                             name="returnItemFields[0][item_name]" id="item_name">
@@ -117,26 +115,42 @@
                                             @endforeach
                                         </select>
                                     </td>
+                                </tr>
 
+                                <tr>
+                                    <td>
+                                        Size
+                                    </td>
                                     <td>
                                         <input type="text" class="form-control" name="returnItemFields[0][size]" />
                                         @error('size')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
                                     </td>
+                                </tr>
 
+                                <tr>
+                                    <td>
+                                        Quantity
+                                    </td>
                                     <td>
                                         <input type="text" class="form-control" name="returnItemFields[0][quantity]" />
                                         @error('quantity')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
                                     </td>
+                                </tr>
 
+                                <tr>
+                                    <td>
+                                        Action
+                                    </td>
                                     <td>
                                         <button type="button"
                                             class="btn btn-outline-danger remove-input-field btn-sm">Remove</button>
                                     </td>
                                 </tr>
+                            </tr>
                             </table>
                             <button type="button" class="btn btn-dark btn-sm" id="dynamic-ar">
                                 Add a line
@@ -159,7 +173,9 @@
             var i = 0;
             $("#dynamic-ar").click(function() {
                 ++i;
-                $("#dynamicAddRemove").append('<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]" id="item_name"><option value="">--Item Name--</option> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}"> {{ $value->item_name ?? '-' }} @if ($value->sizes) = Size : {{ $value->sizes }} @endif </option> @endforeach </select></td> <td> <input type="text" class = "form-control" name = "returnItemFields[' + i + '][size]" /> </td> <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr>');
+                $("#dynamicAddRemove").append(
+                    '<tr><tr><td>Item Name & Size</td><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]" id="item_name"><option value="">--Item Name--</option> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}"> {{ $value->item_name ?? '-' }} @if ($value->sizes) = Size : {{ $value->sizes }} @endif </option> @endforeach </select></td><tr> <tr><td>Size</td><td> <input type="text" class = "form-control" name = "returnItemFields[' + i + '][size]" /> </td><tr> <tr><td>Quantity</td><td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td></tr> <tr><td>Action</td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr></tr>'
+                );
             });
             $(document).on('click', '.remove-input-field', function() {
                 $(this).parents('tr').remove();

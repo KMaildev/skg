@@ -1,5 +1,5 @@
 <!-- Menu -->
-<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal  menu bg-menu-theme flex-grow-0">
+<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal  menu bg-menu-theme flex-grow-0" style="background-color: white !important;">
     <div class="container-xxl d-flex h-100">
         <ul class="menu-inner">
 

@@ -4,10 +4,16 @@
 
          <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
              <a href="{{ route('home') }}" class="app-brand-link gap-2">
-                 <span class="app-brand-text demo menu-text fw-bold" style="color: white">SK GROUP</span>
+                 <span class="app-brand-text demo menu-text fw-bold" style="color: gray;">SK GROUP</span>
              </a>
              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
                  <i class="bx bx-x bx-sm align-middle"></i>
+             </a>
+         </div>
+
+         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0  d-xl-none  ">
+             <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                 <i class="bx bx-menu bx-sm" style="color: white"></i>
              </a>
          </div>
 

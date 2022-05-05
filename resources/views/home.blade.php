@@ -207,6 +207,14 @@
                 </div>
 
             </div>
+
+            <div class="row py-5">
+                <div class="col-md-12">
+                    <a href="{{ asset('application/skg.apk') }}" download="">
+                        Download Android App for <span style="color: red">Engineer</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
