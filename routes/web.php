@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('proposal', 'Project\ProposalController');
     Route::get('proposal_grid_view', 'Project\ProposalController@grid_view');
     Route::resource('project', 'Project\ProjectController');
+    Route::get('get_projects_ajax/ajax/{id}', array('as' => 'get_projects_ajax.ajax', 'uses' => 'Project\ProjectController@getProjectsAjax'));
     Route::post('projectsortable', 'Project\ProjectController@projectsortable');
 
 
@@ -171,6 +172,7 @@ Route::middleware('auth')->group(function () {
         'as' => 'project_add',
         'uses' => 'hr\EngineerController@add_project'
     ]);
+    Route::get('projects_users/ajax/{id}', array('as' => 'projects_users.ajax', 'uses' => 'hr\EngineerController@projectsUsersAjax'));
 
     //Department
     Route::resource('department', 'DepartmentController');

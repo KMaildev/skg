@@ -4,11 +4,11 @@
         <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="col-xxl">
                 <div class="card mb-4">
-                    <h5 class="card-header">Added site</h5>
-                    <form class="card-body" autocomplete="off" action="{{ route('engineer.store') }}" method="POST"
-                        id="create-form">
+                    <h5 class="card-header">Edit site</h5>
+                    <form class="card-body" autocomplete="off"
+                        action="{{ route('engineer.update', $projects_users->id) }}" method="POST" id="edit-form">
                         @csrf
-
+                        @method('PUT')
                         <hr class="my-4 mx-n4" />
                         <h6 class="mb-3 fw-normal">1. Engineer</h6>
                         <div class="row mb-3">
@@ -16,14 +16,15 @@
                                 Engineer
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" readonly value="{{ $employees->name }}" />
-                                <input type="hidden" name="engineering_id" value="{{ $employees->id }}" required />
+                                <input type="text" class="form-control" readonly
+                                    value="{{ $projects_users->users_table->name }}" />
+                                <input type="hidden" name="engineering_id" value="{{ $projects_users->user_id }}"
+                                    required />
                                 @error('engineering_id')
                                     <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
                         </div>
-
                         <br>
                         <h6 class="mb-b fw-normal">2. Project Info</h6>
                         <div class="row mb-3">
@@ -33,7 +34,8 @@
                                     name="project_id">
                                     <option value="">--Please Select Customer--</option>
                                     @foreach ($projects as $project)
-                                        <option value="{{ $project->id }}">
+                                        <option value="{{ $project->id }}"
+                                            @if ($project->id == $projects_users->projects_id) selected @endif>
                                             {{ $project->customer_table->name ?? '' }}
                                             @
                                             {{ $project->customer_table->project_code ?? '' }}
@@ -87,12 +89,11 @@
                         </div>
 
 
-
                         <div class="pt-4">
                             <div class="row justify-content-end">
                                 <div class="col-sm-9">
                                     <button type="submit" class="btn btn-primary me-sm-2 me-1">Save</button>
-                                    <a href="{{ route('proposal.index') }}" class="btn btn-label-secondary">Cancel</a>
+                                    <a href="{{ route('engineer.index') }}" class="btn btn-label-secondary">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +105,7 @@
 @endsection
 
 @section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreProjectsUsers', '#create-form') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateProjectsUsers', '#edit-form') !!}
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -126,8 +127,27 @@
                         }
                     });
                 }
-
             });
+
+
+            function ajaxAutoCall() {
+                var customer_id = '{{ $projects_users->projects_id }}';
+                $.ajax({
+                    url: '/customerdependent/ajax/' + customer_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $("#Address").val(data.address);
+                        $("#siteLocation").val(data.site_location);
+                        $("#buildingArea").val(data.building_area);
+                        $("#constructionType").val(data.construction_type);
+                        $("#jobScope").val(data.job_scope);
+                        $("#Storeyed").val(data.storeyed);
+                        $("#ProjectCode").val(data.project_code);
+                    }
+                });
+            }
+            ajaxAutoCall();
         });
     </script>
 @endsection

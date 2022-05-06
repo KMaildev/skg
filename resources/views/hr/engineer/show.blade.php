@@ -7,11 +7,6 @@
                 <div class="card-body">
                     <div class="card-title header-elements">
                         <h5 class="m-0 me-2">Engineers</h5>
-                        <div class="card-title-elements ms-auto">
-                            <div class="card-header-elements ms-auto">
-                                <input type="text" class="form-control form-control-sm" placeholder="Search" />
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -21,37 +16,33 @@
                             <tr>
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
                                 <th style="color: white; text-align: center;">Engineer</th>
-                                <th style="color: white; text-align: center;">Project Code</th>
+                                <th style="color: white; text-align: center;">Project Info</th>
+                                <th style="color: white; text-align: center;">Add Date</th>
                                 <th style="color: white; text-align: center;">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($projects_users as $key => $value)
+                            @foreach ($projects_users as $key => $projects_user)
                                 <tr>
-                                    <td style="text-align: center;">
+                                    <td>
                                         {{ $key + 1 }}
                                     </td>
 
-                                    <td style="text-align: center;">
-                                        {{ $value->name }}
+                                    <td>
+                                        {{ $projects_user->users_table->name ?? '' }}
                                     </td>
 
-                                    <td style="text-align: center;">
-                                        @foreach ($value->projects as $project)
-                                            <span class="badge bg-primary">
-                                                {{ $project->customer_table->project_code ?? '' }}
-                                                @
-                                                {{ $project->customer_table->name ?? '' }}
-                                            </span>
-                                        @endforeach
+                                    <td>
+                                        {{ $projects_user->projects_table->customer_table->project_code ?? '' }}
+                                        @
+                                        {{ $projects_user->projects_table->customer_table->name ?? '' }}
                                     </td>
 
-                                    <td style="text-align: center;">
-                                        <a href="{{ route('project_add', $value->id) }}" class="btn btn-primary btn-sm">
-                                            <span class="tf-icons bx bx-plus"></span>
-                                            &nbsp; Add project
-                                        </a>
+                                    <td style="text-align: center">
+                                        {{ $projects_user->created_at->diffForHumans() }}
+                                    </td>
 
+                                    <td style="text-align: center">
                                         <div class="btn-group">
                                             <button class="btn btn-success btn-xs dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,8 +51,15 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('engineer.show', $value->id) }}">
-                                                        Manage
+                                                        href="{{ route('engineer.edit', $projects_user->id) }}">
+                                                        Edit
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('engineer.show', $projects_user->id) }}">
+                                                        Delete
                                                     </a>
                                                 </li>
                                             </ul>

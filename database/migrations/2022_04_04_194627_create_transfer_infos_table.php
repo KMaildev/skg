@@ -19,7 +19,6 @@ class CreateTransferInfosTable extends Migration
             $table->integer('main_warehouse_id')->nullable();
             $table->integer('customer_id')->nullable();
             $table->text('sent_date')->nullable();
-            $table->text('sent_date')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

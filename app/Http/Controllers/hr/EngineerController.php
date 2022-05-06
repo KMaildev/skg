@@ -4,6 +4,7 @@ namespace App\Http\Controllers\hr;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectsUsers;
+use App\Http\Requests\UpdateProjectsUsers;
 use App\Models\Customers;
 use App\Models\Projects;
 use App\Models\ProjectsUsers;
@@ -57,7 +58,8 @@ class EngineerController extends Controller
      */
     public function show($id)
     {
-        //
+        $projects_users = ProjectsUsers::get()->where('user_id', $id);
+        return view('hr.engineer.show', compact('projects_users'));
     }
 
     /**
@@ -68,7 +70,11 @@ class EngineerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customers = Customers::all();
+        $projects = Projects::all();
+        $employees = User::get()->where('id', $id);
+        $projects_users = ProjectsUsers::findOrFail($id);
+        return view('hr.engineer.edit_project', compact('employees', 'customers', 'projects', 'projects_users'));
     }
 
     /**
@@ -92,9 +98,14 @@ class EngineerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectsUsers $request, $id)
     {
-        //
+        $project = ProjectsUsers::findOrFail($id);
+        $project->projects_id = $request->project_id;
+        $project->user_id = $request->engineering_id;
+        $project->status = '';
+        $project->update();
+        return redirect()->back()->with('success', 'Your processing has been completed.');
     }
 
     /**
@@ -106,5 +117,17 @@ class EngineerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * Get Ajax Request and restun Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function projectsUsersAjax($id)
+    {
+        $projects_users_ajax = ProjectsUsers::findOrFail($id);
+        return json_encode($projects_users_ajax);
     }
 }

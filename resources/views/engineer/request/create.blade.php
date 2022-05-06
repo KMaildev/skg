@@ -1,7 +1,7 @@
 @extends('layouts.menus.engineer')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-10 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="col-xxl">
                 <div class="card mb-4">
                     <h5 class="card-header">Engineer Request</h5>
@@ -34,14 +34,14 @@
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Site</label>
                                         <select class="select2 form-select form-select" data-allow-clear="false"
-                                            name="customer_id">
+                                            name="projects_users_id">
                                             <option value="">--Please Site--</option>
                                             @foreach ($projects_users as $key => $value)
-                                                @foreach ($value->projects as $project)
-                                                    <option value="{{ $project->customer_table->id ?? '' }}">
-                                                        {{ $project->customer_table->project_code ?? '' }}
-                                                    </option>
-                                                @endforeach
+                                                <option value="{{ $value->id ?? '' }}">
+                                                    {{ $value->projects_table->customer_table->project_code ?? '' }}
+                                                    @
+                                                    {{ $value->projects_table->customer_table->name ?? '' }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -125,6 +125,8 @@
                         </div>
                         <hr>
                         <input type="submit" value="save" class="btn btn-success">
+
+                        <input type="hidden" class="form-control" id="customerID" readonly name="customer_id" required/>
                     </form>
                 </div>
             </div>
@@ -139,7 +141,6 @@
             var i = 0;
             $("#dynamic-ar").click(function() {
                 ++i;
-                console.log(i);
                 $("#dynamicAddRemove").append(
                     '<tr><td>Item Name</td><td><select class="select2 form-select" data-allow-clear="false" name="requestItemFields[' + i + '][item_name]"> @foreach ($fixed_assets as $key => $value) <option value="{{ $value->id }}">{{ $value->item_name ?? '-' }}</option> @endforeach </select></td></tr> <tr><td>Quantity</td><td> <input type= "text" class="form-control" name="requestItemFields[' + i + '][quantity]" /> </td></tr><tr><td>Action</td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr>'
                 );
@@ -149,4 +150,36 @@
             });
         });
     </script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="projects_users_id"]').on('change', function() {
+            var projects_users_id = $(this).val();
+            if (projects_users_id) {
+                $.ajax({
+                    url: '/projects_users/ajax/' + projects_users_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        getProjectsTable(data.projects_id)
+                    }
+                });
+            }
+        });
+
+        function getProjectsTable(id){
+            if (id) {
+                $.ajax({
+                    url: '/get_projects_ajax/ajax/' + id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $("#customerID").val(data.customer_id);
+                    }
+                });
+            }
+        }
+    });
+</script>
 @endsection

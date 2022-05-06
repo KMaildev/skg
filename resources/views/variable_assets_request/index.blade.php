@@ -127,16 +127,15 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                            <tr style="font-weight: bold">
+                                            <tr style="font-weight: bold" hidden>
                                                 <td colspan="3">Total:</td>
                                                 <td style="text-align: center; font-weight: bold">
-                                                    {{ number_format($request_info->variable_request_items_table->sum('quantity')) }}
+                                                    {{-- {{ number_format($request_info->variable_request_items_table->sum('quantity')) }} --}}
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
 
-                                    
 
                                     {{-- Accept / Reject --}}
                                     <td style="text-align: center">
@@ -191,7 +190,11 @@
 
                                     {{-- Transferred to --}}
                                     <td>
-                                        {{ $request_info->variable_logistics_team_sends_table->transfer_to ?? '' }}
+                                        @if ($request_info->variable_logistics_team_sends_table->transfer_to ?? '')
+                                            {{ $request_info->variable_logistics_team_sends_table->transfer_to ?? '' }}
+                                            @
+                                            {{ $request_info->customer_table->name ?? '' }}
+                                        @endif
                                     </td>
 
                                     <!-- Received by Engineer -->

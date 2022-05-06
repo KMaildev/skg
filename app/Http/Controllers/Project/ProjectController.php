@@ -126,4 +126,16 @@ class ProjectController extends Controller
         }
         return response('Update Successfully.', 200);
     }
+
+
+    /**
+     * Get Ajax Request and restun Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getProjectsAjax($id)
+    {
+        $project = Projects::findOrFail($id);
+        return json_encode($project);
+    }
 }

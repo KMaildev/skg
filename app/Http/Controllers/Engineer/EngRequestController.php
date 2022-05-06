@@ -7,6 +7,7 @@ use App\Http\Requests\StoreRequestInfo;
 use App\Models\EngRequestItem;
 use App\Models\FixedAssets;
 use App\Models\Projects;
+use App\Models\ProjectsUsers;
 use App\Models\RequestInfo;
 use App\User;
 use Illuminate\Http\Request;
@@ -32,10 +33,8 @@ class EngRequestController extends Controller
     {
         $user_id = auth()->user()->id;
         $fixed_assets = FixedAssets::all();
-
-        // $project = Projects::findOrFail($id);
-
-        $projects_users = User::where('id', $user_id)->get();
+        // $projects_users = User::where('id', $user_id)->get();
+        $projects_users = ProjectsUsers::where('user_id', $user_id)->get();
         return view('engineer.request.create', compact('fixed_assets', 'projects_users'));
     }
 

@@ -106,11 +106,15 @@
                                             {{ $request_info->main_warehouse_table->warehouse_code ?? 'Warehouse' }}
                                         @elseif ($request_info->transfer_from_status == 'other_site')
                                             {{ $request_info->request_infos_table->customer_table->project_code ?? '' }}
+                                            @
+                                            {{ $request_info->request_infos_table->customer_table->name ?? '' }}
                                         @endif
                                     </td>
 
                                     <td style="text-align: center">
                                         {{ $request_info->customer_table->project_code ?? '' }}
+                                        @
+                                        {{ $request_info->customer_table->name ?? '' }}
                                     </td>
 
                                     <td style="text-align: center">

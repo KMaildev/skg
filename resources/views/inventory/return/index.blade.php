@@ -59,6 +59,8 @@
 
                                         <td style="text-align: center">
                                             {{ $return->customer_table->project_code ?? '' }}
+                                            @
+                                            {{ $return->customer_table->name ?? '' }}
                                         </td>
 
                                         <td style="text-align: center">

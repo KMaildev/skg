@@ -55,7 +55,6 @@
                 </div>
 
 
-
                 <div class="col-md">
                     <div class="table-responsive text-nowrap">
                         <table class="table table-bordered">
@@ -121,6 +120,8 @@
 
                                         <td style="text-align: center">
                                             {{ $request_item->customer_table->project_code ?? '' }}
+                                            @
+                                            {{ $request_item->customer_table->name ?? '' }}
                                         </td>
 
                                         <td style="text-align: center">
@@ -143,11 +144,15 @@
                                                 {{ $request_item->request_info_table->main_warehouse_table->warehouse_code ?? 'Warehouse' }}
                                             @elseif ($request_item->request_info_table->transfer_from_status == 'other_site')
                                                 {{ $request_item->request_info_table->request_infos_table->customer_table->project_code ?? '' }}
+                                                @
+                                                {{ $request_item->request_info_table->request_infos_table->customer_table->name ?? '' }}
                                             @endif
                                         </td>
 
                                         <td>
                                             {{ $request_item->customer_table->project_code ?? '' }}
+                                            @
+                                            {{ $request_item->customer_table->name ?? '' }}
                                         </td>
 
                                     </tr>

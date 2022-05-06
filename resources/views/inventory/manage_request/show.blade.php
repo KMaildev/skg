@@ -28,6 +28,8 @@
                                         <span class="me-1">Project Code:</span>
                                         <span class="fw-semibold">
                                             {{ $request_info->customer_table->project_code ?? '' }}
+                                            @
+                                            {{ $request_info->customer_table->name ?? '' }}
                                         </span>
                                     </div>
                                     <div class="mb-2">
@@ -74,6 +76,8 @@
                                                 {{ $request_info->main_warehouse_table->warehouse_code ?? 'Warehouse' }}
                                             @elseif ($request_info->transfer_from_status == 'other_site')
                                                 {{ $request_info->request_infos_table->customer_table->project_code ?? '' }}
+                                                @
+                                                {{ $request_info->request_infos_table->customer_table->name ?? '' }}
                                             @endif
                                         </span>
                                     </div>
@@ -81,6 +85,8 @@
                                         <span class="me-1">Transferred to :</span>
                                         <span class="fw-semibold" style="color: green;">
                                             {{ $request_info->customer_table->project_code ?? '' }}
+                                            @
+                                            {{ $request_info->customer_table->name ?? '' }}
                                         </span>
                                     </div>
                                     <div class="mb-2">

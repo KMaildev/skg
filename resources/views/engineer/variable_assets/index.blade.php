@@ -172,7 +172,7 @@
                                         <tr style="font-weight: bold">
                                             <td colspan="3">Total:</td>
                                             <td style="text-align: center; font-weight: bold">
-                                                {{ number_format($request_info->variable_request_items_table->sum('quantity')) }}
+                                                {{-- {{ number_format($request_info->variable_request_items_table->sum('quantity')) }} --}}
                                             </td>
                                         </tr>
                                     </table>

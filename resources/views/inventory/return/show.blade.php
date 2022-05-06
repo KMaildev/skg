@@ -21,6 +21,8 @@
                                     <span class="me-1">Transferred From:</span>
                                     <span class="fw-semibold">
                                         {{ $return_info->customer_table->project_code ?? '' }}
+                                        @ 
+                                        {{ $return_info->customer_table->name ?? '' }}
                                     </span>
                                 </div>
 
