@@ -57,10 +57,13 @@
                                                 </li>
 
                                                 <li>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('engineer.show', $projects_user->id) }}">
-                                                        Delete
-                                                    </a>
+                                                    <form action="{{ route('engineer.destroy', $projects_user->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="dropdown-item del_confirm"
+                                                            id="confirm-text" data-toggle="tooltip">Delete</button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>

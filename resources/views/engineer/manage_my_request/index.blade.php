@@ -174,6 +174,8 @@
                                                     {{ $request_info->main_warehouse_table->warehouse_code ?? 'Warehouse' }}
                                                 @elseif ($request_info->transfer_from_status == 'other_site')
                                                     {{ $request_info->request_infos_table->customer_table->project_code ?? '' }}
+                                                    @
+                                                    {{ $request_info->request_infos_table->customer_table->name ?? '' }}
                                                 @endif
                                             </small>
                                         </div>
@@ -195,6 +197,8 @@
                                             </p>
                                             <small class="text-muted text-nowrap">
                                                 {{ $request_info->customer_table->project_code ?? '' }}
+                                                @
+                                                {{ $request_info->customer_table->name ?? '' }}
                                             </small>
                                         </div>
                                     </div>

@@ -54,6 +54,7 @@ class EngRequestController extends Controller
         $request_info->user_id = $user_id;
         $request_info->project_id = $request->project_id ?? 0;
         $request_info->customer_id = $request->customer_id;
+        $request_info->projects_users_id = $request->projects_users_id;
         $request_info->save();
         $request_info_id = $request_info->id;
 

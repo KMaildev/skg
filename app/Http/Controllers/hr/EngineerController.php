@@ -116,7 +116,9 @@ class EngineerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project_user = ProjectsUsers::findOrFail($id);
+        $project_user->delete();
+        return redirect()->back()->with('success', 'Your processing has been completed.');
     }
 
 
