@@ -17,376 +17,203 @@
             </div>
         </div>
 
-        @foreach ($eng_request_infos as $key => $request_info)
-            <div class="card">
+        <div class="table-responsive text-nowrap rowheaders table-scroll outer-wrapper" role="region"
+            aria-labelledby="HeadersCol" tabindex="0">
+            <table class="table table-bordered main-table" id="export_excel">
+                <thead class="tbbg">
+                    <tr>
+                        <th style="color: white; text-align: center; width: 1%; background-color: #2e696e !important">
+                            #
+                        </th>
 
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">
-                        {{ $request_info->request_code }}
-                    </h5>
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="timelineWapper" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="timelineWapper" style="">
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Engineer Request
+                        </th>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table mb-1">
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Request code
+                        </th>
 
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Engineer Request
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->user_table->name ?? '' }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Work Scope
+                        </th>
 
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Request Date
+                        </th>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Request code
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->code }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Need Date
+                        </th>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Work Scope
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->work_scope }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Request Items
+                        </th>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Request Date
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->date }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Accept / Reject
+                        </th>
 
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            QS Team Check & Pass
+                        </th>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Need Date
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->need_date }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Logistics Team Check & Sent
+                        </th>
 
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Management
+                        </th>
 
-                            <tr>
-                                <td>
-                                    <p class="mb-0 lh-1 text-nowrap">
-                                        Request Items
-                                    </p>
-                                    <table style="width: 100%">
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Logistics Team Send
+                        </th>
+
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Transferred from
+                        </th>
+
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Transferred to
+                        </th>
+
+                        <th style="color: white; text-align: center; width: 10%; background-color: #2e696e !important">
+                            Received by Engineer
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" id="tablecontents">
+                    @foreach ($eng_request_infos as $key => $request_info)
+                        <tr style="background-color: white">
+
+                            <td>
+                                {{ $key + 1 }}
+                            </td>
+
+                            <td>
+                                {{ $request_info->user_table->name ?? '' }}
+                            </td>
+
+                            <td>
+                                {{ $request_info->code }}
+                            </td>
+
+                            <td>
+                                {{ $request_info->work_scope }}
+                            </td>
+
+                            <td>
+                                {{ $request_info->date }}
+                            </td>
+
+                            <td>
+                                {{ $request_info->need_date }}
+                            </td>
+
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th> Items </th>
+                                        <th> Size </th>
+                                        <th> Unit </th>
+                                        <th> Qty </th>
+                                    </tr>
+                                    @foreach ($request_info->variable_request_items_table as $value)
                                         <tr>
-                                            <th> Items </th>
-                                            <th> Size </th>
-                                            <th> Unit </th>
-                                            <th> Qty </th>
-                                        </tr>
-                                        @foreach ($request_info->variable_request_items_table as $value)
-                                            <tr>
-                                                <td style="text-align: left;">
-                                                    {{ $value->variable_assets_table->item_name }}
-                                                </td>
-                                                <td style="text-align: center;">
-                                                    {{ $value->size }}
-                                                </td>
-                                                <td style="text-align: center;">
-                                                    {{ $value->variable_assets_table->unit }}
-                                                </td>
-                                                <td style="text-align: center;">
-                                                    {{ $value->quantity }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        <tr style="font-weight: bold">
-                                            <td colspan="3">Total:</td>
-                                            <td style="text-align: center; font-weight: bold">
-                                                {{-- {{ number_format($request_info->variable_request_items_table->sum('quantity')) }} --}}
+                                            <td style="text-align: left;">
+                                                {{ $value->variable_assets_table->item_name }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ $value->size }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ $value->variable_assets_table->unit }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ $value->quantity }}
                                             </td>
                                         </tr>
-                                    </table>
-                                </td>
-                            </tr>
+                                    @endforeach
+                                    <tr style="font-weight: bold" hidden>
+                                        <td colspan="3">Total:</td>
+                                        <td style="text-align: center; font-weight: bold">
+                                            {{-- {{ number_format($request_info->variable_request_items_table->sum('quantity')) }} --}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
 
+                            <td>
+                                @include(
+                                    'shared.variable_assets_request.engineer.accept_reject_status',
+                                    [
+                                        'request_info' => $request_info,
+                                    ]
+                                )
+                            </td>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Accept / Reject
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                @include(
-                                                    'shared.variable_assets_request.engineer.accept_reject_status',
-                                                    [
-                                                        'request_info' => $request_info,
-                                                    ]
-                                                )
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            <td>
+                                @include(
+                                    'shared.variable_assets_request.engineer.qs_team_check_pass_status',
+                                    [
+                                        'request_info' => $request_info,
+                                    ]
+                                )
+                            </td>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                QS Team Check & Pass
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                @include(
-                                                    'shared.variable_assets_request.engineer.qs_team_check_pass_status',
-                                                    [
-                                                        'request_info' => $request_info,
-                                                    ]
-                                                )
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            <td>
+                                @include(
+                                    'shared.variable_assets_request.engineer.logistics_team_check_status',
+                                    [
+                                        'request_info' => $request_info,
+                                    ]
+                                )
+                            </td>
 
+                            <td>
+                                @include(
+                                    'shared.variable_assets_request.engineer.management_accept_reject_status',
+                                    [
+                                        'request_info' => $request_info,
+                                    ]
+                                )
+                            </td>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Logistics Team Check
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                @include(
-                                                    'shared.variable_assets_request.engineer.logistics_team_check_status',
-                                                    [
-                                                        'request_info' => $request_info,
-                                                    ]
-                                                )
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            <td>
+                                @include(
+                                    'shared.variable_assets_request.engineer.logistics_team_send_status',
+                                    [
+                                        'request_info' => $request_info,
+                                    ]
+                                )
+                            </td>
 
+                            <td>
+                                {{ $request_info->variable_logistics_team_sends_table->main_warehouses_table->warehouse_code ?? '' }}
+                            </td>
 
+                            <td>
+                                {{ $request_info->variable_logistics_team_sends_table->transfer_to ?? '' }}
+                            </td>
 
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Management
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                @include(
-                                                    'shared.variable_assets_request.engineer.management_accept_reject_status',
-                                                    [
-                                                        'request_info' => $request_info,
-                                                    ]
-                                                )
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Logistics Team Send
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                @include(
-                                                    'shared.variable_assets_request.engineer.logistics_team_send_status',
-                                                    [
-                                                        'request_info' => $request_info,
-                                                    ]
-                                                )
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Transferred from
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->variable_logistics_team_sends_table->main_warehouses_table->warehouse_code ?? '' }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Transferred to
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                {{ $request_info->variable_logistics_team_sends_table->transfer_to ?? '' }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded-circle bg-label-primary">
-                                                <i class="bx bx-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <p class="mb-0 lh-1 text-nowrap">
-                                                Received by Engineer
-                                            </p>
-                                            <small class="text-muted text-nowrap">
-                                                @include(
-                                                    'shared.variable_assets_request.engineer.received_by_engineer_status',
-                                                    [
-                                                        'request_info' => $request_info,
-                                                    ]
-                                                )
-                                            </small>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        @endforeach
+                            <td>
+                                @include(
+                                    'shared.variable_assets_request.engineer.received_by_engineer_status',
+                                    [
+                                        'request_info' => $request_info,
+                                    ]
+                                )
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
 
 @section('script')
-    <script>
-
-    </script>
+    <script></script>
 @endsection
