@@ -33,6 +33,7 @@
                                 <th style="color: white; text-align: center;">Name</th>
                                 <th style="color: white; text-align: center;">Email</th>
                                 <th style="color: white; text-align: center;">Phone</th>
+                                <th style="color: white; text-align: center;">Passport</th>
                                 <th style="color: white; text-align: center;">Department</th>
                                 <th style="color: white; text-align: center;">Role (or) Designation</th>
                                 <th style="color: white; text-align: center;">Actions</th>
@@ -55,6 +56,12 @@
                                     </td>
                                     <td style="text-align: center;">
                                         {{ $value->phone }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        @if ($value->passport_photo)
+                                            <img src="{{ Storage::url($value->passport_photo) }}" alt=""
+                                                style="width: 50px; height: 50px; background-position: center; background-size: contain, cover;">
+                                        @endif
                                     </td>
                                     <td style="text-align: center;">
                                         {{ $value->department->title ?? '' }}

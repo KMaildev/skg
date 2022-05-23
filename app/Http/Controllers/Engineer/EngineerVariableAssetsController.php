@@ -32,10 +32,11 @@ class EngineerVariableAssetsController extends Controller
      */
     public function create()
     {
+        $request_infos = VariableRequestInfo::all();
         $variable_assets = VariableAssets::all();
         $user_id = auth()->user()->id;
         $projects_users = User::where('id', $user_id)->get();
-        return view('engineer.variable_assets.create', compact('variable_assets', 'projects_users'));
+        return view('engineer.variable_assets.create', compact('variable_assets', 'projects_users', 'request_infos'));
     }
 
     /**

@@ -7,7 +7,8 @@
                 <div class="card-body">
 
                     <form action="{{ route('employee.store') }}" method="POST" autocomplete="off" id="create-form"
-                        role="form">
+                        role="form" enctype="multipart/form-data">
+                        <h6 class="mb-b fw-normal">1. Account Details</h6>
                         @csrf
 
                         <div class="mb-3 row">
@@ -125,6 +126,68 @@
                             </div>
                         </div>
 
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Passport Photo</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('passport_photo') is-invalid @enderror" type="file"
+                                    name="passport_photo" value="{{ old('passport_photo') }}" />
+                                @error('passport_photo')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Employment Type</label>
+                            <div class="col-md-9">
+                                <select name="employment_type" class="form-control">
+                                    <option value="Probation">Probation</option>
+                                    <option value="Contract">Contract</option>
+                                </select>
+                                @error('employment_type')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Join Date</label>
+                            <div class="col-md-9">
+                                <input class="form-control date_picker @error('join_date') is-invalid @enderror" type="text"
+                                    name="join_date" value="{{ old('join_date') }}" />
+                                @error('join_date')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <h6 class="mb-b fw-normal">2. Emergency Contact</h6>
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Contact Person</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('contact_person') is-invalid @enderror" type="text"
+                                    name="contact_person" value="{{ old('contact_person') }}" />
+                                @error('contact_person')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Contact Number</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('emergency_contact') is-invalid @enderror" type="text"
+                                    name="emergency_contact" value="{{ old('emergency_contact') }}" />
+                                @error('emergency_contact')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="mb-3 row">
                             <label for="html5-search-input" class="col-md-3 col-form-label"></label>

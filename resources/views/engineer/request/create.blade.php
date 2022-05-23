@@ -19,8 +19,18 @@
                                     <div class="">
                                         <label class="form-label" for="basic-default-fullname"
                                             style="font-weight: bold">Request Code</label>
-                                        <input type="text" class="form-control @error('request_code') is-invalid @enderror"
-                                            name="request_code" />
+                                        @php
+                                            $code_count = count($request_infos);
+                                            $increment1 = sprintf('%06d', $code_count + 1);
+                                            $increment2 = sprintf('%06d', $code_count + 2);
+                                            $increment3 = sprintf('%06d', $code_count + 3);
+                                        @endphp
+                                        <select class="form-select select2entry @error('request_code') is-invalid @enderror"
+                                            name="request_code">
+                                            <option value="R-{{ $increment1 }}">R-{{ $increment1 }}</option>
+                                            <option value="R-{{ $increment2 }}">R-{{ $increment2 }}</option>
+                                            <option value="R-{{ $increment3 }}">R-{{ $increment3 }}</option>
+                                        </select>
                                         @error('request_code')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -126,7 +136,7 @@
                         <hr>
                         <input type="submit" value="save" class="btn btn-success">
 
-                        <input type="hidden" class="form-control" id="customerID" readonly name="customer_id" required/>
+                        <input type="hidden" class="form-control" id="customerID" readonly name="customer_id" required />
                     </form>
                 </div>
             </div>
@@ -136,6 +146,7 @@
 
 @section('script')
     {!! JsValidator::formRequest('App\Http\Requests\StoreRequestInfo', '#create-form') !!}
+
     <script>
         $(document).ready(function() {
             var i = 0;
@@ -150,36 +161,34 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="projects_users_id"]').on('change', function() {
+                var projects_users_id = $(this).val();
+                if (projects_users_id) {
+                    $.ajax({
+                        url: '/projects_users/ajax/' + projects_users_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            getProjectsTable(data.projects_id)
+                        }
+                    });
+                }
+            });
 
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="projects_users_id"]').on('change', function() {
-            var projects_users_id = $(this).val();
-            if (projects_users_id) {
-                $.ajax({
-                    url: '/projects_users/ajax/' + projects_users_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        getProjectsTable(data.projects_id)
-                    }
-                });
+            function getProjectsTable(id) {
+                if (id) {
+                    $.ajax({
+                        url: '/get_projects_ajax/ajax/' + id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $("#customerID").val(data.customer_id);
+                        }
+                    });
+                }
             }
         });
-
-        function getProjectsTable(id){
-            if (id) {
-                $.ajax({
-                    url: '/get_projects_ajax/ajax/' + id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $("#customerID").val(data.customer_id);
-                    }
-                });
-            }
-        }
-    });
-</script>
+    </script>
 @endsection

@@ -7,7 +7,7 @@
                 <div class="card-body">
 
                     <form action="{{ route('employee.update', $employee->id) }}" method="POST" autocomplete="off"
-                        id="edit-form" role="form">
+                        id="edit-form" role="form" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -127,6 +127,78 @@
                                 <input class="form-control @error('password') is-invalid @enderror" type="password"
                                     name="password" value="{{ old('password') }}" />
                                 @error('password')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Passport Photo</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('passport_photo') is-invalid @enderror" type="file"
+                                    name="passport_photo" value="{{ old('passport_photo') }}" />
+                                @error('passport_photo')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+
+                                <div class="preview_img my-2">
+                                    @if ($employee->passport_photo)
+                                        <img src="{{ Storage::url($employee->passport_photo) }}" alt=""
+                                            style="width: 40%; height: 200px; background-position: center; background-size: contain, cover;">
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Employment Type</label>
+                            <div class="col-md-9">
+                                <select name="employment_type" class="form-control">
+                                    <option value="Probation" @if ($employee->employment_type == 'Probation') selected @endif>Probation
+                                    </option>
+                                    <option value="Contract" @if ($employee->employment_type == 'Contract') selected @endif>Contract
+                                    </option>
+                                </select>
+                                @error('employment_type')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Join Date</label>
+                            <div class="col-md-9">
+                                <input class="form-control date_picker @error('join_date') is-invalid @enderror"
+                                    type="text" name="join_date" value="{{ $employee->join_date }}" />
+                                @error('join_date')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <h6 class="mb-b fw-normal">2. Emergency Contact</h6>
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Contact Person</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('contact_person') is-invalid @enderror" type="text"
+                                    name="contact_person" value="{{ $employee->contact_person }}" />
+                                @error('contact_person')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Contact Number</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('emergency_contact') is-invalid @enderror" type="text"
+                                    name="emergency_contact" value="{{ $employee->emergency_contact }}" />
+                                @error('emergency_contact')
                                     <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>

@@ -32,10 +32,10 @@ class EngRequestController extends Controller
     public function create()
     {
         $user_id = auth()->user()->id;
+        $request_infos = RequestInfo::all();
         $fixed_assets = FixedAssets::all();
-        // $projects_users = User::where('id', $user_id)->get();
         $projects_users = ProjectsUsers::where('user_id', $user_id)->get();
-        return view('engineer.request.create', compact('fixed_assets', 'projects_users'));
+        return view('engineer.request.create', compact('fixed_assets', 'projects_users', 'request_infos'));
     }
 
     /**

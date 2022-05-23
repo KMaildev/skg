@@ -43,6 +43,11 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployee $request)
     {
+        if ($request->hasFile('passport_photo')) {
+            $passport_photo = $request->file('passport_photo');
+            $path = $passport_photo->store('public/passport');
+        }
+
         $employee = new User();
         $employee->employee_id = $request->employee_id;
         $employee->name = $request->name;
@@ -53,6 +58,13 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->department_id = $request->department_id;
         $employee->password = Hash::make($request->password);
+
+        $employee->employment_type = $request->employment_type;
+        $employee->join_date = $request->join_date;
+        $employee->contact_person = $request->contact_person;
+        $employee->emergency_contact = $request->emergency_contact;
+        $employee->passport_photo = $path ?? '';
+
         $employee->save();
         $employee->syncRoles($request->roles);
         return redirect()->back()->with('success', 'Employee is successfully created.');
@@ -93,6 +105,11 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployee $request, $id)
     {
+        if ($request->hasFile('passport_photo')) {
+            $passport_photo = $request->file('passport_photo');
+            $path = $passport_photo->store('public/passport');
+        }
+
         $employee = User::findOrFail($id);
         $employee->employee_id = $request->employee_id;
         $employee->name = $request->name;
@@ -103,8 +120,15 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->department_id = $request->department_id;
         $employee->password = $request->password ? Hash::make($request->password) : $employee->password;
-        $employee->update();
 
+
+        $employee->employment_type = $request->employment_type;
+        $employee->join_date = $request->join_date;
+        $employee->contact_person = $request->contact_person;
+        $employee->emergency_contact = $request->emergency_contact;
+        $employee->passport_photo = $path ?? $employee->passport_photo;
+
+        $employee->update();
         $employee->syncRoles($request->roles);
         return redirect()->back()->with('success', 'Employee is successfully updated.');
     }

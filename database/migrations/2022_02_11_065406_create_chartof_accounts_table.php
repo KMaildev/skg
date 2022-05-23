@@ -29,9 +29,6 @@ class CreateChartofAccountsTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('chartof_accounts');
-        Schema::table('chartof_accounts', function (Blueprint $table) {
-            $table->dropColumn('coa_number', 'description', 'account_type_id');
-        });
+        Schema::dropIfExists('chartof_accounts');
     }
 }

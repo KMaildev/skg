@@ -13,13 +13,23 @@
                         <h6 class="mb-b fw-bold" style="font-weight: bold; font-size: 15px;">1. Info</h6>
                         <div class="row g-3">
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="row">
                                     <div class="">
                                         <label class="form-label" for="basic-default-fullname"
                                             style="font-weight: bold">Request Code</label>
-                                        <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                            name="code" />
+                                        @php
+                                            $code_count = count($request_infos);
+                                            $increment1 = sprintf('%06d', $code_count + 1);
+                                            $increment2 = sprintf('%06d', $code_count + 2);
+                                            $increment3 = sprintf('%06d', $code_count + 3);
+                                        @endphp
+                                        <select class="form-select select2entry @error('code') is-invalid @enderror"
+                                            name="code">
+                                            <option value="R-{{ $increment1 }}">R-{{ $increment1 }}</option>
+                                            <option value="R-{{ $increment2 }}">R-{{ $increment2 }}</option>
+                                            <option value="R-{{ $increment3 }}">R-{{ $increment3 }}</option>
+                                        </select>
                                         @error('code')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
@@ -27,7 +37,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="row">
                                     <div class="">
                                         <label class="form-label" for="flatpickr-human-friendly"
@@ -39,39 +49,12 @@
                                                 @foreach ($value->projects as $project)
                                                     <option value="{{ $project->customer_table->id ?? '' }}">
                                                         {{ $project->customer_table->project_code ?? '' }}
+                                                        @
+                                                        {{ $project->customer_table->name ?? '' }}
                                                     </option>
                                                 @endforeach
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <div class="">
-                                        <label class="form-label" for="flatpickr-human-friendly"
-                                            style="font-weight: bold">Request Date</label>
-                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
-                                            id="flatpickr-human-friendly" name="date" />
-                                        @error('date')
-                                            <div class="invalid-feedback"> {{ $message }} </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <div class="">
-                                        <label class="form-label" for="flatpickr-human-friendly"
-                                            style="font-weight: bold">Need Date</label>
-                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
-                                            id="flatpickr-human-friendly" name="need_date" />
-                                        @error('need_date')
-                                            <div class="invalid-feedback"> {{ $message }} </div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -88,6 +71,37 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="">
+                                        <label class="form-label" for="flatpickr-human-friendly"
+                                            style="font-weight: bold">Request Date</label>
+                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
+                                            id="flatpickr-human-friendly" name="date" />
+                                        @error('date')
+                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="">
+                                        <label class="form-label" for="flatpickr-human-friendly"
+                                            style="font-weight: bold">Need Date</label>
+                                        <input type="text" class="form-control date_picker" placeholder="Month DD, YYYY"
+                                            id="flatpickr-human-friendly" name="need_date" />
+                                        @error('need_date')
+                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
 
@@ -150,7 +164,7 @@
                                             class="btn btn-outline-danger remove-input-field btn-sm">Remove</button>
                                     </td>
                                 </tr>
-                            </tr>
+                                </tr>
                             </table>
                             <button type="button" class="btn btn-dark btn-sm" id="dynamic-ar">
                                 Add a line
@@ -182,7 +196,6 @@
             });
         });
     </script>
-
 
     <script type="text/javascript">
         function getVariableAssetsSizes(sel) {
