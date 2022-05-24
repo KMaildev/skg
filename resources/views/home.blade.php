@@ -37,13 +37,14 @@
                 @endcan
 
                 @can('accept_purchase_module')
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4" hidden>
-                        <a href="#">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                        <a href="{{ route('fixed_assets_purchase.index') }}">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div class="avatar avatar-md mx-auto mb-3">
-                                        <span class="avatar-initial rounded-circle bg-label-success"><i
-                                                class='bx bx-purchase-tag fs-3'></i></span>
+                                        <span class="avatar-initial rounded-circle bg-label-success">
+                                            <i class='bx bx-purchase-tag fs-3'></i>
+                                        </span>
                                     </div>
                                     <span class="d-block mb-1 text-nowrap">Purchase</span>
                                 </div>

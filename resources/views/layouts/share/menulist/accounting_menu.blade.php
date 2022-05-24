@@ -10,7 +10,7 @@
                 </a>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item" hidden>
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i2n="Layouts">Customers</div>
@@ -34,25 +34,28 @@
             <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-user-check"></i>
-                    <div data-i2n="Layouts">Suppliers</div>
+                    <div data-i2n="Layouts">Purchase</div>
                 </a>
 
                 <ul class="menu-sub">
                     <li class="menu-item">
                         <a href="#" class="menu-link">
                             <div data-i2n="Without menu">
-                                Bill </div>
+                                Bill
+                            </div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="#" class="menu-link">
-                            <div data-i2n="Without menu">Suppliers </div>
+                            <div data-i2n="Without menu">
+                                Suppliers
+                            </div>
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item" hidden>
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-calculator"></i>
                     <div data-i2n="Layouts">Accounting</div>
@@ -77,7 +80,7 @@
                 </ul>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item" hidden>
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-bar-chart-alt"></i>
                     <div data-i2n="Layouts">Reporting</div>
@@ -125,7 +128,7 @@
                 </ul>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item" hidden>
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i2n="Layouts">Chart of accounts</div>
@@ -148,13 +151,6 @@
                         </a>
                     </li>
                 </ul>
-            </li>
-
-            <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-edit"></i>
-                    <div data-i1n="Layouts">Note</div>
-                </a>
             </li>
         </ul>
     </div>

@@ -244,4 +244,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('engineer_return', 'Engineer\EngineerReturnController');
     Route::resource('engineer_variable_assets', 'Engineer\EngineerVariableAssetsController');
     Route::resource('variable_engineer_received', 'Engineer\VariableReceivedByEngineerController');
+
+
+
+
+
+
+
+
+    // Purchase
+    Route::resource('fixed_assets_purchase', 'Purchase\FixedAssetsPurchaseController');
 });

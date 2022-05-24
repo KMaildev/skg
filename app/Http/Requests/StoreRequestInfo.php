@@ -31,7 +31,7 @@ class StoreRequestInfo extends FormRequest
             'request_date' => 'required',
             'work_scope' => 'required',
             'requestItemFields.*.item_name' => 'required',
-            'requestItemFields.*.quantity' => 'required',
+            'requestItemFields.*.quantity' => 'required|numeric',
         ];
     }
 }
