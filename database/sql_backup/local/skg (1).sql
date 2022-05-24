@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2022 at 06:52 AM
+-- Generation Time: May 24, 2022 at 07:31 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -428,7 +428,11 @@ INSERT INTO `eng_request_items` (`id`, `fixed_asset_id`, `quantity`, `user_id`, 
 (5, 3, 1, 22, 0, 4, 9, '2022-05-06 10:53:50', '2022-05-06 10:53:50'),
 (6, 2, 1, 32, 0, 5, 12, '2022-05-06 11:34:38', '2022-05-06 11:34:38'),
 (7, 5, 2, 26, 0, 6, 5, '2022-05-09 03:47:14', '2022-05-09 03:47:14'),
-(8, 13, 10, 31, 0, 7, 11, '2022-05-10 10:05:55', '2022-05-10 10:05:55');
+(8, 13, 10, 31, 0, 7, 11, '2022-05-10 10:05:55', '2022-05-10 10:05:55'),
+(9, 1, 20, 22, 0, 12, 9, '2022-05-23 07:21:58', '2022-05-23 07:21:58'),
+(10, 1, 1, 22, 0, 13, 9, '2022-05-23 07:23:53', '2022-05-23 07:23:53'),
+(11, 2, 1, 22, 0, 14, 9, '2022-05-23 07:24:28', '2022-05-23 07:24:28'),
+(12, 1, 2, 22, 0, 15, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12');
 
 -- --------------------------------------------------------
 
@@ -509,6 +513,43 @@ INSERT INTO `fixed_assets` (`id`, `item_name`, `unit`, `qty`, `desciption`, `mai
 (11, 'Submersible Pump', 'Nos', 3, NULL, 1, '2022-04-29 09:36:18', '2022-04-29 09:36:18'),
 (12, 'Safety Green Net', 'Nos', 0, NULL, 1, '2022-04-29 09:36:35', '2022-04-29 09:37:16'),
 (13, 'Tarpolin', 'Nos', 0, NULL, 1, '2022-04-29 09:36:55', '2022-04-29 09:36:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fixed_assets_purchases`
+--
+
+CREATE TABLE `fixed_assets_purchases` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `reference` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `item_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unit` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `desciption` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_date` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fixed_asset_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fixed_assets_purchases`
+--
+
+INSERT INTO `fixed_assets_purchases` (`id`, `reference`, `item_name`, `unit`, `qty`, `desciption`, `order_date`, `fixed_asset_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'R-00001', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:46:57', '2022-05-24 16:46:57'),
+(2, 'R-00001', NULL, NULL, 1000, NULL, '2022-05-24 11:00 PM', 2, 1, '2022-05-24 16:46:57', '2022-05-24 16:46:57'),
+(3, 'R-00001', NULL, NULL, 9000, NULL, '2022-05-24 11:00 PM', 4, 1, '2022-05-24 16:46:57', '2022-05-24 16:46:57'),
+(4, 'asdf', NULL, NULL, 10, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:30', '2022-05-24 16:48:30'),
+(5, 'asdf', NULL, NULL, 10, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:30', '2022-05-24 16:48:30'),
+(6, 'asdfasd', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:37', '2022-05-24 16:48:37'),
+(7, 'asdfasd', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:37', '2022-05-24 16:48:37'),
+(8, 'asdfa', NULL, NULL, 1000, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:12', '2022-05-24 16:49:12'),
+(9, 'asdfa', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:12', '2022-05-24 16:49:12'),
+(10, 'asdfasdf', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:48', '2022-05-24 16:49:48'),
+(11, 'asdfasdf', NULL, NULL, 100, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:48', '2022-05-24 16:49:48');
 
 -- --------------------------------------------------------
 
@@ -821,7 +862,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (99, '2022_04_23_042821_add_engineer_return_info_id_fieldsto_return_qs_team_check_passes_table', 1),
 (100, '2022_05_06_224356_add_projects_users_id_to_request_infos_table', 1),
 (101, '2022_05_23_102853_add_users_emergency_fields_to_users_table', 1),
-(102, '2022_05_23_111800_create_testing_table', 2);
+(102, '2022_05_23_111800_create_testing_table', 2),
+(104, '2022_05_24_211310_create_fixed_assets_purchases_table', 3);
 
 -- --------------------------------------------------------
 
@@ -897,7 +939,9 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (5, 'App\\User', 35),
 (0, 'App\\User', 35),
 (0, 'App\\User', 44),
-(7, 'App\\User', 45);
+(7, 'App\\User', 45),
+(5, 'App\\User', 47),
+(5, 'App\\User', 46);
 
 -- --------------------------------------------------------
 
@@ -1299,13 +1343,20 @@ CREATE TABLE `request_infos` (
 --
 
 INSERT INTO `request_infos` (`id`, `request_code`, `request_date`, `work_scope`, `user_id`, `project_id`, `customer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `logistics_team_check_sent_status`, `transfer_from_status`, `main_warehouse_id`, `other_site_id`, `received_by_engineer_status`, `received_date`, `qs_team_check_date`, `logistics_team_check_sent_date`, `projects_users_id`) VALUES
-(1, 'O - 00001', '2022-04-29 12:00 AM', 'Brick Laying Work', 22, 0, 9, '2022-04-29 09:47:21', '2022-04-29 09:49:23', 'accept', '2022-04-29 16:47:55pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-29 12:00 AM', '2022-04-29 16:48:32pm', '2022-04-29 16:48:57pm', NULL),
-(2, 'O - 00003', '2022-04-30 12:00 AM', 'Brick Laying', 22, 0, 9, '2022-04-30 05:22:05', '2022-04-30 05:24:46', 'accept', '2022-04-30 12:22:53pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-30 12:00 AM', '2022-04-30 12:23:20pm', '2022-04-30 12:23:56pm', NULL),
-(3, 'O - 00007', '2022-04-30 12:00 AM', 'Brick Laying Work', 22, 0, 2, '2022-04-30 10:38:42', '2022-05-06 11:36:58', 'accept', '2022-04-30 17:40:29pm', 'finished', 'finished', 'warehouse', 0, 0, NULL, NULL, '2022-05-06 18:13:02pm', '2022-05-06 18:36:58pm', NULL),
-(4, 'O - 00002', '2022-05-09 12:00 AM', 'Swimming Pool Foundation', 22, 0, 9, '2022-05-06 10:53:50', '2022-05-06 10:56:02', 'accept', '2022-05-06 17:54:50pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-05-10 12:00 AM', '2022-05-06 17:55:21pm', '2022-05-06 17:55:37pm', NULL),
-(5, 'O - 003', '2022-05-06 12:00 AM', 'Foundation Formwork', 32, 0, 12, '2022-05-06 11:34:38', '2022-05-10 03:30:39', 'accept', '2022-05-10 10:30:14am', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:30:39am', NULL, NULL),
-(6, '0002', '2022-05-09 10:45 AM', 'Brick work and plastering work', 26, 0, 5, '2022-05-09 03:47:14', '2022-05-19 07:06:29', 'accept', '2022-05-19 14:06:29pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:32:34am', NULL, 6),
-(7, 'O 0001', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9);
+(1, 'O-00001', '2022-04-29 12:00 AM', 'Brick Laying Work', 22, 0, 9, '2022-04-29 09:47:21', '2022-04-29 09:49:23', 'accept', '2022-04-29 16:47:55pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-29 12:00 AM', '2022-04-29 16:48:32pm', '2022-04-29 16:48:57pm', NULL),
+(2, 'O-00003', '2022-04-30 12:00 AM', 'Brick Laying', 22, 0, 9, '2022-04-30 05:22:05', '2022-04-30 05:24:46', 'accept', '2022-04-30 12:22:53pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-30 12:00 AM', '2022-04-30 12:23:20pm', '2022-04-30 12:23:56pm', NULL),
+(3, 'O-00007', '2022-04-30 12:00 AM', 'Brick Laying Work', 22, 0, 2, '2022-04-30 10:38:42', '2022-05-06 11:36:58', 'accept', '2022-04-30 17:40:29pm', 'finished', 'finished', 'warehouse', 0, 0, NULL, NULL, '2022-05-06 18:13:02pm', '2022-05-06 18:36:58pm', NULL),
+(4, 'O-00002', '2022-05-09 12:00 AM', 'Swimming Pool Foundation', 22, 0, 9, '2022-05-06 10:53:50', '2022-05-06 10:56:02', 'accept', '2022-05-06 17:54:50pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-05-10 12:00 AM', '2022-05-06 17:55:21pm', '2022-05-06 17:55:37pm', NULL),
+(5, 'O-00004', '2022-05-06 12:00 AM', 'Foundation Formwork', 32, 0, 12, '2022-05-06 11:34:38', '2022-05-10 03:30:39', 'accept', '2022-05-10 10:30:14am', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:30:39am', NULL, NULL),
+(6, 'O-00005', '2022-05-09 10:45 AM', 'Brick work and plastering work', 26, 0, 5, '2022-05-09 03:47:14', '2022-05-19 07:06:29', 'accept', '2022-05-19 14:06:29pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:32:34am', NULL, 6),
+(7, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
+(8, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
+(9, 'O-00005', '2022-05-09 10:45 AM', 'Brick work and plastering work', 26, 0, 5, '2022-05-09 03:47:14', '2022-05-19 07:06:29', 'accept', '2022-05-19 14:06:29pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:32:34am', NULL, 6),
+(10, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
+(11, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
+(13, 'R-000012', '2022-05-23 12:00 AM', 'Foun', 22, 0, 9, '2022-05-23 07:23:53', '2022-05-23 07:23:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(14, 'R-000017', '2022-05-23 12:00 AM', 'FOundation', 22, 0, 9, '2022-05-23 07:24:28', '2022-05-23 07:24:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(15, 'R-000014', '2022-05-24 07:00 PM', 'Foundation', 22, 0, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1712,7 +1763,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (19, 'AUNG HTET PAING', 'aunghtetpaing.skgroup@gmail.com', NULL, '$2y$10$gQfTPFveu0nOs7Wob8Hb3.UYTTpz3o3gJnEQlt7sAZVCYjOb6MC9S', NULL, '2022-03-17 04:38:03', '2022-03-17 04:38:03', 'EMP - 00019', '09751445870', '12/Lathana(N)021656', 'male', 'No. 74, Min Nanda Road, Dawpone Tsp, Yangon', 1, NULL, NULL, NULL, NULL, NULL),
 (20, 'Ko Moe Thae Aung', 'moethae.skgroup@gmail.com', NULL, '$2y$10$CMe6w5RhbasJatWg.ltoZuut6Wxf411OlZBYtnkOQx0lND78Vzgiy', 'VDP0pz2O1CW769KkvZlsdgIp1oYTQBQDeQ1MaNsO6K5mi2t3SHrbsSQjcMCq', '2022-03-28 05:09:58', '2022-03-28 05:09:58', 'EMP - 00020', '09752800400', '9/AhMaZa(N)016643', 'male', 'No.(5), Bo Sone Pat St, Bo Tun Zan Qt, Daw Pon TS', 3, NULL, NULL, NULL, NULL, NULL),
 (21, 'Ko Soe Moe Aung', 'soemoe.skgroup@gmail.com', NULL, '$2y$10$FyWc2Xn8FzmUr9eROnqyqe9N.3eDX78agOHkk6wIgjwfImKoT01aS', '689EiuzQKdOQ8fAbR5jvkqLWmog70iOhp1yhNx6lQpSWdvu60GzhfMfdGFdU', '2022-04-19 07:44:07', '2022-04-29 10:08:33', 'EMP - 00021', '09765417569', '12/', 'male', 'No.(202), MaharNawarat Condo (A), 50th Street, Botahtaung Tsp.', 8, NULL, NULL, NULL, NULL, NULL),
-(22, 'Daw Khin Zarni', 'khinzarni.skgroup@gmail.com', NULL, '$2y$10$2ra6OqKvEKq4rB3/eTiDouAk1eeo8YenKYAGDB35JhYlsSzkRTOLe', 'ZCS6OQ3WhL8eVEY7KEJXwVHYm2FXc2PlOayMrp9oLg1PD0LZ8QrTi4FyFSf5', '2022-04-29 09:39:44', '2022-05-05 02:27:16', 'EMP - 00022', '09740875439', '14/HATHATA(N)021656', 'female', 'No.(202), MaharNawarat Condo (A), 50th Street, Botahtaung Tsp.', 9, NULL, NULL, NULL, NULL, NULL),
+(22, 'Daw Khin Zarni', 'khinzarni.skgroup@gmail.com', NULL, '$2y$10$2ra6OqKvEKq4rB3/eTiDouAk1eeo8YenKYAGDB35JhYlsSzkRTOLe', 'Q1D7kVlK5sxGKL5wSZb64E97zmdROvM285829w0ZU7P9DzVHSaH87lePdHEH', '2022-04-29 09:39:44', '2022-05-05 02:27:16', 'EMP - 00022', '09740875439', '14/HATHATA(N)021656', 'female', 'No.(202), MaharNawarat Condo (A), 50th Street, Botahtaung Tsp.', 9, NULL, NULL, NULL, NULL, NULL),
 (23, 'U Zin Wai Aung', 'zinwaiaung.skgroup@gmail.com', NULL, '$2y$10$V02L.4ul2CaHZSM8IvH6tuKK.wa.HBsWUTE0pD79G2HMc/071Tkxm', NULL, '2022-04-29 12:27:33', '2022-04-29 12:56:05', 'EMP-00023', '09799404246', '12/KAKHAKA(N)090911', 'male', 'Thingyangun', 9, NULL, NULL, NULL, NULL, NULL),
 (24, 'Daw Htet Htet Zaw', 'htethtetzaw.skgroup@gmail.com', NULL, '$2y$10$kqtrjv82HDaMwwZPTdDLSOABQSpUADTj1ynMEyOomY/vaG66Ojjpq', NULL, '2022-04-29 12:37:19', '2022-04-29 12:56:39', 'EMP-00024', '09795345577', '12/BATAHTA(N)044264', 'male', 'No.262,Merchant Road, East Yangon General Hospital, Botahtaung Tsp', 9, NULL, NULL, NULL, NULL, NULL),
 (25, 'Daw Zar Zar Khine', 'zarzarkhine.skgroup@gmail.com', NULL, '$2y$10$HfdR7fopHjyS2b5yn1gt6uk7TlVqjrsh1VEpZbEouJq7FXW3nx41G', NULL, '2022-04-29 12:42:04', '2022-05-06 11:16:41', 'EMP-00025', '09799048521', '5/KATHANA(N)122900', 'female', 'Shwe Ta Sote Stree, Thamine, MaYanGone Tsp', 9, NULL, NULL, NULL, NULL, NULL),
@@ -1735,7 +1786,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (42, 'Daw Aung San suu Kyaw', 'suukyaw.skgroup@gmail.com', NULL, '$2y$10$8NmMUS.7C08wkfyBlV3Exe0M9Mk5i0J2Tutru694LiQZ.Pmcqi32C', NULL, '2022-05-05 06:06:53', '2022-05-06 14:45:05', 'EMP-00042', '09785421470', '12/THAKATA(N)200674', 'female', 'No.(634), 4 Floor, Shwe Pyi Thar Street/ 6 Quarter, Thaketa Tsp.', 8, NULL, NULL, NULL, NULL, NULL),
 (43, 'U Wai Yan Lynn', 'waiyanlynn.skgroup@gmail.com', NULL, '$2y$10$Qo2ZqMt0TcUX6eLcQ.fnguvxmN6MyMAdGP8sUf26ZAHL/fR.yP3s6', NULL, '2022-05-07 07:13:59', '2022-05-07 07:13:59', 'EMP-00043', '09970047351', '12/DAKASA(N)023993', 'male', 'No.1003/A3,6 Htu Par Yon Stree, Thaketa', 4, NULL, NULL, NULL, NULL, NULL),
 (44, 'U Htet Aung', 'htetaung.skgroup@gmail.com', NULL, '$2y$10$4JpoUmghg2SANyVNGI984uW8gGR5uB9fqn4xs2zJHcQdcP257Okf2', NULL, '2022-05-12 10:22:08', '2022-05-12 10:22:08', 'EMP-00044', '09951204013', '12/SAKHANA(N)076156', 'male', 'No. 34.(4\" Floor), Sanchaung Stree, Sanchaung, Yangon,Myanmar', 9, NULL, NULL, NULL, NULL, NULL),
-(45, 'Daw Htet Wai Oo', 'htetwaioo.skgroup@gmail.com', NULL, '$2y$10$x2ME8NPzRxTO0ZcTFgLrTeXUY8mUm9z/MmxHVO7hEyU8QGfV694pW', NULL, '2022-05-13 04:24:07', '2022-05-13 04:24:07', 'EMP-00045', '09755713424', '13/NAKHATA(N)082880', 'female', 'တိုက် 256, ဇေယျာသိရီ ၁၃လမ်း, သင်္ဘောကျင်း, ဒေါပုံမြို့နယ်', 7, NULL, NULL, NULL, NULL, NULL);
+(45, 'Daw Htet Wai Oo', 'htetwaioo.skgroup@gmail.com', NULL, '$2y$10$x2ME8NPzRxTO0ZcTFgLrTeXUY8mUm9z/MmxHVO7hEyU8QGfV694pW', NULL, '2022-05-13 04:24:07', '2022-05-13 04:24:07', 'EMP-00045', '09755713424', '13/NAKHATA(N)082880', 'female', 'တိုက် 256, ဇေယျာသိရီ ၁၃လမ်း, သင်္ဘောကျင်း, ဒေါပုံမြို့နယ်', 7, NULL, NULL, NULL, NULL, NULL),
+(46, 'Mg Mg', 'mgmg@gmail.com', NULL, '$2y$10$QFI/b1hZgD7oi/No0jyGTev.huPvH6.DtkYJFdb8rFk4pxiX0U8o.', NULL, '2022-05-23 05:57:58', '2022-05-23 06:11:45', 'emp-00002', '09123123124', '5/(abc)009112', 'male', 'YGN', 6, 'Mg Mg', '09123123123', 'public/passport/GkL8HOj3LJa1ziZwCveRpcV3bUClvmWFb1zbkqV4.png', '2022-05-23 12:00 AM', 'Contract'),
+(47, 'Mg Mg', 'mgmgsoe@gmail.com', NULL, '$2y$10$TJAxVcEOPhDv6vF9O4dEPukRLHN47Q9gvxGF6p/3yAlTcIMD5lNyW', NULL, '2022-05-23 05:59:58', '2022-05-23 06:07:40', 'EMP-00012', '09123122131', '5/(abc)091231', 'male', 'YGN', 6, 'U Mya', '09312123132', 'public/passport/gjMZF5LWvyAD2HIvB1NLDCZFwpCfEBOqWPX9oG80.jpg', '2022-05-23 12:00 AM', 'Contract');
 
 -- --------------------------------------------------------
 
@@ -2236,7 +2289,7 @@ CREATE TABLE `variable_request_infos` (
 --
 
 INSERT INTO `variable_request_infos` (`id`, `code`, `date`, `customer_id`, `engineer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `qs_team_check_date`, `logistics_team_check`, `logistics_team_check_date`, `management_accept_reject_status`, `management_accept_reject_date`, `received_by_engineer_status`, `received_date`, `actual_voucher_upload`, `actual_voucher_upload_date`, `finance_payment_slip_upload`, `finance_payment_slip_upload_date`, `logistics_team_send_status`, `logistics_team_send_date`, `need_date`, `work_scope`) VALUES
-(1, 'O - 00002', '2022-04-29 12:00 AM', 9, 22, '2022-04-29 09:57:52', '2022-04-30 07:24:04', 'accept', '2022-04-29 16:58:06pm', 'finished', '2022-04-29 16:58:14pm', 'finished', '2022-04-29 16:58:52pm', 'accept', '2022-04-29 16:59:02pm', 'received', '2022-04-29 12:00 AM', NULL, NULL, NULL, NULL, 'finished', '2022-04-30 14:24:04pm', '2022-04-29 12:00 AM', 'Foundation'),
+(1, 'R-000023', '2022-04-29 12:00 AM', 9, 22, '2022-04-29 09:57:52', '2022-04-30 07:24:04', 'accept', '2022-04-29 16:58:06pm', 'finished', '2022-04-29 16:58:14pm', 'finished', '2022-04-29 16:58:52pm', 'accept', '2022-04-29 16:59:02pm', 'received', '2022-04-29 12:00 AM', NULL, NULL, NULL, NULL, 'finished', '2022-04-30 14:24:04pm', '2022-04-29 12:00 AM', 'Foundation'),
 (2, 'O - 00004', '2022-04-30 12:00 AM', 9, 22, '2022-04-30 10:21:42', '2022-04-30 10:25:26', 'accept', '2022-04-30 17:23:05pm', 'finished', '2022-04-30 17:23:19pm', 'finished', '2022-04-30 17:23:48pm', 'accept', '2022-04-30 17:24:51pm', 'received', '2022-04-30 12:00 AM', NULL, NULL, NULL, NULL, 'finished', '2022-04-30 17:25:00pm', '2022-04-30 12:00 AM', 'Foundation'),
 (3, 'O - 00008', '2022-05-06 12:00 AM', 9, 22, '2022-05-06 10:58:53', '2022-05-06 11:03:36', 'accept', '2022-05-06 17:59:37pm', 'finished', '2022-05-06 18:01:10pm', 'finished', '2022-05-06 18:02:20pm', 'accept', '2022-05-06 18:02:58pm', 'received', '2022-05-06 12:00 AM', NULL, NULL, NULL, NULL, 'finished', '2022-05-06 18:03:18pm', '2022-05-13 12:00 AM', 'Swimming Pool Foundation'),
 (4, 'O-00009', '2022-05-06 06:37 PM', 9, 22, '2022-05-06 11:41:31', '2022-05-06 11:41:31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-09 09:00 AM', 'For 2nd floor brick work'),
@@ -2257,7 +2310,8 @@ INSERT INTO `variable_request_infos` (`id`, `code`, `date`, `customer_id`, `engi
 (19, 'O 0005', '2022-05-13 12:00 AM', 11, 31, '2022-05-13 13:04:42', '2022-05-21 12:30:14', 'accept', '2022-05-16 13:09:18pm', 'finished', '2022-05-16 13:11:15pm', NULL, NULL, NULL, NULL, 'received', '2022-05-17 12:00 AM', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-17 12:00 AM', 'RB casting'),
 (20, 'O 0006', '2022-05-13 12:00 AM', 11, 31, '2022-05-13 13:05:23', '2022-05-21 12:30:23', 'accept', '2022-05-16 13:10:41pm', 'finished', '2022-05-16 13:10:49pm', NULL, NULL, NULL, NULL, 'received', '2022-05-17 12:00 AM', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-17 12:00 AM', 'GT and Septic tank'),
 (21, 'O 0007', '2022-05-21 12:00 AM', 14, 31, '2022-05-21 12:33:06', '2022-05-21 12:33:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-24 12:00 AM', 'Footing concrete casting'),
-(22, 'O 0008', '2022-05-23 12:00 AM', 14, 31, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-24 12:00 AM', 'Footing concrete casting');
+(22, 'O 0008', '2022-05-23 12:00 AM', 14, 31, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-24 12:00 AM', 'Footing concrete casting'),
+(23, 'R-000024', '2022-05-23 12:00 AM', 7, 22, '2022-05-23 07:41:54', '2022-05-23 07:41:54', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-23 12:00 AM', 'Foundation');
 
 -- --------------------------------------------------------
 
@@ -2315,7 +2369,9 @@ INSERT INTO `variable_request_items` (`id`, `variable_asset_id`, `quantity`, `us
 (32, '26', '1.5', 31, 21, '2022-05-21 12:33:06', '2022-05-21 12:33:06', NULL),
 (33, '27', '1.5', 31, 21, '2022-05-21 12:33:06', '2022-05-21 12:33:06', NULL),
 (34, '26', '1.5', 31, 22, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL),
-(35, '27', '1.5', 31, 22, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL);
+(35, '27', '1.5', 31, 22, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL),
+(36, '1', '1', 22, 23, '2022-05-23 07:41:54', '2022-05-23 07:41:54', '52.5'),
+(37, '6', '1', 22, 23, '2022-05-23 07:41:54', '2022-05-23 07:41:54', '12mm');
 
 --
 -- Indexes for dumped tables
@@ -2403,6 +2459,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `fixed_assets`
 --
 ALTER TABLE `fixed_assets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fixed_assets_purchases`
+--
+ALTER TABLE `fixed_assets_purchases`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2707,7 +2769,7 @@ ALTER TABLE `engineer_return_infos`
 -- AUTO_INCREMENT for table `eng_request_items`
 --
 ALTER TABLE `eng_request_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `exterior_design_fees`
@@ -2720,6 +2782,12 @@ ALTER TABLE `exterior_design_fees`
 --
 ALTER TABLE `fixed_assets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `fixed_assets_purchases`
+--
+ALTER TABLE `fixed_assets_purchases`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `floor_plans`
@@ -2755,7 +2823,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2815,7 +2883,7 @@ ALTER TABLE `received_by_store_managers`
 -- AUTO_INCREMENT for table `request_infos`
 --
 ALTER TABLE `request_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `request_items`
@@ -2881,7 +2949,7 @@ ALTER TABLE `transfer_infos`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `variable_accept_reject_statuses`
@@ -2947,13 +3015,13 @@ ALTER TABLE `variable_received_by_engineers`
 -- AUTO_INCREMENT for table `variable_request_infos`
 --
 ALTER TABLE `variable_request_infos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `variable_request_items`
 --
 ALTER TABLE `variable_request_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
