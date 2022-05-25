@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 24, 2022 at 07:31 PM
+-- Generation Time: May 25, 2022 at 10:12 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.27
 
@@ -432,7 +432,11 @@ INSERT INTO `eng_request_items` (`id`, `fixed_asset_id`, `quantity`, `user_id`, 
 (9, 1, 20, 22, 0, 12, 9, '2022-05-23 07:21:58', '2022-05-23 07:21:58'),
 (10, 1, 1, 22, 0, 13, 9, '2022-05-23 07:23:53', '2022-05-23 07:23:53'),
 (11, 2, 1, 22, 0, 14, 9, '2022-05-23 07:24:28', '2022-05-23 07:24:28'),
-(12, 1, 2, 22, 0, 15, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12');
+(12, 1, 2, 22, 0, 15, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12'),
+(13, 1, 10, 22, 0, 16, 9, '2022-05-25 07:49:01', '2022-05-25 07:49:01'),
+(14, 3, 10, 22, 0, 16, 9, '2022-05-25 07:49:01', '2022-05-25 07:49:01'),
+(15, 1, 1000, 22, 0, 17, 7, '2022-05-25 07:49:53', '2022-05-25 07:49:53'),
+(16, 10, 1500, 22, 0, 17, 7, '2022-05-25 07:49:53', '2022-05-25 07:49:53');
 
 -- --------------------------------------------------------
 
@@ -500,7 +504,7 @@ CREATE TABLE `fixed_assets` (
 --
 
 INSERT INTO `fixed_assets` (`id`, `item_name`, `unit`, `qty`, `desciption`, `main_warehouse_id`, `created_at`, `updated_at`) VALUES
-(1, 'T Column', 'Nos', 2276, NULL, 1, '2022-04-28 16:13:30', '2022-05-06 07:44:05'),
+(1, 'T Column', 'Nos', 2280, NULL, 1, '2022-04-28 16:13:30', '2022-05-25 03:43:18'),
 (2, 'Vibrator', 'Nos', 5, NULL, 1, '2022-04-28 16:13:52', '2022-05-06 07:38:15'),
 (3, 'Concrete Mixer', 'Nos', 6, NULL, 1, '2022-04-29 09:33:32', '2022-04-29 09:33:32'),
 (4, 'Compactor', 'Nos', 1, NULL, 1, '2022-04-29 09:34:03', '2022-04-29 09:34:03'),
@@ -531,25 +535,17 @@ CREATE TABLE `fixed_assets_purchases` (
   `fixed_asset_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `price` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `fixed_assets_purchases`
 --
 
-INSERT INTO `fixed_assets_purchases` (`id`, `reference`, `item_name`, `unit`, `qty`, `desciption`, `order_date`, `fixed_asset_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'R-00001', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:46:57', '2022-05-24 16:46:57'),
-(2, 'R-00001', NULL, NULL, 1000, NULL, '2022-05-24 11:00 PM', 2, 1, '2022-05-24 16:46:57', '2022-05-24 16:46:57'),
-(3, 'R-00001', NULL, NULL, 9000, NULL, '2022-05-24 11:00 PM', 4, 1, '2022-05-24 16:46:57', '2022-05-24 16:46:57'),
-(4, 'asdf', NULL, NULL, 10, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:30', '2022-05-24 16:48:30'),
-(5, 'asdf', NULL, NULL, 10, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:30', '2022-05-24 16:48:30'),
-(6, 'asdfasd', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:37', '2022-05-24 16:48:37'),
-(7, 'asdfasd', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:48:37', '2022-05-24 16:48:37'),
-(8, 'asdfa', NULL, NULL, 1000, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:12', '2022-05-24 16:49:12'),
-(9, 'asdfa', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:12', '2022-05-24 16:49:12'),
-(10, 'asdfasdf', NULL, NULL, 0, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:48', '2022-05-24 16:49:48'),
-(11, 'asdfasdf', NULL, NULL, 100, NULL, '2022-05-24 11:00 PM', 1, 1, '2022-05-24 16:49:48', '2022-05-24 16:49:48');
+INSERT INTO `fixed_assets_purchases` (`id`, `reference`, `item_name`, `unit`, `qty`, `desciption`, `order_date`, `fixed_asset_id`, `user_id`, `created_at`, `updated_at`, `price`) VALUES
+(1, 'R-00001', NULL, NULL, 1000, NULL, '2022-05-25 09:00 AM', 1, 1, '2022-05-25 02:51:23', '2022-05-25 02:51:23', '0'),
+(2, 'R-00002', NULL, NULL, 10, NULL, '2022-05-25 10:00 AM', 1, 1, '2022-05-25 03:44:09', '2022-05-25 03:44:09', '1000');
 
 -- --------------------------------------------------------
 
@@ -863,7 +859,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (100, '2022_05_06_224356_add_projects_users_id_to_request_infos_table', 1),
 (101, '2022_05_23_102853_add_users_emergency_fields_to_users_table', 1),
 (102, '2022_05_23_111800_create_testing_table', 2),
-(104, '2022_05_24_211310_create_fixed_assets_purchases_table', 3);
+(104, '2022_05_24_211310_create_fixed_assets_purchases_table', 3),
+(105, '2022_05_25_082844_add_price_to_fixed_assets_purchases_table', 4);
 
 -- --------------------------------------------------------
 
@@ -1356,7 +1353,9 @@ INSERT INTO `request_infos` (`id`, `request_code`, `request_date`, `work_scope`,
 (11, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
 (13, 'R-000012', '2022-05-23 12:00 AM', 'Foun', 22, 0, 9, '2022-05-23 07:23:53', '2022-05-23 07:23:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (14, 'R-000017', '2022-05-23 12:00 AM', 'FOundation', 22, 0, 9, '2022-05-23 07:24:28', '2022-05-23 07:24:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(15, 'R-000014', '2022-05-24 07:00 PM', 'Foundation', 22, 0, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+(15, 'R-000014', '2022-05-24 07:00 PM', 'Foundation', 22, 0, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(16, 'R-000015', '2022-05-25 02:00 PM', 'Foundation', 22, 0, 9, '2022-05-25 07:49:01', '2022-05-25 07:49:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(17, 'R-000018', '2022-05-25 02:00 PM', 'Foundation', 22, 0, 7, '2022-05-25 07:49:53', '2022-05-25 07:49:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14);
 
 -- --------------------------------------------------------
 
@@ -1831,7 +1830,8 @@ INSERT INTO `variable_accept_reject_statuses` (`id`, `user_id`, `accept_reject_s
 (18, 10, 'accept', '2022-05-13', 17, '2022-05-13 03:07:03', '2022-05-13 03:07:03'),
 (19, 10, 'accept', '2022-05-13', 18, '2022-05-13 03:07:39', '2022-05-13 03:07:39'),
 (20, 10, 'accept', '2022-05-16', 19, '2022-05-16 06:09:18', '2022-05-16 06:09:18'),
-(21, 10, 'accept', '2022-05-16', 20, '2022-05-16 06:10:41', '2022-05-16 06:10:41');
+(21, 10, 'accept', '2022-05-16', 20, '2022-05-16 06:10:41', '2022-05-16 06:10:41'),
+(22, 1, 'accept', '2022-05-25', 23, '2022-05-25 03:50:11', '2022-05-25 03:50:11');
 
 -- --------------------------------------------------------
 
@@ -2106,7 +2106,9 @@ INSERT INTO `variable_logistics_team_checks` (`id`, `variable_request_info_id`, 
 (5, 17, 21, 23, '150', '150', '1800', 92, '2022-05-17 01:47:03', '2022-05-17 01:47:03'),
 (6, 17, 21, 24, '15', '8', '0', 94, '2022-05-17 01:47:03', '2022-05-17 01:47:03'),
 (7, 17, 21, 23, '150', '150', '1800', 92, '2022-05-17 01:49:36', '2022-05-17 01:49:36'),
-(8, 17, 21, 24, '15', '8', '0', 94, '2022-05-17 01:49:36', '2022-05-17 01:49:36');
+(8, 17, 21, 24, '15', '8', '0', 94, '2022-05-17 01:49:36', '2022-05-17 01:49:36'),
+(9, 23, 1, 36, '1', '1', '1000', 1, '2022-05-25 03:50:54', '2022-05-25 03:50:54'),
+(10, 23, 1, 37, '1', '1', '1000', 6, '2022-05-25 03:50:54', '2022-05-25 03:50:54');
 
 -- --------------------------------------------------------
 
@@ -2161,10 +2163,11 @@ CREATE TABLE `variable_payments` (
 
 INSERT INTO `variable_payments` (`id`, `variable_request_info_id`, `user_id`, `transportation`, `labor`, `banking_percent`, `extra`, `created_at`, `updated_at`) VALUES
 (1, 1, 19, '20000', '0', '0', '0', '2022-04-29 09:58:52', '2022-04-29 09:58:52'),
-(2, 2, 19, '20000', '0', '0', '0', '2022-04-30 10:23:48', '2022-04-30 10:23:48'),
-(3, 3, 19, '0', '0', '0', '0', '2022-05-06 11:02:20', '2022-05-06 11:02:20'),
-(4, 17, 21, '23000', '0', '0', '0', '2022-05-17 01:47:03', '2022-05-17 01:47:03'),
-(5, 17, 21, '23000', '0', '5860', '0', '2022-05-17 01:49:36', '2022-05-17 01:49:36');
+(2, 2, 19, '20000', '0', '20', '0', '2022-04-30 10:23:48', '2022-04-30 10:23:48'),
+(3, 3, 19, '0', '0', '30', '0', '2022-05-06 11:02:20', '2022-05-06 11:02:20'),
+(4, 17, 21, '23000', '0', '3', '0', '2022-05-17 01:47:03', '2022-05-17 01:47:03'),
+(5, 17, 21, '23000', '0', '0', '0', '2022-05-17 01:49:36', '2022-05-17 01:49:36'),
+(6, 23, 1, '1000', '1000', '5', '0', '2022-05-25 03:50:54', '2022-05-25 03:50:54');
 
 -- --------------------------------------------------------
 
@@ -2215,7 +2218,9 @@ INSERT INTO `variable_qs_team_checks` (`id`, `user_id`, `variable_request_item_i
 (24, 10, 31, '20', '20', 20, 4, '2022-05-16 06:10:49', '2022-05-16 06:10:49'),
 (25, 10, 28, '40', '40', 19, 1, '2022-05-16 06:11:15', '2022-05-16 06:11:15'),
 (26, 10, 29, '1.5', '1.5', 19, 26, '2022-05-16 06:11:15', '2022-05-16 06:11:15'),
-(27, 10, 30, '2.5', '2.5', 19, 27, '2022-05-16 06:11:15', '2022-05-16 06:11:15');
+(27, 10, 30, '2.5', '2.5', 19, 27, '2022-05-16 06:11:15', '2022-05-16 06:11:15'),
+(28, 1, 36, '1', '1', 23, 1, '2022-05-25 03:50:18', '2022-05-25 03:50:18'),
+(29, 1, 37, '1', '1', 23, 6, '2022-05-25 03:50:18', '2022-05-25 03:50:18');
 
 -- --------------------------------------------------------
 
@@ -2311,7 +2316,8 @@ INSERT INTO `variable_request_infos` (`id`, `code`, `date`, `customer_id`, `engi
 (20, 'O 0006', '2022-05-13 12:00 AM', 11, 31, '2022-05-13 13:05:23', '2022-05-21 12:30:23', 'accept', '2022-05-16 13:10:41pm', 'finished', '2022-05-16 13:10:49pm', NULL, NULL, NULL, NULL, 'received', '2022-05-17 12:00 AM', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-17 12:00 AM', 'GT and Septic tank'),
 (21, 'O 0007', '2022-05-21 12:00 AM', 14, 31, '2022-05-21 12:33:06', '2022-05-21 12:33:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-24 12:00 AM', 'Footing concrete casting'),
 (22, 'O 0008', '2022-05-23 12:00 AM', 14, 31, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-24 12:00 AM', 'Footing concrete casting'),
-(23, 'R-000024', '2022-05-23 12:00 AM', 7, 22, '2022-05-23 07:41:54', '2022-05-23 07:41:54', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-23 12:00 AM', 'Foundation');
+(23, 'R-000024', '2022-05-23 12:00 AM', 7, 22, '2022-05-23 07:41:54', '2022-05-25 03:50:54', 'accept', '2022-05-25 10:20:11am', 'finished', '2022-05-25 10:20:18am', 'finished', '2022-05-25 10:20:54am', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-23 12:00 AM', 'Foundation'),
+(24, 'R-000025', '2022-05-25 02:00 PM', 9, 22, '2022-05-25 07:33:38', '2022-05-25 07:33:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-25 02:00 PM', 'Foundation');
 
 -- --------------------------------------------------------
 
@@ -2371,7 +2377,9 @@ INSERT INTO `variable_request_items` (`id`, `variable_asset_id`, `quantity`, `us
 (34, '26', '1.5', 31, 22, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL),
 (35, '27', '1.5', 31, 22, '2022-05-23 01:14:35', '2022-05-23 01:14:35', NULL),
 (36, '1', '1', 22, 23, '2022-05-23 07:41:54', '2022-05-23 07:41:54', '52.5'),
-(37, '6', '1', 22, 23, '2022-05-23 07:41:54', '2022-05-23 07:41:54', '12mm');
+(37, '6', '1', 22, 23, '2022-05-23 07:41:54', '2022-05-23 07:41:54', '12mm'),
+(38, '1', '1000', 22, 24, '2022-05-25 07:33:38', '2022-05-25 07:33:38', '52.5'),
+(39, '5', '10', 22, 24, '2022-05-25 07:33:38', '2022-05-25 07:33:38', NULL);
 
 --
 -- Indexes for dumped tables
@@ -2769,7 +2777,7 @@ ALTER TABLE `engineer_return_infos`
 -- AUTO_INCREMENT for table `eng_request_items`
 --
 ALTER TABLE `eng_request_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `exterior_design_fees`
@@ -2787,7 +2795,7 @@ ALTER TABLE `fixed_assets`
 -- AUTO_INCREMENT for table `fixed_assets_purchases`
 --
 ALTER TABLE `fixed_assets_purchases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `floor_plans`
@@ -2823,7 +2831,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2883,7 +2891,7 @@ ALTER TABLE `received_by_store_managers`
 -- AUTO_INCREMENT for table `request_infos`
 --
 ALTER TABLE `request_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `request_items`
@@ -2955,7 +2963,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `variable_accept_reject_statuses`
 --
 ALTER TABLE `variable_accept_reject_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `variable_actual_vouchers`
@@ -2985,7 +2993,7 @@ ALTER TABLE `variable_finance_payment_slips`
 -- AUTO_INCREMENT for table `variable_logistics_team_checks`
 --
 ALTER TABLE `variable_logistics_team_checks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `variable_logistics_team_sends`
@@ -2997,13 +3005,13 @@ ALTER TABLE `variable_logistics_team_sends`
 -- AUTO_INCREMENT for table `variable_payments`
 --
 ALTER TABLE `variable_payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `variable_qs_team_checks`
 --
 ALTER TABLE `variable_qs_team_checks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `variable_received_by_engineers`
@@ -3015,13 +3023,13 @@ ALTER TABLE `variable_received_by_engineers`
 -- AUTO_INCREMENT for table `variable_request_infos`
 --
 ALTER TABLE `variable_request_infos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `variable_request_items`
 --
 ALTER TABLE `variable_request_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
