@@ -30,8 +30,9 @@ class StoreRequestInfo extends FormRequest
             'request_code' => 'required|unique:request_infos,request_code',
             'request_date' => 'required',
             'work_scope' => 'required',
-            'requestItemFields.*.item_name' => 'required',
-            'requestItemFields.*.quantity' => 'required|numeric',
+
+            'fixed_assets_id.*' => 'required',
+            'quantity.*' => 'required|numeric',
         ];
     }
 }

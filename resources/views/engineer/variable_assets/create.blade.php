@@ -100,24 +100,21 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
 
-
-                        <hr class="my-4 mx-n4" />
-                        <h6 class=" fw-bold" style="font-weight: bold; font-size: 15px;">2. Items</h6>
-                        <div>
-                            <table class="table table-bordered" id="dynamicAddRemove" style="margin-bottom: 20px;">
+                        <div class="row py-5">
+                            <table class="table table-bordered table-sm" id="addRemoveTable">
+                                <thead class="tbbg">
+                                    <tr>
+                                        <th style="color: white; text-align: center;">Item Name & Size</th>
+                                        <th style="color: white; text-align: center;">Size</th>
+                                        <th style="color: white; text-align: center;">Qty</th>
+                                    </tr>
+                                </thead>
                                 <tr>
-                                <tr>
-                                    <td>
-                                        Item Name & Size
-                                    </td>
-                                    <td>
-                                        <select class="select2 form-select form-select-lg" data-allow-clear="false"
-                                            name="returnItemFields[0][item_name]" id="item_name">
-                                            <option value="">--Item Name--</option>
+                                    <td id="col0">
+                                        <select class="form-select" data-allow-clear="false" name="variable_asset_id[]"
+                                            id="item_name" required>
                                             @foreach ($variable_assets as $key => $value)
                                                 <option value="{{ $value->id }}">
                                                     {{ $value->item_name ?? '-' }}
@@ -129,87 +126,51 @@
                                             @endforeach
                                         </select>
                                     </td>
-                                </tr>
 
-                                <tr>
-                                    <td>
-                                        Size
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" name="returnItemFields[0][size]" />
+                                    <td id="col1">
+                                        <input type="text" class="form-control" name="size[]" />
                                         @error('size')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
                                     </td>
-                                </tr>
 
-                                <tr>
-                                    <td>
-                                        Quantity
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" name="returnItemFields[0][quantity]" />
+                                    <td id="col2">
+                                        <input type="text" class="form-control" name="quantity[]" required />
                                         @error('quantity')
                                             <div class="invalid-feedback"> {{ $message }} </div>
                                         @enderror
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>
-                                        Action
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-danger remove-input-field btn-sm">Remove</button>
-                                    </td>
-                                </tr>
-                                </tr>
                             </table>
-                            <button type="button" class="btn btn-dark btn-sm" id="dynamic-ar">
-                                Add a line
-                            </button>
                         </div>
-                        <hr>
-                        <input type="submit" value="save" class="btn btn-success">
+
+                        <div class="col-md-12">
+                            <input type="button" value="Add Row" class="btn btn-info btn-sm" onclick="addRows()">
+                            <input type="button" value="Delete Row" class="btn btn-danger btn-sm" onclick="deleteRows()" />
+                            <input type="submit" value="Save" class="btn btn-primary btn-sm">
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@section('script')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreVariableRequestInfo', '#create-form') !!}
+    @section('script')
+        {!! JsValidator::formRequest('App\Http\Requests\StoreVariableRequestInfo', '#create-form') !!}
 
-    <script>
-        $(document).ready(function() {
-            var i = 0;
-            $("#dynamic-ar").click(function() {
-                ++i;
-                $("#dynamicAddRemove").append(
-                    '<tr><tr><td>Item Name & Size</td><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]" id="item_name"><option value="">--Item Name--</option> @foreach ($variable_assets as $key => $value) <option value="{{ $value->id }}"> {{ $value->item_name ?? '-' }} @if ($value->sizes) = Size : {{ $value->sizes }} @endif </option> @endforeach </select></td><tr> <tr><td>Size</td><td> <input type="text" class = "form-control" name = "returnItemFields[' + i + '][size]" /> </td><tr> <tr><td>Quantity</td><td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td></tr> <tr><td>Action</td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr></tr>'
-                );
-            });
-            $(document).on('click', '.remove-input-field', function() {
-                $(this).parents('tr').remove();
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        function getVariableAssetsSizes(sel) {
-            var variable_asset_id = sel.value;
-            if (variable_asset_id) {
-                $.ajax({
-                    url: '/variable_assets_size_ajax/' + variable_asset_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data)
-                    }
-                });
+        <script type="text/javascript">
+            function getVariableAssetsSizes(sel) {
+                var variable_asset_id = sel.value;
+                if (variable_asset_id) {
+                    $.ajax({
+                        url: '/variable_assets_size_ajax/' + variable_asset_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data)
+                        }
+                    });
+                }
             }
-        }
-    </script>
-@endsection
+        </script>
+    @endsection

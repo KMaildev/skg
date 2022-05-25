@@ -47,7 +47,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="mb-3">

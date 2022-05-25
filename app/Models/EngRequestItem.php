@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class EngRequestItem extends Model
 {
+
+    protected $fillable = ['fixed_asset_id', 'quantity', 'user_id', 'project_id', 'request_info_id', 'customer_id', 'created_at', 'updated_at'];
+
+
     public function fixed_assets_table()
     {
         return $this->belongsTo(FixedAssets::class, 'fixed_asset_id', 'id');

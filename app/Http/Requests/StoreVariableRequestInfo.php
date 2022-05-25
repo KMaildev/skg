@@ -29,7 +29,7 @@ class StoreVariableRequestInfo extends FormRequest
             'customer_id' => 'required',
             'need_date' => 'required',
             'work_scope' => 'required',
-            'returnItemFields.*.quantity' => 'required|numeric',
+            'quantity.*' => 'required|numeric',
         ];
     }
 }

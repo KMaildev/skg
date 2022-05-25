@@ -58,16 +58,15 @@ class EngineerVariableAssetsController extends Controller
         $variable_asset->save();
         $variable_asset_id = $variable_asset->id;
 
-        foreach ($request->returnItemFields as $key => $value) {
-            $insert[$key]['variable_asset_id'] = $value['item_name'];
-            $insert[$key]['quantity'] = $value['quantity'];
-            $insert[$key]['size'] = $value['size'];
-            $insert[$key]['user_id'] = $user_id;
-            $insert[$key]['variable_request_info_id'] = $variable_asset_id;
-            $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
-            $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+        foreach ($request->variable_asset_id as $key => $variable_asset) {
+            VariableRequestItem::create([
+                'variable_asset_id' => $variable_asset,
+                'quantity' => $request->quantity[$key],
+                'size' => $request->size[$key],
+                'user_id' => $user_id,
+                'variable_request_info_id' => $variable_asset_id,
+            ]);
         }
-        VariableRequestItem::insert($insert);
         return redirect()->back()->with('success', 'Created successfully.');
     }
 

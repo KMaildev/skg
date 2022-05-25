@@ -58,17 +58,17 @@ class EngRequestController extends Controller
         $request_info->save();
         $request_info_id = $request_info->id;
 
-        foreach ($request->requestItemFields as $key => $value) {
-            $insert[$key]['fixed_asset_id'] = $value['item_name'];
-            $insert[$key]['quantity'] = $value['quantity'];
-            $insert[$key]['user_id'] = $user_id;
-            $insert[$key]['project_id'] = $request->project_id ?? 0;
-            $insert[$key]['customer_id'] = $request->customer_id;
-            $insert[$key]['request_info_id'] = $request_info_id;
-            $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
-            $insert[$key]['updated_at'] =  date('Y-m-d H:i:sa');
+
+        foreach ($request->fixed_assets_id as $key => $fixed_assets) {
+            EngRequestItem::create([
+                'fixed_asset_id' => $fixed_assets,
+                'quantity' => $request->quantity[$key],
+                'user_id' => $user_id,
+                'project_id' => $request->project_id[$key] ?? 0,
+                'customer_id' => $request->customer_id,
+                'request_info_id' => $request_info_id,
+            ]);
         }
-        EngRequestItem::insert($insert);
         return redirect()->back()->with('success', 'Created successfully.');
     }
 
