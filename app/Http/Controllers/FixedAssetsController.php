@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFixedAssets;
 use App\Http\Requests\UpdateFixedAssets;
 use App\Models\FixedAssets;
+use App\Models\FixedAssetsPurchase;
 use App\Models\MainWarehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +60,9 @@ class FixedAssetsController extends Controller
      */
     public function show($id)
     {
-        //
+        $fixed_assets = FixedAssets::findOrFail($id);
+        $fixed_asset_purchases = FixedAssetsPurchase::get()->where('fixed_asset_id', $id);
+        return view('fixed_assets.show', compact('fixed_assets', 'fixed_asset_purchases'));
     }
 
     /**

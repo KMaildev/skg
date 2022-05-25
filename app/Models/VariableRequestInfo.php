@@ -32,4 +32,10 @@ class VariableRequestInfo extends Model
     {
         return $this->hasMany(VariableLogisticsTeamCheck::class);
     }
+
+
+    public function variable_payments_table()
+    {
+        return $this->belongsTo(VariablePayment::class, 'id', 'variable_request_info_id');
+    }
 }

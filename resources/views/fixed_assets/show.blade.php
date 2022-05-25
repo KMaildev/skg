@@ -1,38 +1,36 @@
-@extends('layouts.menus.purchase')
+@extends('layouts.menus.inventory')
 @section('content')
-    <div class="row justify-content-center">
+    <h4 class="breadcrumb-wrapper">
+        <span class="text-muted fw-light">
+            Fixed Assets /
+        </span>
+        {{ $fixed_assets->item_name }}
+    </h4>
+
+    <div class="row">
+
         <div class="col-md-12 col-sm-12 col-lg-12">
             <div class="card">
 
                 <div class="card-body">
                     <div class="card-title header-elements">
-                        <h5 class="m-0 me-2">Fixed Assets Purchase</h5>
-                        <div class="card-title-elements ms-auto">
-                            @include('layouts.includes.export')
-
-                            <a href="{{ route('fixed_assets_purchase.create') }}"
-                                class="dt-button create-new btn btn-primary btn-sm">
-                                <span>
-                                    <i class="bx bx-plus me-sm-2"></i>
-                                    <span class="d-none d-sm-inline-block">Create</span>
-                                </span>
-                            </a>
-                        </div>
+                        <h5 class="m-0 me-2">
+                            Fixed Assets Purchase Order History
+                        </h5>
                     </div>
                 </div>
 
-
                 <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered table-sm" id="export_excel">
+                    <table class="table table-bordered table-sm" id="export_excel" style="margin-bottom: 20px !important">
                         <thead class="tbbg">
                             <tr>
                                 <th style="color: white; text-align: center; width: 1%;">#</th>
-                                <th style="color: white; text-align: center; width: 10%;">Item Name</th>
+                                <th style="color: white; text-align: center; width: 10%;">Referencee</th>
+                                <th style="color: white; text-align: center; width: 10%;">Order Date</th>
                                 <th style="color: white; text-align: center; width: 5%;">Unit</th>
                                 <th style="color: white; text-align: center; width: 7%;">Qty</th>
                                 <th style="color: white; text-align: center; width: 7%;">Price</th>
                                 <th style="color: white; text-align: center; width: 7%;">Total</th>
-                                <th style="color: white; text-align: center; width: 10%;">Order Date</th>
                                 <th style="color: white; text-align: center; width: 15%;">Remark</th>
                                 <th style="color: white; text-align: center; width: 10%;">Representative</th>
                                 <th style="color: white; text-align: center; width: 3%;">Actions</th>
@@ -42,14 +40,21 @@
                             @php
                                 $total_amount = [];
                             @endphp
+                            @php
+                                $i = 1;
+                            @endphp
                             @foreach ($fixed_asset_purchases as $key => $fixed_asset_purchase)
                                 <tr>
                                     <td>
-                                        {{ $key + 1 }}
+                                        {{ $i++ }}
                                     </td>
 
                                     <td>
-                                        {{ $fixed_asset_purchase->fixed_assets_table->item_name }}
+                                        {{ $fixed_asset_purchase->reference }}
+                                    </td>
+
+                                    <td>
+                                        {{ $fixed_asset_purchase->order_date }}
                                     </td>
 
                                     <td>
@@ -70,10 +75,6 @@
                                             echo number_format($total, 2);
                                             $total_amount[] = $total;
                                         @endphp
-                                    </td>
-
-                                    <td>
-                                        {{ $fixed_asset_purchase->order_date }}
                                     </td>
 
                                     <td>
@@ -115,7 +116,13 @@
                             @endforeach
                         </tbody>
                         <tr>
-                            <th colspan="5">Total</th>
+                            <th colspan="4">Total</th>
+                            <th style="text-align: right; font-weight: bold;">
+                                {{ number_format($fixed_asset_purchases->sum('qty')) }}
+                            </th>
+                            <th style="text-align: right; font-weight: bold;">
+                                {{ number_format($fixed_asset_purchases->sum('price'), 2) }}
+                            </th>
                             <th style="text-align: right; font-weight: bold;">
                                 @php
                                     echo number_format(array_sum($total_amount), 2);
@@ -123,6 +130,37 @@
                             </th>
                         </tr>
                     </table>
+
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 50%; font-weight: bold;">
+                                        Purchase Order:
+                                    </td>
+                                    <td style="width: 50%; font-weight: bold;">
+                                        {{ number_format($fixed_asset_purchases->sum('qty')) }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 50%; font-weight: bold;">
+                                        Quantity on Hand:
+                                    </td>
+                                    <td style="width: 50%; font-weight: bold;">
+                                        @php
+                                            $purchase_order = $fixed_asset_purchases->sum('qty');
+                                            $qty_on_hand = $fixed_assets->qty;
+                                            $qty_on_hand_total = $qty_on_hand - $purchase_order;
+                                            echo number_format($qty_on_hand_total);
+                                        @endphp
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br><br>
                 </div>
             </div>
         </div>

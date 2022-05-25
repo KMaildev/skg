@@ -25,53 +25,54 @@
                     <table class="table table-bordered">
                         <thead class="tbbg">
                             <tr>
-                                <th style="color: white; text-align: center; width: 1%">#</th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 1%">#</th>
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Engineer Request
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Request code
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Work Scope
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Request Date
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Need Date
                                 </th>
-                                <th style="color: white; text-align: center; padding-right: 50px; padding-left: 50px;">
+                                <th
+                                    style="color: white; background-color: #2e696e; text-align: center; padding-right: 50px; padding-left: 50px;">
                                     Request Items
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Accept / Reject
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     QS Team Check & Pass
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Logistics Team Check
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Management
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Logistics Team Send
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Transferred from
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Transferred to
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Received by Engineer
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Actual Voucher
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Finance
                                 </th>
                             </tr>
@@ -241,7 +242,5 @@
 @endsection
 
 @section('script')
-    <script>
-
-    </script>
+    <script></script>
 @endsection

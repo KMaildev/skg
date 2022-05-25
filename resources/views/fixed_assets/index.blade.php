@@ -63,6 +63,12 @@
                                                     <a class="dropdown-item"
                                                         href="{{ route('fixedassets.edit', $fixed_asset->id) }}">Edit</a>
                                                 </li>
+
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('fixedassets.show', $fixed_asset->id) }}">Details</a>
+                                                </li>
+
                                                 <li>
                                                     <form action="{{ route('fixedassets.destroy', $fixed_asset->id) }}"
                                                         method="POST">
