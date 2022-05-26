@@ -3,7 +3,6 @@
     <div class="row justify-content-center">
         <div class="col-md-10 col-lg-10 col-sm-12">
 
-
             <div class="col-xxl">
                 <div class="card mb-4">
                     <h5 class="card-header">Engineer Return</h5>
@@ -42,70 +41,115 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="flatpickr-human-friendly"
                                             style="font-weight: bold">Return From</label>
                                         <select class="select2 form-select form-select" data-allow-clear="false"
-                                            name="return_from">
-                                            <option value="">--Please Return From--</option>
+                                            onchange="top.location.href = this.options[this.selectedIndex].value">
+                                            <option value="{{ route('engineer_return_create_with_customer', 0) }}">
+                                                --Please Select Return From--
+                                            </option>
                                             @foreach ($projects_users as $key => $value)
                                                 @foreach ($value->projects as $project)
-                                                    <option value="{{ $project->customer_table->id ?? '' }}">
+                                                    <option
+                                                        value="{{ route('engineer_return_create_with_customer', $project->customer_table->id) }}"
+                                                        @if ($customer_id == $project->customer_table->id) selected @endif>
+                                                        {{ $project->customer_table->name ?? '' }}
+                                                        @
                                                         {{ $project->customer_table->project_code ?? '' }}
                                                     </option>
                                                 @endforeach
                                             @endforeach
                                         </select>
+
+                                        <input type="hidden" name="return_from" value="{{ $customer_id ?? '' }}" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
                         <hr class="my-4 mx-n4" />
                         <h6 class="mb-3 fw-bold" style="font-weight: bold; font-size: 15px;">2. Return Items</h6>
-                        <div>
-                            <table class="table table-bordered" id="dynamicAddRemove" style="margin-bottom: 20px;">
-                                <tr>
-                                    <th>Item Name</th>
-                                    <th>Quantity</th>
-                                    <th>Action</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select class="select2 form-select form-select-lg" data-allow-clear="false"
-                                            name="returnItemFields[0][item_name]" id="item_name">
-                                            <option value="">--Please Item Name--</option>
-                                            @foreach ($fixed_assets as $key => $value)
-                                                <option value="{{ $value->id }}">
-                                                    {{ $value->item_name ?? '-' }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </td>
 
-                                    <td>
-                                        <input type="text" class="form-control" name="returnItemFields[0][quantity]" />
-                                        @error('quantity')
-                                            <div class="invalid-feedback"> {{ $message }} </div>
-                                        @enderror
-                                    </td>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered">
+                                <thead class="tbbg">
+                                    <tr>
+                                        <th style="color: white; text-align: center; width: 1%">#</th>
+                                        <th style="color: white; text-align: center; width: 14%">
+                                            Site
+                                        </th>
+                                        <th style="color: white; text-align: center; width: 14%">
+                                            Item Name
+                                        </th>
+                                        <th style="color: white; text-align: center; width: 14%">
+                                            Request Qty
+                                        </th>
+                                        <th style="color: white; text-align: center; width: 14%">
+                                            Passed Qty
+                                        </th>
+                                        <th style="color: white; text-align: center; width: 14%">
+                                            Return Qty
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($customer_id == null)
+                                        <p style="color: red; font-size: 18px;">
+                                            Please Select Return From
+                                        </p>
+                                    @else
+                                        @php
+                                            $i = 1;
+                                        @endphp
+                                        @foreach ($request_items as $key => $request_item)
+                                            @if ($request_item->another_qs_team_check_passes_table->qs_passed_qty ?? '')
+                                                <tr>
+                                                    <td>
+                                                        {{ $key + 1 }}
+                                                    </td>
 
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-danger remove-input-field btn-sm">Remove</button>
-                                    </td>
-                                </tr>
+                                                    <td>
+                                                        {{ $request_item->customer_table->name ?? '' }}
+                                                        @
+                                                        {{ $request_item->customer_table->project_code ?? '' }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $request_item->fixed_assets_table->item_name ?? '' }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $request_item->quantity ?? '' }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $request_item->another_qs_team_check_passes_table->qs_passed_qty ?? '' }}
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden"
+                                                            name="returnItemFields[{{ $key + 1 }}][item_name]"
+                                                            value="{{ $request_item->fixed_assets_table->id ?? '0' }}"
+                                                            required />
+
+                                                        <input type="text" class="form-control"
+                                                            name="returnItemFields[{{ $key + 1 }}][quantity]"
+                                                            value="{{ $request_item->another_qs_team_check_passes_table->qs_passed_qty ?? '' }}"
+                                                            readonly required />
+                                                        @error('quantity')
+                                                            <div class="invalid-feedback"> {{ $message }} </div>
+                                                        @enderror
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </tbody>
                             </table>
-                            <button type="button" class="btn btn-dark btn-sm" id="dynamic-ar">
-                                Add a line
-                            </button>
-                        </div>
-                        <hr>
-                        <input type="submit" value="save" class="btn btn-success">
+                            <input type="submit" value="save" class="btn btn-success">
                     </form>
                 </div>
             </div>
@@ -115,17 +159,4 @@
 
 @section('script')
     {!! JsValidator::formRequest('App\Http\Requests\StoreEngineerReturn', '#create-form') !!}
-
-    <script>
-        $(document).ready(function() {
-            var i = 0;
-            $("#dynamic-ar").click(function() {
-                ++i;
-                $("#dynamicAddRemove").append('<tr><td><select class="select2 form-select" data-allow-clear="false" name="returnItemFields[' + i + '][item_name]" id="item_name"> <option value="">--Please Item Name--</option> @foreach ($fixed_assets as $key => $value) <option value="{{ $value->id }}"> {{ $value->item_name ?? '-' }} </option> @endforeach</select> </td > <td> <input type= "text" class="form-control" name="returnItemFields[' + i + '][quantity]" /> </td><td><button type="button" class="btn btn-outline-danger remove-input-field btn-sm">Remove</button></td></tr>');
-            });
-            $(document).on('click', '.remove-input-field', function() {
-                $(this).parents('tr').remove();
-            });
-        });
-    </script>
 @endsection

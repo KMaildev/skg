@@ -47,5 +47,4 @@ class EngineerReturnInfo extends Model
     {
         return $this->belongsTo(ReceivedByStoreManager::class, 'id', 'engineer_return_infos_id')->latest();;
     }
-    
 }

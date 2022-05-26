@@ -241,7 +241,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('engineeringrequest', 'EngineerRequestController');
     Route::resource('manage_my_request', 'Engineer\ManageMyRequestController');
     Route::resource('received_by_engineer', 'Engineer\ReceivedByEngineerController');
+
+
+
     Route::resource('engineer_return', 'Engineer\EngineerReturnController');
+    Route::get('engineer_return_create_with_customer/{customer_id}', [
+        'as' => 'engineer_return_create_with_customer',
+        'uses' => 'Engineer\EngineerReturnController@create'
+    ]);
+
     Route::resource('engineer_variable_assets', 'Engineer\EngineerVariableAssetsController');
     Route::resource('variable_engineer_received', 'Engineer\VariableReceivedByEngineerController');
 

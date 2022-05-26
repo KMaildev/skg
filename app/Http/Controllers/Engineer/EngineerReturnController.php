@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Engineer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEngineerReturn;
 use App\Models\EngineerReturnInfo;
+use App\Models\EngRequestItem;
 use App\Models\FixedAssets;
 use App\Models\return_item;
 use App\Models\ReturnItem;
@@ -30,12 +31,16 @@ class EngineerReturnController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($customer_id = null)
     {
-        $fixed_assets = FixedAssets::all();
+        $customer_id = $customer_id;
         $user_id = auth()->user()->id;
+        $fixed_assets = FixedAssets::all();
         $projects_users = User::where('id', $user_id)->get();
-        return view('engineer.return.create', compact('fixed_assets', 'projects_users'));
+        $request_items = EngRequestItem::where('user_id', $user_id)
+            ->where('customer_id', $customer_id)
+            ->get();
+        return view('engineer.return.create', compact('fixed_assets', 'projects_users', 'request_items', 'customer_id'));
     }
 
     /**
@@ -64,7 +69,7 @@ class EngineerReturnController extends Controller
             $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
         }
         ReturnItem::insert($insert);
-        return redirect()->back()->with('success', 'Created successfully.');
+        return redirect()->back()->with('success', 'Your processing has been completed.');
     }
 
     /**

@@ -23,6 +23,9 @@
                                         Return Code
                                     </th>
                                     <th style="color: white; text-align: center; width: 14%">
+                                        Return Engineer
+                                    </th>
+                                    <th style="color: white; text-align: center; width: 14%">
                                         Return Date
                                     </th>
                                     <th style="color: white; text-align: center; width: 14%">
@@ -54,6 +57,10 @@
                                         </td>
 
                                         <td style="text-align: center">
+                                            {{ $return->user_table->name ?? '' }}
+                                        </td>
+
+                                        <td style="text-align: center">
                                             {{ $return->return_date }}
                                         </td>
 
@@ -64,10 +71,9 @@
                                         </td>
 
                                         <td style="text-align: center">
-                                            @include(
-                                                'shared.engineer_return.qs_team_check_pass_status',
-                                                ['engineer_return_infos' => $return]
-                                            )
+                                            @include('shared.engineer_return.qs_team_check_pass_status', [
+                                                'engineer_return_infos' => $return,
+                                            ])
                                         </td>
 
                                         <td style="text-align: center">
@@ -113,7 +119,5 @@
 @endsection
 
 @section('script')
-    <script>
-
-    </script>
+    <script></script>
 @endsection
