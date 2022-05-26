@@ -25,35 +25,35 @@
                     <table class="table table-bordered">
                         <thead class="tbbg">
                             <tr>
-                                <th style="color: white; text-align: center; width: 1%">#</th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 1%">#</th>
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Engineer Request
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Request code
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Request Date
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Accept / Reject
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     QS Team Check & Pass
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Logistics Team Check & Sent
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Transferred from
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Transferred to
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Received by Engineer
                                 </th>
-                                <th style="color: white; text-align: center; width: 14%">
+                                <th style="color: white; background-color: #296166; text-align: center; width: 14%">
                                     Action
                                 </th>
                             </tr>
@@ -79,18 +79,16 @@
 
                                     {{-- Accept / Reject --}}
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.managerequest.accept_reject_status',
-                                            ['request_info' => $request_info]
-                                        )
+                                        @include('shared.managerequest.accept_reject_status', [
+                                            'request_info' => $request_info,
+                                        ])
                                     </td>
 
                                     {{-- QS Team Check & Pass --}}
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.managerequest.qs_team_check_pass_status',
-                                            ['request_info' => $request_info]
-                                        )
+                                        @include('shared.managerequest.qs_team_check_pass_status', [
+                                            'request_info' => $request_info,
+                                        ])
                                     </td>
 
                                     {{-- Logistics Team Check & Sent --}}
@@ -118,12 +116,9 @@
                                     </td>
 
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.managerequest.received_by_engineer_status',
-                                            [
-                                                'request_info' => $request_info,
-                                            ]
-                                        )
+                                        @include('shared.managerequest.received_by_engineer_status', [
+                                            'request_info' => $request_info,
+                                        ])
                                     </td>
 
                                     <td style="text-align: center;">
@@ -155,7 +150,5 @@
 @endsection
 
 @section('script')
-    <script>
-
-    </script>
+    <script></script>
 @endsection
