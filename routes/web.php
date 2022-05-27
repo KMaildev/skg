@@ -258,9 +258,8 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-
-
     // Purchase
     Route::resource('fixed_assets_purchase', 'Purchase\FixedAssetsPurchaseController');
+
+    Route::resource('activity', 'Activity\ActivityLogController');
 });
