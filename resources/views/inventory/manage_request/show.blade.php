@@ -45,10 +45,9 @@
                                     <div class="mb-2">
                                         <span class="me-1">Accept or Reject :</span>
                                         <span class="fw-semibold">
-                                            @include(
-                                                'shared.managerequest.details.accept_reject_status',
-                                                ['request_info' => $request_info]
-                                            )
+                                            @include('shared.managerequest.details.accept_reject_status', [
+                                                'request_info' => $request_info,
+                                            ])
                                         </span>
                                     </div>
                                     <div class="mb-2">

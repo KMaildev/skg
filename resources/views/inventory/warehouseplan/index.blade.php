@@ -29,9 +29,7 @@
                                         name="search" />
                                 </form>
                             </div>
-
                             @include('layouts.includes.export')
-
                         </div>
                     </div>
                 </div>
@@ -72,13 +70,13 @@
                                                 @php
                                                     $site_on_hand_total = 0;
                                                 @endphp
-                                                @foreach ($fixed_assets_with_eng_request_item->eng_request_items_table as $item)
-                                                    @if ($item->request_info_table->received_by_engineer_status == 'received')
+                                                {{-- @foreach ($fixed_assets_with_eng_request_item->eng_request_items_table as $item)
+                                                    @if ($item->request_info_table->received_by_engineer_status == 'received' ?? null)
                                                         @php
                                                             $site_on_hand_total += (float) $item->qs_team_check_passes_warehouse_plan->qs_passed_qty;
                                                         @endphp
                                                     @endif
-                                                @endforeach
+                                                @endforeach --}}
                                                 {{ $site_on_hand_total }}
                                             </td>
 
@@ -127,12 +125,12 @@
                                                                 <th></th>
 
                                                                 <th width="20%;" style="text-align: center">
-                                                                    @if ($item->request_info_table->received_by_engineer_status == 'received')
+                                                                    {{-- @if ($item->request_info_table->received_by_engineer_status == 'received' ?? null)
                                                                         {{ $item->qs_team_check_passes_warehouse_plan->qs_passed_qty ?? 0 }}
                                                                         @php
                                                                             $site_on_hand += (float) $item->qs_team_check_passes_warehouse_plan->qs_passed_qty;
                                                                         @endphp
-                                                                    @endif
+                                                                    @endif --}}
                                                                 </th>
                                                                 <th></th>
                                                                 <th></th>

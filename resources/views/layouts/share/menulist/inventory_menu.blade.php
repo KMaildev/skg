@@ -1,5 +1,6 @@
 <!-- Menu -->
-<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal  menu bg-menu-theme flex-grow-0" style="background-color: white !important;">
+<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal  menu bg-menu-theme flex-grow-0"
+    style="background-color: white !important;">
     <div class="container-xxl d-flex h-100">
         <ul class="menu-inner">
 
@@ -50,19 +51,19 @@
 
 
             <li class="menu-item">
-                <a href="{{ route('warehouseplan.index') }}" class="menu-link">
-                    <div data-i1n="Layouts">Warehouse Plan</div>
-                </a>
-            </li>
-
-
-            <li class="menu-item">
                 <a href="{{ route('inventory_engineer_return.index') }}" class="menu-link">
                     <div data-i1n="Layouts">Engineer Return</div>
                 </a>
             </li>
 
+
             <li class="menu-item">
+                <a href="{{ route('manage_warehouse_plan.index') }}" class="menu-link">
+                    <div data-i1n="Layouts">Warehouse Plan</div>
+                </a>
+            </li>
+
+            <li class="menu-item" hidden>
                 <a href="{{ route('transferhistory.index') }}" class="menu-link">
                     <div data-i1n="Layouts">
                         Transfer History

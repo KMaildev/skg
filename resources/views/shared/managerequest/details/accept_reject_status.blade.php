@@ -5,7 +5,7 @@
     <table class="second_table" style="width: 100%">
         <tr>
             <td style="width: 50%;">
-                Date : {{ $request_info->accept_reject_statuses_table->accept_reject_date }}
+                Date : {{ $request_info->accept_reject_statuses_table->accept_reject_date ?? '' }}
             </td>
             <td style="width: 50%;">
                 By : {{ $request_info->accept_reject_statuses_table->accept_reject_statuse_user->name ?? '' }}
@@ -20,7 +20,7 @@
     <table class="second_table" style="width: 100%">
         <tr>
             <td style="width: 50%;">
-                Date : {{ $request_info->accept_reject_statuses_table->accept_reject_date }}
+                Date : {{ $request_info->accept_reject_statuses_table->accept_reject_date ?? '' }}
             </td>
             <td style="width: 50%;">
                 By : {{ $request_info->accept_reject_statuses_table->accept_reject_statuse_user->name ?? '' }}

@@ -61,6 +61,11 @@
                                             <td style="text-align: center;">
                                                 <input type="hidden" value="{{ $eng_return_item->id }}"
                                                     name="return_item_id[]">
+
+                                                <input type="hidden"
+                                                    value="{{ $eng_return_item->fixed_assets_table->id }}"
+                                                    name="fixed_asset_id[]">
+
                                                 <input type="text" value="0" style="text-align:right;" name="passed_qty[]">
                                             </td>
 

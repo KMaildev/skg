@@ -46,7 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('unitsofmeasure', 'Inventory\UnitsOfMeasureController');
     Route::resource('labour', 'Inventory\LabourController');
 
-    Route::resource('warehouseplan', 'Inventory\WarehousePlanController');
+    Route::resource('warehouseplan', 'Inventory\WarehousePlanController'); //Old Not Using Now
+    Route::resource('manage_warehouse_plan', 'Warehouse\ManageWareHousePlanController'); // New 
     Route::resource('managerequest', 'Inventory\ManageRequestController');
     Route::resource('variable_assets_size', 'Inventory\VariableAssetsSizeController');
     Route::get('variable_assets_size_ajax/{id}', array('as' => 'variable_assets_size_ajax', 'uses' => 'Inventory\VariableAssetsSizeController@getAllVariableAssetsSizes'));

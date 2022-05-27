@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 25, 2022 at 10:12 AM
+-- Generation Time: May 27, 2022 at 03:00 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.27
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,12 @@ INSERT INTO `accept_reject_statuses` (`id`, `user_id`, `accept_reject_statuse`, 
 (6, 10, 'accept', '2022-05-10', '2022-05-10 03:30:14', '2022-05-10 03:30:14', 5),
 (7, 10, 'accept', '2022-05-10', '2022-05-10 03:32:26', '2022-05-10 03:32:26', 6),
 (8, 10, 'accept', '2022-05-19', '2022-05-19 07:06:29', '2022-05-19 07:06:29', 6),
-(9, 10, 'accept', '2022-05-19', '2022-05-19 08:33:48', '2022-05-19 08:33:48', 7);
+(9, 10, 'accept', '2022-05-19', '2022-05-19 08:33:48', '2022-05-19 08:33:48', 7),
+(10, 1, 'accept', '2022-05-27', '2022-05-26 21:49:47', '2022-05-26 21:49:47', 17),
+(11, 1, 'accept', '2022-05-27', '2022-05-26 22:30:57', '2022-05-26 22:30:57', 16),
+(12, 1, 'accept', '2022-05-27', '2022-05-26 23:08:23', '2022-05-26 23:08:23', 1),
+(13, 1, 'accept', '2022-05-27', '2022-05-26 23:40:06', '2022-05-26 23:40:06', 2),
+(14, 1, 'accept', '2022-05-27', '2022-05-27 00:53:28', '2022-05-27 00:53:28', 4);
 
 -- --------------------------------------------------------
 
@@ -395,8 +400,8 @@ CREATE TABLE `engineer_return_infos` (
 --
 
 INSERT INTO `engineer_return_infos` (`id`, `return_code`, `return_date`, `return_from_id`, `return_user_id`, `qs_team_check_pass_status`, `logistics_team_check_sent_status`, `received_store_manager_status`, `created_at`, `updated_at`, `qs_team_check_pass_date`, `logistics_team_check_sent_date`, `received_store_manager_date`) VALUES
-(1, 'R - 00001', '2022-04-29 12:00 AM', 9, 22, 'finished', 'finished', 'received', '2022-04-29 09:50:57', '2022-04-29 09:51:44', '2022-04-29 16:51:25pm', '2022-04-29 16:51:35pm', '2022-04-29 16:51:44pm'),
-(2, 'R - 00002', '2022-04-30 12:00 AM', 9, 22, 'finished', 'finished', 'received', '2022-04-30 05:26:01', '2022-04-30 05:28:49', '2022-04-30 12:28:22pm', '2022-04-30 12:28:33pm', '2022-04-30 12:28:49pm');
+(1, 'R-00001', '2022-05-27 05:00 AM', 9, 22, 'finished', 'finished', 'received', '2022-05-26 23:12:46', '2022-05-26 23:15:35', '2022-05-27 05:43:11am', '2022-05-27 05:45:21am', '2022-05-27 05:45:35am'),
+(2, 'R-00002', '2022-05-27 07:00 AM', 9, 22, 'finished', NULL, NULL, '2022-05-27 00:54:00', '2022-05-27 00:54:12', '2022-05-27 07:24:12am', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -421,22 +426,12 @@ CREATE TABLE `eng_request_items` (
 --
 
 INSERT INTO `eng_request_items` (`id`, `fixed_asset_id`, `quantity`, `user_id`, `project_id`, `request_info_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, 22, 0, 1, 9, '2022-04-29 09:47:21', '2022-04-29 09:47:21'),
-(2, 4, 1, 22, 0, 2, 9, '2022-04-30 05:22:05', '2022-04-30 05:22:05'),
-(3, 5, 3, 22, 0, 3, 2, '2022-04-30 10:38:42', '2022-04-30 10:38:42'),
-(4, 6, 2, 22, 0, 3, 2, '2022-04-30 10:38:42', '2022-04-30 10:38:42'),
-(5, 3, 1, 22, 0, 4, 9, '2022-05-06 10:53:50', '2022-05-06 10:53:50'),
-(6, 2, 1, 32, 0, 5, 12, '2022-05-06 11:34:38', '2022-05-06 11:34:38'),
-(7, 5, 2, 26, 0, 6, 5, '2022-05-09 03:47:14', '2022-05-09 03:47:14'),
-(8, 13, 10, 31, 0, 7, 11, '2022-05-10 10:05:55', '2022-05-10 10:05:55'),
-(9, 1, 20, 22, 0, 12, 9, '2022-05-23 07:21:58', '2022-05-23 07:21:58'),
-(10, 1, 1, 22, 0, 13, 9, '2022-05-23 07:23:53', '2022-05-23 07:23:53'),
-(11, 2, 1, 22, 0, 14, 9, '2022-05-23 07:24:28', '2022-05-23 07:24:28'),
-(12, 1, 2, 22, 0, 15, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12'),
-(13, 1, 10, 22, 0, 16, 9, '2022-05-25 07:49:01', '2022-05-25 07:49:01'),
-(14, 3, 10, 22, 0, 16, 9, '2022-05-25 07:49:01', '2022-05-25 07:49:01'),
-(15, 1, 1000, 22, 0, 17, 7, '2022-05-25 07:49:53', '2022-05-25 07:49:53'),
-(16, 10, 1500, 22, 0, 17, 7, '2022-05-25 07:49:53', '2022-05-25 07:49:53');
+(17, 1, 10, 22, 0, 1, 9, '2022-05-26 23:08:02', '2022-05-26 23:08:02'),
+(18, 3, 5, 22, 0, 1, 9, '2022-05-26 23:08:02', '2022-05-26 23:08:02'),
+(19, 4, 1, 22, 0, 1, 9, '2022-05-26 23:08:02', '2022-05-26 23:08:02'),
+(20, 1, 5, 22, 0, 2, 9, '2022-05-26 23:39:57', '2022-05-26 23:39:57'),
+(21, 1, 3, 22, 0, 3, 9, '2022-05-26 23:57:18', '2022-05-26 23:57:18'),
+(22, 1, 3, 22, 0, 4, 9, '2022-05-27 00:53:18', '2022-05-27 00:53:18');
 
 -- --------------------------------------------------------
 
@@ -860,7 +855,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (101, '2022_05_23_102853_add_users_emergency_fields_to_users_table', 1),
 (102, '2022_05_23_111800_create_testing_table', 2),
 (104, '2022_05_24_211310_create_fixed_assets_purchases_table', 3),
-(105, '2022_05_25_082844_add_price_to_fixed_assets_purchases_table', 4);
+(105, '2022_05_25_082844_add_price_to_fixed_assets_purchases_table', 4),
+(106, '2022_05_27_051323_add_fixed_asset_id_to_return_qs_team_check_passes_table', 5);
 
 -- --------------------------------------------------------
 
@@ -1192,16 +1188,12 @@ CREATE TABLE `qs_team_check_passes` (
 --
 
 INSERT INTO `qs_team_check_passes` (`id`, `user_id`, `eng_request_item_id`, `project_id`, `eng_request_qty`, `qs_passed_qty`, `created_at`, `updated_at`, `request_info_id`, `fixed_asset_id`, `transferred_from_id`) VALUES
-(1, 19, 1, 0, 3, 2, '2022-04-29 09:48:32', '2022-04-29 09:48:32', 1, 5, 0),
-(2, 19, 2, 0, 1, 1, '2022-04-30 05:23:20', '2022-04-30 05:23:20', 2, 4, 0),
-(3, 19, 5, 0, 1, 1, '2022-05-06 10:55:21', '2022-05-06 10:55:21', 4, 3, 0),
-(4, 10, 3, 0, 3, 3, '2022-05-06 11:12:46', '2022-05-06 11:12:46', 3, 5, 0),
-(5, 10, 4, 0, 2, 1, '2022-05-06 11:12:46', '2022-05-06 11:12:46', 3, 6, 0),
-(6, 10, 3, 0, 3, 3, '2022-05-06 11:13:02', '2022-05-06 11:13:02', 3, 5, 0),
-(7, 10, 4, 0, 2, 1, '2022-05-06 11:13:02', '2022-05-06 11:13:02', 3, 6, 0),
-(8, 10, 6, 0, 1, 1, '2022-05-10 03:30:39', '2022-05-10 03:30:39', 5, 2, 0),
-(9, 10, 7, 0, 2, 2, '2022-05-10 03:32:34', '2022-05-10 03:32:34', 6, 5, 0),
-(10, 10, 8, 0, 10, 10, '2022-05-19 07:07:55', '2022-05-19 07:07:55', 7, 13, 0);
+(1, 1, 1, 0, 3, 3, '2022-05-26 23:08:33', '2022-05-26 23:08:33', 1, 5, 0),
+(2, 1, 17, 0, 10, 10, '2022-05-26 23:08:33', '2022-05-26 23:08:33', 1, 1, 0),
+(3, 1, 18, 0, 5, 5, '2022-05-26 23:08:33', '2022-05-26 23:08:33', 1, 3, 0),
+(4, 1, 19, 0, 1, 1, '2022-05-26 23:08:33', '2022-05-26 23:08:33', 1, 4, 0),
+(5, 1, 20, 0, 5, 5, '2022-05-26 23:40:11', '2022-05-26 23:40:11', 2, 1, 0),
+(6, 1, 22, 0, 3, 3, '2022-05-27 00:53:33', '2022-05-27 00:53:33', 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1277,9 +1269,7 @@ CREATE TABLE `received_by_engineers` (
 --
 
 INSERT INTO `received_by_engineers` (`id`, `request_info_id`, `received_status`, `received_date`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'received', '2022-04-29 12:00 AM', 22, '2022-04-29 09:49:23', '2022-04-29 09:49:23'),
-(2, 2, 'received', '2022-04-30 12:00 AM', 22, '2022-04-30 05:24:46', '2022-04-30 05:24:46'),
-(3, 4, 'received', '2022-05-10 12:00 AM', 22, '2022-05-06 10:56:02', '2022-05-06 10:56:02');
+(1, 1, 'received', '2022-05-27 05:00 AM', 22, '2022-05-26 23:09:43', '2022-05-26 23:09:43');
 
 -- --------------------------------------------------------
 
@@ -1302,8 +1292,7 @@ CREATE TABLE `received_by_store_managers` (
 --
 
 INSERT INTO `received_by_store_managers` (`id`, `engineer_return_infos_id`, `received_status`, `received_date`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'received', '2022-04-29 12:00 AM', 19, '2022-04-29 09:51:44', '2022-04-29 09:51:44'),
-(2, 2, 'received', '2022-04-30 12:00 AM', 19, '2022-04-30 05:28:49', '2022-04-30 05:28:49');
+(1, 1, 'received', '2022-05-27 05:00 AM', 1, '2022-05-26 23:15:35', '2022-05-26 23:15:35');
 
 -- --------------------------------------------------------
 
@@ -1340,22 +1329,10 @@ CREATE TABLE `request_infos` (
 --
 
 INSERT INTO `request_infos` (`id`, `request_code`, `request_date`, `work_scope`, `user_id`, `project_id`, `customer_id`, `created_at`, `updated_at`, `accept_reject_status`, `accept_reject_date`, `qs_team_check_status`, `logistics_team_check_sent_status`, `transfer_from_status`, `main_warehouse_id`, `other_site_id`, `received_by_engineer_status`, `received_date`, `qs_team_check_date`, `logistics_team_check_sent_date`, `projects_users_id`) VALUES
-(1, 'O-00001', '2022-04-29 12:00 AM', 'Brick Laying Work', 22, 0, 9, '2022-04-29 09:47:21', '2022-04-29 09:49:23', 'accept', '2022-04-29 16:47:55pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-29 12:00 AM', '2022-04-29 16:48:32pm', '2022-04-29 16:48:57pm', NULL),
-(2, 'O-00003', '2022-04-30 12:00 AM', 'Brick Laying', 22, 0, 9, '2022-04-30 05:22:05', '2022-04-30 05:24:46', 'accept', '2022-04-30 12:22:53pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-04-30 12:00 AM', '2022-04-30 12:23:20pm', '2022-04-30 12:23:56pm', NULL),
-(3, 'O-00007', '2022-04-30 12:00 AM', 'Brick Laying Work', 22, 0, 2, '2022-04-30 10:38:42', '2022-05-06 11:36:58', 'accept', '2022-04-30 17:40:29pm', 'finished', 'finished', 'warehouse', 0, 0, NULL, NULL, '2022-05-06 18:13:02pm', '2022-05-06 18:36:58pm', NULL),
-(4, 'O-00002', '2022-05-09 12:00 AM', 'Swimming Pool Foundation', 22, 0, 9, '2022-05-06 10:53:50', '2022-05-06 10:56:02', 'accept', '2022-05-06 17:54:50pm', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-05-10 12:00 AM', '2022-05-06 17:55:21pm', '2022-05-06 17:55:37pm', NULL),
-(5, 'O-00004', '2022-05-06 12:00 AM', 'Foundation Formwork', 32, 0, 12, '2022-05-06 11:34:38', '2022-05-10 03:30:39', 'accept', '2022-05-10 10:30:14am', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:30:39am', NULL, NULL),
-(6, 'O-00005', '2022-05-09 10:45 AM', 'Brick work and plastering work', 26, 0, 5, '2022-05-09 03:47:14', '2022-05-19 07:06:29', 'accept', '2022-05-19 14:06:29pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:32:34am', NULL, 6),
-(7, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
-(8, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
-(9, 'O-00005', '2022-05-09 10:45 AM', 'Brick work and plastering work', 26, 0, 5, '2022-05-09 03:47:14', '2022-05-19 07:06:29', 'accept', '2022-05-19 14:06:29pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-10 10:32:34am', NULL, 6),
-(10, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
-(11, 'O-00006', '2022-05-13 12:00 AM', 'မိုးရွာလျင်လိုအပ်သည့်နေရာကာရန်', 31, 0, 11, '2022-05-10 10:05:55', '2022-05-19 08:33:48', 'accept', '2022-05-19 15:33:48pm', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-19 14:07:55pm', NULL, 9),
-(13, 'R-000012', '2022-05-23 12:00 AM', 'Foun', 22, 0, 9, '2022-05-23 07:23:53', '2022-05-23 07:23:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(14, 'R-000017', '2022-05-23 12:00 AM', 'FOundation', 22, 0, 9, '2022-05-23 07:24:28', '2022-05-23 07:24:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(15, 'R-000014', '2022-05-24 07:00 PM', 'Foundation', 22, 0, 9, '2022-05-24 13:15:12', '2022-05-24 13:15:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(16, 'R-000015', '2022-05-25 02:00 PM', 'Foundation', 22, 0, 9, '2022-05-25 07:49:01', '2022-05-25 07:49:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(17, 'R-000018', '2022-05-25 02:00 PM', 'Foundation', 22, 0, 7, '2022-05-25 07:49:53', '2022-05-25 07:49:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14);
+(1, 'R-000001', '2022-05-27 05:00 AM', 'Foundation', 22, 0, 9, '2022-05-26 23:08:02', '2022-05-26 23:09:43', 'accept', '2022-05-27 05:38:23am', 'finished', 'finished', 'warehouse', 1, 0, 'received', '2022-05-27 05:00 AM', '2022-05-27 05:38:33am', '2022-05-27 05:39:29am', 1),
+(2, 'R-000002', '2022-05-27 06:00 AM', 'Foundation', 22, 0, 9, '2022-05-26 23:39:57', '2022-05-26 23:40:11', 'accept', '2022-05-27 06:10:06am', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-27 06:10:11am', NULL, 1),
+(3, 'R-000003', '2022-05-27 06:00 AM', 'Foundation', 22, 0, 9, '2022-05-26 23:57:18', '2022-05-26 23:57:18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(4, 'R-000004', '2022-05-27 07:00 AM', 'Foundation', 22, 0, 9, '2022-05-27 00:53:18', '2022-05-27 00:53:33', 'accept', '2022-05-27 07:23:28am', 'finished', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-27 07:23:33am', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1394,8 +1371,15 @@ CREATE TABLE `return_items` (
 --
 
 INSERT INTO `return_items` (`id`, `fixed_asset_id`, `quantity`, `user_id`, `engineer_return_info_id`, `created_at`, `updated_at`) VALUES
-(1, '5', '2', 22, 1, '2022-04-29 09:50:57', '2022-04-29 09:50:57'),
-(2, '4', '1', 22, 2, '2022-04-30 05:26:01', '2022-04-30 05:26:01');
+(1, '5', '3', 22, 1, '2022-05-26 23:12:46', '2022-05-26 23:12:46'),
+(2, '1', '10', 22, 1, '2022-05-26 23:12:46', '2022-05-26 23:12:46'),
+(3, '3', '5', 22, 1, '2022-05-26 23:12:46', '2022-05-26 23:12:46'),
+(4, '4', '1', 22, 1, '2022-05-26 23:12:46', '2022-05-26 23:12:46'),
+(5, '1', '10', 22, 2, '2022-05-27 00:54:00', '2022-05-27 00:54:00'),
+(6, '3', '5', 22, 2, '2022-05-27 00:54:00', '2022-05-27 00:54:00'),
+(7, '4', '1', 22, 2, '2022-05-27 00:54:00', '2022-05-27 00:54:00'),
+(8, '1', '5', 22, 2, '2022-05-27 00:54:00', '2022-05-27 00:54:00'),
+(9, '1', '3', 22, 2, '2022-05-27 00:54:00', '2022-05-27 00:54:00');
 
 -- --------------------------------------------------------
 
@@ -1422,16 +1406,24 @@ CREATE TABLE `return_qs_team_check_passes` (
   `qs_passed_qty` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `engineer_return_info_id` int(11) DEFAULT NULL
+  `engineer_return_info_id` int(11) DEFAULT NULL,
+  `fixed_asset_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `return_qs_team_check_passes`
 --
 
-INSERT INTO `return_qs_team_check_passes` (`id`, `user_id`, `return_item_id`, `qs_passed_qty`, `created_at`, `updated_at`, `engineer_return_info_id`) VALUES
-(1, '19', '1', 2, '2022-04-29 09:51:24', '2022-04-29 09:51:24', 1),
-(2, '19', '2', 1, '2022-04-30 05:28:22', '2022-04-30 05:28:22', 2);
+INSERT INTO `return_qs_team_check_passes` (`id`, `user_id`, `return_item_id`, `qs_passed_qty`, `created_at`, `updated_at`, `engineer_return_info_id`, `fixed_asset_id`) VALUES
+(1, '1', '1', 3, '2022-05-26 23:13:11', '2022-05-26 23:13:11', 1, 5),
+(2, '1', '2', 10, '2022-05-26 23:13:11', '2022-05-26 23:13:11', 1, 1),
+(3, '1', '3', 5, '2022-05-26 23:13:11', '2022-05-26 23:13:11', 1, 3),
+(4, '1', '4', 1, '2022-05-26 23:13:11', '2022-05-26 23:13:11', 1, 4),
+(5, '1', '5', 0, '2022-05-27 00:54:12', '2022-05-27 00:54:12', 2, 1),
+(6, '1', '6', 0, '2022-05-27 00:54:12', '2022-05-27 00:54:12', 2, 3),
+(7, '1', '7', 0, '2022-05-27 00:54:12', '2022-05-27 00:54:12', 2, 4),
+(8, '1', '8', 0, '2022-05-27 00:54:12', '2022-05-27 00:54:12', 2, 1),
+(9, '1', '9', 3, '2022-05-27 00:54:12', '2022-05-27 00:54:12', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1456,8 +1448,7 @@ CREATE TABLE `return_transfer_infos` (
 --
 
 INSERT INTO `return_transfer_infos` (`id`, `transfer_from`, `transfer_to_warehouse_id`, `sent_date`, `remark`, `engineer_return_info_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'YGN_TKT_00007', '1', '2022-04-29 12:00 AM', NULL, '1', 19, '2022-04-29 09:51:35', '2022-04-29 09:51:35'),
-(2, 'YGN_TKT_00007', '1', '2022-04-30 12:00 AM', NULL, '2', 19, '2022-04-30 05:28:33', '2022-04-30 05:28:33');
+(1, 'YGN_TKT_00007', '1', '2022-05-27 05:00 AM', NULL, '1', 1, '2022-05-26 23:15:21', '2022-05-26 23:15:21');
 
 -- --------------------------------------------------------
 
@@ -1681,10 +1672,7 @@ CREATE TABLE `transfer_infos` (
 --
 
 INSERT INTO `transfer_infos` (`id`, `transfer_from`, `main_warehouse_id`, `sent_date`, `remark`, `user_id`, `created_at`, `updated_at`, `transferred_to`, `request_info_id`, `eng_request_info_id`) VALUES
-(1, 'warehouse', 1, '2022-04-29 12:00 AM', NULL, 19, '2022-04-29 09:48:57', '2022-04-29 09:48:57', 'YGN_TKT_00007', 1, 0),
-(2, 'warehouse', 1, '2022-04-30 12:00 AM', NULL, 19, '2022-04-30 05:23:56', '2022-04-30 05:23:56', 'YGN_TKT_00007', 2, 0),
-(3, 'warehouse', 1, '2022-05-06 12:00 AM', NULL, 19, '2022-05-06 10:55:37', '2022-05-06 10:55:37', 'YGN_TKT_00007', 4, 0),
-(4, 'warehouse', 0, '2022-05-06 12:00 AM', NULL, 21, '2022-05-06 11:36:58', '2022-05-06 11:36:58', 'YGN_DGSK_0001', 3, 0);
+(1, 'warehouse', 1, '2022-05-27 05:00 AM', NULL, 1, '2022-05-26 23:09:29', '2022-05-26 23:09:29', 'YGN_TKT_00007', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1762,7 +1750,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (19, 'AUNG HTET PAING', 'aunghtetpaing.skgroup@gmail.com', NULL, '$2y$10$gQfTPFveu0nOs7Wob8Hb3.UYTTpz3o3gJnEQlt7sAZVCYjOb6MC9S', NULL, '2022-03-17 04:38:03', '2022-03-17 04:38:03', 'EMP - 00019', '09751445870', '12/Lathana(N)021656', 'male', 'No. 74, Min Nanda Road, Dawpone Tsp, Yangon', 1, NULL, NULL, NULL, NULL, NULL),
 (20, 'Ko Moe Thae Aung', 'moethae.skgroup@gmail.com', NULL, '$2y$10$CMe6w5RhbasJatWg.ltoZuut6Wxf411OlZBYtnkOQx0lND78Vzgiy', 'VDP0pz2O1CW769KkvZlsdgIp1oYTQBQDeQ1MaNsO6K5mi2t3SHrbsSQjcMCq', '2022-03-28 05:09:58', '2022-03-28 05:09:58', 'EMP - 00020', '09752800400', '9/AhMaZa(N)016643', 'male', 'No.(5), Bo Sone Pat St, Bo Tun Zan Qt, Daw Pon TS', 3, NULL, NULL, NULL, NULL, NULL),
 (21, 'Ko Soe Moe Aung', 'soemoe.skgroup@gmail.com', NULL, '$2y$10$FyWc2Xn8FzmUr9eROnqyqe9N.3eDX78agOHkk6wIgjwfImKoT01aS', '689EiuzQKdOQ8fAbR5jvkqLWmog70iOhp1yhNx6lQpSWdvu60GzhfMfdGFdU', '2022-04-19 07:44:07', '2022-04-29 10:08:33', 'EMP - 00021', '09765417569', '12/', 'male', 'No.(202), MaharNawarat Condo (A), 50th Street, Botahtaung Tsp.', 8, NULL, NULL, NULL, NULL, NULL),
-(22, 'Daw Khin Zarni', 'khinzarni.skgroup@gmail.com', NULL, '$2y$10$2ra6OqKvEKq4rB3/eTiDouAk1eeo8YenKYAGDB35JhYlsSzkRTOLe', 'Q1D7kVlK5sxGKL5wSZb64E97zmdROvM285829w0ZU7P9DzVHSaH87lePdHEH', '2022-04-29 09:39:44', '2022-05-05 02:27:16', 'EMP - 00022', '09740875439', '14/HATHATA(N)021656', 'female', 'No.(202), MaharNawarat Condo (A), 50th Street, Botahtaung Tsp.', 9, NULL, NULL, NULL, NULL, NULL),
+(22, 'Daw Khin Zarni', 'khinzarni.skgroup@gmail.com', NULL, '$2y$10$2ra6OqKvEKq4rB3/eTiDouAk1eeo8YenKYAGDB35JhYlsSzkRTOLe', 'FPQFgo7B3plhot0S6oEnaTlardkfvGN9slc0HDf9eLkKdVUBqu2KduNL5IQB', '2022-04-29 09:39:44', '2022-05-05 02:27:16', 'EMP - 00022', '09740875439', '14/HATHATA(N)021656', 'female', 'No.(202), MaharNawarat Condo (A), 50th Street, Botahtaung Tsp.', 9, NULL, NULL, NULL, NULL, NULL),
 (23, 'U Zin Wai Aung', 'zinwaiaung.skgroup@gmail.com', NULL, '$2y$10$V02L.4ul2CaHZSM8IvH6tuKK.wa.HBsWUTE0pD79G2HMc/071Tkxm', NULL, '2022-04-29 12:27:33', '2022-04-29 12:56:05', 'EMP-00023', '09799404246', '12/KAKHAKA(N)090911', 'male', 'Thingyangun', 9, NULL, NULL, NULL, NULL, NULL),
 (24, 'Daw Htet Htet Zaw', 'htethtetzaw.skgroup@gmail.com', NULL, '$2y$10$kqtrjv82HDaMwwZPTdDLSOABQSpUADTj1ynMEyOomY/vaG66Ojjpq', NULL, '2022-04-29 12:37:19', '2022-04-29 12:56:39', 'EMP-00024', '09795345577', '12/BATAHTA(N)044264', 'male', 'No.262,Merchant Road, East Yangon General Hospital, Botahtaung Tsp', 9, NULL, NULL, NULL, NULL, NULL),
 (25, 'Daw Zar Zar Khine', 'zarzarkhine.skgroup@gmail.com', NULL, '$2y$10$HfdR7fopHjyS2b5yn1gt6uk7TlVqjrsh1VEpZbEouJq7FXW3nx41G', NULL, '2022-04-29 12:42:04', '2022-05-06 11:16:41', 'EMP-00025', '09799048521', '5/KATHANA(N)122900', 'female', 'Shwe Ta Sote Stree, Thamine, MaYanGone Tsp', 9, NULL, NULL, NULL, NULL, NULL),
@@ -1804,34 +1792,6 @@ CREATE TABLE `variable_accept_reject_statuses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `variable_accept_reject_statuses`
---
-
-INSERT INTO `variable_accept_reject_statuses` (`id`, `user_id`, `accept_reject_status`, `accept_reject_date`, `variable_request_info_id`, `created_at`, `updated_at`) VALUES
-(1, 19, 'accept', '2022-04-29', 1, '2022-04-29 09:58:06', '2022-04-29 09:58:06'),
-(2, 19, 'accept', '2022-04-30', 2, '2022-04-30 10:23:05', '2022-04-30 10:23:05'),
-(3, 19, 'accept', '2022-05-06', 3, '2022-05-06 10:59:37', '2022-05-06 10:59:37'),
-(4, 10, 'accept', '2022-05-09', 5, '2022-05-09 08:03:21', '2022-05-09 08:03:21'),
-(5, 10, 'accept', '2022-05-09', 5, '2022-05-09 08:04:05', '2022-05-09 08:04:05'),
-(6, 10, 'accept', '2022-05-09', 6, '2022-05-09 08:04:38', '2022-05-09 08:04:38'),
-(7, 10, 'accept', '2022-05-09', 7, '2022-05-09 08:09:16', '2022-05-09 08:09:16'),
-(8, 10, 'accept', '2022-05-09', 8, '2022-05-09 08:21:21', '2022-05-09 08:21:21'),
-(9, 10, 'accept', '2022-05-09', 9, '2022-05-09 08:21:33', '2022-05-09 08:21:33'),
-(10, 10, 'accept', '2022-05-09', 10, '2022-05-09 08:21:41', '2022-05-09 08:21:41'),
-(11, 11, 'accept', '2022-05-10', 10, '2022-05-10 02:53:47', '2022-05-10 02:53:47'),
-(12, 10, 'accept', '2022-05-10', 11, '2022-05-10 02:59:13', '2022-05-10 02:59:13'),
-(13, 10, 'accept', '2022-05-11', 12, '2022-05-11 04:48:36', '2022-05-11 04:48:36'),
-(14, 10, 'accept', '2022-05-11', 13, '2022-05-11 04:48:47', '2022-05-11 04:48:47'),
-(15, 10, 'accept', '2022-05-12', 14, '2022-05-12 10:14:08', '2022-05-12 10:14:08'),
-(16, 10, 'accept', '2022-05-12', 15, '2022-05-12 10:15:28', '2022-05-12 10:15:28'),
-(17, 10, 'accept', '2022-05-12', 16, '2022-05-12 10:16:12', '2022-05-12 10:16:12'),
-(18, 10, 'accept', '2022-05-13', 17, '2022-05-13 03:07:03', '2022-05-13 03:07:03'),
-(19, 10, 'accept', '2022-05-13', 18, '2022-05-13 03:07:39', '2022-05-13 03:07:39'),
-(20, 10, 'accept', '2022-05-16', 19, '2022-05-16 06:09:18', '2022-05-16 06:09:18'),
-(21, 10, 'accept', '2022-05-16', 20, '2022-05-16 06:10:41', '2022-05-16 06:10:41'),
-(22, 1, 'accept', '2022-05-25', 23, '2022-05-25 03:50:11', '2022-05-25 03:50:11');
 
 -- --------------------------------------------------------
 
@@ -2094,22 +2054,6 @@ CREATE TABLE `variable_logistics_team_checks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `variable_logistics_team_checks`
---
-
-INSERT INTO `variable_logistics_team_checks` (`id`, `variable_request_info_id`, `user_id`, `variable_request_item_id`, `eng_request_qty`, `qs_passed_qty`, `price`, `variable_asset_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 19, 1, '100', '100', '8500', 1, '2022-04-29 09:58:52', '2022-04-29 09:58:52'),
-(2, 2, 19, 2, '100', '80', '8500', 1, '2022-04-30 10:23:48', '2022-04-30 10:23:48'),
-(3, 3, 19, 3, '200', '150', '8500', 1, '2022-05-06 11:02:20', '2022-05-06 11:02:20'),
-(4, 3, 19, 4, '2', '1.5', '710000', 17, '2022-05-06 11:02:20', '2022-05-06 11:02:20'),
-(5, 17, 21, 23, '150', '150', '1800', 92, '2022-05-17 01:47:03', '2022-05-17 01:47:03'),
-(6, 17, 21, 24, '15', '8', '0', 94, '2022-05-17 01:47:03', '2022-05-17 01:47:03'),
-(7, 17, 21, 23, '150', '150', '1800', 92, '2022-05-17 01:49:36', '2022-05-17 01:49:36'),
-(8, 17, 21, 24, '15', '8', '0', 94, '2022-05-17 01:49:36', '2022-05-17 01:49:36'),
-(9, 23, 1, 36, '1', '1', '1000', 1, '2022-05-25 03:50:54', '2022-05-25 03:50:54'),
-(10, 23, 1, 37, '1', '1', '1000', 6, '2022-05-25 03:50:54', '2022-05-25 03:50:54');
-
 -- --------------------------------------------------------
 
 --
@@ -2128,16 +2072,6 @@ CREATE TABLE `variable_logistics_team_sends` (
   `transfer_to_customer_id` int(11) DEFAULT NULL,
   `remark` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `variable_logistics_team_sends`
---
-
-INSERT INTO `variable_logistics_team_sends` (`id`, `transfer_from_warehouse_id`, `transfer_to`, `sent_date`, `user_id`, `variable_request_info_id`, `created_at`, `updated_at`, `transfer_to_customer_id`, `remark`) VALUES
-(1, 1, 'YGN_TKT_00007', '2022-04-29 12:00 AM', '19', '1', '2022-04-29 09:59:43', '2022-04-29 09:59:43', 9, NULL),
-(2, 1, 'YGN_TKT_00007', '2022-04-30 12:00 AM', '19', '1', '2022-04-30 07:24:04', '2022-04-30 07:24:04', 9, NULL),
-(3, 1, 'YGN_TKT_00007', '2022-04-30 12:00 AM', '19', '2', '2022-04-30 10:25:00', '2022-04-30 10:25:00', 9, NULL),
-(4, 1, 'YGN_TKT_00007', '2022-05-07 12:00 AM', '19', '3', '2022-05-06 11:03:18', '2022-05-06 11:03:18', 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -2717,7 +2651,7 @@ ALTER TABLE `variable_request_items`
 -- AUTO_INCREMENT for table `accept_reject_statuses`
 --
 ALTER TABLE `accept_reject_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `account_classifications`
@@ -2777,7 +2711,7 @@ ALTER TABLE `engineer_return_infos`
 -- AUTO_INCREMENT for table `eng_request_items`
 --
 ALTER TABLE `eng_request_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `exterior_design_fees`
@@ -2831,7 +2765,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2867,7 +2801,7 @@ ALTER TABLE `projects_users`
 -- AUTO_INCREMENT for table `qs_team_check_passes`
 --
 ALTER TABLE `qs_team_check_passes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `quotationproposals`
@@ -2879,19 +2813,19 @@ ALTER TABLE `quotationproposals`
 -- AUTO_INCREMENT for table `received_by_engineers`
 --
 ALTER TABLE `received_by_engineers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `received_by_store_managers`
 --
 ALTER TABLE `received_by_store_managers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `request_infos`
 --
 ALTER TABLE `request_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `request_items`
@@ -2903,7 +2837,7 @@ ALTER TABLE `request_items`
 -- AUTO_INCREMENT for table `return_items`
 --
 ALTER TABLE `return_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `return_logistics_team_checks`
@@ -2915,13 +2849,13 @@ ALTER TABLE `return_logistics_team_checks`
 -- AUTO_INCREMENT for table `return_qs_team_check_passes`
 --
 ALTER TABLE `return_qs_team_check_passes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `return_transfer_infos`
 --
 ALTER TABLE `return_transfer_infos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sent_by_users`
@@ -2951,7 +2885,7 @@ ALTER TABLE `testing`
 -- AUTO_INCREMENT for table `transfer_infos`
 --
 ALTER TABLE `transfer_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -2963,7 +2897,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `variable_accept_reject_statuses`
 --
 ALTER TABLE `variable_accept_reject_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `variable_actual_vouchers`
@@ -2993,13 +2927,13 @@ ALTER TABLE `variable_finance_payment_slips`
 -- AUTO_INCREMENT for table `variable_logistics_team_checks`
 --
 ALTER TABLE `variable_logistics_team_checks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `variable_logistics_team_sends`
 --
 ALTER TABLE `variable_logistics_team_sends`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `variable_payments`

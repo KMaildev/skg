@@ -44,10 +44,12 @@ class ReturnQsTeamCheckController extends Controller
         $user_id = auth()->user()->id;
         $engineer_return_info_id = $request->engineer_return_info_id;
         $return_item_id = $request->return_item_id;
+        $fixed_asset_id = $request->fixed_asset_id;
 
         foreach ($request->passed_qty as $key => $value) {
             $insert[$key]['user_id'] = $user_id;
             $insert[$key]['return_item_id'] = $return_item_id[$key];
+            $insert[$key]['fixed_asset_id'] = $fixed_asset_id[$key];
             $insert[$key]['engineer_return_info_id'] = $engineer_return_info_id;
             $insert[$key]['qs_passed_qty'] = $value;
             $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
