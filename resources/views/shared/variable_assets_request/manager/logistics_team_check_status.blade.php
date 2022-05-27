@@ -14,7 +14,7 @@
         </div>
     </a>
 
-    <a href="{{ route('variable_logistics_check_create', ['id' => $request_info->id]) }}">
+    <a href="#">
         <span>Finished:</span>
         <span style="font-size: 12px; text-align: left">
             {{ $request_info->logistics_team_check_date }}

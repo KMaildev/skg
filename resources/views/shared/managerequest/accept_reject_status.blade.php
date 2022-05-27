@@ -1,5 +1,5 @@
 @if ($request_info->accept_reject_status == 'accept')
-    <a href="#" data-bs-toggle="modal" data-bs-target="#modalCenter-{{ $request_info->id }}">
+    <a href="#">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>{{ ucfirst($request_info->accept_reject_status) }}</span>

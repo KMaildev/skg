@@ -1,5 +1,5 @@
 @if ($request_info->management_accept_reject_status == 'accept')
-    <a href="#" data-bs-toggle="modal" data-bs-target="#managementmodalCenter-{{ $request_info->id }}">
+    <a href="#">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>{{ ucfirst($request_info->management_accept_reject_status) }}</span>
@@ -46,7 +46,8 @@
     <form action="{{ route('management_accept_reject.store') }}" method="POST" id="create-form">
         @csrf
         <div>
-            <div class="modal fade" id="managementmodalCenter-{{ $request_info->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="managementmodalCenter-{{ $request_info->id }}" tabindex="-1"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

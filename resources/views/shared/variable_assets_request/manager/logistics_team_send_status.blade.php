@@ -1,5 +1,5 @@
 @if ($request_info->logistics_team_send_status)
-    <a href="{{ route('variable_logistics_send_form', ['id' => $request_info->id]) }}">
+    <a href="#">
         <div class="d-flex flex-column w-100">
             <div class="d-flex justify-content-between mb-1">
                 <span>Finished</span>
