@@ -23,7 +23,6 @@ class FixedAssets extends Model
     }
 
 
-
     public function return_items_table()
     {
         return $this->hasMany(ReturnItem::class, 'fixed_asset_id', 'id');

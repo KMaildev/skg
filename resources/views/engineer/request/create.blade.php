@@ -14,7 +14,7 @@
                         <h6 class="mb-b fw-bold" style="font-weight: bold; font-size: 15px;">1. Request Info</h6>
                         <div class="row g-3">
 
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                                 <div class="row">
                                     <div class="">
                                         <label class="form-label" for="basic-default-fullname"
@@ -36,7 +36,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-3">
                                 <div class="row">
@@ -47,7 +47,7 @@
                                             name="projects_users_id">
                                             <option value="">--Please Site--</option>
                                             @foreach ($projects_users as $key => $value)
-                                                <option value="{{ $value->id ?? '' }}">
+                                                <option value="{{ $value->id ?? 0 }}">
                                                     {{ $value->projects_table->customer_table->project_code ?? '' }}
                                                     @
                                                     {{ $value->projects_table->customer_table->name ?? '' }}

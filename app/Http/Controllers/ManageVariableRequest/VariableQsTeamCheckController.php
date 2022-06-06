@@ -42,6 +42,7 @@ class VariableQsTeamCheckController extends Controller
         $eng_request_item_id = $request->request_item_id;
         $variable_asset_id = $request->variable_asset_id;
         $eng_request_qty = $request->eng_request_qty;
+        $remark = $request->remark;
         $request_info_id = $request->request_info_id;
 
         foreach ($request->passed_qty as $key => $value) {
@@ -49,6 +50,7 @@ class VariableQsTeamCheckController extends Controller
             $insert[$key]['variable_request_item_id'] = $eng_request_item_id[$key];
             $insert[$key]['eng_request_qty'] = $eng_request_qty[$key];
             $insert[$key]['qs_passed_qty'] = $value;
+            $insert[$key]['remark'] = $remark[$key];
             $insert[$key]['created_at'] =  date('Y-m-d H:i:sa');
             $insert[$key]['updated_at'] =  date('Y-m-d H:i:sa');
             $insert[$key]['variable_request_info_id'] =  $request_info_id;

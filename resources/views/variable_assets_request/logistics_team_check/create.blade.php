@@ -42,6 +42,7 @@
                                         <tr>
                                             <th style="color: white; text-align: center; width: 1%;">#</th>
                                             <th style="color: white; text-align: center; width: 20%;">Request Items</th>
+                                            <th style="color: white; text-align: center; width: 5%;">Size</th>
                                             <th style="color: white; text-align: center; width: 20%;">Request Qty</th>
                                             <th style="color: white; text-align: center; width: 20%;">Passed (Qty)</th>
                                             <th style="color: white; text-align: center; width: 20%;">Price</th>
@@ -65,6 +66,10 @@
                                                         value="{{ $item->variable_assets_table->id ?? 0 }}"
                                                         name="variable_asset_id[]">
                                                     {{ $item->variable_assets_table->item_name ?? '' }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $item->size ?? '' }}
                                                 </td>
 
                                                 <td style="text-align: center">
@@ -111,7 +116,7 @@
                                         @endforeach
                                     </tbody>
                                     <tr>
-                                        <th colspan="2">Total</th>
+                                        <th colspan="3">Total</th>
                                         <th style="text-align: center; font-weight: bold">
                                             {{ $request_info->variable_request_items_table->sum('quantity') }}
                                         </th>

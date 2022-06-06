@@ -47,8 +47,14 @@ class EngRequestController extends Controller
     public function store(StoreRequestInfo $request)
     {
         $user_id = auth()->user()->id;
+
+        $request_info_count = RequestInfo::all();
+        $code_count = count($request_info_count);
+        $increment = 'FR-' . sprintf('%06d', $code_count + 1);
+
+
         $request_info = new RequestInfo();
-        $request_info->request_code = $request->request_code;
+        $request_info->request_code = $increment;
         $request_info->request_date = $request->request_date;
         $request_info->work_scope = $request->work_scope;
         $request_info->user_id = $user_id;

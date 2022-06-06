@@ -35,7 +35,7 @@ class EngineerReturnInfo extends Model
 
     public function return_qs_team_check_passes_table()
     {
-        return $this->belongsTo(ReturnQsTeamCheckPass::class, 'id', 'engineer_return_info_id')->latest();;
+        return $this->belongsTo(ReturnQsTeamCheckPass::class, 'id', 'engineer_return_info_id')->latest();
     }
 
     public function return_transfer_infos_another_table()

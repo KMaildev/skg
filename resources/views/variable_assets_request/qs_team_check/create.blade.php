@@ -45,6 +45,9 @@
                                             <th style="color: white; text-align: center; width: 20%;">Passed (Qty)</th>
                                             <th style="color: white; text-align: center; width: 20%;">Passed (Qty Entry)
                                             </th>
+                                            <th style="color: white; text-align: center; width: 20%;">
+                                                Remark
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,6 +93,10 @@
                                                     <input type="text" value="0" style="text-align:right;"
                                                         name="passed_qty[]">
                                                 </td>
+
+                                                <td>
+                                                    <input type="text" style="width: 100%;" name="remark[]">
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -101,6 +108,7 @@
                                         <th style="text-align: center; font-weight: bold">
                                             {{ $qs_passed_qty_total }}
                                         </th>
+                                        <td></td>
                                         <th style="text-align: center">
                                             <input type="submit" class="btn btn-success btn-sm" value="Save">
                                         </th>

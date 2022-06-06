@@ -55,6 +55,18 @@
                             </div>
                         </div>
 
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">Passport Photo</label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('passport_photo') is-invalid @enderror" type="file"
+                                    name="passport_photo" value="{{ old('passport_photo') }}" />
+                                @error('passport_photo')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="mb-3 row">
                             <label for="html5-text-input" class="col-md-3 col-form-label">NRC Number</label>
                             <div class="col-md-9">
@@ -65,6 +77,48 @@
                                 @enderror
                             </div>
                         </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">
+                                NRC Front Photo
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('nrc_front') is-invalid @enderror" type="file"
+                                    name="nrc_front" value="{{ old('nrc_front') }}" />
+                                @error('nrc_front')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">
+                                NRC Back Photo
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('nrc_back') is-invalid @enderror" type="file"
+                                    name="nrc_back" value="{{ old('nrc_back') }}" />
+                                @error('nrc_back')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label for="html5-text-input" class="col-md-3 col-form-label">
+                                Household Members List
+                            </label>
+                            <div class="col-md-9">
+                                <input class="form-control @error('members_list_file') is-invalid @enderror" type="file"
+                                    name="members_list_file[]" multiple value="{{ old('members_list_file') }}" />
+                                @error('members_list_file')
+                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="mb-3 row">
                             <label for="html5-text-input" class="col-md-3 col-form-label">Gender</label>
@@ -127,16 +181,6 @@
                         </div>
 
 
-                        <div class="mb-3 row">
-                            <label for="html5-text-input" class="col-md-3 col-form-label">Passport Photo</label>
-                            <div class="col-md-9">
-                                <input class="form-control @error('passport_photo') is-invalid @enderror" type="file"
-                                    name="passport_photo" value="{{ old('passport_photo') }}" />
-                                @error('passport_photo')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                        </div>
 
 
                         <div class="mb-3 row">
@@ -156,8 +200,8 @@
                         <div class="mb-3 row">
                             <label for="html5-text-input" class="col-md-3 col-form-label">Join Date</label>
                             <div class="col-md-9">
-                                <input class="form-control date_picker @error('join_date') is-invalid @enderror" type="text"
-                                    name="join_date" value="{{ old('join_date') }}" />
+                                <input class="form-control date_picker @error('join_date') is-invalid @enderror"
+                                    type="text" name="join_date" value="{{ old('join_date') }}" />
                                 @error('join_date')
                                     <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror

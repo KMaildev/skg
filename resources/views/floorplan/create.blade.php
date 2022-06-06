@@ -10,7 +10,6 @@
                 object-position: center;
                 background-size: cover;
             }
-
         </style>
         <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="col-xxl">
@@ -31,9 +30,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-sm-end" for="alignment-full-name">Remark</label>
                             <div class="col-sm-9">
-                                <textarea id="basic-default-message"
-                                    class="form-control @error('remark') is-invalid @enderror"
-                                    name="remark">{{ old('remark') }}</textarea>
+                                <textarea id="basic-default-message" class="form-control @error('remark') is-invalid @enderror" name="remark">{{ old('remark') }}</textarea>
                                 @error('remark')
                                     <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror

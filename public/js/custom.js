@@ -5,6 +5,8 @@ $(".date_picker").daterangepicker({
     autoApply: true,
     showDropdowns: true,
     startDate: moment().startOf("hour"),
+    timePickerSeconds: true,
+    timePickerIncrement: 30,
     locale: {
         // format: "YYYY-MM-DD",
         format: "YYYY-MM-DD hh:mm A",

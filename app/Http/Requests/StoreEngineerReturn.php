@@ -24,7 +24,6 @@ class StoreEngineerReturn extends FormRequest
     public function rules()
     {
         return [
-            'return_code' => 'required|unique:engineer_return_infos,return_code',
             'return_date' => 'required',
             'return_from' => 'required',
             'returnItemFields.*.item_name' => 'required',

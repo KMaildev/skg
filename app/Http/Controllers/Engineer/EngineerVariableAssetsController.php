@@ -48,8 +48,14 @@ class EngineerVariableAssetsController extends Controller
     public function store(StoreVariableRequestInfo $request)
     {
         $user_id = auth()->user()->id;
+
+        // for request code
+        $variable_assets_count = VariableRequestInfo::all();
+        $code_count = count($variable_assets_count);
+        $increment = 'VR-' . sprintf('%06d', $code_count + 1);
+
         $variable_asset = new VariableRequestInfo();
-        $variable_asset->code = $request->code;
+        $variable_asset->code = $increment;
         $variable_asset->date = $request->date;
         $variable_asset->need_date = $request->need_date;
         $variable_asset->work_scope = $request->work_scope;

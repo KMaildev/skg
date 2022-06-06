@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.menus.hr')
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-profile.css') }}" />
     <div class="row justify-content-center">
@@ -50,8 +50,14 @@
                         <div class="col-md-12">
                             <ul class="nav nav-pills flex-column flex-sm-row mb-4">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ route('profile.index') }}">
+                                    <a class="nav-link active" href="{{ route('employee.show', $employee->id) }}">
                                         <i class='bx bx-user'></i> Profile
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('members_lists.show', $employee->id) }}">
+                                        <i class='bx bx-user'></i> Files
                                     </a>
                                 </li>
 
@@ -142,13 +148,35 @@
                                             </span>
                                         </li>
                                     </ul>
+
+                                    <small class="text-muted text-uppercase">Emergency Contact</small>
+                                    <ul class="list-unstyled mt-3 mb-0">
+
+                                        <li class="d-flex align-items-center mb-3">
+                                            <i class="bx bx-check-double"></i>
+                                            <span class="fw-semibold mx-2">
+                                                Contact Person:
+                                            </span>
+                                            <span>
+                                                {{ $employee->contact_person ?? '' }}
+                                            </span>
+                                        </li>
+
+                                        <li class="d-flex align-items-center mb-3">
+                                            <i class="bx bx-check-double"></i>
+                                            <span class="fw-semibold mx-2">
+                                                Role (or) Designation:
+                                            </span>
+                                            <span>
+                                                {{ $employee->emergency_contact ?? '' }}
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <!--/ About User -->
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

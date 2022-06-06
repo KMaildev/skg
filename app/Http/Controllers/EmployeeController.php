@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployee;
 use App\Http\Requests\UpdateEmployee;
 use App\Models\Department;
+use App\Models\MembersLists;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,6 +49,16 @@ class EmployeeController extends Controller
             $path = $passport_photo->store('public/passport');
         }
 
+        if ($request->hasFile('nrc_front')) {
+            $nrc_front = $request->file('nrc_front');
+            $nrc_front_path = $nrc_front->store('public/photo');
+        }
+
+        if ($request->hasFile('nrc_back')) {
+            $nrc_back = $request->file('nrc_back');
+            $nrc_back_path = $nrc_back->store('public/photo');
+        }
+
         $employee = new User();
         $employee->employee_id = $request->employee_id;
         $employee->name = $request->name;
@@ -64,9 +75,28 @@ class EmployeeController extends Controller
         $employee->contact_person = $request->contact_person;
         $employee->emergency_contact = $request->emergency_contact;
         $employee->passport_photo = $path ?? '';
+        $employee->nrc_front = $nrc_front_path ?? '';
+        $employee->nrc_back = $nrc_back_path ?? '';
+        $employee->members_list_file = '';
 
         $employee->save();
         $employee->syncRoles($request->roles);
+        $user_id = $employee->id;
+        if ($request->hasFile('members_list_file')) {
+            foreach ($request->file('members_list_file') as $key => $file) {
+                $path = $file->store('public/members_list_file');
+                $original_name = $file->getClientOriginalName();
+
+                $insert[$key]['members_list_file'] = $path;
+                $insert[$key]['original_name'] = $original_name;
+
+                $insert[$key]['user_id'] = $user_id;
+                $insert[$key]['insert_user_id'] = auth()->user()->id;
+                $insert[$key]['created_at'] =  date('Y-m-d H:i:s');
+                $insert[$key]['updated_at'] =  date('Y-m-d H:i:s');
+            }
+        }
+        MembersLists::insert($insert);
         return redirect()->back()->with('success', 'Employee is successfully created.');
     }
 
@@ -78,7 +108,13 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = User::findOrFail($id);
+        $old_roles = $employee->roles->pluck('id')->toArray();
+        $departments = Department::orderBy('title')->get();
+        $roles = Role::all();
+
+        $members_lists = MembersLists::where('user_id', $id)->get();
+        return view('employee.show', compact('employee', 'old_roles', 'departments', 'roles', 'members_lists'));
     }
 
     /**
@@ -93,7 +129,9 @@ class EmployeeController extends Controller
         $old_roles = $employee->roles->pluck('id')->toArray();
         $departments = Department::orderBy('title')->get();
         $roles = Role::all();
-        return view('employee.edit', compact('employee', 'old_roles', 'departments', 'roles'));
+
+        $members_lists = MembersLists::where('user_id', $id)->get();
+        return view('employee.edit', compact('employee', 'old_roles', 'departments', 'roles', 'members_lists'));
     }
 
     /**
@@ -110,6 +148,16 @@ class EmployeeController extends Controller
             $path = $passport_photo->store('public/passport');
         }
 
+        if ($request->hasFile('nrc_front')) {
+            $nrc_front = $request->file('nrc_front');
+            $nrc_front_path = $nrc_front->store('public/photo');
+        }
+
+        if ($request->hasFile('nrc_back')) {
+            $nrc_back = $request->file('nrc_back');
+            $nrc_back_path = $nrc_back->store('public/photo');
+        }
+
         $employee = User::findOrFail($id);
         $employee->employee_id = $request->employee_id;
         $employee->name = $request->name;
@@ -121,12 +169,15 @@ class EmployeeController extends Controller
         $employee->department_id = $request->department_id;
         $employee->password = $request->password ? Hash::make($request->password) : $employee->password;
 
-
         $employee->employment_type = $request->employment_type;
         $employee->join_date = $request->join_date;
         $employee->contact_person = $request->contact_person;
         $employee->emergency_contact = $request->emergency_contact;
         $employee->passport_photo = $path ?? $employee->passport_photo;
+
+        $employee->nrc_front = $nrc_front_path ?? $employee->nrc_front;
+        $employee->nrc_back = $nrc_back_path ?? $employee->nrc_back;
+        $employee->members_list_file = '';
 
         $employee->update();
         $employee->syncRoles($request->roles);

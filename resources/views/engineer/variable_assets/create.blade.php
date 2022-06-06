@@ -13,7 +13,7 @@
                         <h6 class="mb-b fw-bold" style="font-weight: bold; font-size: 15px;">1. Info</h6>
                         <div class="row g-3">
 
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="row">
                                     <div class="">
                                         <label class="form-label" for="basic-default-fullname"
@@ -35,7 +35,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-4">
                                 <div class="row">

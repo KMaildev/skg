@@ -24,7 +24,6 @@ class StoreVariableRequestInfo extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|unique:variable_request_infos,code',
             'date' => 'required',
             'customer_id' => 'required',
             'need_date' => 'required',

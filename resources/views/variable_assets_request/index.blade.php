@@ -30,6 +30,9 @@
                                     Engineer Request
                                 </th>
                                 <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
+                                    Project
+                                </th>
+                                <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
                                     Request code
                                 </th>
                                 <th style="color: white; background-color: #2e696e; text-align: center; width: 14%">
@@ -89,6 +92,12 @@
                                     </td>
 
                                     <td style="text-align: center">
+                                        {{ $request_info->customer_table->name ?? '' }}
+                                        @
+                                        {{ $request_info->customer_table->project_code ?? '' }}
+                                    </td>
+
+                                    <td style="text-align: center">
                                         {{ $request_info->code }}
                                     </td>
 
@@ -140,48 +149,38 @@
 
                                     {{-- Accept / Reject --}}
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.variable_assets_request.manager.accept_reject_status',
-                                            ['request_info' => $request_info]
-                                        )
+                                        @include('shared.variable_assets_request.manager.accept_reject_status',
+                                            ['request_info' => $request_info])
                                     </td>
 
                                     {{-- QS Team Check & Pass --}}
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.variable_assets_request.manager.qs_team_check_pass_status',
-                                            ['request_info' => $request_info]
-                                        )
+                                        @include('shared.variable_assets_request.manager.qs_team_check_pass_status',
+                                            ['request_info' => $request_info])
                                     </td>
 
                                     {{-- Logistics Team Check --}}
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.variable_assets_request.manager.logistics_team_check_status',
+                                        @include('shared.variable_assets_request.manager.logistics_team_check_status',
                                             [
                                                 'request_info' => $request_info,
-                                            ]
-                                        )
+                                            ])
                                     </td>
 
                                     {{-- Management --}}
                                     <td style="text-align: center">
-                                        @include(
-                                            'shared.variable_assets_request.manager.management_accept_reject_status',
+                                        @include('shared.variable_assets_request.manager.management_accept_reject_status',
                                             [
                                                 'request_info' => $request_info,
-                                            ]
-                                        )
+                                            ])
                                     </td>
 
                                     {{-- Logistics Team Send --}}
                                     <td>
-                                        @include(
-                                            'shared.variable_assets_request.manager.logistics_team_send_status',
+                                        @include('shared.variable_assets_request.manager.logistics_team_send_status',
                                             [
                                                 'request_info' => $request_info,
-                                            ]
-                                        )
+                                            ])
                                     </td>
 
                                     {{-- Transferred from --}}
@@ -200,31 +199,25 @@
 
                                     <!-- Received by Engineer -->
                                     <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.variable_assets_request.manager.received_by_engineer_status',
+                                        @include('shared.variable_assets_request.manager.received_by_engineer_status',
                                             [
                                                 'request_info' => $request_info,
-                                            ]
-                                        )
+                                            ])
                                     </td>
 
                                     {{-- Actual Voucher --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.variable_assets_request.manager.variable_actual_voucher',
-                                            ['request_info' => $request_info]
-                                        )
+                                        @include('shared.variable_assets_request.manager.variable_actual_voucher',
+                                            ['request_info' => $request_info])
                                     </td>
 
 
                                     {{-- Finance --}}
                                     <td style="text-align: center; font-size: 13px;">
-                                        @include(
-                                            'shared.variable_assets_request.manager.variable_finance_payment_slip',
+                                        @include('shared.variable_assets_request.manager.variable_finance_payment_slip',
                                             [
                                                 'request_info' => $request_info,
-                                            ]
-                                        )
+                                            ])
                                     </td>
 
 

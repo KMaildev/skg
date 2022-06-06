@@ -52,8 +52,15 @@ class EngineerReturnController extends Controller
     public function store(StoreEngineerReturn $request)
     {
         $user_id = auth()->user()->id;
+
+        // for request code
+        $variable_assets_count = EngineerReturnInfo::all();
+        $code_count = count($variable_assets_count);
+        $increment = 'RE-' . sprintf('%06d', $code_count + 1);
+
+
         $eng_return = new EngineerReturnInfo();
-        $eng_return->return_code = $request->return_code;
+        $eng_return->return_code = $increment;
         $eng_return->return_date = $request->return_date;
         $eng_return->return_from_id = $request->return_from;
         $eng_return->return_user_id = $user_id;

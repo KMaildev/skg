@@ -12,8 +12,13 @@
                         </div>
                         <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                             <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                                <img src="{{ asset('assets/data/profile.png') }}" alt="user image"
-                                    class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img">
+                                @if ($employee->passport_photo)
+                                    <img src="{{ Storage::url($employee->passport_photo) }}" alt=""
+                                        class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img">
+                                @else
+                                    <img src="{{ asset('assets/data/profile.png') }}" alt="user image"
+                                        class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img">
+                                @endif
                             </div>
                             <div class="flex-grow-1 mt-3 mt-sm-5">
                                 <div

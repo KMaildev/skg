@@ -83,7 +83,8 @@
                                                         href="{{ route('employee.edit', $value->id) }}">Edit</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="#">View Profile</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('employee.show', $value->id) }}">View Profile</a>
                                                 </li>
                                             </ul>
                                         </div>

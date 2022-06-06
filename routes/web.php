@@ -24,6 +24,7 @@ Auth::routes(['register' => false]);
 Route::middleware('auth')->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::view('/file_manager', 'file_manager.index')->name('file_manager.index');
 
     // Accounting Route
     Route::resource('accountingdashboard', 'AccountingDashboardController');
@@ -257,9 +258,9 @@ Route::middleware('auth')->group(function () {
 
 
 
-
     // Purchase
     Route::resource('fixed_assets_purchase', 'Purchase\FixedAssetsPurchaseController');
 
     Route::resource('activity', 'Activity\ActivityLogController');
+    Route::resource('members_lists', 'MembersListsController');
 });
